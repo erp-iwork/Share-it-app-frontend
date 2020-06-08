@@ -9,10 +9,7 @@ class SignInPage extends Component {
   }
   render() {
     return (
-      <Page
-        title="Dropdowns"
-        breadcrumbs={[{ name: "dropdowns", active: true }]}
-      >
+      <Page title="Login" breadcrumbs={[{ name: "dropdowns", active: true }]}>
         <Col>This is SignIn Page</Col>
       </Page>
     );

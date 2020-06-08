@@ -5,12 +5,13 @@ import React from "react";
 import componentQueries from "react-component-queries";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
+import signInPage from './pages/signIn'
 
 
 
 
 
-const signInPage = React.lazy(() => import('./pages/signIn'));
+// const signInPage = React.lazy(() => import('./pages/signIn'));
 
 
 const getBasename = () => {
