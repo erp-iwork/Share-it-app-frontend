@@ -1,0 +1,32 @@
+
+.loginImage {
+    max-height: 1000px;
+}
+
+.loginContainer {
+    margin: 90px;
+    flex-direction: row;
+}
+
+.loginFormContainer {
+    padding-top: 100px;
+    flex-direction: column;
+}
+
+.CLogo {
+    width: 300px;
+    justify-content: center;
+    flex-direction: row;   
+}
+
+.loginIcon {
+    width: 110px;
+    justify-content: center;
+    border-radius: 1000px;
+    padding: 40px;
+    background-color: #1081D1;
+    color: #fff;
+    margin-top: 30px;
+    
+}
+

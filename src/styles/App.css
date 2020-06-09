@@ -9,7 +9,17 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 1s linear;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+
+  }
+  .App-logo2 {
+    width: 100px;
+    margin-right: 20px;
   }
 }
 
