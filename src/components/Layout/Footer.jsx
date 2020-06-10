@@ -8,7 +8,7 @@ const Footer = () => {
     <Navbar>
       <Nav navbar>
         <NavItem>
-          2018 Reduction theme, source on
+          2020, SharreIt App
         </NavItem>
       </Nav>
     </Navbar>
