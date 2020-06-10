@@ -11,11 +11,10 @@ import {
   Label,
   Container,
 } from "reactstrap";
-import Logo from "./formLayout";
 import { MdNotificationsNone } from "react-icons/md";
-import Typography from "../../../components/Typography";
+import Logo from "../../../assets/Icons/CLogo.svg";
 
-class LoginFormPage extends Component {
+class RegistrationFormPage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,12 +29,11 @@ class LoginFormPage extends Component {
               alignSelf: "center",
             }}
           >
-            <Logo className="CLogo" />
+            <img className="CLogo" src={Logo} alt="" />
           </CardHeader>
-          <Typography align="center">Hello</Typography>
 
           <Container className="loginIcon">
-            <MdNotificationsNone fontSize={30} />
+            <MdNotificationsNone fontSize={30} align="center" />
           </Container>
           <CardBody>
             <Form>
@@ -70,4 +68,4 @@ class LoginFormPage extends Component {
   }
 }
 
-export default LoginFormPage;
+export default RegistrationFormPage;

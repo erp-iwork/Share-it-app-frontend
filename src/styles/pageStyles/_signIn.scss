@@ -6,7 +6,10 @@
 .loginContainer {
     margin: 90px;
     flex-direction: row;
-    border-style: dotted;
+}
+.loginContainerMobile {
+    margin-top: 20px;
+    flex-direction: row;
 }
 
 .loginFormContainer {
@@ -27,7 +30,7 @@
     padding: 40px;
     background-color: #1081D1;
     color: #fff;
-    margin-top: 30px;
+    margin-top: 20px;
     
 }
 
