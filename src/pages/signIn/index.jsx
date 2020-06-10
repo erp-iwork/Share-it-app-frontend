@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Col } from "reactstrap";
-import LoginImage from "../../assets/Nunu.jpg";
+// import LoginImage from "../../assets/Nunu.jpg";
+import LoginImage from "../../assets/demo-nanny.jpg";
+
 import { Card, CardImg } from "reactstrap";
 import LoginFormPage from "./components/loginForm";
 
@@ -17,7 +19,6 @@ class SignInPage extends Component {
           <Col md={7} sm={12} xs={12}>
             <CardImg
               width="100%"
-              height="100%"
               className='loginImage'
               // style={{ width: "auto", height: 900 }}
               src={LoginImage}
