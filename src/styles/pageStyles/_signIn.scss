@@ -6,6 +6,7 @@
 .loginContainer {
     margin: 90px;
     flex-direction: row;
+    border-style: dotted;
 }
 
 .loginFormContainer {
@@ -30,3 +31,7 @@
     
 }
 
+.loginBackground {
+    height: 100vh;
+    background-image: url('../../assets/demo-nanny.jpg');
+}

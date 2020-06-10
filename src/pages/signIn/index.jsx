@@ -14,7 +14,7 @@ class SignInPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='loginBackground'>
         <Card md={12} sm={12} className="loginContainer">
           <Col md={7} sm={12} xs={12}>
             <CardImg
