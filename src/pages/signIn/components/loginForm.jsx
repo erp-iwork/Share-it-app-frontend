@@ -9,16 +9,18 @@ import {
   FormGroup,
   Input,
   Label,
-  Container,
 } from "reactstrap";
 import Logo from "./formLayout";
-import { MdNotificationsNone } from "react-icons/md";
+import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
 
 class LoginFormPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: '',
+      password: ''
+    };
   }
   render() {
     return (
@@ -32,11 +34,15 @@ class LoginFormPage extends Component {
           >
             <Logo className="CLogo" />
           </CardHeader>
-          <Typography className='label' align="center">sign In</Typography>
+          <Typography className="label" align="center">
+            Sign In
+          </Typography>
+          <Col md={12} align="center">
+            <Button className="loginIcon">
+              <MdLock fontSize={30} />
+            </Button>
+          </Col>
 
-          <Container className="loginIcon">
-            <MdNotificationsNone fontSize={30} />
-          </Container>
           <CardBody>
             <Form>
               <FormGroup>

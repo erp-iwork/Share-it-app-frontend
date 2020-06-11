@@ -9,15 +9,20 @@ import {
   FormGroup,
   Input,
   Label,
-  Container,
 } from "reactstrap";
-import { MdNotificationsNone } from "react-icons/md";
+import { MdLock } from "react-icons/md";
+
 import Logo from "../../../assets/Icons/CLogo.svg";
+import Typography from "../../../components/Typography";
 
 class RegistrationFormPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+    };
   }
 
   render() {
@@ -32,14 +37,19 @@ class RegistrationFormPage extends Component {
           >
             <img className="CLogo" src={Logo} alt="" />
           </CardHeader>
+          <Typography className="label" align="center">
+            Register
+          </Typography>
+          <Col align="center" md={12}>
+            <Button className="loginIcon">
+              <MdLock fontSize={30} />
+            </Button>
+          </Col>
 
-          <Container className="loginIcon">
-            <MdNotificationsNone fontSize={30} align="center" />
-          </Container>
           <CardBody>
             <Form>
               <FormGroup>
-                <Label for="exampleEmail" sm={12}>
+                <Label for="exampleName" sm={12}>
                   Name
                 </Label>
                 <Col sm={12}>
@@ -67,14 +77,14 @@ class RegistrationFormPage extends Component {
                 </Col>
               </FormGroup>
               <FormGroup>
-                <Label for="examplePassword" sm={12}>
+                <Label for="exampleConfirmPassword" sm={12}>
                   Confirm Password
                 </Label>
                 <Col sm={12}>
                   <Input
                     type="password"
-                    name="password"
-                    placeholder="Password"
+                    name="confirmPasssword"
+                    placeholder="Confirm Password"
                   />
                 </Col>
               </FormGroup>

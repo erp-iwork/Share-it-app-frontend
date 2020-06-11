@@ -8,7 +8,6 @@
     flex-direction: row;
 }
 .loginContainerMobile {
-    margin-top: 20px;
     flex-direction: row;
 }
 
@@ -24,13 +23,10 @@
 }
 
 .loginIcon {
-    width: 110px;
     justify-content: center;
     border-radius: 1000px;
-    padding: 40px;
-    background-color: #1081D1;
-    color: #fff;
-    margin-top: 20px;
+    padding: 25px;
+    background-color: #083991;
     
 }
 
@@ -40,7 +36,8 @@
 }
 
 .label {
-    // color: #fff;
+    color: #1081D1;
     padding-top: 10px;
     font-size: 30px;
+    font-weight: 700;
 }
