@@ -1,1 +1,1 @@
-# Share-it-app-frontend
+# ShareApp
