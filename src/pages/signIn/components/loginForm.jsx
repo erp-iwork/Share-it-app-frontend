@@ -13,15 +13,28 @@ import {
 import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
+import { connect } from "react-redux";
+import { login } from "../../../store/auth";
 
 class LoginFormPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.login(this.state);
+  };
   render() {
     return (
       <Col md={12}>
@@ -44,13 +57,18 @@ class LoginFormPage extends Component {
           </Col>
 
           <CardBody>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label for="exampleEmail" sm={12}>
                   Email
                 </Label>
                 <Col sm={12}>
-                  <Input type="email" name="email" placeholder="Email" />
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    onChange={this.handleChange}
+                  />
                 </Col>
               </FormGroup>
               <FormGroup>
@@ -62,6 +80,7 @@ class LoginFormPage extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    onChange={this.handleChange}
                   />
                 </Col>
               </FormGroup>
@@ -75,5 +94,8 @@ class LoginFormPage extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  login: (userInfo) => dispatch(login(userInfo)),
+});
 
-export default LoginFormPage;
+export default connect(null, mapDispatchToProps)(LoginFormPage);

@@ -14,6 +14,8 @@ import { MdLock } from "react-icons/md";
 
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
+import { registerUser } from "../../../store/users";
+import { connect } from "react-redux";
 
 class RegistrationFormPage extends Component {
   constructor(props) {
@@ -23,7 +25,20 @@ class RegistrationFormPage extends Component {
       email: "",
       password: "",
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  //TODO
+  //Refactor
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.register(this.state);
+  };
 
   render() {
     return (
@@ -47,13 +62,18 @@ class RegistrationFormPage extends Component {
           </Col>
 
           <CardBody>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label for="exampleName" sm={12}>
                   Name
                 </Label>
                 <Col sm={12}>
-                  <Input type="text" name="Name" placeholder="Full Name" />
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    onChange={this.handleChange}
+                  />
                 </Col>
               </FormGroup>
               <FormGroup>
@@ -61,7 +81,12 @@ class RegistrationFormPage extends Component {
                   Email
                 </Label>
                 <Col sm={12}>
-                  <Input type="email" name="email" placeholder="Email" />
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    onChange={this.handleChange}
+                  />
                 </Col>
               </FormGroup>
               <FormGroup>
@@ -73,6 +98,7 @@ class RegistrationFormPage extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    onChange={this.handleChange}
                   />
                 </Col>
               </FormGroup>
@@ -81,11 +107,7 @@ class RegistrationFormPage extends Component {
                   Confirm Password
                 </Label>
                 <Col sm={12}>
-                  <Input
-                    type="password"
-                    name="confirmPasssword"
-                    placeholder="Confirm Password"
-                  />
+                  <Input type="password" placeholder="Confirm Password" />
                 </Col>
               </FormGroup>
               <FormGroup align="center" md={12}>
@@ -98,5 +120,8 @@ class RegistrationFormPage extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  register: (userInfo) => dispatch(registerUser(userInfo)),
+});
 
-export default RegistrationFormPage;
+export default connect(null, mapDispatchToProps)(RegistrationFormPage);
