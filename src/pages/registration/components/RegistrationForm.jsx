@@ -19,6 +19,7 @@ class RegistrationFormPage extends Component {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <Col md={12}>
@@ -39,6 +40,14 @@ class RegistrationFormPage extends Component {
             <Form>
               <FormGroup>
                 <Label for="exampleEmail" sm={12}>
+                  Name
+                </Label>
+                <Col sm={12}>
+                  <Input type="text" name="Name" placeholder="Full Name" />
+                </Col>
+              </FormGroup>
+              <FormGroup>
+                <Label for="exampleEmail" sm={12}>
                   Email
                 </Label>
                 <Col sm={12}>
@@ -57,8 +66,20 @@ class RegistrationFormPage extends Component {
                   />
                 </Col>
               </FormGroup>
+              <FormGroup>
+                <Label for="examplePassword" sm={12}>
+                  Confirm Password
+                </Label>
+                <Col sm={12}>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </Col>
+              </FormGroup>
               <FormGroup align="center" md={12}>
-                <Button>Login</Button>
+                <Button>Register</Button>
               </FormGroup>
             </Form>
           </CardBody>

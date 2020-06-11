@@ -5,7 +5,6 @@ import LoginImage from "../../assets/demo-nanny.jpg";
 import { Card, CardImg } from "reactstrap";
 import LoginFormPage from "./components/loginForm";
 
-
 class SignInPage extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +32,8 @@ class SignInPage extends Component {
     return (
       <div className="loginBackground">
         {isDesktop ? (
-          
           <Card md={12} sm={12} className="loginContainer">
-                        <Col md={7} sm={12} xs={12}>
+            <Col md={7} sm={12} xs={12}>
               <CardImg
                 width="100%"
                 className="loginImage"
@@ -46,7 +44,6 @@ class SignInPage extends Component {
             <Col md={5} sm={12} xs={12} className="loginFormContainer">
               <LoginFormPage />
             </Col>
-
             )
           </Card>
         ) : (

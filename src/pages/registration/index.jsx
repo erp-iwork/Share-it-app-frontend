@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col } from "reactstrap";
 // import LoginImage from "../../assets/Nunu.jpg";
-import LoginImage from "../../assets/demo-nanny.jpg";
+import RegistrationImage from "../../assets/demo-nanny.jpg";
 
 import { Card, CardImg } from "reactstrap";
 import RegistrationFormPage from "./components/RegistrationForm";
@@ -41,7 +41,7 @@ class RegistrationPage extends Component {
               <CardImg
                 width="100%"
                 className="loginImage"
-                src={LoginImage}
+                src={RegistrationImage}
                 alt="login image"
               />
             </Col>

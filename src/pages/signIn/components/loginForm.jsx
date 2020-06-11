@@ -32,7 +32,7 @@ class LoginFormPage extends Component {
           >
             <Logo className="CLogo" />
           </CardHeader>
-          <Typography align="center">Hello</Typography>
+          <Typography className='label' align="center">sign In</Typography>
 
           <Container className="loginIcon">
             <MdNotificationsNone fontSize={30} />
