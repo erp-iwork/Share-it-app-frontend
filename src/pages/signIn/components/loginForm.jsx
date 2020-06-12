@@ -1,38 +1,22 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
 import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
 import { connect } from "react-redux";
 import { login } from "../../../store/auth";
+import MainForm from "../../../components/MainForm";
 
-class LoginFormPage extends Component {
+class LoginFormPage extends MainForm {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  doSubmit = () => {
     this.props.login(this.state);
   };
   render() {
@@ -58,35 +42,9 @@ class LoginFormPage extends Component {
 
           <CardBody>
             <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label for="exampleEmail" sm={12}>
-                  Email
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={this.handleChange}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword" sm={12}>
-                  Password
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup align="center" md={12}>
-                <Button>Login</Button>
-              </FormGroup>
+              {this.renderInput("email", "Email", "Email", "email")}
+              {this.renderInput("password", "Password", "Password", "password")}
+              {this.renderButton("Login")}
             </Form>
           </CardBody>
         </Card>

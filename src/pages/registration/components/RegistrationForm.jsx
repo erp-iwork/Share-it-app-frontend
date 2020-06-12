@@ -1,23 +1,14 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
 import { MdLock } from "react-icons/md";
 
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
 import { registerUser } from "../../../store/users";
 import { connect } from "react-redux";
+import MainForm from "../../../components/MainForm";
 
-class RegistrationFormPage extends Component {
+class RegistrationFormPage extends MainForm {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,18 +16,9 @@ class RegistrationFormPage extends Component {
       email: "",
       password: "",
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  //TODO
-  //Refactor
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  doSubmit = () => {
     this.props.register(this.state);
   };
 
@@ -63,56 +45,16 @@ class RegistrationFormPage extends Component {
 
           <CardBody>
             <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label for="exampleName" sm={12}>
-                  Name
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Full Name"
-                    onChange={this.handleChange}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleEmail" sm={12}>
-                  Email
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={this.handleChange}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword" sm={12}>
-                  Password
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleConfirmPassword" sm={12}>
-                  Confirm Password
-                </Label>
-                <Col sm={12}>
-                  <Input type="password" placeholder="Confirm Password" />
-                </Col>
-              </FormGroup>
-              <FormGroup align="center" md={12}>
-                <Button>Register</Button>
-              </FormGroup>
+              {this.renderInput("name", "Name", "Full Name")}
+              {this.renderInput("email", "Email", "Email", "email")}
+              {this.renderInput("password", "Password", "Password", "password")}
+              {this.renderInput(
+                "confirmPassword",
+                "Confirm Password",
+                "Confirm Password",
+                "password"
+              )}
+              {this.renderButton("Register")}
             </Form>
           </CardBody>
         </Card>
