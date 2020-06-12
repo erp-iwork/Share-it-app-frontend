@@ -10,7 +10,7 @@ const slice = createSlice({
     userRegistered: (users, action) => {
       localStorage.setItem(tokenKey, action.payload.token);
       //TODO
-      //login with jwt
+      //login with jwt a
     },
   },
 });

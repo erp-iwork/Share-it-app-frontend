@@ -3,7 +3,7 @@ import PropTypes from '../utils/propTypes';
 
 import classNames from 'classnames';
 
-import userImage from '../assets/Nunu.jpg';
+import userImage from '../assets/Nunu.png';
 
 const Avatar = ({
   rounded,

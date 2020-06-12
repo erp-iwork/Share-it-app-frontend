@@ -11,7 +11,6 @@ import {
   Label,
 } from "reactstrap";
 import { MdLock } from "react-icons/md";
-
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
 import { registerUser } from "../../../store/users";

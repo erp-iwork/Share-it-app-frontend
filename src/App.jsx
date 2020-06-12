@@ -8,6 +8,8 @@ import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
+import HomePage from "./pages/homePage";
+
 import configureStore from "./store/configureStore";
 const store = configureStore();
 
@@ -26,7 +28,7 @@ class App extends React.Component {
             <Switch>
               <LayoutRoute
                 exact
-                path="/"
+                path="/login"
                 layout={EmptyLayout}
                 component={SignInPage}
               />
@@ -39,10 +41,10 @@ class App extends React.Component {
 
               <MainLayout breakpoint={this.props.breakpoint}>
                 <React.Suspense fallback={<PageSpinner />}>
-                  <Route exact path="/login" component={RegistrationPage} />
+                  <Route exact path="/" component={HomePage} />
                 </React.Suspense>
               </MainLayout>
-              <Redirect to="/registration" />
+              <Redirect to="/" />
             </Switch>
           </GAListener>
         </BrowserRouter>
