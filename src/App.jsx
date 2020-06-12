@@ -7,6 +7,11 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
+import { Provider } from "react-redux";
+import HomePage from "./pages/homePage";
+
+import configureStore from "./store/configureStore";
+const store = configureStore();
 
 // const signInPage = React.lazy(() => import('./pages/signIn'));
 
@@ -17,31 +22,33 @@ const getBasename = () => {
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter basename={getBasename()}>
-        <GAListener>
-          <Switch>
-            <LayoutRoute
-              exact
-              path="/"
-              layout={EmptyLayout}
-              component={SignInPage}
-            />
-            <LayoutRoute
-              exact
-              path="/registration"
-              layout={EmptyLayout}
-              component={RegistrationPage}
-            />
+      <Provider store={store}>
+        <BrowserRouter basename={getBasename()}>
+          <GAListener>
+            <Switch>
+              <LayoutRoute
+                exact
+                path="/login"
+                layout={EmptyLayout}
+                component={SignInPage}
+              />
+              <LayoutRoute
+                exact
+                path="/registration"
+                layout={EmptyLayout}
+                component={RegistrationPage}
+              />
 
-            <MainLayout breakpoint={this.props.breakpoint}>
-              <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/login" component={RegistrationPage} />
-              </React.Suspense>
-            </MainLayout>
-            <Redirect to="/registration" />
-          </Switch>
-        </GAListener>
-      </BrowserRouter>
+              <MainLayout breakpoint={this.props.breakpoint}>
+                <React.Suspense fallback={<PageSpinner />}>
+                  <Route exact path="/" component={HomePage} />
+                </React.Suspense>
+              </MainLayout>
+              <Redirect to="/" />
+            </Switch>
+          </GAListener>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
