@@ -8,12 +8,11 @@ import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
-import HomePage from "./pages/homePage";
 
 import configureStore from "./store/configureStore";
 const store = configureStore();
 
-// const signInPage = React.lazy(() => import('./pages/signIn'));
+const HomePage = React.lazy(() => import('./pages/homePage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
