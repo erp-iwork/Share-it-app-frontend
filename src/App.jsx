@@ -5,14 +5,11 @@ import React from "react";
 import componentQueries from "react-component-queries";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
-import signInPage from './pages/signIn'
-
-
-
-
+import SignInPage from "./pages/signIn";
+import RegistrationPage from "./pages/registration";
+import HomePage from "./pages/homePage";
 
 // const signInPage = React.lazy(() => import('./pages/signIn'));
-
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -26,14 +23,20 @@ class App extends React.Component {
           <Switch>
             <LayoutRoute
               exact
-              path="/"
+              path="/login"
               layout={EmptyLayout}
-              component={signInPage}
+              component={SignInPage}
+            />
+            <LayoutRoute
+              exact
+              path="/registration"
+              layout={EmptyLayout}
+              component={RegistrationPage}
             />
 
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/login" component={signInPage} />
+                <Route exact path="/" component={HomePage} />
               </React.Suspense>
             </MainLayout>
             <Redirect to="/" />

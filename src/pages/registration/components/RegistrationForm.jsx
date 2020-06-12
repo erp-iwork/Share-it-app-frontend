@@ -10,18 +10,21 @@ import {
   Input,
   Label,
 } from "reactstrap";
-import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
+
+import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
 
-class LoginFormPage extends Component {
+class RegistrationFormPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      name: "",
+      email: "",
+      password: "",
     };
   }
+
   render() {
     return (
       <Col md={12}>
@@ -32,12 +35,12 @@ class LoginFormPage extends Component {
               alignSelf: "center",
             }}
           >
-            <Logo className="CLogo" />
+            <img className="CLogo" src={Logo} alt="" />
           </CardHeader>
           <Typography className="label" align="center">
-            Sign In
+            Register
           </Typography>
-          <Col md={12} align="center">
+          <Col align="center" md={12}>
             <Button className="loginIcon">
               <MdLock fontSize={30} />
             </Button>
@@ -45,6 +48,14 @@ class LoginFormPage extends Component {
 
           <CardBody>
             <Form>
+              <FormGroup>
+                <Label for="exampleName" sm={12}>
+                  Name
+                </Label>
+                <Col sm={12}>
+                  <Input type="text" name="Name" placeholder="Full Name" />
+                </Col>
+              </FormGroup>
               <FormGroup>
                 <Label for="exampleEmail" sm={12}>
                   Email
@@ -65,8 +76,20 @@ class LoginFormPage extends Component {
                   />
                 </Col>
               </FormGroup>
+              <FormGroup>
+                <Label for="exampleConfirmPassword" sm={12}>
+                  Confirm Password
+                </Label>
+                <Col sm={12}>
+                  <Input
+                    type="password"
+                    name="confirmPasssword"
+                    placeholder="Confirm Password"
+                  />
+                </Col>
+              </FormGroup>
               <FormGroup align="center" md={12}>
-                <Button>Login</Button>
+                <Button>Register</Button>
               </FormGroup>
             </Form>
           </CardBody>
@@ -76,4 +99,4 @@ class LoginFormPage extends Component {
   }
 }
 
-export default LoginFormPage;
+export default RegistrationFormPage;
