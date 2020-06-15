@@ -7,7 +7,10 @@ class MainLayout extends React.Component {
     return (
       <main className="cr-app bg-light">
         <Content fluid>
+          <div className='appbarHeader'>
           <Header />
+
+          </div>
           {children}
           <Footer />
         </Content>
