@@ -12,7 +12,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 const store = configureStore();
 
-const HomePage = React.lazy(() => import('./pages/homePage'));
+const HomePage = React.lazy(() => import("./pages/homePage"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;

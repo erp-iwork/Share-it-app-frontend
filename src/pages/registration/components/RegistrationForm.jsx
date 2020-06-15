@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
 import { MdLock } from "react-icons/md";
 import Logo from "../../../assets/Icons/CLogo.svg";
