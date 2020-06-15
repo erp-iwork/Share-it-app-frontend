@@ -7,9 +7,12 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
-import HomePage from "./pages/homePage";
+import { Provider } from "react-redux";
 
-// const signInPage = React.lazy(() => import('./pages/signIn'));
+import configureStore from "./store/configureStore";
+const store = configureStore();
+
+const HomePage = React.lazy(() => import("./pages/homePage"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -18,31 +21,33 @@ const getBasename = () => {
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter basename={getBasename()}>
-        <GAListener>
-          <Switch>
-            <LayoutRoute
-              exact
-              path="/login"
-              layout={EmptyLayout}
-              component={SignInPage}
-            />
-            <LayoutRoute
-              exact
-              path="/registration"
-              layout={EmptyLayout}
-              component={RegistrationPage}
-            />
+      <Provider store={store}>
+        <BrowserRouter basename={getBasename()}>
+          <GAListener>
+            <Switch>
+              <LayoutRoute
+                exact
+                path="/login"
+                layout={EmptyLayout}
+                component={SignInPage}
+              />
+              <LayoutRoute
+                exact
+                path="/registration"
+                layout={EmptyLayout}
+                component={RegistrationPage}
+              />
 
-            <MainLayout breakpoint={this.props.breakpoint}>
-              <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={HomePage} />
-              </React.Suspense>
-            </MainLayout>
-            <Redirect to="/" />
-          </Switch>
-        </GAListener>
-      </BrowserRouter>
+              <MainLayout breakpoint={this.props.breakpoint}>
+                <React.Suspense fallback={<PageSpinner />}>
+                  <Route exact path="/" component={HomePage} />
+                </React.Suspense>
+              </MainLayout>
+              <Redirect to="/" />
+            </Switch>
+          </GAListener>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

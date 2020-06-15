@@ -1,27 +1,24 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import React from "react";
+import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
 import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
+import { connect } from "react-redux";
+import { login } from "../../../store/auth";
+import MainForm from "../../../components/MainForm";
 
-class LoginFormPage extends Component {
+class LoginFormPage extends MainForm {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     };
   }
+
+  doSubmit = () => {
+    this.props.login(this.state);
+  };
   render() {
     return (
       <Col md={12}>
@@ -44,30 +41,10 @@ class LoginFormPage extends Component {
           </Col>
 
           <CardBody>
-            <Form>
-              <FormGroup>
-                <Label for="exampleEmail" sm={12}>
-                  Email
-                </Label>
-                <Col sm={12}>
-                  <Input type="email" name="email" placeholder="Email" />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword" sm={12}>
-                  Password
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup align="center" md={12}>
-                <Button>Login</Button>
-              </FormGroup>
+            <Form onSubmit={this.handleSubmit}>
+              {this.renderInput("email", "Email", "Email", "email")}
+              {this.renderInput("password", "Password", "Password", "password")}
+              {this.renderButton("Login")}
             </Form>
           </CardBody>
         </Card>
@@ -75,5 +52,8 @@ class LoginFormPage extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  login: (userInfo) => dispatch(login(userInfo)),
+});
 
-export default LoginFormPage;
+export default connect(null, mapDispatchToProps)(LoginFormPage);

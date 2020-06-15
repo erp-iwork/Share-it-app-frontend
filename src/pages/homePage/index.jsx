@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Col } from "reactstrap";
+import { Col, Row } from "reactstrap";
+import SubHeader from "../../components/Layout/SubHeader";
+import Items from "./components/items";
 
 class HomePage extends Component {
   constructor(props) {
@@ -8,200 +10,35 @@ class HomePage extends Component {
   }
   render() {
     return (
-      <Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>{" "}
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>{" "}
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-        <Col>
-          <h1>Home Page's Index File</h1>
-        </Col>
-      </Col>
+      <div className="BackContainer">
+        <SubHeader />
+        <Row>
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>{" "}
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>{" "}
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>{" "}
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>{" "}
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>{" "}
+          <Col md={3} sm={12} xs={12}>
+            <Items />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }

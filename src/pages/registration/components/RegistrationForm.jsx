@@ -1,21 +1,13 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import React from "react";
+import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
 import { MdLock } from "react-icons/md";
-
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
+import { registerUser } from "../../../store/users";
+import { connect } from "react-redux";
+import MainForm from "../../../components/MainForm";
 
-class RegistrationFormPage extends Component {
+class RegistrationFormPage extends MainForm {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +16,10 @@ class RegistrationFormPage extends Component {
       password: "",
     };
   }
+
+  doSubmit = () => {
+    this.props.register(this.state);
+  };
 
   render() {
     return (
@@ -47,50 +43,17 @@ class RegistrationFormPage extends Component {
           </Col>
 
           <CardBody>
-            <Form>
-              <FormGroup>
-                <Label for="exampleName" sm={12}>
-                  Name
-                </Label>
-                <Col sm={12}>
-                  <Input type="text" name="Name" placeholder="Full Name" />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleEmail" sm={12}>
-                  Email
-                </Label>
-                <Col sm={12}>
-                  <Input type="email" name="email" placeholder="Email" />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword" sm={12}>
-                  Password
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleConfirmPassword" sm={12}>
-                  Confirm Password
-                </Label>
-                <Col sm={12}>
-                  <Input
-                    type="password"
-                    name="confirmPasssword"
-                    placeholder="Confirm Password"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup align="center" md={12}>
-                <Button>Register</Button>
-              </FormGroup>
+            <Form onSubmit={this.handleSubmit}>
+              {this.renderInput("name", "Name", "Full Name")}
+              {this.renderInput("email", "Email", "Email", "email")}
+              {this.renderInput("password", "Password", "Password", "password")}
+              {this.renderInput(
+                "confirmPassword",
+                "Confirm Password",
+                "Confirm Password",
+                "password"
+              )}
+              {this.renderButton("Register")}
             </Form>
           </CardBody>
         </Card>
@@ -98,5 +61,8 @@ class RegistrationFormPage extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  register: (userInfo) => dispatch(registerUser(userInfo)),
+});
 
-export default RegistrationFormPage;
+export default connect(null, mapDispatchToProps)(RegistrationFormPage);
