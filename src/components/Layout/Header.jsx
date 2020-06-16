@@ -9,10 +9,13 @@ import {
   NavLink,
   Popover,
   PopoverBody,
+  Button,
 } from "reactstrap";
 import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
+import { Link } from "react-router-dom";
+
 
 const bem = bn.create("header");
 
@@ -50,7 +53,10 @@ class Header extends React.Component {
 
           <NavItem>
             <NavLink id="Popover2">
-              <Avatar className="can-click" />
+              {/* <Avatar className="can-click" /> */}
+              <Link to={{ pathname: "/login" }}>
+                <Button size="sm">Login</Button>
+              </Link>
             </NavLink>
             <Popover
               placement="bottom-end"

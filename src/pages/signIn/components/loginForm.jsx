@@ -6,6 +6,7 @@ import Typography from "../../../components/Typography";
 import { connect } from "react-redux";
 import { login } from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
+import { Link } from "react-router-dom";
 
 class LoginFormPage extends MainForm {
   constructor(props) {
@@ -46,6 +47,11 @@ class LoginFormPage extends MainForm {
               {this.renderInput("password", "Password", "Password", "password")}
               {this.renderButton("Login")}
             </Form>
+            <Link to={{ pathname: "/registration" }} >
+              <Col align='right' className="dir-registration">
+                <h8>Don't have an Account? Register here ... </h8>
+              </Col>
+            </Link>
           </CardBody>
         </Card>
       </Col>

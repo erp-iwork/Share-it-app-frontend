@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { Card, CardImg, CardBody, Button, CardHeader } from "reactstrap";
 import Item from "../../../assets/car1.png";
 
@@ -14,7 +15,7 @@ class Items extends Component {
           <CardImg src={Item}></CardImg>
           <CardHeader className="cardHeader">
             Item Name
-            <Button size="sm" color="success" disabled>
+            <Button color="success" size="sm" disabled>
               Boosted
             </Button>
           </CardHeader>
