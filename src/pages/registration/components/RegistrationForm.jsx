@@ -80,7 +80,6 @@ class RegistrationFormPage extends MainForm {
                 "Confirm Password",
                 "password"
               )}
-
               {this.renderButton("Register")}
             </Form>
           </CardBody>

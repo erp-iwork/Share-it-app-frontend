@@ -6,6 +6,7 @@ import componentQueries from "react-component-queries";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
+// import HomePage from "./pages/homePage";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
 import HomePage from "./pages/homePage";
