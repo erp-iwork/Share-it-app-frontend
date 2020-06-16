@@ -12,6 +12,7 @@ import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import authService from "./services/authService";
+import routes from "./config/routes";
 
 const store = configureStore();
 
@@ -33,13 +34,13 @@ class App extends React.Component {
                 <React.Fragment>
                   <LayoutRoute
                     exact
-                    path="/"
+                    path={routes.homePage}
                     layout={EmptyLayout}
                     component={SignInPage}
                   />
                   <LayoutRoute
                     exact
-                    path="/registration"
+                    path={routes.registration}
                     layout={EmptyLayout}
                     component={RegistrationPage}
                   />
@@ -49,10 +50,14 @@ class App extends React.Component {
                 <React.Fragment>
                   <MainLayout breakpoint={this.props.breakpoint}>
                     <React.Suspense fallback={<PageSpinner />}>
-                      <Route exact path="/" component={HomePage} />
+                      <Route
+                        exact
+                        path={routes.homePage}
+                        component={HomePage}
+                      />
                     </React.Suspense>
                   </MainLayout>
-                  <Redirect to="/" />
+                  <Redirect to={routes.homePage} />
                 </React.Fragment>
               )}
             </Switch>
