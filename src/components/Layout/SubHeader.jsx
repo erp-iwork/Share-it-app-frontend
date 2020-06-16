@@ -1,5 +1,8 @@
 import React from "react";
 import { Card, Col, Row, Button } from "reactstrap";
+import routes from "../../config/routes";
+import { Link } from "react-router-dom";
+
 
 class SubHeader extends React.Component {
   render() {
@@ -7,9 +10,11 @@ class SubHeader extends React.Component {
       <Card className="mainPadding" align="center">
         <Row>
           <Col md={3} xs={12} sm={6}>
-            <Button outline block>
-              Product Sharing
-            </Button>
+            <Link to={{ pathname: routes.categories }}>
+              <Button outline block>
+                Product Sharing
+              </Button>
+            </Link>
           </Col>
           <Col md={3} xs={12} sm={6}>
             <Button outline block>

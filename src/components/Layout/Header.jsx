@@ -1,4 +1,4 @@
-// import Avatar from "../Avatar";
+import Avatar from "../Avatar";
 import SearchInput from "../SearchInput";
 import React from "react";
 import { connect } from "react-redux";
@@ -18,6 +18,10 @@ import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../../store/auth";
+// import authService from "../../services/authService";
+
+// const user = authService.getUser();
+
 const bem = bn.create("header");
 
 class Header extends React.Component {
@@ -59,16 +63,19 @@ class Header extends React.Component {
 
           <NavItem>
             <NavLink id="Popover2">
-              {/* <Avatar className="can-click" /> */}
               {this.props.currentUser && (
-                <ListGroupItem
-                  tag="button"
-                  action
-                  className="border-light"
-                  onClick={this.logout}
-                >
-                  <MdExitToApp /> Signout
-                </ListGroupItem>
+                <>
+                  <Avatar className="can-click" />
+
+                  <ListGroupItem
+                    tag="button"
+                    action
+                    className="border-light"
+                    onClick={this.logout}
+                  >
+                    <MdExitToApp /> Signout
+                  </ListGroupItem>
+                </>
               )}
               {!this.props.currentUser && (
                 <Link to={{ pathname: "/login" }}>

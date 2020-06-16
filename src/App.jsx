@@ -6,20 +6,21 @@ import componentQueries from "react-component-queries";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
-// import HomePage from "./pages/homePage";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
-import HomePage from "./pages/homePage";
 import configureStore from "./store/configureStore";
-import authService from "./services/authService";
+// import authService from "./services/authService";
 import routes from "./config/routes";
 
 const store = configureStore();
 
+const HomePage = React.lazy(() => import("./pages/homePage"));
+const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
+
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
 };
-const user = authService.getUser();
+// const user = authService.getUser();
 
 class App extends React.Component {
   render() {
@@ -44,6 +45,8 @@ class App extends React.Component {
                 <MainLayout breakpoint={this.props.breakpoint}>
                   <React.Suspense fallback={<PageSpinner />}>
                     <Route exact path={routes.homePage} component={HomePage} />
+                    <Route exact path={routes.categories} component={CategoriesPage} />
+
                   </React.Suspense>
                 </MainLayout>
                 <Redirect to="/" />

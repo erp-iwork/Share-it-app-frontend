@@ -1,0 +1,26 @@
+.container1 {
+    width: auto;
+    height: 500px;
+    background-color: #ffffff;
+    object-fit:cover;
+	top: 50%;
+	min-height: 100%;
+	min-width: 100%;
+	object-fit:cover;
+
+}
+
+.container1 img {
+  	position: relative;
+	vertical-align: middle;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	min-height: 100%;
+	min-width: 100%;
+	object-fit:cover;
+}
+.resize_fit_center {
+    max-width:100%;
+    max-height:100%;
+    vertical-align: middle;
+}

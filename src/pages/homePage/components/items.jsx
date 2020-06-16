@@ -11,7 +11,7 @@ class Items extends Component {
     return (
       <div className="margin">
         <Card className="bg-gradient-theme-left">
-          <CardImg src={Item}></CardImg>
+          <CardImg src={Item} />
           <CardHeader className="cardHeader">
             Item Name
             <Button size="sm" color="success" disabled>

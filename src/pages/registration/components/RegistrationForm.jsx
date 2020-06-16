@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import { connect } from "react-redux";
-import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Row, Col, Form } from "reactstrap";
 import { MdLock } from "react-icons/md";
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
@@ -73,13 +73,25 @@ class RegistrationFormPage extends MainForm {
               {this.renderInput("name", "Name", "Full Name")}
               {this.renderInput("email", "Email", "Email")}
               {this.renderInput("location", "Location", "Location")}
-              {this.renderInput("password", "Password", "Password", "password")}
-              {this.renderInput(
-                "confirmPassword",
-                "Confirm Password",
-                "Confirm Password",
-                "password"
-              )}
+              <Row>
+                <Col>
+                  {this.renderInput(
+                    "password",
+                    "Password",
+                    "Password",
+                    "password"
+                  )}
+                </Col>
+                <Col>
+                  {this.renderInput(
+                    "confirmPassword",
+                    "Confirm Password",
+                    "Confirm Password",
+                    "password"
+                  )}
+                </Col>
+              </Row>
+
               {this.renderButton("Register")}
             </Form>
           </CardBody>
