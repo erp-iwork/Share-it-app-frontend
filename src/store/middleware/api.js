@@ -27,7 +27,7 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
     //Specific
     if (onError) {
       if (
-        error &&
+        error.response &&
         (error.response.status === 400 || error.response.status === 403)
       ) {
         console.log(error.response.data);

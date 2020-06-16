@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
-import { setUser } from "../services/authService";
+import { setUser, getUser, getJwt } from "../services/authService";
 
 const tokenKey = "token";
 
 const slice = createSlice({
   name: "auth",
   initialState: {
-    currentUser: {},
-    authToken: "",
+    currentUser: getUser(),
+    authToken: getJwt(),
     loading: false,
     status: "initial",
     error: {},
@@ -72,10 +72,6 @@ export const loginUser = (user) =>
   });
 
 // Selector
-export const getUser = createSelector(
-  (state) => state.auth,
-  (auth) => auth.currentUser
-);
 export const getLoading = createSelector(
   (state) => state.auth.loading,
   (loading) => loading

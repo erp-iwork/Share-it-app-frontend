@@ -1,6 +1,7 @@
 // import Avatar from "../Avatar";
 import SearchInput from "../SearchInput";
 import React from "react";
+import { connect } from "react-redux";
 import { MdNotificationsNone, MdExitToApp } from "react-icons/md";
 import {
   Nav,
@@ -16,7 +17,7 @@ import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
-
+import { getCurrentUser } from "../../store/auth";
 const bem = bn.create("header");
 
 class Header extends React.Component {
@@ -46,14 +47,6 @@ class Header extends React.Component {
 
         <Nav navbar className={bem.e("nav-right")}>
           <NavItem className="d-inline-flex">
-            <ListGroupItem
-              tag="button"
-              action
-              className="border-light"
-              onClick={this.logout}
-            >
-              <MdExitToApp /> Signout
-            </ListGroupItem>
             <NavLink id="Popover1" className="position-relative">
               {isNotificationConfirmed ? null : (
                 <MdNotificationsNone
@@ -67,9 +60,21 @@ class Header extends React.Component {
           <NavItem>
             <NavLink id="Popover2">
               {/* <Avatar className="can-click" /> */}
-              <Link to={{ pathname: "/login" }}>
-                <Button size="sm">Login</Button>
-              </Link>
+              {this.props.currentUser && (
+                <ListGroupItem
+                  tag="button"
+                  action
+                  className="border-light"
+                  onClick={this.logout}
+                >
+                  <MdExitToApp /> Signout
+                </ListGroupItem>
+              )}
+              {!this.props.currentUser && (
+                <Link to={{ pathname: "/login" }}>
+                  <Button size="sm">Login</Button>
+                </Link>
+              )}
             </NavLink>
             <Popover
               placement="bottom-end"
@@ -85,5 +90,8 @@ class Header extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  currentUser: getCurrentUser(state),
+});
 
-export default Header;
+export default connect(mapStateToProps, null)(Header);
