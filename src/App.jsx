@@ -6,10 +6,13 @@ import componentQueries from "react-component-queries";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
+// import HomePage from "./pages/homePage";
+
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
-
 import configureStore from "./store/configureStore";
+import authService from "./services/authService";
+
 const store = configureStore();
 
 const HomePage = React.lazy(() => import("./pages/homePage"));
@@ -17,6 +20,7 @@ const HomePage = React.lazy(() => import("./pages/homePage"));
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
 };
+const user = authService.getUser();
 
 class App extends React.Component {
   render() {
@@ -25,24 +29,32 @@ class App extends React.Component {
         <BrowserRouter basename={getBasename()}>
           <GAListener>
             <Switch>
-              <LayoutRoute
-                exact
-                path="/login"
-                layout={EmptyLayout}
-                component={SignInPage}
-              />
-              <LayoutRoute
-                exact
-                path="/registration"
-                layout={EmptyLayout}
-                component={RegistrationPage}
-              />
-              <MainLayout breakpoint={this.props.breakpoint}>
-                <React.Suspense fallback={<PageSpinner />}>
-                  <Route exact path="/" component={HomePage} />
-                </React.Suspense>
-              </MainLayout>
-              <Redirect to="/" />
+              {!user && (
+                <React.Fragment>
+                  <LayoutRoute
+                    exact
+                    path="/"
+                    layout={EmptyLayout}
+                    component={SignInPage}
+                  />
+                  <LayoutRoute
+                    exact
+                    path="/registration"
+                    layout={EmptyLayout}
+                    component={RegistrationPage}
+                  />
+                </React.Fragment>
+              )}
+              {user && (
+                <React.Fragment>
+                  <MainLayout breakpoint={this.props.breakpoint}>
+                    <React.Suspense fallback={<PageSpinner />}>
+                      <Route exact path="/" component={HomePage} />
+                    </React.Suspense>
+                  </MainLayout>
+                  <Redirect to="/" />
+                </React.Fragment>
+              )}
             </Switch>
           </GAListener>
         </BrowserRouter>

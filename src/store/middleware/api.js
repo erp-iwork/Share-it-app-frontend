@@ -2,7 +2,7 @@ import axios from "axios";
 import * as actions from "../api";
 //TODO
 //config file
-const baseURL = "http://localhost:9/api";
+const baseURL = "http://shareit-develop.herokuapp.com/api/v1";
 
 const api = ({ dispatch, getState }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
@@ -25,7 +25,15 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
     //General
     dispatch(actions.apiCallFailed(error.message));
     //Specific
-    if (onError) dispatch({ type: onError, payload: error.message });
+    if (onError) {
+      if (
+        error &&
+        (error.response.status === 400 || error.response.status === 403)
+      ) {
+        console.log(error.response.data);
+        dispatch({ type: onError, payload: error.response.data });
+      } else dispatch({ type: onError, payload: error.message });
+    }
   }
 };
 

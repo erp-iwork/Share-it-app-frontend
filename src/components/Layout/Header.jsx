@@ -1,7 +1,7 @@
-import Avatar from "../Avatar";
+// import Avatar from "../Avatar";
 import SearchInput from "../SearchInput";
 import React from "react";
-import { MdNotificationsNone } from "react-icons/md";
+import { MdNotificationsNone, MdExitToApp } from "react-icons/md";
 import {
   Nav,
   Navbar,
@@ -10,12 +10,12 @@ import {
   Popover,
   PopoverBody,
   Button,
+  ListGroupItem,
 } from "reactstrap";
 import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
-
 
 const bem = bn.create("header");
 
@@ -24,6 +24,11 @@ class Header extends React.Component {
     isOpenNotificationPopover: false,
     isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
+  };
+
+  logout = () => {
+    localStorage.clear();
+    window.location = "/";
   };
   render() {
     const { isNotificationConfirmed } = this.state;
@@ -41,6 +46,14 @@ class Header extends React.Component {
 
         <Nav navbar className={bem.e("nav-right")}>
           <NavItem className="d-inline-flex">
+            <ListGroupItem
+              tag="button"
+              action
+              className="border-light"
+              onClick={this.logout}
+            >
+              <MdExitToApp /> Signout
+            </ListGroupItem>
             <NavLink id="Popover1" className="position-relative">
               {isNotificationConfirmed ? null : (
                 <MdNotificationsNone
