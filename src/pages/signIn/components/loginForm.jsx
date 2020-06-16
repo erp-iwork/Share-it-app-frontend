@@ -55,7 +55,7 @@ class LoginFormPage extends MainForm {
               {this.renderInput("password", "Password", "Password", "password")}
               {this.renderButton("Login")}
             </Form>
-            <Link to={{ pathname: "/registration" }}>
+            <Link to={{ pathname: routes.registration }}>
               <Col align="right" className="dir-registration">
                 <h8>Don't have an Account? Register here ... </h8>
               </Col>

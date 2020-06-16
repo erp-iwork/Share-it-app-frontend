@@ -1,8 +1,5 @@
 export default {
-    homePage: '/',
-    login: 'login',
-    registration: 'registration',
-
-
-
-}
+  homePage: "/",
+  login: "/login",
+  registration: "/registration",
+};
