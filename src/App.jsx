@@ -13,7 +13,7 @@ import authService from "./services/authService";
 
 const store = configureStore();
 
-const HomePage = React.lazy(() => import("./pages/homePage"));
+const HomePage = React.lazy(() => import('./pages/homePage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
