@@ -25,7 +25,7 @@ class LoginFormPage extends MainForm {
     this.props.loginUser(this.state.data);
   };
   render() {
-    if (this.props.status === "success") window.location = "/";
+    if (this.props.status === "success") window.location = "/home";
     return (
       <Col md={12}>
         <Card>

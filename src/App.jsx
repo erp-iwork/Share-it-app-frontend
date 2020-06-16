@@ -8,13 +8,12 @@ import "./styles/sharreit.scss";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
-import HomePage from "./pages/homePage";
 import configureStore from "./store/configureStore";
 import authService from "./services/authService";
 
 const store = configureStore();
 
-// const signInPage = React.lazy(() => import('./pages/signIn'));
+const HomePage = React.lazy(() => import("./pages/homePage"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -32,7 +31,7 @@ class App extends React.Component {
                 <React.Fragment>
                   <LayoutRoute
                     exact
-                    path="/login"
+                    path="/"
                     layout={EmptyLayout}
                     component={SignInPage}
                   />
@@ -48,7 +47,7 @@ class App extends React.Component {
                 <React.Fragment>
                   <MainLayout breakpoint={this.props.breakpoint}>
                     <React.Suspense fallback={<PageSpinner />}>
-                      <Route exact path="/" component={HomePage} />
+                      <Route exact path="/home" component={HomePage} />
                     </React.Suspense>
                   </MainLayout>
                   <Redirect to="/" />
