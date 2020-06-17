@@ -2,7 +2,6 @@ import Avatar from "../Avatar";
 import SearchInput from "../SearchInput";
 import React from "react";
 import { connect } from "react-redux";
-import { MdNotificationsNone, MdExitToApp } from "react-icons/md";
 import {
   Nav,
   Navbar,
@@ -10,14 +9,26 @@ import {
   NavLink,
   Popover,
   PopoverBody,
+  ListGroup,
   Button,
   ListGroupItem,
 } from "reactstrap";
+import {
+  MdExitToApp,
+  MdHelp,
+  MdInsertChart,
+  MdMessage,
+  MdNotificationsNone,
+  MdPersonPin,
+  MdSettingsApplications,
+} from "react-icons/md";
 import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../../store/auth";
+import { UserCard } from "../Card";
+import routes from "../../config/routes";
 // import authService from "../../services/authService";
 
 // const user = authService.getUser();
@@ -26,16 +37,22 @@ const bem = bn.create("header");
 
 class Header extends React.Component {
   state = {
-    isOpenNotificationPopover: false,
-    isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
   };
-
   logout = () => {
     localStorage.clear();
-    window.location = "/";
+    window.location = routes.homePage;
   };
+
+  toggleUserCardPopover = () => {
+    this.setState({
+      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
+    });
+  };
+
   render() {
+    console.log(this.props.currentUser);
+
     const { isNotificationConfirmed } = this.state;
     return (
       <Navbar fixed="top" light expand className={bem.b("bg-white")}>
@@ -50,6 +67,14 @@ class Header extends React.Component {
         </Nav>
 
         <Nav navbar className={bem.e("nav-right")}>
+          <NavItem>
+            <NavLink>
+              <Button>
+                {" "}
+                <MdExitToApp /> Share
+              </Button>
+            </NavLink>
+          </NavItem>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
               {isNotificationConfirmed ? null : (
@@ -65,31 +90,77 @@ class Header extends React.Component {
             <NavLink id="Popover2">
               {this.props.currentUser && (
                 <>
-                  <Avatar className="can-click" />
-
-                  <ListGroupItem
-                    tag="button"
-                    action
-                    className="border-light"
-                    onClick={this.logout}
-                  >
-                    <MdExitToApp /> Signout
-                  </ListGroupItem>
+                  <Avatar
+                    onClick={this.toggleUserCardPopover}
+                    className="can-click"
+                  />
                 </>
               )}
               {!this.props.currentUser && (
                 <Link to={{ pathname: "/login" }}>
-                  <Button size="sm">Login</Button>
+                  <Button>Login</Button>
                 </Link>
               )}
             </NavLink>
             <Popover
               placement="bottom-end"
+              isOpen={this.state.isOpenUserCardPopover}
+              toggle={this.toggleUserCardPopover}
               target="Popover2"
               className="p-0 border-0"
               style={{ minWidth: 250 }}
             >
-              <PopoverBody className="p-0 border-light"></PopoverBody>
+              <PopoverBody className="p-0 border-light">
+                <UserCard
+                  title={
+                    this.props.currentUser
+                      ? this.props.currentUser.name
+                      : "User Name"
+                  }
+                  subtitle={
+                    this.props.currentUser
+                      ? this.props.currentUser.email
+                      : "User Email"
+                  }
+                  text={
+                    this.props.currentUser
+                      ? this.props.currentUser.location
+                      : "User Location"
+                  }
+                  className="border-light"
+                >
+                  <ListGroup flush>
+                    <ListGroupItem
+                      onClick={this.post}
+                      tag="button"
+                      action
+                      className="border-light"
+                    >
+                      <MdPersonPin /> Profile
+                    </ListGroupItem>
+                    <ListGroupItem tag="button" action className="border-light">
+                      <MdInsertChart /> Wish List
+                    </ListGroupItem>
+                    <ListGroupItem tag="button" action className="border-light">
+                      <MdMessage /> Messages
+                    </ListGroupItem>
+                    <ListGroupItem tag="button" action className="border-light">
+                      <MdSettingsApplications /> Settings
+                    </ListGroupItem>
+                    <ListGroupItem tag="button" action className="border-light">
+                      <MdHelp /> Help
+                    </ListGroupItem>
+                    <ListGroupItem
+                      onClick={this.logout}
+                      tag="button"
+                      action
+                      className="border-light"
+                    >
+                      <MdExitToApp /> Signout
+                    </ListGroupItem>
+                  </ListGroup>
+                </UserCard>
+              </PopoverBody>
             </Popover>
           </NavItem>
         </Nav>
