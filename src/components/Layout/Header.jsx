@@ -50,8 +50,30 @@ class Header extends React.Component {
     });
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDesktop: false,
+    };
+    this.updatePredicate = this.updatePredicate.bind(this);
+  }
+
+  componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate() {
+    this.setState({ isDesktop: window.innerWidth > 1000 });
+  }
+
   render() {
     console.log(this.props.currentUser);
+    const isDesktop = this.state.isDesktop;
 
     const { isNotificationConfirmed } = this.state;
     return (
@@ -62,19 +84,26 @@ class Header extends React.Component {
         <Nav navbar>
           <img className="App-logo2" alt="" src={SharreIt} />
         </Nav>
-        <Nav navbar>
-          <SearchInput />
-        </Nav>
+        {isDesktop ? (
+          <Nav navbar>
+            <SearchInput />
+          </Nav>
+        ) : null}
 
         <Nav navbar className={bem.e("nav-right")}>
-          <NavItem>
-            <NavLink>
-              <Button>
-                {" "}
-                <MdExitToApp /> Share
-              </Button>
-            </NavLink>
-          </NavItem>
+          {isDesktop ? (
+            <NavItem>
+              <Link to={{ pathname: routes.postItem }}>
+                <NavLink>
+                  <Button>
+                    {" "}
+                    <MdExitToApp /> Share
+                  </Button>
+                </NavLink>
+              </Link>
+            </NavItem>
+          ) : null}
+
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
               {isNotificationConfirmed ? null : (

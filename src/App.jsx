@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import PageSpinner from "./components/PageSpinner";
 import React from "react";
 import componentQueries from "react-component-queries";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./styles/sharreit.scss";
 import "antd/dist/antd.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -13,11 +13,11 @@ import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
+
 // import authService from "./services/authService";
 import routes from "./config/routes";
 
 const store = configureStore();
-
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
 const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
