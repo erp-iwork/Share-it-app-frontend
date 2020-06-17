@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "../utils/propTypes";
-
 import bn from "../utils/bemnames";
-
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-
 import Typography from "./Typography";
 
 const bem = bn.create("page");
@@ -41,6 +38,7 @@ const Page = ({
           </Breadcrumb>
         )}
       </div>
+      <hr></hr>
       {children}
     </Tag>
   );

@@ -7,7 +7,7 @@ import Typography from "../../../components/Typography";
 import { connect } from "react-redux";
 import { loginUser, getStatus, getLoading } from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import routes from "../../../config/routes";
 
 class LoginFormPage extends MainForm {
@@ -28,7 +28,8 @@ class LoginFormPage extends MainForm {
   };
 
   render() {
-    if (this.props.status === "success") window.location = routes.homePage;
+    if (this.props.status === "success")
+      return <Redirect to={routes.homePage} />;
     return (
       <Col md={12}>
         <Card>

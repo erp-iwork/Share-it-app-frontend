@@ -3,7 +3,6 @@ import { Card, Col, Row, Button } from "reactstrap";
 import routes from "../../config/routes";
 import { Link } from "react-router-dom";
 
-
 class SubHeader extends React.Component {
   render() {
     return (
@@ -17,17 +16,21 @@ class SubHeader extends React.Component {
             </Link>
           </Col>
           <Col md={3} xs={12} sm={6}>
-            <Button outline block>
-              Service Sharing
-            </Button>
+            <Link to={{ pathname: routes.categories }}>
+              <Button outline block>
+                Service Sharing
+              </Button>
+            </Link>
           </Col>
           <Col md={3} xs={12} sm={6}>
-            <Button outline block>
-              Digital Sharing
-            </Button>
+            <Link to={{ pathname: routes.categories }}>
+              <Button outline block>
+                Digital Sharing
+              </Button>
+            </Link>
           </Col>
           <Col md={3} xs={12} sm={6}>
-            <Button block color="success">
+            <Button onClick={() => alert("Digoma")} block color="success">
               Donations
             </Button>
           </Col>

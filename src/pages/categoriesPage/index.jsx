@@ -10,10 +10,7 @@ class CategoriesPage extends Component {
   }
   render() {
     return (
-      <Page
-        title="Premium Ads"
-        breadcrumbs={[{ name: "Category Name", active: true }]}
-      >
+      <Page>
         <PremiumAds />
         <CategoriesList />
       </Page>

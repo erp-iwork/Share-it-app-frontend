@@ -5,6 +5,8 @@ import React from "react";
 import componentQueries from "react-component-queries";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
+import "antd/dist/antd.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
@@ -45,8 +47,11 @@ class App extends React.Component {
                 <MainLayout breakpoint={this.props.breakpoint}>
                   <React.Suspense fallback={<PageSpinner />}>
                     <Route exact path={routes.homePage} component={HomePage} />
-                    <Route exact path={routes.categories} component={CategoriesPage} />
-
+                    <Route
+                      exact
+                      path={routes.categories}
+                      component={CategoriesPage}
+                    />
                   </React.Suspense>
                 </MainLayout>
                 <Redirect to="/" />

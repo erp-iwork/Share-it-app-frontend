@@ -74,7 +74,7 @@ class RegistrationFormPage extends MainForm {
               {this.renderInput("email", "Email", "Email")}
               {this.renderInput("location", "Location", "Location")}
               <Row>
-                <Col>
+                <Col md={6} sm={12} xs={12}>
                   {this.renderInput(
                     "password",
                     "Password",
@@ -82,7 +82,7 @@ class RegistrationFormPage extends MainForm {
                     "password"
                   )}
                 </Col>
-                <Col>
+                <Col md={6} sm={12} xs={12}>
                   {this.renderInput(
                     "confirmPassword",
                     "Confirm Password",
