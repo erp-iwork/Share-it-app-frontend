@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Input, Label, Col, FormGroup, Button, FormFeedback } from "reactstrap";
 
 import Joi from "joi-browser";
+import LoadingSpinner from "./loader";
 
 class MainForm extends Component {
   state = {
@@ -54,7 +55,8 @@ class MainForm extends Component {
     return (
       <FormGroup align="center" md={12}>
         <Button disabled={this.validate() || this.props.loading}>
-          {label}
+          {this.props.loading? <LoadingSpinner /> : label}
+          
         </Button>
       </FormGroup>
     );

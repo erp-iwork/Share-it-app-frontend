@@ -18,6 +18,8 @@ const store = configureStore();
 
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
+const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
+
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -47,11 +49,8 @@ class App extends React.Component {
                 <MainLayout breakpoint={this.props.breakpoint}>
                   <React.Suspense fallback={<PageSpinner />}>
                     <Route exact path={routes.homePage} component={HomePage} />
-                    <Route
-                      exact
-                      path={routes.categories}
-                      component={CategoriesPage}
-                    />
+                    <Route exact path={routes.categories} component={CategoriesPage}/>
+                    <Route exact path={routes.postItem} component={PostItemPage}/>
                   </React.Suspense>
                 </MainLayout>
                 <Redirect to="/" />

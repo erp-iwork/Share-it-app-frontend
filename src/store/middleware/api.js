@@ -2,7 +2,7 @@ import axios from "axios";
 import * as actions from "../api";
 //TODO
 //config file
-const baseURL = "http://shareit-develop.herokuapp.com/api/v1";
+const baseURL = "https://shareit-develop.herokuapp.com/api/v1";
 
 const api = ({ dispatch, getState }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
