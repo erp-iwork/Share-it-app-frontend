@@ -1,8 +1,20 @@
 import axios from "axios";
 import * as actions from "../api";
+import { toast } from "react-toastify";
 //TODO
 //config file
 const baseURL = "https://shareit-develop.herokuapp.com/api/v1";
+axios.interceptors.response.use(null, (error) => {
+  const expectedError =
+    error.response &&
+    error.response.status >= 400 &&
+    error.response.status < 500;
+  if (!expectedError) {
+    console.log(error); // log error
+    toast.error("An unexpected error occurred."); //display a genereic message
+  }
+  return Promise.reject(error);
+});
 
 const api = ({ dispatch, getState }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
@@ -28,10 +40,12 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
     if (onError) {
       if (
         error.response &&
-        (error.response.status === 400 || error.response.status === 403)
+        (error.response.status === 400 ||
+          error.response.status === 403 ||
+          error.response.status === 401)
       ) {
-        console.log(error.response.data);
-        dispatch({ type: onError, payload: error.response.data });
+        console.log(error.response.data.errors);
+        dispatch({ type: onError, payload: error.response.data.errors });
       } else dispatch({ type: onError, payload: error.message });
     }
   }

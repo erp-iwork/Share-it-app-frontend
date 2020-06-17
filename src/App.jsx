@@ -1,5 +1,6 @@
 import GAListener from "./components/GAListener";
 import { EmptyLayout, LayoutRoute, MainLayout } from "./components/Layout";
+import { ToastContainer } from "react-toastify";
 import PageSpinner from "./components/PageSpinner";
 import React from "react";
 import componentQueries from "react-component-queries";
@@ -7,6 +8,7 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./styles/sharreit.scss";
 import "antd/dist/antd.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
@@ -29,6 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
+        <ToastContainer />
         <BrowserRouter basename={getBasename()}>
           <GAListener>
             <Switch>

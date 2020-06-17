@@ -1,6 +1,14 @@
 import React from "react";
 import Joi from "joi-browser";
-import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Form,
+  Alert,
+} from "reactstrap";
 import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
@@ -54,6 +62,11 @@ class LoginFormPage extends MainForm {
             <Form onSubmit={this.handleSubmit}>
               {this.renderInput("email", "Email", "Email", "email")}
               {this.renderInput("password", "Password", "Password", "password")}
+              {this.props.errors && (
+                <Alert color="danger">
+                  {Object.values(this.props.errors)[0]}
+                </Alert>
+              )}
               {this.renderButton("Login")}
             </Form>
             <Link to={{ pathname: routes.registration }}>
@@ -70,7 +83,7 @@ class LoginFormPage extends MainForm {
 const mapStateToProps = (state) => ({
   status: getStatus(state),
   loading: getLoading(state),
-  error: state.auth.error,
+  errors: state.auth.errors,
 });
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (userInfo) => dispatch(loginUser(userInfo)),

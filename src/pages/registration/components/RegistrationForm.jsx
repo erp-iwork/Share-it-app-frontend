@@ -1,7 +1,16 @@
 import React from "react";
 import Joi from "joi-browser";
 import { connect } from "react-redux";
-import { Button, Card, CardBody, CardHeader, Row, Col, Form } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Row,
+  Col,
+  Form,
+  Alert,
+} from "reactstrap";
 import { MdLock } from "react-icons/md";
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
@@ -91,6 +100,11 @@ class RegistrationFormPage extends MainForm {
                   )}
                 </Col>
               </Row>
+              {this.props.errors && (
+                <Alert color="danger">
+                  {Object.values(this.props.errors)[0]}
+                </Alert>
+              )}
 
               {this.renderButton("Register")}
             </Form>
@@ -103,7 +117,7 @@ class RegistrationFormPage extends MainForm {
 const mapStateToProps = (state) => ({
   status: getStatus(state),
   loading: getLoading(state),
-  error: state.auth.error,
+  errors: state.auth.errors,
 });
 const mapDispatchToProps = (dispatch) => ({
   registerUser: (userInfo) => dispatch(registerUser(userInfo)),

@@ -10,7 +10,7 @@ const slice = createSlice({
     authToken: getToken(),
     loading: false,
     status: "initial",
-    error: {},
+    errors: null,
   },
   reducers: {
     userRequested: (users, action) => {
@@ -24,12 +24,12 @@ const slice = createSlice({
       users.authToken = token;
       users.loading = false;
       users.status = "success";
-      users.error = null;
+      users.errors = null;
     },
     userRequestFailed: (users, action) => {
       users.loading = false;
       users.status = "failed";
-      users.error = action.payload;
+      users.errors = action.payload;
     },
   },
 });

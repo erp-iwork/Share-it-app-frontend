@@ -23,11 +23,19 @@ class MainForm extends Component {
 
   //validate only one input
   validateProperty = ({ name, value }) => {
+    const { data } = this.state;
     if (name !== "confirmPassword") {
       const obj = { [name]: value }; // [name](computed property) ==> username as a key or somethig, value= value of it.
       const schema = { [name]: this.schema[name] };
       const { error } = Joi.validate(obj, schema);
       return error ? error.details[0].message : null;
+    } else {
+      if (data["password"] !== value) {
+        const obj = { [name]: value }; // [name](computed property) ==> username as a key or somethig, value= value of it.
+        const schema = { [name]: this.schema[name] };
+        const { error } = Joi.validate(obj, schema);
+        return error ? error.details[0].message : null;
+      }
     }
   };
   // when the user types to change the value of the state accordingly
@@ -55,8 +63,7 @@ class MainForm extends Component {
     return (
       <FormGroup align="center" md={12}>
         <Button disabled={this.validate() || this.props.loading}>
-          {this.props.loading? <LoadingSpinner /> : label}
-          
+          {this.props.loading ? <LoadingSpinner /> : label}
         </Button>
       </FormGroup>
     );
