@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
-import { setUser, getUser, getJwt } from "../services/authService";
-
-const tokenKey = "token";
+import { setUser, getUser, getToken, setToken } from "../services/authService";
 
 const slice = createSlice({
   name: "auth",
   initialState: {
     currentUser: getUser(),
-    authToken: getJwt(),
+    authToken: getToken(),
     loading: false,
     status: "initial",
     error: {},
@@ -18,19 +16,12 @@ const slice = createSlice({
     userRequested: (users, action) => {
       users.loading = true;
     },
-    userLoggedIn: (users, action) => {
+    userReceived: (users, action) => {
       const { user, token } = action.payload;
-      localStorage.setItem(tokenKey, token);
-      localStorage.setItem("user", JSON.stringify(user));
+      setToken(token);
+      setUser(user);
       users.currentUser = user;
       users.authToken = token;
-      users.loading = false;
-      users.status = "success";
-      users.error = null;
-    },
-    userReceived: (users, action) => {
-      users.currentUser = action.payload;
-      setUser(action.payload);
       users.loading = false;
       users.status = "success";
       users.error = null;
@@ -43,12 +34,7 @@ const slice = createSlice({
   },
 });
 
-const {
-  userRequested,
-  userReceived,
-  userRequestFailed,
-  userLoggedIn,
-} = slice.actions;
+const { userRequested, userReceived, userRequestFailed } = slice.actions;
 export default slice.reducer;
 
 export const registerUser = (user) =>
@@ -67,7 +53,7 @@ export const loginUser = (user) =>
     method: "post",
     data: user,
     onStart: userRequested.type,
-    onSuccess: userLoggedIn.type,
+    onSuccess: userReceived.type,
     onError: userRequestFailed.type,
   });
 

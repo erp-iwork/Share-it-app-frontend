@@ -3,20 +3,20 @@
 const tokenKey = "token";
 const userKey = "user";
 
-export function loginWithJwt(jwt) {
-  localStorage.setItem(tokenKey, jwt);
+export function setToken(token) {
+  localStorage.setItem(tokenKey, token);
+}
+
+export function getToken() {
+  return localStorage.getItem(tokenKey);
 }
 
 export function logout() {
   localStorage.removeItem(tokenKey);
 }
 
-export function getJwt() {
-  return localStorage.getItem(tokenKey);
-}
-
 export function setUser(user) {
-  localStorage.setItem(userKey, user);
+  localStorage.setItem(userKey, JSON.stringify(user));
 }
 
 export function getUser() {
@@ -24,10 +24,10 @@ export function getUser() {
 }
 
 export default {
-  loginWithJwt,
+  getToken,
+  setToken,
   getUser,
   setUser,
   logout,
   // getCurrentUser,
-  getJwt,
 };
