@@ -15,9 +15,6 @@ import {
 } from "reactstrap";
 
 class PostItemForm extends Component {
-  fileObj = [];
-  fileArray = [];
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +27,8 @@ class PostItemForm extends Component {
     this.uploadFiles = this.uploadFiles.bind(this);
   }
 
+  fileObj = [];
+  fileArray = [];
   uploadMultipleFiles(e) {
     this.fileObj.push(e.target.files);
     for (let i = 0; i < this.fileObj[0].length; i++) {
@@ -155,13 +154,13 @@ class PostItemForm extends Component {
                             <Col xs={12} md={6}>
                               <FormGroup>
                                 <Label for="exampleEmail" sm={12}>
-                                  Product Category
+                                  Name
                                 </Label>
                                 <Col sm={12}>
                                   <Input
                                     type="text"
-                                    name="itemName"
-                                    placeholder="Item Name"
+                                    name="name"
+                                    placeholder="Name"
                                   />
                                 </Col>
                               </FormGroup>
@@ -169,11 +168,67 @@ class PostItemForm extends Component {
                             <Col xs={12} md={6}>
                               <FormGroup>
                                 <Label for="exampleEmail" sm={12}>
-                                  Something
+                                  Location
                                 </Label>
                                 <Col sm={12}>
                                   <Input
                                     type="text"
+                                    name="location"
+                                    placeholder="Location"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Price
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="price"
+                                    placeholder="Price"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Product category
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="productCategory"
+                                    placeholder="Product category"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Product subcategory
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="productSubcategory"
+                                    placeholder="Product subcategory"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Description
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="textarea"
                                     name="itemName"
                                     placeholder="Item Name"
                                   />
@@ -182,34 +237,6 @@ class PostItemForm extends Component {
                             </Col>
                           </>
                         ) : null}
-                        <Col xs={12} md={6}>
-                          <FormGroup>
-                            <Label for="exampleEmail" sm={12}>
-                              Item Name
-                            </Label>
-                            <Col sm={12}>
-                              <Input
-                                type="text"
-                                name="itemName"
-                                placeholder="Item Name"
-                              />
-                            </Col>
-                          </FormGroup>
-                        </Col>
-                        <Col xs={12} md={6}>
-                          <FormGroup>
-                            <Label for="exampleEmail" sm={12}>
-                              Item Name
-                            </Label>
-                            <Col sm={12}>
-                              <Input
-                                type="text"
-                                name="itemName"
-                                placeholder="Item Name"
-                              />
-                            </Col>
-                          </FormGroup>
-                        </Col>
                       </Row>
                       <FormGroup>
                         <Label for="Description" sm={12}>
