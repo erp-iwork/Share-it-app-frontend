@@ -11,29 +11,24 @@ class FilterComponent extends Component {
   render() {
     return (
       <>
-        <div className="filterContainer">
+        <div>
           <CardHeader>Filter Item Results</CardHeader>
           <Col>
             <Row>
               <Col>
                 <Label>Donated|| Shared</Label>
                 <Input type="select">
-                  <option>Hello</option>
-                  <option>Hello</option>
-                  <option>Hello</option>
-                  <option>Hello</option>
-                  <option>Hello</option>
+                  <option>Donated</option>
+                  <option>Shared</option>
                 </Input>
               </Col>
               <Col>
                 <Label>Category</Label>
 
                 <Input type="select">
-                  <option>Hello</option>
-                  <option>Hello</option>
-                  <option>Hello</option>
-                  <option>Hello</option>
-                  <option>Hello</option>
+                  <option>Product Sharing</option>
+                  <option>Service Sharing</option>
+                  <option>Digital Sharing</option>
                 </Input>
               </Col>
             </Row>

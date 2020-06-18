@@ -14,6 +14,9 @@ import {
 } from "../../../assets/Sharreit-Icons";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import routes from "../../../config/routes";
+
 
 const openNotification = () => {
   notification.open({
@@ -42,16 +45,26 @@ class CategoriesList extends Component {
       <Page breadcrumbs={[{ name: "Sub-Categories", active: true }]}>
         <Row>
           <Col xs={12} sm={6} md={2}>
-            <Card onClick={() => openNotification()}>
-              <CardImg className="catIcons" src={Cleaner} />
-              <CardHeader align="center">Cleaner</CardHeader>
-            </Card>
+            <Link to={{ pathname: routes.allItems }}>
+
+
+              <Card
+              // onClick={() => openNotification()}
+              >
+                <CardImg className="catIcons" src={Cleaner} />
+                <CardHeader align="center">Cleaner</CardHeader>
+              </Card>
+            </Link>
+
           </Col>
           <Col xs={12} sm={6} md={2}>
-            <Card>
-              <CardImg className="catIcons" src={Driver} />
-              <CardHeader align="center">Personal Driver</CardHeader>
-            </Card>
+            <Link to={{ pathname: routes.allItems }}>
+              <Card>
+                <CardImg className="catIcons" src={Driver} />
+                <CardHeader align="center">Personal Driver</CardHeader>
+              </Card>
+            </Link>
+
           </Col>
           <Col xs={12} sm={6} md={2}>
             <Card>
