@@ -4,5 +4,5 @@ export default {
   registration: "/registration",
   categories: "/categories",
   postItem: "/postItem",
-
+  allItems: "/allItems",
 };
