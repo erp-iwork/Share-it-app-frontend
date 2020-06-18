@@ -29,7 +29,17 @@ class RegistrationFormPage extends MainForm {
     errors: {},
   };
   schema = {
-    name: Joi.string().required().label("Name"),
+    name: Joi.string()
+      .regex(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g)
+      .trim()
+      .required()
+      .label("Name")
+      .error((er) => {
+        return {
+          message: "Invalid name",
+        };
+      }),
+
     email: Joi.string().email().required().label("email"),
     location: Joi.string().required().label("Location"),
     password: Joi.string().min(8).required().label("Password"),
