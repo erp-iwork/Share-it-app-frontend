@@ -22,6 +22,7 @@ const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
 const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
 const AllItemsPage = React.lazy(() => import("./pages/allItems"));
+const SingleItemPage = React.lazy(() => import("./pages/singleItemView"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -66,6 +67,11 @@ class App extends React.Component {
                       exact
                       path={routes.allItems}
                       component={AllItemsPage}
+                    />
+                    <Route
+                      exact
+                      path={routes.singleItem}
+                      component={SingleItemPage}
                     />
                   </React.Suspense>
                 </MainLayout>

@@ -5,4 +5,6 @@ export default {
   categories: "/categories",
   postItem: "/postItem",
   allItems: "/allItems",
+  singleItem: "/singleItem",
+
 };
