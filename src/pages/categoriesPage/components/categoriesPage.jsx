@@ -12,28 +12,28 @@ import {
   // PersonalTrainer, LoanService,
   // SeasonTickets, Lecturer
 } from "../../../assets/Sharreit-Icons";
-import { notification } from "antd";
-import { SmileOutlined } from "@ant-design/icons";
+// import { notification } from "antd";
+// import { SmileOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import routes from "../../../config/routes";
 
 
-const openNotification = () => {
-  notification.open({
-    message: "Some Notification Goes Here",
-    description:
-      "Some Notification Goes Here Some Notification Goes Here Some Notification Goes Here",
-    icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-    style: {
-      // backgroundColor: "#1081D1",
-      // color: "#ffffff",
-      borderRadius: 20,
-    },
-    top: 80,
-    duration: 2,
-    rtl: true,
-  });
-};
+// const openNotification = () => {
+//   notification.open({
+//     message: "Some Notification Goes Here",
+//     description:
+//       "Some Notification Goes Here Some Notification Goes Here Some Notification Goes Here",
+//     icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+//     style: {
+//       // backgroundColor: "#1081D1",
+//       // color: "#ffffff",
+//       borderRadius: 20,
+//     },
+//     top: 80,
+//     duration: 2,
+//     rtl: true,
+//   });
+// };
 
 class CategoriesList extends Component {
   constructor(props) {
