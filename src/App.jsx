@@ -21,6 +21,7 @@ const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
 const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
+const AllItemsPage = React.lazy(() => import("./pages/allItems"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -61,6 +62,11 @@ class App extends React.Component {
                       component={PostItemPage}
                     />
                     <Route exact path={routes.homePage} component={HomePage} />
+                    <Route
+                      exact
+                      path={routes.allItems}
+                      component={AllItemsPage}
+                    />
                   </React.Suspense>
                 </MainLayout>
               </React.Fragment>

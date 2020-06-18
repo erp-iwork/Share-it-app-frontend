@@ -10,7 +10,7 @@ class Items extends Component {
   render() {
     return (
       <div className="margin">
-        <Card className="bg-gradient-theme-left">
+        <Card className="zoom">
           <CardImg src={Item} />
           <CardHeader className="cardHeader">
             Item Name
@@ -18,7 +18,7 @@ class Items extends Component {
               Boosted
             </Button>
           </CardHeader>
-          <CardBody>Item Price Goes Here</CardBody>
+          <CardBody className="cardBody">Item Price</CardBody>
         </Card>
       </div>
     );

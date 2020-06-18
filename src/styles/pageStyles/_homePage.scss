@@ -9,3 +9,14 @@
     display: flex;
     justify-content: space-between;
 }
+.zoom {
+    transition: transform .2s; 
+    box-shadow:  15px 15px 15px darken($color: #EDEDED, $amount: 10);;
+  }
+  .zoom:hover {
+    transform: scale(1.1);
+    overflow: hidden;
+    z-index: 10000!important;
+    box-shadow: none;
+
+  }
