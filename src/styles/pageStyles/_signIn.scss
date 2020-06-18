@@ -6,6 +6,15 @@
 .loginContainer {
     margin: 90px;
     flex-direction: row;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-20%, -20%);
+  z-index: 2;
+  width: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .loginContainerMobile {
     flex-direction: row;
@@ -35,7 +44,9 @@
     min-height: 100vh;
     height: auto;
     background-image: url('../../assets/background.jpg');
-    background-color: #F4F4F4;
+    filter: blur(4px);
+    background-color: rgba(103, 103, 103, 0.4);
+  -webkit-filter: blur(4px);
 }
 
 .label {
