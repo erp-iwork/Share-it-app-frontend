@@ -69,14 +69,14 @@ export const loadItems = () => (dispatch, getState) => {
   );
 };
 
-export const addBug = (item) =>
+export const addItem = (item) =>
   apiCallBegan({
     url,
     method: "post",
     data: item,
     onSuccess: itemAdded.type,
   });
-export const updateBug = (itemId, item) =>
+export const updateItem = (itemId, item) =>
   apiCallBegan({
     url: url + "/" + itemId,
     method: "put",
