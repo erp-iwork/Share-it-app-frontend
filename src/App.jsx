@@ -60,7 +60,7 @@ class App extends React.Component {
                       path={routes.postItem}
                       component={PostItemPage}
                     />
-                    <Route path={routes.homePage} component={HomePage} />
+                    <Route exact path={routes.homePage} component={HomePage} />
                   </React.Suspense>
                 </MainLayout>
               </React.Fragment>

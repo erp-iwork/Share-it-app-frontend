@@ -82,7 +82,9 @@ class Header extends React.Component {
           <img className="App-logo" alt="" src={Logo} />
         </Nav>
         <Nav navbar>
-          <img className="App-logo2" alt="" src={SharreIt} />
+          <Link to={{ pathname: routes.homePage }}>
+            <img className="App-logo2" alt="" src={SharreIt} />
+          </Link>
         </Nav>
         {isDesktop ? (
           <Nav navbar>

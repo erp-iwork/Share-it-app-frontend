@@ -11,74 +11,103 @@ import {
   FormGroup,
   Input,
   Label,
-  Container,
   CardFooter,
 } from "reactstrap";
-import { MdAdd } from "react-icons/md";
 
 class PostItemForm extends Component {
+  fileObj = [];
+  fileArray = [];
+
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      productSharing: false,
+      serviceSharing: false,
+      digitalSharing: false,
+      file: [null],
+    };
+    this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
+    this.uploadFiles = this.uploadFiles.bind(this);
   }
+
+  uploadMultipleFiles(e) {
+    this.fileObj.push(e.target.files);
+    for (let i = 0; i < this.fileObj[0].length; i++) {
+      this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]));
+    }
+    this.setState({ file: this.fileArray });
+  }
+
+  uploadFiles(e) {
+    e.preventDefault();
+    console.log(this.state.file);
+  }
+
+  handleChange = (event) => {
+    if (
+      event.target.value === "productSharing" &&
+      event.target.name === "sharingtype"
+    ) {
+      this.setState({
+        productSharing: true,
+        serviceSharing: false,
+        digitalSharing: false,
+      });
+    } else if (
+      event.target.value === "serviceSharing" &&
+      event.target.name === "sharingtype"
+    ) {
+      this.setState({
+        serviceSharing: true,
+        productSharing: false,
+        digitalSharing: false,
+      });
+    } else if (
+      event.target.value === "digitalSharing" &&
+      event.target.name === "sharingtype"
+    ) {
+      this.setState({
+        serviceSharing: false,
+        productSharing: false,
+        digitalSharing: true,
+      });
+    } else {
+      this.setState({
+        serviceSharing: false,
+        digitalSharing: false,
+        productSharing: false,
+      });
+    }
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
           <Col xl={10} lg={12} md={12} sm={12}>
             <Card>
-              <CardHeader>Sharre What You Have</CardHeader>
+              <CardHeader>Share What You Have</CardHeader>
               <CardBody>
                 <Row>
                   <Col sm={12} md={6} xs={12}>
-                    <Row>
-                      <Col sm={12} md={6} xs={12}>
-                        <Card
-                          onClick={() => alert("image Clicked")}
-                          className="imageContainer"
-                        >
-                          <Container className="d-flex justify-content-center align-items-center flex-column">
-                            <MdAdd />
-                          </Container>
-                        </Card>
-                      </Col>
-                      <Col sm={12} md={6} xs={12}>
-                        <Card className="imageContainer">
-                          <div className="d-flex justify-content-center align-items-center flex-column">
-                            Hello
-                          </div>
-                        </Card>
-                      </Col>
-                      <Col sm={12} md={6} xs={12}>
-                        <Card className="imageContainer">
-                          <div className="d-flex justify-content-center align-items-center flex-column">
-                            Hello
-                          </div>
-                        </Card>
-                      </Col>
-                      <Col sm={12} md={6} xs={12}>
-                        <Card className="imageContainer">
-                          <div className="d-flex justify-content-center align-items-center flex-column">
-                            Hello
-                          </div>
-                        </Card>
-                      </Col>
-                      <Col sm={12} md={6} xs={12}>
-                        <Card className="imageContainer">
-                          <div className="d-flex justify-content-center align-items-center flex-column">
-                            Hello
-                          </div>
-                        </Card>
-                      </Col>
-                      <Col sm={12} md={6} xs={12}>
-                        <Card className="imageContainer">
-                          <div className="d-flex justify-content-center align-items-center flex-column">
-                            Hello
-                          </div>
-                        </Card>
-                      </Col>
-                    </Row>
+                    <CardHeader>Upload Images</CardHeader>
+                    <Form>
+                      <Input
+                        type="file"
+                        className="form-control"
+                        onChange={this.uploadMultipleFiles}
+                        multiple
+                      />
+                      <Row>
+                        {(this.fileArray || []).map((url) => (
+                          <img className="imageContainer" src={url} alt="..." />
+                        ))}
+                      </Row>
+                    </Form>
                   </Col>
+
                   {/* //Forms */}
                   <Col sm={12} md={6} xs={12}>
                     <Form>
@@ -86,14 +115,13 @@ class PostItemForm extends Component {
                         <Col xs={12} md={6}>
                           <FormGroup>
                             <Label for="exampleEmail" sm={12}>
-                              Item Name
+                              Sharing || Donating?
                             </Label>
                             <Col sm={12}>
-                              <Input
-                                type="text"
-                                name="itemName"
-                                placeholder="Item Name"
-                              />
+                              <Input type="select" name="sharingtype">
+                                <option value="Sharing">Sharing</option>
+                                <option value="Donation">Donating</option>
+                              </Input>
                             </Col>
                           </FormGroup>
                         </Col>
@@ -103,43 +131,57 @@ class PostItemForm extends Component {
                               Category
                             </Label>
                             <Col sm={12}>
-                              <Input type="select" name="itemName">
-                                <option>Something</option>
-                                <option>Product</option>
-                                <option>Service</option>
-                                <option>Digital</option>
+                              <Input
+                                type="select"
+                                name="sharingtype"
+                                onChange={this.handleChange}
+                              >
+                                <option value="">Something</option>
+                                <option value="productSharing">
+                                  Product Sharing
+                                </option>
+                                <option value="serviceSharing">
+                                  Service Sharing
+                                </option>
+                                <option value="digitalSharing">
+                                  Digital Sharing
+                                </option>
                               </Input>
                             </Col>
                           </FormGroup>
                         </Col>
-                        <Col xs={12} md={6}>
-                          <FormGroup>
-                            <Label for="exampleEmail" sm={12}>
-                              Item Name
-                            </Label>
-                            <Col sm={12}>
-                              <Input
-                                type="text"
-                                name="itemName"
-                                placeholder="Item Name"
-                              />
+                        {this.state.productSharing ? (
+                          <>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Product Category
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="itemName"
+                                    placeholder="Item Name"
+                                  />
+                                </Col>
+                              </FormGroup>
                             </Col>
-                          </FormGroup>
-                        </Col>
-                        <Col xs={12} md={6}>
-                          <FormGroup>
-                            <Label for="exampleEmail" sm={12}>
-                              Item Name
-                            </Label>
-                            <Col sm={12}>
-                              <Input
-                                type="text"
-                                name="itemName"
-                                placeholder="Item Name"
-                              />
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Something
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="itemName"
+                                    placeholder="Item Name"
+                                  />
+                                </Col>
+                              </FormGroup>
                             </Col>
-                          </FormGroup>
-                        </Col>
+                          </>
+                        ) : null}
                         <Col xs={12} md={6}>
                           <FormGroup>
                             <Label for="exampleEmail" sm={12}>
@@ -186,7 +228,7 @@ class PostItemForm extends Component {
                 </Row>
               </CardBody>
               <CardFooter align="center">
-                <Button>Share</Button>
+                <Button onClick={this.uploadFiles}>Share</Button>
               </CardFooter>
             </Card>
           </Col>
