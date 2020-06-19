@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Row,
+  Button, Card, CardBody, CardHeader, Col,
+  Form, FormGroup, Input, Row,
 } from "reactstrap";
 import { MdStar } from "react-icons/md";
 import { Reviews } from ".";

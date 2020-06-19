@@ -8,8 +8,6 @@ import {
   CardHeader,
 } from "reactstrap";
 import Item from "../../assets/car1.png";
-import { Link } from "react-router-dom";
-import routes from "../../config/routes";
 
 class Items extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ class Items extends Component {
   render() {
         return (
         <div className="margin">
-            <Link to={{ pathname: routes.singleItem }}>
           <Card className="relatedAdzoom">
             <Row>
               <Col md={6}>
@@ -33,7 +30,6 @@ class Items extends Component {
               </Col>
             </Row>
           </Card>
-        </Link>
       </div>
     );
   }
