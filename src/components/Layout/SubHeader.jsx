@@ -12,9 +12,7 @@ class SubHeader extends React.Component {
             <Link
               to={{
                 pathname: routes.categories,
-                state: {
-                  type: 0,
-                },
+                type: 0,
               }}
             >
               <Button outline block>
