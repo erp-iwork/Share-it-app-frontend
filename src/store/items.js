@@ -15,7 +15,7 @@ const slice = createSlice({
       items.loading = true;
     },
     itemsReceived: (items, action) => {
-      items.list = action.payload.items;
+      items.list = action.payload;
       items.loading = false;
       items.lastFetch = Date.now();
     },
@@ -91,4 +91,11 @@ export const removeItem = (id) =>
     onSuccess: itemRemoved.type,
   });
 
-//TODO - selectors
+//TODO remove filter
+export const getItems = createSelector(
+  (state) => state.entities.items,
+  (items) =>
+    items.list.filter(
+      (item) => item.itemId !== "583358b9-2e21-4b42-9677-aaf629409174"
+    )
+);
