@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col, Card, CardHeader, CardImg } from "reactstrap";
 import Page from "../../../components/Page";
+import { Link } from "react-router-dom";
+import routes from "../../../config/routes";
 import {
   Apartments,
   Books,
@@ -8,32 +10,17 @@ import {
   Driver,
   FarmingEquipments,
   Houses,
-  // Luggage, Nanny, MusicTeacher, MusicInstruments ,PowerTools,
-  // PersonalTrainer, LoanService,
-  // SeasonTickets, Lecturer
+  // Luggage,
+  // Nanny,
+  // MusicTeacher,
+  // MusicInstruments,
+  // PowerTools,
+  // PersonalTrainer,
+  // LoanService,
+  // SeasonTickets,
+  // Lecturer,
 } from "../../../assets/Sharreit-Icons";
-// import { notification } from "antd";
-// import { SmileOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-import routes from "../../../config/routes";
-
-
-// const openNotification = () => {
-//   notification.open({
-//     message: "Some Notification Goes Here",
-//     description:
-//       "Some Notification Goes Here Some Notification Goes Here Some Notification Goes Here",
-//     icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-//     style: {
-//       // backgroundColor: "#1081D1",
-//       // color: "#ffffff",
-//       borderRadius: 20,
-//     },
-//     top: 80,
-//     duration: 2,
-//     rtl: true,
-//   });
-// };
+// import { subCategories, categories, icons } from "../data";
 
 class CategoriesList extends Component {
   constructor(props) {
@@ -46,17 +33,13 @@ class CategoriesList extends Component {
         <Row>
           <Col xs={12} sm={6} md={2}>
             <Link to={{ pathname: routes.allItems }}>
-
-
-              <Card
-              // onClick={() => openNotification()}
-              >
+              <Card>
                 <CardImg className="catIcons" src={Cleaner} />
                 <CardHeader align="center">Cleaner</CardHeader>
               </Card>
             </Link>
-
           </Col>
+
           <Col xs={12} sm={6} md={2}>
             <Link to={{ pathname: routes.allItems }}>
               <Card>
@@ -64,7 +47,6 @@ class CategoriesList extends Component {
                 <CardHeader align="center">Personal Driver</CardHeader>
               </Card>
             </Link>
-
           </Col>
           <Col xs={12} sm={6} md={2}>
             <Card>

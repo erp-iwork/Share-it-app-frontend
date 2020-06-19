@@ -13,12 +13,14 @@ import {
   ModalHeader,
 } from "reactstrap";
 import { toast } from "react-toastify";
-import DemoImage from "../../../assets/demo-nanny.jpg";
-import DemoImage1 from "../../../assets/Nunu.png";
-import DemoImage2 from "../../../assets/car1.png";
-import { Luggage } from "../../../assets/Sharreit-Icons";
 import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
+import {
+  Mercedes1,
+  Mercedes2,
+  Mercedes3,
+  Mercedes4,
+} from "../../../assets/demoImages";
 
 const openNotification = () => {
   toast.error("Did You Read the Terms and Conditions?");
@@ -46,6 +48,16 @@ class ItemViewComp extends Component {
         accepted: true,
         modal: false,
       });
+    } else if (status === "Denied") {
+      return (
+        toast.warn(
+          "You Can't Contact the Supplier Without Accepting the Terms and Conditions"
+        ),
+        this.setState({
+          accepted: true,
+          modal: false,
+        })
+      );
     }
   };
 
@@ -73,7 +85,7 @@ class ItemViewComp extends Component {
             <Button color="success" onClick={this.toggle("Accepted")}>
               Accept
             </Button>{" "}
-            <Button color="secondary" onClick={this.toggle()}>
+            <Button color="secondary" onClick={this.toggle("Denied")}>
               Cancel
             </Button>
           </ModalFooter>
@@ -93,35 +105,35 @@ class ItemViewComp extends Component {
                   <img
                     alt=""
                     class="singleItemMainImageDisplay"
-                    src={DemoImage}
+                    src={Mercedes1}
                   />
                 </div>
                 <div className="MainImageDisplayContainer">
                   <img
                     alt=""
                     class="singleItemMainImageDisplay"
-                    src={DemoImage1}
+                    src={Mercedes2}
                   />
                 </div>
                 <div className="MainImageDisplayContainer">
                   <img
                     alt=""
                     class="singleItemMainImageDisplay"
-                    src={DemoImage2}
+                    src={Mercedes3}
                   />
                 </div>
                 <div className="MainImageDisplayContainer">
                   <img
                     alt=""
                     class="singleItemMainImageDisplay"
-                    src={DemoImage}
+                    src={Mercedes4}
                   />
                 </div>
                 <div className="MainImageDisplayContainer">
                   <img
                     alt=""
                     class="singleItemMainImageDisplay"
-                    src={Luggage}
+                    src={Mercedes1}
                   />
                 </div>
               </Carousel>
@@ -135,13 +147,13 @@ class ItemViewComp extends Component {
                   <div>
                     <i>Product Name</i>
                   </div>
-                  <b>Something</b>
+                  <b>Mercedes Benz c-200</b>
                 </Col>
                 <Col md={6}>
                   <div>
                     <i>Condition</i>
                   </div>{" "}
-                  <b>Barely-Used</b>
+                  <b>New</b>
                 </Col>
               </Row>
               <Row>
@@ -153,23 +165,23 @@ class ItemViewComp extends Component {
                 </Col>
                 <Col md={6}>
                   <div>
-                    <i>Something</i>
+                    <i>Price/Day</i>
                   </div>{" "}
-                  <b>Something</b>
+                  <b>30$</b>
                 </Col>
               </Row>
               <Row>
                 <Col md={6}>
                   <div>
-                    <i>Availability</i>
+                    <i>Share Count</i>
                   </div>
-                  <b>Available</b>
+                  <b>12</b>
                 </Col>
                 <Col md={6}>
                   <div>
-                    <i>Something</i>
+                    <i>Driven Miles</i>
                   </div>{" "}
-                  <b>Something</b>
+                  <b>14,548'</b>
                 </Col>
               </Row>
               <hr />
@@ -177,15 +189,15 @@ class ItemViewComp extends Component {
               <Row className="singlePadding">
                 <Col md={6}>
                   <div>
-                    <i>Availability</i>
+                    <i>Gas Consumption</i>
                   </div>
-                  <b>Available</b>
+                  <b>34 litres/Mile</b>
                 </Col>
                 <Col md={6}>
                   <div>
-                    <i>Something</i>
+                    <i>location</i>
                   </div>{" "}
-                  <b>Something</b>
+                  <b>California</b>
                 </Col>
               </Row>
               <div className="singlePadding">
@@ -193,8 +205,8 @@ class ItemViewComp extends Component {
                   <i>Description</i>
                 </div>
                 <b>
-                  AvailableAvailableAvailableAvailableAvailableAvailableAvailableAvai
-                  lableAvailableAvailableAvailableAvailableAvailableAvailableAvailableAvailableAvailableAvailable
+                  A Mercedes Benz C-Class that has beeen shared 24 times and is
+                  easy on the hands.
                 </b>
               </div>
               <div>

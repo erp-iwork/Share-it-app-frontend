@@ -13,7 +13,6 @@ import {
   Label,
   CardFooter,
 } from "reactstrap";
-
 class PostItemForm extends Component {
   constructor(props) {
     super(props);
@@ -135,7 +134,9 @@ class PostItemForm extends Component {
                                 name="sharingtype"
                                 onChange={this.handleChange}
                               >
-                                <option value="" disabled>Something</option>
+                                <option value="" disabled>
+                                  Something
+                                </option>
                                 <option value="productSharing">
                                   Product Sharing
                                 </option>
@@ -150,92 +151,92 @@ class PostItemForm extends Component {
                           </FormGroup>
                         </Col>
                         {/* {this.state.productSharing ? ( */}
-                          <>
-                            <Col xs={12} md={6}>
-                              <FormGroup>
-                                <Label for="exampleEmail" sm={12}>
-                                  Name
-                                </Label>
-                                <Col sm={12}>
-                                  <Input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                  />
-                                </Col>
-                              </FormGroup>
-                            </Col>
-                            <Col xs={12} md={6}>
-                              <FormGroup>
-                                <Label for="exampleEmail" sm={12}>
-                                  Location
-                                </Label>
-                                <Col sm={12}>
-                                  <Input
-                                    type="text"
-                                    name="location"
-                                    placeholder="Location"
-                                  />
-                                </Col>
-                              </FormGroup>
-                            </Col>
-                            <Col xs={12} md={6}>
-                              <FormGroup>
-                                <Label for="exampleEmail" sm={12}>
-                                  Price
-                                </Label>
-                                <Col sm={12}>
-                                  <Input
-                                    type="text"
-                                    name="price"
-                                    placeholder="Price"
-                                  />
-                                </Col>
-                              </FormGroup>
-                            </Col>
-                            <Col xs={12} md={6}>
-                              <FormGroup>
-                                <Label for="exampleEmail" sm={12}>
-                                  Product category
-                                </Label>
-                                <Col sm={12}>
-                                  <Input
-                                    type="text"
-                                    name="productCategory"
-                                    placeholder="Product category"
-                                  />
-                                </Col>
-                              </FormGroup>
-                            </Col>
-                            <Col xs={12} md={6}>
-                              <FormGroup>
-                                <Label for="exampleEmail" sm={12}>
-                                  Product subcategory
-                                </Label>
-                                <Col sm={12}>
-                                  <Input
-                                    type="text"
-                                    name="productSubcategory"
-                                    placeholder="Product subcategory"
-                                  />
-                                </Col>
-                              </FormGroup>
-                            </Col>
-                            <Col xs={12} md={6}>
-                              <FormGroup>
-                                <Label for="exampleEmail" sm={12}>
-                                  Description
-                                </Label>
-                                <Col sm={12}>
-                                  <Input
-                                    type="textarea"
-                                    name="itemName"
-                                    placeholder="Item Name"
-                                  />
-                                </Col>
-                              </FormGroup>
-                            </Col>
-                          </>
+                        <>
+                          <Col xs={12} md={6}>
+                            <FormGroup>
+                              <Label for="exampleEmail" sm={12}>
+                                Name
+                              </Label>
+                              <Col sm={12}>
+                                <Input
+                                  type="text"
+                                  name="name"
+                                  placeholder="Name"
+                                />
+                              </Col>
+                            </FormGroup>
+                          </Col>
+                          <Col xs={12} md={6}>
+                            <FormGroup>
+                              <Label for="exampleEmail" sm={12}>
+                                Location
+                              </Label>
+                              <Col sm={12}>
+                                <Input
+                                  type="text"
+                                  name="location"
+                                  placeholder="Location"
+                                />
+                              </Col>
+                            </FormGroup>
+                          </Col>
+                          <Col xs={12} md={6}>
+                            <FormGroup>
+                              <Label for="exampleEmail" sm={12}>
+                                Price
+                              </Label>
+                              <Col sm={12}>
+                                <Input
+                                  type="text"
+                                  name="price"
+                                  placeholder="Price"
+                                />
+                              </Col>
+                            </FormGroup>
+                          </Col>
+                          <Col xs={12} md={6}>
+                            <FormGroup>
+                              <Label for="exampleEmail" sm={12}>
+                                Product category
+                              </Label>
+                              <Col sm={12}>
+                                <Input
+                                  type="text"
+                                  name="productCategory"
+                                  placeholder="Product category"
+                                />
+                              </Col>
+                            </FormGroup>
+                          </Col>
+                          <Col xs={12} md={6}>
+                            <FormGroup>
+                              <Label for="exampleEmail" sm={12}>
+                                Product subcategory
+                              </Label>
+                              <Col sm={12}>
+                                <Input
+                                  type="text"
+                                  name="productSubcategory"
+                                  placeholder="Product subcategory"
+                                />
+                              </Col>
+                            </FormGroup>
+                          </Col>
+                          <Col xs={12} md={6}>
+                            <FormGroup>
+                              <Label for="exampleEmail" sm={12}>
+                                Description
+                              </Label>
+                              <Col sm={12}>
+                                <Input
+                                  type="textarea"
+                                  name="itemName"
+                                  placeholder="Item Name"
+                                />
+                              </Col>
+                            </FormGroup>
+                          </Col>
+                        </>
                       </Row>
                       <FormGroup>
                         <Label for="Description" sm={12}>

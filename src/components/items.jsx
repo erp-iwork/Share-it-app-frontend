@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardBody, Button, CardHeader } from "reactstrap";
-import Item from "../assets/car1.png";
+// import Item from "../assets/car1.png";
 import { Link } from "react-router-dom";
 import routes from "../config/routes";
+import { Mercedes1 } from "../assets/demoImages";
+
 
 class Items extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class Items extends Component {
       <div className="margin">
         <Link to={{ pathname: routes.singleItem }}>
           <Card className="zoom">
-            <CardImg src={Item} />
+            <CardImg src={Mercedes1} />
             <CardHeader className="cardHeader">
               Item Name
               <Button size="sm" color="success" disabled>

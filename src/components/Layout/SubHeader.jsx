@@ -9,7 +9,14 @@ class SubHeader extends React.Component {
       <Card className="mainPadding" align="center">
         <Row>
           <Col md={3} xs={12} sm={6}>
-            <Link to={{ pathname: routes.categories }}>
+            <Link
+              to={{
+                pathname: routes.categories,
+                state: {
+                  type: 0,
+                },
+              }}
+            >
               <Button outline block>
                 Product Sharing
               </Button>

@@ -14,7 +14,12 @@ import {
 import { MdLock } from "react-icons/md";
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
-import { registerUser, getStatus, getLoading, resetErrors } from "../../../store/auth";
+import {
+  registerUser,
+  getStatus,
+  getLoading,
+  resetErrors,
+} from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
 
 class RegistrationFormPage extends MainForm {
@@ -65,7 +70,7 @@ class RegistrationFormPage extends MainForm {
     // }
   };
   componentWillMount() {
-    this.props.resetErrors()
+    this.props.resetErrors();
   }
 
   render() {
@@ -134,7 +139,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   registerUser: (userInfo) => dispatch(registerUser(userInfo)),
-  resetErrors:()=>dispatch(resetErrors())
+  resetErrors: () => dispatch(resetErrors()),
 });
 
 export default connect(
