@@ -14,7 +14,7 @@ class PremiumAds extends Component {
   render() {
     return (
       <Carousel autoPlay infiniteLoop showThumbs={true}>
-        <div onClick={() => alert("clicked")} className="container1">
+        <div className="container1">
           <img alt="" class="resize_fit_center" src={Logo2} />
           <p className="legend">Car</p>
         </div>

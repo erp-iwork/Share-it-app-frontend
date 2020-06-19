@@ -161,14 +161,16 @@ class Header extends React.Component {
                   className="border-light"
                 >
                   <ListGroup flush>
-                    <ListGroupItem
-                      onClick={this.post}
-                      tag="button"
-                      action
-                      className="border-light"
-                    >
-                      <MdPersonPin /> Profile
-                    </ListGroupItem>
+                    <Link to={{ pathname: routes.profile }}>
+                      <ListGroupItem
+                        tag="button"
+                        action
+                        className="border-light"
+                      >
+                        <MdPersonPin /> Profile
+                      </ListGroupItem>
+                    </Link>
+
                     <ListGroupItem tag="button" action className="border-light">
                       <MdInsertChart /> Wish List
                     </ListGroupItem>

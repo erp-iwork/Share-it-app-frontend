@@ -6,5 +6,5 @@ export default {
   postItem: "/postItem",
   allItems: "/allItems",
   singleItem: "/singleItem",
-
+  profile: "/profile",
 };

@@ -1,0 +1,78 @@
+.coverImageContainer {
+    width: auto;
+    height: 100vh;
+    background-color: #ffffff;
+    // object-fit:cover;
+	top: 50%;
+	min-height: 100vh;
+	min-width: 100%;
+}
+.coverImageContainerimg {
+  	position: relative;
+	vertical-align: middle;
+	max-height: 20%;
+	height: 100vh;
+	width: 100%;
+	object-fit:cover;
+	border-radius: 20px;
+}
+.resize_fit_center {
+    max-width:100%;
+    max-height:100vh;
+    vertical-align: middle;
+}
+
+.profileAvatar {
+	transform: scale(1.5);
+    z-index: 10000!important;
+}
+
+.profileName {
+	margin-top: 20px;
+}
+
+.personalInformationMargin {
+	padding-right: 40px;
+}
+
+.contactInformations {
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	flex-direction: row;
+}
+.contactInformationIcons {
+	max-height: 80px;
+	max-width: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+
+}
+.contactInformationLabels {
+	margin-top: 3px;
+
+}
+.personalInformationbase {
+	margin-top: 35px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.ratingContainer {
+	padding: 10px
+}
+
+.zoomstar {
+	transition: transform .4s; 
+    box-shadow: none;
+}
+
+  .zoomstar:hover {
+    transform: scale(1.5);
+    overflow: hidden;
+
+  }
+
+  .reviewbody {
+	  margin-bottom: 5px;
+
+  }
