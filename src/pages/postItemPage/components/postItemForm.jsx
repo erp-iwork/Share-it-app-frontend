@@ -135,7 +135,7 @@ class PostItemForm extends Component {
                                 name="sharingtype"
                                 onChange={this.handleChange}
                               >
-                                <option value="">Something</option>
+                                <option value="" disabled>Something</option>
                                 <option value="productSharing">
                                   Product Sharing
                                 </option>
@@ -149,7 +149,7 @@ class PostItemForm extends Component {
                             </Col>
                           </FormGroup>
                         </Col>
-                        {this.state.productSharing ? (
+                        {/* {this.state.productSharing ? ( */}
                           <>
                             <Col xs={12} md={6}>
                               <FormGroup>
@@ -236,7 +236,6 @@ class PostItemForm extends Component {
                               </FormGroup>
                             </Col>
                           </>
-                        ) : null}
                       </Row>
                       <FormGroup>
                         <Label for="Description" sm={12}>
