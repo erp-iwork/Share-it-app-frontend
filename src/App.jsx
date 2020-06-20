@@ -66,13 +66,13 @@ class App extends React.Component {
                     <Route exact path={routes.homePage} component={HomePage} />
                     <Route
                       exact
-                      path={routes.allItems}
-                      component={AllItemsPage}
+                      path={routes.singleItem}
+                      component={SingleItemPage}
                     />
                     <Route
                       exact
-                      path={routes.singleItem}
-                      component={SingleItemPage}
+                      path={routes.allItems}
+                      component={AllItemsPage}
                     />
                     <Route
                       exact

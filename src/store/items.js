@@ -9,6 +9,7 @@ const slice = createSlice({
     list: [],
     loading: false,
     lastFetch: null,
+    selectedItem: {},
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -18,6 +19,10 @@ const slice = createSlice({
       items.list = action.payload;
       items.loading = false;
       items.lastFetch = Date.now();
+    },
+    itemReceived: (items, action) => {
+      items.selectedItem = action.payload;
+      items.loading = false;
     },
     itemsRequestFailed: (items, action) => {
       items.loading = false;
@@ -43,6 +48,7 @@ const slice = createSlice({
 const {
   itemsRequested,
   itemsReceived,
+  itemReceived,
   itemsRequestFailed,
   itemAdded,
   itemUpdated,
@@ -68,6 +74,14 @@ export const loadItems = () => (dispatch, getState) => {
     })
   );
 };
+
+export const getItemById = (itemId) =>
+  apiCallBegan({
+    url: url + "/" + itemId,
+    onStart: itemsRequested.type,
+    onSuccess: itemReceived.type,
+    onError: itemsRequestFailed.type,
+  });
 
 export const addItem = (item) =>
   apiCallBegan({
@@ -98,4 +112,9 @@ export const getItems = createSelector(
     items.list.filter(
       (item) => item.itemId !== "583358b9-2e21-4b42-9677-aaf629409174"
     )
+);
+
+export const getSelectedItem = createSelector(
+  (state) => state.entities.items,
+  (items) => items.selectedItem
 );

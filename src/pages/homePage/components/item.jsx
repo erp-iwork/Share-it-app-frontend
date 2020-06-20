@@ -9,20 +9,20 @@ import routes from "../../../config/routes";
  * Input - title:string, boost:boolean, price: string, image:string
  */
 
-const Item = ({ title, boost, price, image }) => {
+const Item = ({ item }) => {
   return (
     <div className="margin">
-      <Link to={{ pathname: routes.singleItem }}>
+      <Link to={`/items/${item.itemId}`}>
         <Card className="zoom">
-          <CardImg src={image} />
+          <CardImg src={item.item_images[0].image} />
           <CardHeader className="cardHeader">
-            {title}
+            {item.title}
             <Button size="sm" color="success" disabled>
               {/* {boost ? "Boosted" : ""} */}
               Boosted
             </Button>
           </CardHeader>
-          <CardBody className="cardBody">{price}</CardBody>
+          <CardBody className="cardBody">{item.price}</CardBody>
         </Card>
       </Link>
     </div>

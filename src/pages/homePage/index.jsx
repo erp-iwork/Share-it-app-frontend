@@ -20,12 +20,7 @@ class HomePage extends Component {
         <Row>
           {this.props.items.map((item) => (
             <Col key={item.itemId} md={3} sm={12} xs={12}>
-              <Item
-                title={item.title}
-                boost={item.boost}
-                price={item.price}
-                image={item.item_images[0].image}
-              />
+              <Item item={item} />
             </Col>
           ))}
         </Row>

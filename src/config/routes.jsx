@@ -4,7 +4,7 @@ export default {
   registration: "/registration",
   categories: "/categories",
   postItem: "/postItem",
-  allItems: "/allItems",
-  singleItem: "/singleItem",
+  allItems: "/items",
+  singleItem: "/items/:id",
   profile: "/profile",
 };
