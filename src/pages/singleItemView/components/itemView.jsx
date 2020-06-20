@@ -54,7 +54,6 @@ class ItemViewComp extends Component {
           "You Can't Contact the Supplier Without Accepting the Terms and Conditions"
         ),
         this.setState({
-          accepted: true,
           modal: false,
         })
       );
