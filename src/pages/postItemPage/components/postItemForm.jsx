@@ -70,7 +70,9 @@ class PostItemForm extends Component {
         productSharing: false,
         digitalSharing: true,
       });
-    } else {
+    } else if (
+      event.target.value === "digitalSharing" &&
+      event.target.name === "sharingtype") {
       this.setState({
         serviceSharing: false,
         digitalSharing: false,

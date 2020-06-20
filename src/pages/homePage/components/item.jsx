@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardImg, CardBody, Button, CardHeader } from "reactstrap";
 // import Item from "../../../assets/car1.png";
 import { Link } from "react-router-dom";
-import routes from "../../../config/routes";
 
 /**
  * Interface
@@ -14,7 +13,11 @@ const Item = ({ item }) => {
     <div className="margin">
       <Link to={`/items/${item.itemId}`}>
         <Card className="zoom">
-          <CardImg src={item.item_images[0].image} />
+        <div className="itemImgContainer-Home">
+        <CardImg src={item.item_images[0].image} />
+
+        </div>
+
           <CardHeader className="cardHeader">
             {item.title}
             <Button size="sm" color="success" disabled>

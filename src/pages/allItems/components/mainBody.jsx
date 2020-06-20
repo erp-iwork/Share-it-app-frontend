@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
 import Page from "../../../components/Page";
-import Items from "../../homePage/components/items";
+// import Items from "../../homePage/components/item";??
+import Items from "../../../components/items";
 
 class MainBodyPage extends Component {
   constructor(props) {
@@ -61,7 +62,6 @@ class MainBodyPage extends Component {
             <Items />
           </Col>
         </Row>
-
       </Page>
     );
   }
