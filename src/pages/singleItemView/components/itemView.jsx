@@ -184,7 +184,9 @@ class ItemViewComp extends Component {
                 </Col>
               </Row>
               <hr />
-              <CardHeader className="singlePadding">Something</CardHeader>
+              <CardHeader className="singlePadding">
+                Additional Information
+              </CardHeader>
               <Row className="singlePadding">
                 <Col md={6}>
                   <div>
