@@ -69,7 +69,9 @@ class ItemViewComp extends Component {
           toggle={this.toggle()}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle()}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle()}>
+            Terms And Conditions for <b>Mercedes Benz C-200</b>
+          </ModalHeader>
           <ModalBody>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -89,7 +91,7 @@ class ItemViewComp extends Component {
             </Button>
           </ModalFooter>
         </Modal>
-        <CardHeader>Item Name goes here</CardHeader>
+        <CardHeader>Mercedes Benz C-200</CardHeader>
         <CardBody>
           <Row>
             <Col md={8}>

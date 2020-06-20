@@ -22,9 +22,9 @@ class CategoriesPage extends Component {
           <Row>
             {subCategories[categories[this.props.location.type]].map(
               (item, index) => (
-                <Col xs={12} sm={6} md={2}>
+                <Col xs={12} sm={6} md={2} >
                   <Link to={{ pathname: routes.allItems, subCategory: index }}>
-                    <Card>
+                    <Card className='zoom'>
                       <CardImg
                         className="catIcons"
                         src={icons[categories[this.props.location.type]][index]}
