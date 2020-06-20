@@ -92,6 +92,7 @@ class ItemViewComp extends Component {
           </ModalFooter>
         </Modal>
         <CardHeader>Mercedes Benz C-200</CardHeader>
+        
         <CardBody>
           <Row>
             <Col md={8}>
