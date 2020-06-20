@@ -4,23 +4,7 @@ import Page from "../../components/Page";
 import { Row, Col, Card, CardHeader, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import routes from "../../config/routes";
-import {
-  Apartments,
-  Books,
-  Cleaner,
-  Driver,
-  FarmingEquipments,
-  Houses,
-  // Luggage,
-  // Nanny,
-  // MusicTeacher,
-  // MusicInstruments,
-  // PowerTools,
-  // PersonalTrainer,
-  // LoanService,
-  // SeasonTickets,
-  // Lecturer,
-} from "../../assets/Sharreit-Icons";
+import { categories, subCategories, icons } from "./data";
 
 class CategoriesPage extends Component {
   constructor(props) {
@@ -29,56 +13,28 @@ class CategoriesPage extends Component {
       categories: this.props.location.type,
     };
   }
-  componentDidMount() {
-    // const type = this.props.location.type;
-  }
+  componentDidMount() {}
   render() {
     return (
       <Page>
         <PremiumAds />
         <Page breadcrumbs={[{ name: "Sub-Categories", active: true }]}>
           <Row>
-            <Col xs={12} sm={6} md={2}>
-              <Link to={{ pathname: routes.allItems }}>
-                <Card>
-                  <CardImg className="catIcons" src={Cleaner} />
-                  <CardHeader align="center">Cleaner</CardHeader>
-                </Card>
-              </Link>
-            </Col>
-
-            <Col xs={12} sm={6} md={2}>
-              <Link to={{ pathname: routes.allItems }}>
-                <Card>
-                  <CardImg className="catIcons" src={Driver} />
-                  <CardHeader align="center">Personal Driver</CardHeader>
-                </Card>
-              </Link>
-            </Col>
-            <Col xs={12} sm={6} md={2}>
-              <Card>
-                <CardImg className="catIcons" src={Houses} />
-                <CardHeader align="center">Houses</CardHeader>
-              </Card>
-            </Col>
-            <Col xs={12} sm={6} md={2}>
-              <Card>
-                <CardImg className="catIcons" src={Books} />
-                <CardHeader align="center">Books</CardHeader>
-              </Card>
-            </Col>
-            <Col xs={12} sm={6} md={2}>
-              <Card>
-                <CardImg className="catIcons" src={Apartments} />
-                <CardHeader align="center">Apartments</CardHeader>
-              </Card>
-            </Col>
-            <Col xs={12} sm={6} md={2}>
-              <Card>
-                <CardImg className="catIcons" src={FarmingEquipments} />
-                <CardHeader align="center">Farming Equipments</CardHeader>
-              </Card>
-            </Col>
+            {subCategories[categories[this.props.location.type]].map(
+              (item, index) => (
+                <Col xs={12} sm={6} md={2}>
+                  <Link to={{ pathname: routes.allItems, subCategory: index }}>
+                    <Card>
+                      <CardImg
+                        className="catIcons"
+                        src={icons[categories[this.props.location.type]][index]}
+                      />
+                      <CardHeader align="center">{item}</CardHeader>
+                    </Card>
+                  </Link>
+                </Col>
+              )
+            )}
           </Row>
         </Page>
       </Page>

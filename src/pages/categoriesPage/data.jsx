@@ -14,7 +14,7 @@ import {
   LoanService,
   SeasonTickets,
   Lecturer,
-} from "../../../assets/Sharreit-Icons";
+} from "../../assets/Sharreit-Icons";
 export const categories = [
   "Product Sharing",
   "Services Sharing",
@@ -57,10 +57,10 @@ export const icons = {
     Luggage,
     MusicInstruments,
     PowerTools,
-    P7,
-    P8,
-    P9,
-    P10,
+    Houses,
+    Luggage,
+    MusicInstruments,
+    PowerTools,
   ],
 
   [categories[1]]: [
@@ -73,5 +73,5 @@ export const icons = {
     Lecturer,
   ],
 
-  [categories[2]]: [SeasonTickets, D1],
+  [categories[2]]: [SeasonTickets, Lecturer],
 };
