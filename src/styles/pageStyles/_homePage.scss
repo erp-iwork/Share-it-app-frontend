@@ -12,7 +12,6 @@
 .zoom {
     transition: transform .2s; 
     box-shadow: none;
-
   }
   .zoom:hover {
     transform: scale(1.05);
@@ -21,4 +20,28 @@
 
     z-index: 10000!important;
 
+  }
+
+  .itemImgContainer {
+    height: 260px;
+    width: 267px;
+    object-fit: cover;
+  }
+
+  .itemImgContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .itemImgContainer-Home {
+    height: 260px;
+    width: 380px;
+    object-fit: cover;
+  }
+
+  .itemImgContainer-Home img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
