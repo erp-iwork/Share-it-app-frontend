@@ -10,14 +10,13 @@ import { Link } from "react-router-dom";
 
 const Item = ({ item }) => {
   return (
+    
     <div className="margin">
       <Link to={`/items/${item.itemId}`}>
         <Card className="zoom">
-        <div className="itemImgContainer-Home">
-        <CardImg src={item.item_images[0].image} />
-
-        </div>
-
+          <div className="itemImgContainer-Home">
+            <CardImg src={item.item_images[0].image} />
+          </div>
           <CardHeader className="cardHeader">
             {item.title}
             <Button size="sm" color="success" disabled>
