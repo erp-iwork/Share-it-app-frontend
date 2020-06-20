@@ -4,7 +4,7 @@ import Page from "../../components/Page";
 import { Row, Col, Card, CardHeader, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import routes from "../../config/routes";
-import { categories, subCategories, icons } from "./data";
+import { categories, subCategories, icons } from "./categories";
 
 class CategoriesPage extends Component {
   constructor(props) {
