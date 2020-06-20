@@ -33,7 +33,7 @@ export const subCategories = {
     "Ladder",
     "Office Space",
     "Storage Space",
-    "Photography / Videography",
+    "Photography ",
   ],
 
   [categories[1]]: [
@@ -50,27 +50,26 @@ export const subCategories = {
 
 export const icons = {
   [categories[0]]: [
-    Apartments,
     Books,
+    PowerTools,
+    MusicInstruments,
+    Luggage,
+    Luggage,
+    Luggage,
     FarmingEquipments,
+    FarmingEquipments,
+    Apartments,
     Houses,
-    Luggage,
-    MusicInstruments,
-    PowerTools,
-    Houses,
-    Luggage,
-    MusicInstruments,
-    PowerTools,
+    Apartments,
   ],
 
   [categories[1]]: [
-    Cleaner,
-    Driver,
     Nanny,
+    Lecturer,
     MusicTeacher,
     PersonalTrainer,
-    LoanService,
-    Lecturer,
+    Driver,
+    Cleaner,
   ],
 
   [categories[2]]: [SeasonTickets, Lecturer],
