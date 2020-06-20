@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
 import SubHeader from "../../components/Layout/SubHeader";
-import Items from "./components/items";
+import Items from "../../components/items-Home";
+// import Items from "./components/items";
 
 class HomePage extends Component {
   constructor(props) {

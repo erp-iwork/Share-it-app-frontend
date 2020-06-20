@@ -36,7 +36,6 @@ class CategoriesPage extends Component {
     return (
       <Page>
         <PremiumAds />
-        {/* <CategoriesList type={this.props.location.type} /> */}
         <Page breadcrumbs={[{ name: "Sub-Categories", active: true }]}>
           <Row>
             <Col xs={12} sm={6} md={2}>

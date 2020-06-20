@@ -4,8 +4,6 @@ import { Card, CardImg, CardBody, Button, CardHeader } from "reactstrap";
 import { Link } from "react-router-dom";
 import routes from "../config/routes";
 import { Mercedes1 } from "../assets/demoImages";
-
-
 class Items extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +14,9 @@ class Items extends Component {
       <div className="margin">
         <Link to={{ pathname: routes.singleItem }}>
           <Card className="zoom">
-            <CardImg src={Mercedes1} />
+            <div className="itemImgContainer">
+              <CardImg src={Mercedes1} />
+            </div>
             <CardHeader className="cardHeader">
               Item Name
               <Button size="sm" color="success" disabled>
