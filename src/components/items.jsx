@@ -14,7 +14,7 @@ class Items extends Component {
       <div className="margin">
         <Link to={{ pathname: routes.singleItem }}>
           <Card className="zoom">
-            <Col className="itemImgContainer">
+            <Col className="itemImageContainer">
               <CardImg src={Mercedes1} />
             </Col>
             <CardHeader className="cardHeader">
