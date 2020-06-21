@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 import Page from "../../../components/Page";
 // import Items from "../../homePage/components/item";??
 import Item from "../../homePage/components/item";
-import { getItems, loadItems, getFilteredItems } from "../../../store/items";
+import { loadItems, getFilteredItems } from "../../../store/items";
 import { connect } from "react-redux";
 
 class MainBodyPage extends Component {

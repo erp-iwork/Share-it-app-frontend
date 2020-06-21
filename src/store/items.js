@@ -113,7 +113,6 @@ export const removeItem = (id) =>
 //Selectors
 export const search = (options) => itemFiltered(options);
 
-//TODO remove filter
 export const getItems = createSelector(
   (state) => state.entities.items,
   (items) => items.list
@@ -136,6 +135,10 @@ export const getItemsByCategory = createSelector(
     )
 );
 
+export const getLoading = createSelector(
+  (state) => state.entities.items.loading,
+  (loading) => loading
+);
 export const getFilteredItems = createSelector(
   (state) => state.entities.items,
   (items) => {

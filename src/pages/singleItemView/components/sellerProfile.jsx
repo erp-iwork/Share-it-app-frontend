@@ -3,8 +3,6 @@ import { Col, Card, Row } from "reactstrap";
 import Avatar from "../../../components/Avatar";
 import { MdStar, MdStarBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { getSelectedItem } from "../../../store/items";
-import { connect } from "react-redux";
 
 class SellerProfileComp extends Component {
   render() {
@@ -35,8 +33,4 @@ class SellerProfileComp extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedItem: getSelectedItem(state),
-});
-
-export default connect(mapStateToProps, null)(SellerProfileComp);
+export default SellerProfileComp;

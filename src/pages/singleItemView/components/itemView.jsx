@@ -15,8 +15,6 @@ import {
 import { toast } from "react-toastify";
 import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
-import { getSelectedItem } from "../../../store/items";
-import { connect } from "react-redux";
 
 const openNotification = () => {
   toast("Did You Read the Terms and Conditions?");
@@ -99,7 +97,7 @@ class ItemViewComp extends Component {
           </ModalFooter>
         </Modal>
         <CardHeader>Mercedes Benz C-200</CardHeader>
-        
+
         <CardBody>
           <Row>
             <Col md={8}>
@@ -249,8 +247,4 @@ class ItemViewComp extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedItem: getSelectedItem(state),
-});
-
-export default connect(mapStateToProps, null)(ItemViewComp);
+export default ItemViewComp;
