@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardBody, Col, Row, CardHeader } from "reactstrap";
-import Item from "../../assets/car1.png";
+import { Link } from "react-router-dom";
 
 class Items extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
+    const { title, item_images, price, itemId } = this.props.item;
     return (
       <div className="margin">
-        <Card className="relatedAdzoom">
-          <Row>
-            <Col md={6}>
-              <CardImg src={Item} />
-            </Col>
-            <Col md={6}>
-              <CardHeader className="cardHeader">Item Name</CardHeader>
-              <CardBody className="cardBody">Item Price</CardBody>
-            </Col>
-          </Row>
-        </Card>
+        <Link to={`/items/${itemId}`}>
+          <Card className="relatedAdzoom">
+            <Row>
+              <Col md={6}>
+                <CardImg src={item_images[0].image} />
+              </Col>
+              <Col md={6}>
+                <CardHeader className="cardHeader">{title}</CardHeader>
+                <CardBody className="cardBody">{price + "$"}</CardBody>
+              </Col>
+            </Row>
+          </Card>
+        </Link>
       </div>
     );
   }

@@ -15,17 +15,14 @@ import {
 import { toast } from "react-toastify";
 import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
-import {
-  Mercedes1,
-  Mercedes2,
-  Mercedes3,
-  Mercedes4,
-} from "../../../assets/demoImages";
+import { getSelectedItem } from "../../../store/items";
+import { connect } from "react-redux";
 
 const openNotification = () => {
-  toast.error("Did You Read the Terms and Conditions?");
+  toast("Did You Read the Terms and Conditions?");
 };
 
+//TODO - Refactor
 class ItemViewComp extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +47,7 @@ class ItemViewComp extends Component {
       });
     } else if (status === "Denied") {
       return (
-        toast.warn(
+        toast(
           "You Can't Contact the Supplier Without Accepting the Terms and Conditions"
         ),
         this.setState({
@@ -62,6 +59,16 @@ class ItemViewComp extends Component {
 
   render() {
     const { accepted } = this.state;
+    const {
+      item_images,
+      title,
+      price,
+      description,
+      condition,
+      is_available,
+      location,
+      properties,
+    } = this.props.selectedItem;
     return (
       <Card>
         <Modal
@@ -100,41 +107,20 @@ class ItemViewComp extends Component {
                 showArrows={false}
                 showThumbs={true}
               >
-                <div className="MainImageDisplayContainer">
-                  <img
-                    alt=""
-                    class="singleItemMainImageDisplay"
-                    src={Mercedes1}
-                  />
-                </div>
-                <div className="MainImageDisplayContainer">
-                  <img
-                    alt=""
-                    class="singleItemMainImageDisplay"
-                    src={Mercedes2}
-                  />
-                </div>
-                <div className="MainImageDisplayContainer">
-                  <img
-                    alt=""
-                    class="singleItemMainImageDisplay"
-                    src={Mercedes3}
-                  />
-                </div>
-                <div className="MainImageDisplayContainer">
-                  <img
-                    alt=""
-                    class="singleItemMainImageDisplay"
-                    src={Mercedes4}
-                  />
-                </div>
-                <div className="MainImageDisplayContainer">
-                  <img
-                    alt=""
-                    class="singleItemMainImageDisplay"
-                    src={Mercedes1}
-                  />
-                </div>
+                {item_images
+                  ? item_images.map((image) => (
+                      <div
+                        key={image.imageId}
+                        className="MainImageDisplayContainer"
+                      >
+                        <img
+                          alt=""
+                          class="singleItemMainImageDisplay"
+                          src={image.image}
+                        />
+                      </div>
+                    ))
+                  : null}
               </Carousel>
             </Col>
             <Col md={4}>
@@ -146,13 +132,13 @@ class ItemViewComp extends Component {
                   <div>
                     <i>Product Name</i>
                   </div>
-                  <b>Mercedes Benz c-200</b>
+                  <b>{title}</b>
                 </Col>
                 <Col md={6}>
                   <div>
                     <i>Condition</i>
                   </div>{" "}
-                  <b>New</b>
+                  <b>{condition}</b>
                 </Col>
               </Row>
               <Row>
@@ -160,16 +146,16 @@ class ItemViewComp extends Component {
                   <div>
                     <i>Availability</i>
                   </div>
-                  <b>Available</b>
+                  <b>{is_available ? "Available" : "Not Available"}</b>
                 </Col>
                 <Col md={6}>
                   <div>
                     <i>Price/Day</i>
                   </div>{" "}
-                  <b>30$</b>
+                  <b>{price + "$"}</b>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col md={6}>
                   <div>
                     <i>Share Count</i>
@@ -181,34 +167,35 @@ class ItemViewComp extends Component {
                     <i>Driven Miles</i>
                   </div>{" "}
                   <b>14,548'</b>
-                </Col>
-              </Row>
+                </Col> 
+              </Row> */}
               <hr />
               <CardHeader className="singlePadding">
                 Additional Information
               </CardHeader>
               <Row className="singlePadding">
-                <Col md={6}>
-                  <div>
-                    <i>Gas Consumption</i>
-                  </div>
-                  <b>34 litres/Mile</b>
-                </Col>
+                {properties
+                  ? Object.keys(properties).map((key) => (
+                      <Col md={6} key={key}>
+                        <div>
+                          <i>{key}</i>
+                        </div>
+                        <b>{properties[key]}</b>
+                      </Col>
+                    ))
+                  : null}
                 <Col md={6}>
                   <div>
                     <i>location</i>
                   </div>{" "}
-                  <b>California</b>
+                  <b>{location}</b>
                 </Col>
               </Row>
               <div className="singlePadding">
                 <div>
                   <i>Description</i>
                 </div>
-                <b>
-                  A Mercedes Benz C-Class that has beeen shared 24 times and is
-                  easy on the hands.
-                </b>
+                <b>{description}</b>
               </div>
               <div>
                 <div className="singlePaddingterm">
@@ -259,4 +246,8 @@ class ItemViewComp extends Component {
   }
 }
 
-export default ItemViewComp;
+const mapStateToProps = (state) => ({
+  selectedItem: getSelectedItem(state),
+});
+
+export default connect(mapStateToProps, null)(ItemViewComp);

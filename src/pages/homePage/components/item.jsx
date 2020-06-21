@@ -14,7 +14,7 @@ const Item = ({ item }) => {
       <Link to={`/items/${item.itemId}`}>
         <Card className="zoom">
           <Col className="itemImgContainer-Home">
-          <CardImg src={item.item_images[0].image} />
+            <CardImg src={item.item_images[0].image} />
           </Col>
           <CardHeader className="cardHeader">
             {item.title}
@@ -24,7 +24,6 @@ const Item = ({ item }) => {
             </Button>
           </CardHeader>
           <CardBody className="cardBody">{item.price}</CardBody>
-
         </Card>
       </Link>
     </div>

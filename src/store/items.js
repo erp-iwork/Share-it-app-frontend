@@ -10,6 +10,7 @@ const slice = createSlice({
     loading: false,
     lastFetch: null,
     selectedItem: {},
+    filterOptions: "",
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -42,6 +43,9 @@ const slice = createSlice({
       );
       items.list.splice(index, 1);
     },
+    itemFiltered: (items, action) => {
+      items.filterOptions = action.payload;
+    },
   },
 });
 
@@ -53,6 +57,7 @@ const {
   itemAdded,
   itemUpdated,
   itemRemoved,
+  itemFiltered,
 } = slice.actions;
 export default slice.reducer;
 
@@ -105,16 +110,40 @@ export const removeItem = (id) =>
     onSuccess: itemRemoved.type,
   });
 
+//Selectors
+export const search = (options) => itemFiltered(options);
+
 //TODO remove filter
 export const getItems = createSelector(
   (state) => state.entities.items,
-  (items) =>
-    items.list.filter(
-      (item) => item.itemId !== "583358b9-2e21-4b42-9677-aaf629409174"
-    )
+  (items) => items.list
 );
 
 export const getSelectedItem = createSelector(
   (state) => state.entities.items,
   (items) => items.selectedItem
+);
+
+export const getItemsByCategory = createSelector(
+  (state) => state.entities.items,
+  (items) =>
+    items.list.filter((item) =>
+      item.category
+        ? item.category.category
+        : null === items.selectedItem
+        ? items.selectedItem.category.category
+        : "null"
+    )
+);
+
+export const getFilteredItems = createSelector(
+  (state) => state.entities.items,
+  (items) => {
+    if (items.filterOptions.from && items.filterOptions.to) {
+      const { from, to } = items.filterOptions;
+      return items.list.filter(
+        (item) => item.price >= from && item.price <= to
+      );
+    } else return items.list;
+  }
 );

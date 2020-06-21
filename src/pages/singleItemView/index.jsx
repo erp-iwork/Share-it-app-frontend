@@ -36,4 +36,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getItemById: (id) => dispatch(getItemById(id)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(SingleItemViewPage);
+export default connect(null, mapDispatchToProps)(SingleItemViewPage);

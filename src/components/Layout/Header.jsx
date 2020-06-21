@@ -72,7 +72,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log(this.props.currentUser);
     const isDesktop = this.state.isDesktop;
 
     const { isNotificationConfirmed } = this.state;

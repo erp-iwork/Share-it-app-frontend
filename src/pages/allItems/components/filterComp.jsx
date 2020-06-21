@@ -3,12 +3,26 @@ import { Col, Row, Button, CardHeader, Input, Label } from "reactstrap";
 import { Slider } from "antd";
 import Items from "../../../components/items-Home";
 // import Items from "../../homePage/components/items";
+import { search } from "../../../store/items";
+import { connect } from "react-redux";
 
 class FilterComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {
+    from: "",
+    to: "",
+  };
+  handleSearch = () => {
+    this.props.search(this.state);
+  };
+
+  handlePriceRangeChange = ({ currentTarget: input }) => {
+    let from = this.state.from;
+    let to = this.state.to;
+    if (input.name === "from") from = input.value;
+    else to = input.value;
+
+    this.setState({ from, to });
+  };
   render() {
     return (
       <>
@@ -45,21 +59,22 @@ class FilterComponent extends Component {
             <hr />
             <Label>Price</Label>
             <Row>
-              <Col md={2}>
-                <Label>From</Label>
+              <Col>
+                <Input
+                  name="from"
+                  type="number"
+                  placeholder="Lowest"
+                  onChange={this.handlePriceRangeChange}
+                />
               </Col>
-              <Col md={4}>
-                <Input type="number" placeholder="Lowest">
-                  Hello
-                </Input>
-              </Col>
-              <Col md={1}>
-                <Label>to</Label>
-              </Col>
-              <Col md={5}>
-                <Input type="number" placeholder="Highest">
-                  Hello
-                </Input>
+              <Label>To</Label>
+              <Col>
+                <Input
+                  name="to"
+                  type="number"
+                  placeholder="Highest"
+                  onChange={this.handlePriceRangeChange}
+                />
               </Col>
             </Row>
             <hr />
@@ -109,7 +124,9 @@ class FilterComponent extends Component {
             </div>
           </Col>
           <hr />
-          <Button block>Filter Search</Button>
+          <Button block onClick={this.handleSearch}>
+            Filter Search
+          </Button>
         </div>
         <hr />
         <div>
@@ -127,4 +144,8 @@ class FilterComponent extends Component {
   }
 }
 
-export default FilterComponent;
+const mapDispatchToProps = (dispatch) => ({
+  search: (query) => dispatch(search(query)),
+});
+
+export default connect(null, mapDispatchToProps)(FilterComponent);

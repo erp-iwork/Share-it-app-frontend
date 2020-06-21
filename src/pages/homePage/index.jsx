@@ -6,10 +6,6 @@ import { loadItems, getItems } from "../../store/items";
 import { connect } from "react-redux";
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   componentDidMount() {
     this.props.loadItems();
   }
