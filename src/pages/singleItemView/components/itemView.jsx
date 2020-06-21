@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
 
+
 const openNotification = () => {
   toast("Did You Read the Terms and Conditions?");
 };

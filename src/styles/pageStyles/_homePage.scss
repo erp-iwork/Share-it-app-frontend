@@ -49,3 +49,26 @@
     width: 100%;
     object-fit: cover;
   }
+
+  .itemImgContainer-HomeShimmer {
+    background-color: #ffffff;
+    min-height: 280px;
+    width: 380px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .itemImgContainer-HomeShimmerImg {
+    min-height: 260px;
+    width: 380px;
+    object-fit: cover;
+    margin-top: 20px;
+  }
+  .ShimmerLine {
+    width: 96px;
+    height: 20px;
+    align-self: center;
+    margin-left: 16px;
+    border-radius: 8px;
+    padding: 9
+  }

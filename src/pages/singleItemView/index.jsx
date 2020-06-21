@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { ItemView, Profile, RelatedAds } from "./components/";
+import { ItemView, Profile } from "./components/";
 import { Col, Row } from "reactstrap";
 import { getItemById, getSelectedItem } from "../../store/items";
 import { connect } from "react-redux";
