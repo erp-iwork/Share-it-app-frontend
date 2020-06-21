@@ -72,7 +72,8 @@ class PostItemForm extends Component {
       });
     } else if (
       event.target.value === "digitalSharing" &&
-      event.target.name === "sharingtype") {
+      event.target.name === "sharingtype"
+    ) {
       this.setState({
         serviceSharing: false,
         digitalSharing: false,
@@ -157,6 +158,94 @@ class PostItemForm extends Component {
                               <FormGroup>
                                 <Label for="exampleEmail" sm={12}>
                                   Product Name
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Product Name"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Location
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="location"
+                                    placeholder="Location"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Price
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="price"
+                                    placeholder="Price"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Product Category
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="productCategory"
+                                    placeholder="Product Category"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={12}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Description
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="textarea"
+                                    name="itemName"
+                                    placeholder="Description"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={12}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Terms And Conditions
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="textarea"
+                                    name="itemName"
+                                    placeholder="Terms And Conditions"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                          </>
+                        ) : null}
+                        {this.state.serviceSharing ? (
+                          <>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Service Type
                                 </Label>
                                 <Col sm={12}>
                                   <Input

@@ -31,3 +31,14 @@
 	vertical-align: middle;
 	object-fit:cover;
 }
+
+.zoomCategory {
+	transition: transform .5s; 
+}
+
+.zoomCategory:hover {
+	transform: scale(1.1);
+	z-index: 10000!important;
+	
+
+}
