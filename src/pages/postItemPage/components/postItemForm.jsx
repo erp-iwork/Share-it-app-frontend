@@ -19,12 +19,11 @@ class PostItemForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: [null],
-      imagePreviewUrl: "",
       pictures: [],
       productSharing: false,
       serviceSharing: false,
       digitalSharing: false,
+      category: "",
     };
     this.onDrop = this.onDrop.bind(this);
   }
@@ -34,45 +33,7 @@ class PostItemForm extends Component {
     });
   }
   handleChange = (event) => {
-    if (
-      event.target.value === "productSharing" &&
-      event.target.name === "sharingtype"
-    ) {
-      this.setState({
-        productSharing: true,
-        serviceSharing: false,
-        digitalSharing: false,
-      });
-    } else if (
-      event.target.value === "serviceSharing" &&
-      event.target.name === "sharingtype"
-    ) {
-      this.setState({
-        serviceSharing: true,
-        productSharing: false,
-        digitalSharing: false,
-      });
-    } else if (
-      event.target.value === "digitalSharing" &&
-      event.target.name === "sharingtype"
-    ) {
-      this.setState({
-        serviceSharing: false,
-        productSharing: false,
-        digitalSharing: true,
-      });
-    } else if (
-      event.target.value === "digitalSharing" &&
-      event.target.name === "sharingtype"
-    ) {
-      this.setState({
-        serviceSharing: false,
-        digitalSharing: false,
-        productSharing: false,
-      });
-    }
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ category: event.target.value });
   };
   render() {
     return (
@@ -85,12 +46,13 @@ class PostItemForm extends Component {
                 <Row>
                   <Col sm={12} md={6} xs={12}>
                     <ImageUploader
+                      label="Max file size: 2mb, accepted: jpg png"
                       withIcon={true}
                       withPreview={true}
                       buttonText="Choose images"
                       onChange={this.onDrop}
-                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                      maxFileSize={5242880}
+                      imgExtension={[".jpg", ".png"]}
+                      maxFileSize={2242880}
                     />
                   </Col>
                   {/* //Forms */}
@@ -134,10 +96,10 @@ class PostItemForm extends Component {
                           </Col>
                         </FormGroup>
                       </Col>
-                      {this.state.productSharing ? (
+                      {this.state.category === "productSharing" ? (
                         <ProductSharingForm />
                       ) : null}
-                      {this.state.serviceSharing ? (
+                      {this.state.category === "serviceSharing" ? (
                         <ServiceSharingForm />
                       ) : null}
                     </Row>
