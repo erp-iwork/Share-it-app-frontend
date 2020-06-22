@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Page from "../../../components/Page";
+import ImageUploader from "react-images-upload";
 import {
   Button,
   Card,
@@ -7,7 +8,6 @@ import {
   CardBody,
   CardHeader,
   Col,
-  Form,
   FormGroup,
   Input,
   Label,
@@ -20,12 +20,19 @@ class PostItemForm extends Component {
     super(props);
     this.state = {
       file: [null],
+      imagePreviewUrl: "",
+      pictures: [],
       productSharing: false,
       serviceSharing: false,
       digitalSharing: false,
     };
+    this.onDrop = this.onDrop.bind(this);
   }
-
+  onDrop(picture) {
+    this.setState({
+      pictures: this.state.pictures.concat(picture),
+    });
+  }
   handleChange = (event) => {
     if (
       event.target.value === "productSharing" &&
@@ -67,7 +74,6 @@ class PostItemForm extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-
   render() {
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
@@ -78,72 +84,63 @@ class PostItemForm extends Component {
               <CardBody>
                 <Row>
                   <Col sm={12} md={6} xs={12}>
-                    <CardHeader>Upload Images</CardHeader>
-                    <Form>
-                      <Input
-                        type="file"
-                        className="form-control"
-                        onChange={this.uploadMultipleFiles}
-                        multiple
-                      />
-                      <Row>
-                        {(this.fileArray || []).map((url) => (
-                          <img className="imageContainer" src={url} alt="..." />
-                        ))}
-                      </Row>
-                    </Form>
+                    <ImageUploader
+                      withIcon={true}
+                      withPreview={true}
+                      buttonText="Choose images"
+                      onChange={this.onDrop}
+                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                      maxFileSize={5242880}
+                    />
                   </Col>
-
                   {/* //Forms */}
                   <Col sm={12} md={6} xs={12}>
-                    <Form>
-                      <Row>
-                        <Col xs={12} md={6}>
-                          <FormGroup>
-                            <Label for="exampleEmail" sm={12}>
-                              Sharing || Donating?
-                            </Label>
-                            <Col sm={12}>
-                              <Input type="select" name="sharingtype">
-                                <option value="Sharing">Sharing</option>
-                                <option value="Donation">Donating</option>
-                              </Input>
-                            </Col>
-                          </FormGroup>
-                        </Col>
-                        <Col xs={12} md={6}>
-                          <FormGroup>
-                            <Label for="exampleEmail" sm={12}>
-                              Category
-                            </Label>
-                            <Col sm={12}>
-                              <Input
-                                type="select"
-                                name="sharingtype"
-                                onChange={this.handleChange}
-                              >
-                                <option value="">Select A Category</option>
-                                <option value="productSharing">
-                                  Product Sharing
-                                </option>
-                                <option value="serviceSharing">
-                                  Service Sharing
-                                </option>
-                                <option value="digitalSharing">
-                                  Digital Sharing
-                                </option>
-                              </Input>
-                            </Col>
-                          </FormGroup>
-                        </Col>
-                        {this.state.productSharing ? (
-                          <ProductSharingForm />
-                        ) : null}
-                        {this.state.serviceSharing ? (
-                          <ServiceSharingForm />
-                        ) : null}
-                      </Row>
-                    </Form>
+                    <Row>
+                      <Col xs={12} md={6}>
+                        <FormGroup>
+                          <Label for="exampleEmail" sm={12}>
+                            Sharing || Donating?
+                          </Label>
+                          <Col sm={12}>
+                            <Input type="select" name="sharingtype">
+                              <option value="Sharing">Sharing</option>
+                              <option value="Donation">Donating</option>
+                            </Input>
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                      <Col xs={12} md={6}>
+                        <FormGroup>
+                          <Label for="exampleEmail" sm={12}>
+                            Category
+                          </Label>
+                          <Col sm={12}>
+                            <Input
+                              type="select"
+                              name="sharingtype"
+                              onChange={this.handleChange}
+                            >
+                              <option value="">Select A Category</option>
+                              <option value="productSharing">
+                                Product Sharing
+                              </option>
+                              <option value="serviceSharing">
+                                Service Sharing
+                              </option>
+                              <option value="digitalSharing">
+                                Digital Sharing
+                              </option>
+                            </Input>
+                          </Col>
+                        </FormGroup>
+                      </Col>
+                      {this.state.productSharing ? (
+                        <ProductSharingForm />
+                      ) : null}
+                      {this.state.serviceSharing ? (
+                        <ServiceSharingForm />
+                      ) : null}
+                    </Row>
                   </Col>
                 </Row>
               </CardBody>
