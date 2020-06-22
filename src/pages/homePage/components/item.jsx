@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, CardImg, CardBody, Button, CardHeader, Col } from "reactstrap";
-// import Item from "../../../assets/car1.png";
 import { Link } from "react-router-dom";
 
 /**

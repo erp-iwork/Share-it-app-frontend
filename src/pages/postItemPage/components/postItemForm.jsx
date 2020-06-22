@@ -13,26 +13,21 @@ import {
   Label,
   CardFooter,
 } from "reactstrap";
-import MainForm from "../../../components/MainForm";
-class PostItemForm extends MainForm {
-  state = {
-    data: {
-      sharing: false,
-      donating: false,
-      category: "",
-      productName: "",
-      location: "",
-      price: "",
-      productCategory: "",
-      description: "",
-      termsAndConditions: "",
+import ServiceSharingComp from "./serviceSharing";
+class PostItemForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productSharing: false,
+      serviceSharing: false,
+      digitalSharing: false,
       file: [null],
-    },
-    errors: {},
-    productSharing: false,
-    serviceSharing: false,
-    digitalSharing: false,
-  };
+      errors: {},
+      productSharing: false,
+      serviceSharing: false,
+      digitalSharing: false,
+    };
+  }
 
   handleChange = (event) => {
     if (
@@ -76,8 +71,6 @@ class PostItemForm extends MainForm {
     this.setState({ [name]: value });
   };
 
-  productForm = "";
-  serviceForm = "";
   render() {
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
@@ -146,8 +139,97 @@ class PostItemForm extends MainForm {
                             </Col>
                           </FormGroup>
                         </Col>
-                        {this.state.productSharing ? this.productForm : null}
-                        {this.state.serviceSharing ? this.serviceForm : null}
+                        {this.state.productSharing ? (
+                          <>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Product Name
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Product Name"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Location
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="location"
+                                    placeholder="Location"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Price
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="price"
+                                    placeholder="Price"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Product Category
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="text"
+                                    name="productCategory"
+                                    placeholder="Product Category"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={12}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Description
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="textarea"
+                                    name="itemName"
+                                    placeholder="Description"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                            <Col xs={12} md={12}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Terms And Conditions
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="textarea"
+                                    name="itemName"
+                                    placeholder="Terms And Conditions"
+                                  />
+                                </Col>
+                              </FormGroup>
+                            </Col>
+                          </>
+                        ) : null}
+                        {this.state.serviceSharing ? (
+                          <ServiceSharingComp />
+                        ) : null}
                       </Row>
                     </Form>
                   </Col>

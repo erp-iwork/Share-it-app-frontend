@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { ItemView, Profile } from "./components/";
+import { ItemView, Profile, NotFound } from "./components/";
 import { Col, Row } from "reactstrap";
 import { getItemById, getSelectedItem } from "../../store/items";
 import { connect } from "react-redux";
@@ -17,7 +17,7 @@ class SingleItemViewPage extends Component {
       <Col>
         {this.props.loading && <PageSpinner />}
         {!this.props.loading && _.isEmpty(this.props.selectedItem) && (
-          <h2>Item not found</h2>
+          <NotFound />
         )}
         {!_.isEmpty(this.props.selectedItem) && (
           <Row>
