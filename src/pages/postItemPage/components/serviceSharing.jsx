@@ -6,7 +6,7 @@ class ServiceSharingComp extends Component {
   state = {};
 
   handleChange = (event) => {
-    if (event.target.value != "Tutor" && event.target.name === "ServiceType") {
+    if (event.target.value !== "Tutor" && event.target.name === "ServiceType") {
       toast.error("Download the Mobile App To Use This Service");
     }
     const { name, value } = event.target;
