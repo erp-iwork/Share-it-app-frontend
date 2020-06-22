@@ -14,6 +14,11 @@ import {
   LoanService,
   SeasonTickets,
   Lecturer,
+  CampingGear,
+  ConstructionEquipments,
+  Ladder,
+  Photography,
+  SubscriptionServices
 } from "../../assets/Sharreit-Icons";
 
 export const categories = [
@@ -45,7 +50,6 @@ export const subCategories = {
     "Personal Drivers",
     "Cleaners",
     "Loan Services",
-
   ],
 
   [categories[2]]: ["Season Tickets", "Subscription Services"],
@@ -57,13 +61,13 @@ export const icons = {
     PowerTools,
     MusicInstruments,
     Luggage,
-    Luggage,
-    Luggage,
+    CampingGear,
+    ConstructionEquipments,
     FarmingEquipments,
-    FarmingEquipments,
+    Ladder,
     Apartments,
     Houses,
-    Apartments,
+    Photography,
   ],
 
   [categories[1]]: [
@@ -73,8 +77,8 @@ export const icons = {
     PersonalTrainer,
     Driver,
     Cleaner,
-    LoanService
+    LoanService,
   ],
 
-  [categories[2]]: [SeasonTickets, Lecturer],
+  [categories[2]]: [SeasonTickets, SubscriptionServices],
 };
