@@ -18,7 +18,7 @@ import {
   ConstructionEquipments,
   Ladder,
   Photography,
-  SubscriptionServices
+  SubscriptionServices,
 } from "../../assets/Sharreit-Icons";
 
 export const categories = [
@@ -79,6 +79,5 @@ export const icons = {
     Cleaner,
     LoanService,
   ],
-
   [categories[2]]: [SeasonTickets, SubscriptionServices],
 };
