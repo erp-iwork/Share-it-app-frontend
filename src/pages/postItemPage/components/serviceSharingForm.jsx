@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, FormGroup, Input, Label } from "reactstrap";
 import { toast } from "react-toastify";
 
-class ServiceSharingComp extends Component {
+class ServiceSharingForm extends Component {
   state = {};
 
   handleChange = (event) => {
@@ -147,4 +147,4 @@ class ServiceSharingComp extends Component {
   }
 }
 
-export default ServiceSharingComp;
+export default ServiceSharingForm;
