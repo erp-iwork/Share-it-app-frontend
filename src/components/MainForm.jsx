@@ -68,6 +68,31 @@ class MainForm extends Component {
       </FormGroup>
     );
   }
+  renderSelect(name, label, options) {
+    const { data, errors } = this.state;
+    return (
+      <FormGroup>
+        <Label htmlFor={name} sm={12}>
+          {label}
+        </Label>
+        <Col sm={12}>
+          <Input
+            type="select"
+            name={name}
+            onChange={this.handleChange}
+            value={data[name]}
+            invalid={errors[name] ? true : false}
+          >
+            <option value="" />
+            {options.map((option) => (
+              <option value={option.id}>{option.category}</option>
+            ))}
+          </Input>
+          <FormFeedback>{errors[name]}</FormFeedback>
+        </Col>
+      </FormGroup>
+    );
+  }
   renderInput(name, label, placeholder, type = "text") {
     const { errors, data } = this.state;
     return (

@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 //TODO
 //config file
 const baseURL = "https://shareit-develop.herokuapp.com/api/v1";
+axios.defaults.headers.common["Authorization"] =
+  "Token 8bed074866b6935d615cb761520b94c959d9559e";
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
@@ -20,6 +22,7 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
 
   const { url, method, data, onStart, onSuccess, onError } = action.payload;
+  console.log(data);
   if (onStart) dispatch({ type: onStart });
   next(action);
   try {

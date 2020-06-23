@@ -31,13 +31,18 @@ const slice = createSlice({
       users.status = "failed";
       users.errors = action.payload;
     },
-    errorReseted:(users,actions)=>{
-      users.errors=null
-    }
+    errorReseted: (users, actions) => {
+      users.errors = null;
+    },
   },
 });
 
-const { userRequested, userReceived, userRequestFailed,errorReseted } = slice.actions;
+const {
+  userRequested,
+  userReceived,
+  userRequestFailed,
+  errorReseted,
+} = slice.actions;
 export default slice.reducer;
 
 export const registerUser = (user) =>
@@ -59,10 +64,9 @@ export const loginUser = (user) =>
     onSuccess: userReceived.type,
     onError: userRequestFailed.type,
   });
-export const resetErrors=()=>({
-  type:errorReseted.type
-  
-})
+export const resetErrors = () => ({
+  type: errorReseted.type,
+});
 // Selector
 export const getLoading = createSelector(
   (state) => state.auth.loading,
@@ -77,5 +81,5 @@ export const getStatus = createSelector(
 //Selectors
 export const getCurrentUser = createSelector(
   (state) => state.auth,
-  (auth) => auth.currentUser
+  (auth) => JSON.parse(auth.currentUser)
 );

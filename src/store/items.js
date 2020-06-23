@@ -29,7 +29,8 @@ const slice = createSlice({
       items.loading = false;
     },
     itemAdded: (items, action) => {
-      items.list.push(action.payload.item);
+      console.log(action.payload);
+      // items.list.push(action.payload);
     },
     itemUpdated: (items, action) => {
       const index = items.list.findIndex(
@@ -62,7 +63,7 @@ const {
 export default slice.reducer;
 
 //Action creators
-const url = "/item";
+const url = "/item/";
 
 export const loadItems = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.items;
@@ -82,7 +83,7 @@ export const loadItems = () => (dispatch, getState) => {
 
 export const getItemById = (itemId) =>
   apiCallBegan({
-    url: url + "/" + itemId,
+    url: url + itemId,
     onStart: itemsRequested.type,
     onSuccess: itemReceived.type,
     onError: itemsRequestFailed.type,
@@ -97,7 +98,7 @@ export const addItem = (item) =>
   });
 export const updateItem = (itemId, item) =>
   apiCallBegan({
-    url: url + "/" + itemId,
+    url: url + itemId,
     method: "put",
     data: item,
     onSuccess: itemUpdated.type,
@@ -105,7 +106,7 @@ export const updateItem = (itemId, item) =>
 
 export const removeItem = (id) =>
   apiCallBegan({
-    url: url + "/" + id,
+    url: url + id,
     method: "delete",
     onSuccess: itemRemoved.type,
   });

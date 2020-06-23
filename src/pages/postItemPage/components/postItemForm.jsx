@@ -1,114 +1,182 @@
-import React, { Component } from "react";
+import React from "react";
 import Page from "../../../components/Page";
 import ImageUploader from "react-images-upload";
 import {
-  Button,
   Card,
   Row,
   CardBody,
   CardHeader,
   Col,
-  FormGroup,
-  Input,
-  Label,
   CardFooter,
+  Form,
 } from "reactstrap";
 import ServiceSharingForm from "./serviceSharingForm";
-import ProductSharingForm from "./producSharingForm";
-class PostItemForm extends Component {
+import Joi from "joi-browser";
+import MainForm from "../../../components/MainForm";
+import { addItem } from "../../../store/items";
+import { connect } from "react-redux";
+import { getCurrentUser } from "../../../store/auth";
+import { getCategories, loadCategories } from "../../../store/categories";
+class PostItemForm extends MainForm {
   constructor(props) {
     super(props);
     this.state = {
+      data: {
+        owner_id: this.props.currentUser.id,
+        title: "",
+        location: "",
+        price: "",
+        description: "",
+        termsAndConditions: "",
+        category_id: "",
+        condition: "",
+        properties: JSON.stringify({ color: "red" }),
+        is_donating: false,
+      },
+      errors: {},
       pictures: [],
-      productSharing: false,
-      serviceSharing: false,
-      digitalSharing: false,
       category: "",
+      categories: this.props.categories,
     };
+
     this.onDrop = this.onDrop.bind(this);
   }
+  schema = {
+    is_donating: Joi.any().label("Is sharing"),
+    properties: Joi.any().label("Properties"),
+    condition: Joi.string().required().label("Condition"),
+    category_id: Joi.string().required().label("Category"),
+    owner_id: Joi.string().required().label("owner_id"),
+    title: Joi.string().required().label("Product Name"),
+    location: Joi.string().required().label("Location"),
+    price: Joi.string().required().label("Price"),
+    description: Joi.string().required().label("Product Category"),
+    termsAndConditions: Joi.string().required().label("Terms And Conditions"),
+  };
+  isDonatingOptions = [
+    {
+      id: false,
+      category: "Sharing",
+    },
+    {
+      id: true,
+      category: "Donating",
+    },
+  ];
+  componentDidMount() {
+    this.props.loadCategories();
+  }
+
   onDrop(picture) {
     this.setState({
       pictures: this.state.pictures.concat(picture),
     });
   }
-  handleChange = (event) => {
-    this.setState({ category: event.target.value });
+  doSubmit = () => {
+    const data = { ...this.state.data };
+    data.is_donating = data.is_donating === "true" ? true : false;
+    const pictures = [...this.state.pictures];
+    const formData = new FormData();
+    for (const key in pictures) {
+      formData.append(`image${key}`, pictures[key]);
+    }
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
+    this.props.addItem(formData);
   };
   render() {
+    const { category_id } = this.state.data;
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
           <Col xl={10} lg={12} md={12} sm={12}>
             <Card>
               <CardHeader>Share What You Have</CardHeader>
-              <CardBody>
-                <Row>
-                  <Col sm={12} md={6} xs={12}>
-                    <ImageUploader
-                      label="Max file size: 2mb, accepted: jpg png"
-                      withIcon={true}
-                      withPreview={true}
-                      buttonText="Choose images"
-                      onChange={this.onDrop}
-                      imgExtension={[".jpg", ".png"]}
-                      maxFileSize={2242880}
-                    />
-                  </Col>
-                  {/* //Forms */}
-                  <Col sm={12} md={6} xs={12}>
-                    <Row>
-                      <Col xs={12} md={6}>
-                        <FormGroup>
-                          <Label for="exampleEmail" sm={12}>
-                            Sharing || Donating?
-                          </Label>
-                          <Col sm={12}>
-                            <Input type="select" name="sharingtype">
-                              <option value="Sharing">Sharing</option>
-                              <option value="Donation">Donating</option>
-                            </Input>
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                      <Col xs={12} md={6}>
-                        <FormGroup>
-                          <Label for="exampleEmail" sm={12}>
-                            Category
-                          </Label>
-                          <Col sm={12}>
-                            <Input
-                              type="select"
-                              name="sharingtype"
-                              onChange={this.handleChange}
-                            >
-                              <option value="">Select A Category</option>
-                              <option value="productSharing">
-                                Product Sharing
-                              </option>
-                              <option value="serviceSharing">
-                                Service Sharing
-                              </option>
-                              <option value="digitalSharing">
-                                Digital Sharing
-                              </option>
-                            </Input>
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                      {this.state.category === "productSharing" ? (
-                        <ProductSharingForm />
-                      ) : null}
-                      {this.state.category === "serviceSharing" ? (
-                        <ServiceSharingForm />
-                      ) : null}
-                    </Row>
-                  </Col>
-                </Row>
-              </CardBody>
-              <CardFooter align="center">
-                <Button onClick={this.uploadFiles}>Share</Button>
-              </CardFooter>
+              <Form onSubmit={this.handleSubmit}>
+                <CardBody>
+                  <Row>
+                    <Col sm={12} md={6} xs={12}>
+                      <ImageUploader
+                        label="Max file size: 2mb, accepted: jpg png"
+                        withIcon={true}
+                        withPreview={true}
+                        buttonText="Choose images"
+                        onChange={this.onDrop}
+                        imgExtension={[".jpg", ".png"]}
+                        maxFileSize={2242880}
+                      />
+                    </Col>
+                    {/* //Forms */}
+                    <Col sm={12} md={6} xs={12}>
+                      <Row>
+                        <Col xs={12} md={6}>
+                          {this.renderSelect(
+                            "is_donating",
+                            "Sharing || Donating?",
+                            this.isDonatingOptions
+                          )}
+                        </Col>
+                        <Col xs={12} md={6}>
+                          {this.renderSelect(
+                            "category_id",
+                            "Category",
+                            this.props.categories
+                          )}
+                        </Col>
+                        {category_id === "2" ? (
+                          <>
+                            <Col xs={12} md={6}>
+                              {this.renderInput(
+                                "title",
+                                "Product Name",
+                                "Product Name"
+                              )}
+                            </Col>
+                            <Col xs={12} md={6}>
+                              {this.renderInput(
+                                "location",
+                                "Location",
+                                "Location"
+                              )}
+                            </Col>
+                            <Col xs={12} md={6}>
+                              {this.renderInput("price", "Price", "Price")}
+                            </Col>
+                            <Col xs={12} md={6}>
+                              {this.renderInput(
+                                "condition",
+                                "Condition",
+                                "Condition"
+                              )}
+                            </Col>
+                            <Col xs={12} md={12}>
+                              {this.renderInput(
+                                "description",
+                                "Description",
+                                "Description",
+                                "textarea"
+                              )}
+                            </Col>
+                            <Col xs={12} md={12}>
+                              {this.renderInput(
+                                "termsAndConditions",
+                                "Terms And Conditions",
+                                "Terms And Conditions",
+                                "textarea"
+                              )}
+                            </Col>
+                          </>
+                        ) : null}
+                        {category_id === "1" ? <ServiceSharingForm /> : null}
+                      </Row>
+                    </Col>
+                  </Row>
+                </CardBody>
+                <CardFooter align="center">
+                  {this.renderButton("Share")}
+                </CardFooter>
+              </Form>
             </Card>
           </Col>
         </div>
@@ -117,4 +185,14 @@ class PostItemForm extends Component {
   }
 }
 
-export default PostItemForm;
+const mapStateToProps = (state) => ({
+  currentUser: getCurrentUser(state),
+  categories: getCategories(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+  loadCategories: () => dispatch(loadCategories()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostItemForm);
