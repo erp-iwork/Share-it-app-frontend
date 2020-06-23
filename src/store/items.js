@@ -11,6 +11,7 @@ const slice = createSlice({
     lastFetch: null,
     selectedItem: {},
     filterOptions: "",
+    errors: null,
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -20,17 +21,22 @@ const slice = createSlice({
       items.list = action.payload;
       items.loading = false;
       items.lastFetch = Date.now();
+      items.errors = null;
     },
     itemReceived: (items, action) => {
       items.selectedItem = action.payload;
       items.loading = false;
+      items.errors = null;
     },
     itemsRequestFailed: (items, action) => {
       items.loading = false;
+      items.errors = action.payload;
     },
     itemAdded: (items, action) => {
       console.log(action.payload);
-      // items.list.push(action.payload);
+      items.list.push(action.payload);
+      items.loading = false;
+      items.errors = null;
     },
     itemUpdated: (items, action) => {
       const index = items.list.findIndex(
@@ -94,7 +100,9 @@ export const addItem = (item) =>
     url,
     method: "post",
     data: item,
+    onStart: itemsRequested.type,
     onSuccess: itemAdded.type,
+    onError: itemsRequestFailed.type,
   });
 export const updateItem = (itemId, item) =>
   apiCallBegan({
@@ -150,4 +158,9 @@ export const getFilteredItems = createSelector(
       );
     } else return items.list;
   }
+);
+
+export const getErrors = createSelector(
+  (state) => state.entities.items.errors,
+  (errors) => errors
 );

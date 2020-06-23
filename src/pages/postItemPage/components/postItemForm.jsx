@@ -9,6 +9,7 @@ import {
   Col,
   CardFooter,
   Form,
+  Alert,
 } from "reactstrap";
 import ServiceSharingForm from "./serviceSharingForm";
 import Joi from "joi-browser";
@@ -17,6 +18,7 @@ import { addItem } from "../../../store/items";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";
+import { getLoading, getErrors } from "../../../store/items";
 class PostItemForm extends MainForm {
   constructor(props) {
     super(props);
@@ -35,7 +37,6 @@ class PostItemForm extends MainForm {
       },
       errors: {},
       pictures: [],
-      category: "",
       categories: this.props.categories,
     };
 
@@ -49,7 +50,7 @@ class PostItemForm extends MainForm {
     owner_id: Joi.string().required().label("owner_id"),
     title: Joi.string().required().label("Product Name"),
     location: Joi.string().required().label("Location"),
-    price: Joi.string().required().label("Price"),
+    price: Joi.number().required().label("Price"),
     description: Joi.string().required().label("Product Category"),
     termsAndConditions: Joi.string().required().label("Terms And Conditions"),
   };
@@ -172,6 +173,11 @@ class PostItemForm extends MainForm {
                       </Row>
                     </Col>
                   </Row>
+                  {this.props.errors && (
+                    <Alert color="danger">
+                      {Object.values(this.props.errors)[0]}
+                    </Alert>
+                  )}
                 </CardBody>
                 <CardFooter align="center">
                   {this.renderButton("Share")}
@@ -186,8 +192,10 @@ class PostItemForm extends MainForm {
 }
 
 const mapStateToProps = (state) => ({
+  loading: getLoading(state),
   currentUser: getCurrentUser(state),
   categories: getCategories(state),
+  errors: getErrors(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
