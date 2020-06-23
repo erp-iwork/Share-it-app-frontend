@@ -14,11 +14,15 @@ import {
 import ServiceSharingForm from "./serviceSharingForm";
 import Joi from "joi-browser";
 import MainForm from "../../../components/MainForm";
-import { addItem } from "../../../store/items";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";
-import { getLoading, getErrors } from "../../../store/items";
+import {
+  addItem,
+  getLoading,
+  getErrors,
+  getStatus,
+} from "../../../store/items";
 class PostItemForm extends MainForm {
   constructor(props) {
     super(props);
@@ -56,11 +60,11 @@ class PostItemForm extends MainForm {
   };
   isDonatingOptions = [
     {
-      id: false,
+      id: "false",
       category: "Sharing",
     },
     {
-      id: true,
+      id: "true",
       category: "Donating",
     },
   ];
@@ -178,6 +182,11 @@ class PostItemForm extends MainForm {
                       {Object.values(this.props.errors)[0]}
                     </Alert>
                   )}
+                  {this.props.status === "success" && (
+                    <Alert color="success">
+                      An item has been successfully created
+                    </Alert>
+                  )}
                 </CardBody>
                 <CardFooter align="center">
                   {this.renderButton("Share")}
@@ -196,6 +205,7 @@ const mapStateToProps = (state) => ({
   currentUser: getCurrentUser(state),
   categories: getCategories(state),
   errors: getErrors(state),
+  status: getStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

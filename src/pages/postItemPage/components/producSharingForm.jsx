@@ -6,22 +6,22 @@ import MainForm from "../../../components/MainForm";
 class ProductSharingForm extends MainForm {
   state = {
     data: {
-      category: "product",
-      productName: "",
+      title: "",
       location: "",
       price: "",
-      productCategory: "",
       description: "",
       termsAndConditions: "",
+      condition: "",
+      properties: JSON.stringify({ color: "red" }),
     },
     errors: {},
   };
   schema = {
-    category: Joi.string().required().label("Category"),
-    productName: Joi.string().required().label("Product Name"),
+    properties: Joi.any().label("Properties"),
+    condition: Joi.string().required().label("Condition"),
+    title: Joi.string().required().label("Product Name"),
     location: Joi.string().required().label("Location"),
-    price: Joi.string().required().label("Price"),
-    productCategory: Joi.string().required().label("Product Category"),
+    price: Joi.number().required().label("Price"),
     description: Joi.string().required().label("Product Category"),
     termsAndConditions: Joi.string().required().label("Terms And Conditions"),
   };
@@ -29,7 +29,7 @@ class ProductSharingForm extends MainForm {
     return (
       <>
         <Col xs={12} md={6}>
-          {this.renderInput("productName", "Product Name", "Product Name")}
+          {this.renderInput("title", "Product Name", "Product Name")}
         </Col>
         <Col xs={12} md={6}>
           {this.renderInput("location", "Location", "Location")}
@@ -38,11 +38,7 @@ class ProductSharingForm extends MainForm {
           {this.renderInput("price", "Price", "Price")}
         </Col>
         <Col xs={12} md={6}>
-          {this.renderInput(
-            "productCategory",
-            "Product Caregory",
-            "Product Caregory"
-          )}
+          {this.renderInput("condition", "Condition", "Condition")}
         </Col>
         <Col xs={12} md={12}>
           {this.renderInput(

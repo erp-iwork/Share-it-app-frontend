@@ -12,6 +12,7 @@ const slice = createSlice({
     selectedItem: {},
     filterOptions: "",
     errors: null,
+    status: "initial",
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -22,21 +23,25 @@ const slice = createSlice({
       items.loading = false;
       items.lastFetch = Date.now();
       items.errors = null;
+      items.status = "success";
     },
     itemReceived: (items, action) => {
       items.selectedItem = action.payload;
       items.loading = false;
       items.errors = null;
+      items.status = "success";
     },
     itemsRequestFailed: (items, action) => {
       items.loading = false;
       items.errors = action.payload;
+      items.status = "failed";
     },
     itemAdded: (items, action) => {
       console.log(action.payload);
       items.list.push(action.payload);
       items.loading = false;
       items.errors = null;
+      items.status = "success";
     },
     itemUpdated: (items, action) => {
       const index = items.list.findIndex(
@@ -163,4 +168,9 @@ export const getFilteredItems = createSelector(
 export const getErrors = createSelector(
   (state) => state.entities.items.errors,
   (errors) => errors
+);
+
+export const getStatus = createSelector(
+  (state) => state.entities.items.status,
+  (status) => status
 );
