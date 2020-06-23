@@ -1,6 +1,6 @@
 import GAListener from "./components/GAListener";
 import { EmptyLayout, LayoutRoute, MainLayout } from "./components/Layout";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import PageSpinner from "./components/PageSpinner";
 import React from "react";
 import componentQueries from "react-component-queries";
@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 
 // import authService from "./services/authService";
+
 import routes from "./config/routes";
 
 const store = configureStore();
@@ -34,7 +35,20 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <ToastContainer />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          transition={Zoom}
+          rtl={false}
+          pauseOnFocusLoss
+          closeButton={false}
+          draggable
+          pauseOnHover
+        />
+
         <BrowserRouter basename={getBasename()}>
           <GAListener>
             <Switch>

@@ -18,7 +18,7 @@ import { MdSend } from "react-icons/md";
 
 
 const openNotification = () => {
-  toast("Did You Read the Terms and Conditions?");
+  toast.error("Did You Read the Terms and Conditions?");
 };
 
 //TODO - Refactor
@@ -46,7 +46,7 @@ class ItemViewComp extends Component {
       });
     } else if (status === "Denied") {
       return (
-        toast(
+        toast.warning(
           "You Can't Contact the Supplier Without Accepting the Terms and Conditions"
         ),
         this.setState({

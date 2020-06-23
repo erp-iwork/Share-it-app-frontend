@@ -24,7 +24,7 @@ class ItemNotFoundComp extends Component {
               <b>ITEM NOT FOUND!</b>
             </div>
             <div className="ItemNotFoundSub">
-              Make sure you typed the URL Carefully
+              Make sure you typed the "URL" Carefully ... 
             </div>
             <Link to={{ pathname: routes.homePage }}>
               <Button size="lg" block outline>
