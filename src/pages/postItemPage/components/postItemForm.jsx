@@ -116,19 +116,20 @@ class PostItemForm extends NestedForm {
                             this.props.categories
                           )}
                         </Col>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={4}>
                           {this.renderInput("title", "Name", "Name")}
                         </Col>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={4}>
                           {this.renderInput("location", "Location", "Location")}
                         </Col>
+                        <Col xs={12} md={4}>
+                              {this.renderInput("price", "Price", "Price")}
+                            </Col>
 
                         {category_id === "2" ? (
                           <>
-                            <Col xs={12} md={6}>
-                              {this.renderInput("price", "Price", "Price")}
-                            </Col>
-                            <Col xs={12} md={6}>
+
+                            <Col xs={12} md={12}>
                               {this.renderInput(
                                 "condition",
                                 "Condition",
