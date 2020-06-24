@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Col, FormGroup, Input, Label } from "reactstrap";
+import { Col, FormGroup, Input, Label, Button, CardFooter } from "reactstrap";
 import { toast } from "react-toastify";
+import MainForm from "../../../components/MainForm";
 
 class ServiceSharingForm extends Component {
   state = {};
@@ -16,7 +17,7 @@ class ServiceSharingForm extends Component {
   render() {
     return (
       <>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={12}>
           <FormGroup>
             <Label for="exampleEmail" sm={12}>
               Service Type
@@ -141,6 +142,13 @@ class ServiceSharingForm extends Component {
               <Input type="number" name="name" placeholder="Pricing" />
             </Col>
           </FormGroup>
+        </Col>
+        <Col xs={12} md={12}>
+          <CardFooter>
+            <Button outline block>
+              Share
+            </Button>
+          </CardFooter>
         </Col>
       </>
     );

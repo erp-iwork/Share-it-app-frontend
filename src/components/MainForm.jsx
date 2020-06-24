@@ -62,7 +62,7 @@ class MainForm extends Component {
   renderButton(label) {
     return (
       <FormGroup align="center" md={12}>
-        <Button disabled={this.validate() || this.props.loading}>
+        <Button block outline disabled={this.validate() || this.props.loading}>
           {this.props.loading ? <LoadingSpinner /> : label}
         </Button>
       </FormGroup>
