@@ -74,7 +74,7 @@ class PersonalDriverService extends Component {
               </Col>
             </FormGroup>
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={12}>
             <FormGroup>
               <Label for="exampleEmail" sm={12}>
                 Payment Options
@@ -89,23 +89,7 @@ class PersonalDriverService extends Component {
               </Col>
             </FormGroup>
           </Col>
-          <Col xs={12} md={6}>
-            <FormGroup>
-              <Label for="exampleEmail" sm={12}>
-                Pricing /Miles
-              </Label>
-              <Col sm={12}>
-                <Input type="number" name="name" placeholder="Pricing" />
-              </Col>
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={12}>
-            <CardFooter>
-              <Button outline block>
-                Share
-              </Button>
-            </CardFooter>
-          </Col>
+
         </Row>
       </>
     );

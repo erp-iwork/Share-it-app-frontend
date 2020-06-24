@@ -80,7 +80,7 @@ class CleanerService extends Component {
               </Col>
             </FormGroup>
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={12}>
             <FormGroup>
               <Label for="exampleEmail" sm={12}>
                 Payment Duration
@@ -94,23 +94,6 @@ class CleanerService extends Component {
                 </Input>
               </Col>
             </FormGroup>
-          </Col>
-          <Col xs={12} md={6}>
-            <FormGroup>
-              <Label for="exampleEmail" sm={12}>
-                Pricing/sq.ft.
-              </Label>
-              <Col sm={12}>
-                <Input type="number" name="name" placeholder="Pricing" />
-              </Col>
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={12}>
-            <CardFooter>
-              <Button outline block>
-                Share
-              </Button>
-            </CardFooter>
           </Col>
         </Row>
       </>

@@ -116,22 +116,15 @@ class PostItemForm extends NestedForm {
                             this.props.categories
                           )}
                         </Col>
+                        <Col xs={12} md={6}>
+                          {this.renderInput("title", "Name", "Name")}
+                        </Col>
+                        <Col xs={12} md={6}>
+                          {this.renderInput("location", "Location", "Location")}
+                        </Col>
+
                         {category_id === "2" ? (
                           <>
-                            <Col xs={12} md={6}>
-                              {this.renderInput(
-                                "title",
-                                "Product Name",
-                                "Product Name"
-                              )}
-                            </Col>
-                            <Col xs={12} md={6}>
-                              {this.renderInput(
-                                "location",
-                                "Location",
-                                "Location"
-                              )}
-                            </Col>
                             <Col xs={12} md={6}>
                               {this.renderInput("price", "Price", "Price")}
                             </Col>
@@ -142,31 +135,31 @@ class PostItemForm extends NestedForm {
                                 "Condition"
                               )}
                             </Col>
-                            <Col xs={12} md={12}>
-                              {this.renderInput(
-                                "description",
-                                "Description",
-                                "Description",
-                                "textarea"
-                              )}
-                            </Col>
-                            <Col xs={12} md={12}>
-                              {this.renderInput(
-                                "termsAndConditions",
-                                "Terms And Conditions",
-                                "Terms And Conditions",
-                                "textarea"
-                              )}
-                            </Col>
-                            <Col xs={12} md={12}>
-                              <CardFooter bloc align="center">
-                                {this.renderButton("Share")}
-                              </CardFooter>
-                            </Col>
                           </>
                         ) : null}
                         {category_id === "1" ? <ServiceSharingForm /> : null}
+                        <Col xs={12} md={12}>
+                          {this.renderInput(
+                            "description",
+                            "Description",
+                            "Description",
+                            "textarea"
+                          )}
+                        </Col>
+                        <Col xs={12} md={12}>
+                          {this.renderInput(
+                            "termsAndConditions",
+                            "Terms And Conditions",
+                            "Terms And Conditions",
+                            "textarea"
+                          )}
+                        </Col>
                       </Row>
+                    </Col>
+                    <Col xs={12} md={12}>
+                      <CardFooter align="center">
+                        {this.renderButton("Share")}
+                      </CardFooter>
                     </Col>
                   </Row>
                   {this.props.errors && this.props.errors.image && (

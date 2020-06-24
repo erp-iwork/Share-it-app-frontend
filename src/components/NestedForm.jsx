@@ -21,7 +21,7 @@ class NestedForm extends Component {
   renderButton(label) {
     return (
       <FormGroup align="center" md={12}>
-        <Button block outline disabled={this.props.loading}>
+        <Button outline disabled={this.props.loading}>
           {this.props.loading ? <LoadingSpinner /> : label}
         </Button>
       </FormGroup>
