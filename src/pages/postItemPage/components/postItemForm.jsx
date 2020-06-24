@@ -10,6 +10,7 @@ import {
   CardFooter,
   Form,
   Alert,
+  FormFeedback,
 } from "reactstrap";
 import ServiceSharingForm from "./serviceSharingForm";
 import Joi from "joi-browser";
@@ -17,13 +18,15 @@ import MainForm from "../../../components/MainForm";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";
+
+import NestedForm from "../../../components/NestedForm";
 import {
   addItem,
   getLoading,
   getErrors,
   getStatus,
 } from "../../../store/items";
-class PostItemForm extends MainForm {
+class PostItemForm extends NestedForm {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,25 +42,12 @@ class PostItemForm extends MainForm {
         properties: JSON.stringify({ color: "red" }),
         is_donating: false,
       },
-      errors: {},
       pictures: [],
       categories: this.props.categories,
     };
 
     this.onDrop = this.onDrop.bind(this);
   }
-  schema = {
-    is_donating: Joi.any().label("Is sharing"),
-    properties: Joi.any().label("Properties"),
-    condition: Joi.string().required().label("Condition"),
-    category_id: Joi.string().required().label("Category"),
-    owner_id: Joi.string().required().label("owner_id"),
-    title: Joi.string().required().label("Product Name"),
-    location: Joi.string().required().label("Location"),
-    price: Joi.number().required().label("Price"),
-    description: Joi.string().required().label("Product Category"),
-    termsAndConditions: Joi.string().required().label("Terms And Conditions"),
-  };
   isDonatingOptions = [
     {
       id: "false",
@@ -182,10 +172,11 @@ class PostItemForm extends MainForm {
                       </Row>
                     </Col>
                   </Row>
-                  {this.props.errors && (
-                    <Alert color="danger">
-                      {Object.values(this.props.errors)[0]}
-                    </Alert>
+                  {this.props.errors && this.props.errors.image && (
+                    <Alert color="danger">{this.props.errors.image}</Alert>
+                  )}
+                  {this.props.errors && this.props.errors.detail && (
+                    <Alert color="danger">{this.props.errors.detail}</Alert>
                   )}
                   {this.props.status === "success" && (
                     <Alert color="success">
