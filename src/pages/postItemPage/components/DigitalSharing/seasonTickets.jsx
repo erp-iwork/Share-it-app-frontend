@@ -6,7 +6,7 @@ class SeasonTickets extends Component {
     super(props);
     this.setState({});
   }
-
+  
   render() {
     return (
       <>

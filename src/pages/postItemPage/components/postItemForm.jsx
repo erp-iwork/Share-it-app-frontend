@@ -13,11 +13,9 @@ import {
 } from "reactstrap";
 import ServiceSharingForm from "./serviceSharingForm";
 import DigitalSharingForm from "./digitalSharingForm";
-
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";
-
 import NestedForm from "../../../components/NestedForm";
 import {
   addItem,
@@ -25,6 +23,7 @@ import {
   getErrors,
   getStatus,
 } from "../../../store/items";
+
 class PostItemForm extends NestedForm {
   constructor(props) {
     super(props);
