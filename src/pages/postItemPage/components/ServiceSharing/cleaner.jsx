@@ -5,8 +5,6 @@ import {
   FormGroup,
   Input,
   Label,
-  Button,
-  CardFooter,
 } from "reactstrap";
 
 class CleanerService extends Component {
@@ -97,6 +95,7 @@ class CleanerService extends Component {
           </Col>
         </Row>
       </>
+    
     );
   }
 }

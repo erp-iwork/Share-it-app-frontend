@@ -12,6 +12,8 @@ import {
   Alert,
 } from "reactstrap";
 import ServiceSharingForm from "./serviceSharingForm";
+import DigitalSharingForm from "./digitalSharingForm";
+
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";
@@ -123,22 +125,21 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("location", "Location", "Location")}
                         </Col>
                         <Col xs={12} md={4}>
-                              {this.renderInput("price", "Price", "Price")}
-                            </Col>
+                          {this.renderInput("price", "Price", "Price")}
+                        </Col>
 
                         {category_id === "2" ? (
-                          <>
-
-                            <Col xs={12} md={12}>
-                              {this.renderInput(
-                                "condition",
-                                "Condition",
-                                "Condition"
-                              )}
-                            </Col>
-                          </>
+                          <Col xs={12} md={12}>
+                            {this.renderInput(
+                              "condition",
+                              "Condition",
+                              "Condition"
+                            )}
+                          </Col>
                         ) : null}
                         {category_id === "1" ? <ServiceSharingForm /> : null}
+                        {category_id === "3" ? <DigitalSharingForm /> : null}
+
                         <Col xs={12} md={12}>
                           {this.renderInput(
                             "description",
