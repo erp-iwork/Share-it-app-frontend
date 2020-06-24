@@ -10,8 +10,10 @@ import {
   CardFooter,
   Form,
   Alert,
+  FormGroup,
+  Label,
+  Input,
 } from "reactstrap";
-import ServiceSharingForm from "./serviceSharingForm";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";
@@ -36,7 +38,7 @@ class PostItemForm extends NestedForm {
         termsAndConditions: "",
         category_id: "",
         condition: "",
-        properties: JSON.stringify({ color: "red" }),
+        properties: {},
         is_donating: false,
       },
       pictures: [],
@@ -55,6 +57,59 @@ class PostItemForm extends NestedForm {
       category: "Donating",
     },
   ];
+  serviceType = ["Tutor", "Cleaner", "Personal Driver"];
+  tutor = [
+    "subject",
+    "levelOfStudy",
+    "tutorTimeDedication",
+    "tutorAvailability",
+    "methodOfTutoring",
+    "tutorPaymentDuration",
+  ];
+  personalDriver = [
+    "methodOfService",
+    "ownACar",
+    "personalDriverTimeDedication",
+    "experience",
+    "paymentOptions",
+  ];
+  cleaner = [
+    "comfortServiceZone",
+    "cleanerTimeDedication",
+    "cleanerAvailability",
+    "numberOfPeople",
+    "cleanerPaymentDuration",
+  ];
+  handlePropertyChange = ({ currentTarget: input }) => {
+    const data = { ...this.state.data };
+    data.properties[input.name] = input.value;
+    if (input.value === "Tutor") {
+      for (const key of this.personalDriver) {
+        delete data.properties[key];
+      }
+      for (const key of this.cleaner) {
+        delete data.properties[key];
+      }
+    }
+    if (input.value === "Cleaner") {
+      for (const key of this.tutor) {
+        delete data.properties[key];
+      }
+      for (const key of this.personalDriver) {
+        delete data.properties[key];
+      }
+    }
+    if (input.value === "Personal Driver") {
+      for (const key of this.tutor) {
+        delete data.properties[key];
+      }
+      for (const key of this.cleaner) {
+        delete data.properties[key];
+      }
+    }
+    this.setState({ data });
+  };
+
   componentDidMount() {
     this.props.loadCategories();
   }
@@ -67,6 +122,8 @@ class PostItemForm extends NestedForm {
   doSubmit = () => {
     const data = { ...this.state.data };
     data.is_donating = data.is_donating === "true" ? true : false;
+    if (!data.condition) data.condition = "none";
+    data.properties = JSON.stringify(data.properties);
     const pictures = [...this.state.pictures];
     const formData = new FormData();
     for (const key in pictures) {
@@ -78,7 +135,7 @@ class PostItemForm extends NestedForm {
     this.props.addItem(formData);
   };
   render() {
-    const { category_id } = this.state.data;
+    const { category_id, properties } = this.state.data;
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
@@ -123,12 +180,11 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("location", "Location", "Location")}
                         </Col>
                         <Col xs={12} md={4}>
-                              {this.renderInput("price", "Price", "Price")}
-                            </Col>
+                          {this.renderInput("price", "Price", "Price")}
+                        </Col>
 
                         {category_id === "2" ? (
                           <>
-
                             <Col xs={12} md={12}>
                               {this.renderInput(
                                 "condition",
@@ -138,7 +194,487 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category_id === "1" ? <ServiceSharingForm /> : null}
+                        {category_id === "1" ? (
+                          <>
+                            <Col xs={12} md={12}>
+                              <FormGroup>
+                                <Label for="exampleEmail" sm={12}>
+                                  Service Type
+                                </Label>
+                                <Col sm={12}>
+                                  <Input
+                                    type="select"
+                                    name="serviceType"
+                                    onChange={this.handlePropertyChange}
+                                  >
+                                    <option value="">
+                                      Select Your Service Type
+                                    </option>
+                                    <option value="Tutor">Tutor</option>
+                                    <option value="Cleaner">Cleaner</option>
+                                    <option value="Personal Driver">
+                                      Personal Driver
+                                    </option>
+                                  </Input>
+                                </Col>
+                              </FormGroup>
+
+                              {properties.serviceType === "Tutor" ? (
+                                <>
+                                  <Row>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          What Subject?
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="subject"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Art">Art</option>
+                                            <option value="Citizenship">
+                                              Citizenship
+                                            </option>
+                                            <option value="essay">Essay</option>
+                                            <option value="French">
+                                              French
+                                            </option>
+                                            <option value="Geography">
+                                              Geography
+                                            </option>
+                                            <option value="Mathematics">
+                                              Mathematics
+                                            </option>
+                                            <option value="Science">
+                                              Science
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Level Of Study
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="levelOfStudy"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Primary">
+                                              Primary
+                                            </option>
+                                            <option value="A-Level">
+                                              A-Level
+                                            </option>
+                                            <option value="Secondary">
+                                              Secondary
+                                            </option>
+                                            <option value="Undergraduate">
+                                              Undergraduate
+                                            </option>
+                                            <option value="GCSE">GCSE</option>
+                                            <option value="IGCSE">IGCSE</option>
+                                            <option value="Postgraduate">
+                                              Postgraduate
+                                            </option>
+                                            <option value="ib">IB</option>
+                                            <option value="Professional">
+                                              Professional
+                                            </option>
+                                            <option value="Admission">
+                                              Admission
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Time Dedication
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="tutorTimeDedication"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Occasional">
+                                              Occasional
+                                            </option>
+                                            <option value="1-2 hours per week">
+                                              1-2 hours per week
+                                            </option>
+                                            <option value="Over 2 hours per week">
+                                              Over 2 hours per week
+                                            </option>
+                                            <option value="Intensive">
+                                              Intensive
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Availability Comfort Zone
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="tutorAvailability"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Weekend Evening">
+                                              Weekend Evening
+                                            </option>
+                                            <option value="Weekend Morning">
+                                              Weekend Morning
+                                            </option>
+                                            <option value="Weekday Evening">
+                                              Weekday Evening{" "}
+                                            </option>
+                                            <option value="Weekday Morning">
+                                              Weekday Morning
+                                            </option>
+                                            <option value="flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Method Of Tutoring
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="methodOfTutoring"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Online">
+                                              Online
+                                            </option>
+                                            <option value="Face to Face">
+                                              Face to Face
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Payment Duration
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="tutorPaymentDuration"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Weekly">
+                                              Weekly
+                                            </option>
+                                            <option value="Monthly">
+                                              Monthly
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                  </Row>
+                                </>
+                              ) : null}
+                              {properties.serviceType === "Personal Driver" ? (
+                                <>
+                                  <Row>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Method Of Service
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="methodOfService"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Personal">
+                                              Personal
+                                            </option>
+                                            <option value="Hourly">
+                                              Hourly
+                                            </option>
+                                            <option value="Car-Pickup">
+                                              Car-Pickup
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Do You own a Car??
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="ownACar"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Time Dedication
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="cleanerTimeDedication"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Occasional">
+                                              Occasional
+                                            </option>
+                                            <option value="Full Time">
+                                              Full Time
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Any Driving Experience?
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="experience"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Less than a Year">
+                                              Less than a Year
+                                            </option>
+                                            <option value="One Year Experience">
+                                              One Year Experience
+                                            </option>
+                                            <option value="Two Years Experience">
+                                              Two Years Experience
+                                            </option>
+                                            <option value="Three Years Experience">
+                                              Three Years Experience
+                                            </option>
+                                            <option value="More Than Three Years">
+                                              More Than Three Years
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={12}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Payment Options
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="paymentOptions"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="On Hand">
+                                              On Hand
+                                            </option>
+                                            <option value="Credit Card">
+                                              Credit Card
+                                            </option>
+                                            <option value="Online Transaction">
+                                              Online Transaction
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                  </Row>
+                                </>
+                              ) : null}
+                              {properties.serviceType === "Cleaner" ? (
+                                <>
+                                  <Row>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Comfort Service Zone
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="comfortServiceZone"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Commercial (e.g. office)">
+                                              Commercial (e.g. office)
+                                            </option>
+                                            <option value="Religious Buildings">
+                                              Religious Buildings
+                                            </option>
+                                            <option value="Industrial (e.g Warehouses)">
+                                              Industrial (e.g Warehouses)
+                                            </option>
+                                            <option value="Retail location">
+                                              Retail location
+                                            </option>
+                                            <option value="Restaurants || Bars">
+                                              Restaurants || Bars
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Time Dedication
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="personalDriverTimeDedication"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Daily">Daily</option>
+                                            <option value="Twice a Month">
+                                              Twice a Month
+                                            </option>
+                                            <option value="Twice a Week">
+                                              Twice a Week
+                                            </option>
+                                            <option value="Weekly">
+                                              Weekly
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Availability Comfort Zone
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="cleanerAvailability"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Evenings">
+                                              Evenings
+                                            </option>
+                                            <option value="Mornings">
+                                              Mornings
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          How Many are you?
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="numberOfPeople"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Just Me">
+                                              Just Me
+                                            </option>
+                                            <option value="Me and A Friend">
+                                              Me and A Friend
+                                            </option>
+                                            <option value="More Than Three">
+                                              More Than Three
+                                            </option>
+                                            <option value="Depends on the Area">
+                                              Depends on the Area
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={12}>
+                                      <FormGroup>
+                                        <Label for="exampleEmail" sm={12}>
+                                          Payment Duration
+                                        </Label>
+                                        <Col sm={12}>
+                                          <Input
+                                            type="select"
+                                            name="cleanerPaymentDuration"
+                                            onChange={this.handlePropertyChange}
+                                          >
+                                            <option value="Daily">Daily</option>
+                                            <option value="Weekly">
+                                              Weekly
+                                            </option>
+                                            <option value="Monthly">
+                                              Monthly
+                                            </option>
+                                            <option value="Flexible">
+                                              Flexible
+                                            </option>
+                                          </Input>
+                                        </Col>
+                                      </FormGroup>
+                                    </Col>
+                                  </Row>
+                                </>
+                              ) : null}
+                            </Col>
+                          </>
+                        ) : null}
+
                         <Col xs={12} md={12}>
                           {this.renderInput(
                             "description",

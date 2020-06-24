@@ -27,6 +27,23 @@ class NestedForm extends Component {
       </FormGroup>
     );
   }
+  renderCustomSelect(name, label, options) {
+    return (
+      <FormGroup>
+        <Label for="exampleEmail" sm={12}>
+          {label}
+        </Label>
+        <Col sm={12}>
+          <Input type="select" name={name} onChange={this.handlePropertyChange}>
+            <option value=""></option>
+            {options.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </Input>
+        </Col>
+      </FormGroup>
+    );
+  }
   renderSelect(name, label, options) {
     const { data } = this.state;
     return (
