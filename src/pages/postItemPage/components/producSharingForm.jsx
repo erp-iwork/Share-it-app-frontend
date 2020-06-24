@@ -1,6 +1,6 @@
 import React from "react";
 import Joi from "joi-browser";
-import { Col } from "reactstrap";
+import { Col, Form } from "reactstrap";
 import MainForm from "../../../components/MainForm";
 
 class ProductSharingForm extends MainForm {
@@ -27,7 +27,7 @@ class ProductSharingForm extends MainForm {
   };
   render() {
     return (
-      <>
+      <Form>
         <Col xs={12} md={6}>
           {this.renderInput("title", "Product Name", "Product Name")}
         </Col>
@@ -56,7 +56,15 @@ class ProductSharingForm extends MainForm {
             "textarea"
           )}
         </Col>
-      </>
+        <Col xs={12} md={12}>
+          {this.renderInput(
+            "termsAndConditions",
+            "Terms And Conditions",
+            "Terms And Conditions",
+            "textarea"
+          )}
+        </Col>
+      </Form>
     );
   }
 }

@@ -171,6 +171,9 @@ class PostItemForm extends MainForm {
                                 "textarea"
                               )}
                             </Col>
+                            <CardFooter align="center">
+                              {this.renderButton("Share")}
+                            </CardFooter>
                           </>
                         ) : null}
                         {category_id === "1" ? <ServiceSharingForm /> : null}
@@ -188,9 +191,6 @@ class PostItemForm extends MainForm {
                     </Alert>
                   )}
                 </CardBody>
-                <CardFooter align="center">
-                  {this.renderButton("Share")}
-                </CardFooter>
               </Form>
             </Card>
           </Col>
