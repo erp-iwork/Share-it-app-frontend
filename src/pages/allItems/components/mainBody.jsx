@@ -15,7 +15,7 @@ class MainBodyPage extends Component {
     return (
       <Page
         className="mainBodyContainer"
-        breadcrumbs={[{ name: "Category/ SubCategory Name", active: true }]}
+        breadcrumbs={[{ name: "SubCategory Name", active: true }]}
       >
         <Row>
           {this.props.items.map((item) => (
