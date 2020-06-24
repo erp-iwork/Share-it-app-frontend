@@ -18,7 +18,7 @@ class PersonalDriverService extends Component {
           <Col xs={12} md={6}>
             <FormGroup>
               <Label for="exampleEmail" sm={12}>
-                Type Of Service ...
+                Method Of Service ...
               </Label>
               <Col sm={12}>
                 <Input type="select" name="name">
@@ -61,12 +61,15 @@ class PersonalDriverService extends Component {
           <Col xs={12} md={6}>
             <FormGroup>
               <Label for="exampleEmail" sm={12}>
-                Method Of Tutoring ...
+                Any Driving Experience?
               </Label>
               <Col sm={12}>
                 <Input type="select" name="name">
-                  <option>Online</option>
-                  <option>Face to Face</option>
+                  <option>Less than a Year</option>
+                  <option>One Year Experience</option>
+                  <option>Two Years Experience</option>
+                  <option>Three Years Experience</option>
+                  <option>More Than Three Years</option>
                 </Input>
               </Col>
             </FormGroup>
@@ -74,12 +77,14 @@ class PersonalDriverService extends Component {
           <Col xs={12} md={6}>
             <FormGroup>
               <Label for="exampleEmail" sm={12}>
-                Payment Duration
+                Payment Options
               </Label>
               <Col sm={12}>
                 <Input type="select" name="name">
-                  <option>Weekly</option>
-                  <option>Monthly</option>
+                  <option>On Hand</option>
+                  <option>Credit Card</option>
+                  <option>Online Transaction</option>
+                  <option>Flexible</option>
                 </Input>
               </Col>
             </FormGroup>
@@ -87,7 +92,7 @@ class PersonalDriverService extends Component {
           <Col xs={12} md={6}>
             <FormGroup>
               <Label for="exampleEmail" sm={12}>
-                Pricing ...
+                Pricing /Miles
               </Label>
               <Col sm={12}>
                 <Input type="number" name="name" placeholder="Pricing" />
