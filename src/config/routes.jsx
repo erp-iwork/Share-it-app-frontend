@@ -7,4 +7,5 @@ export default {
   allItems: "/items",
   singleItem: "/items/:id",
   profile: "/profile",
+  settings: "/settings",
 };

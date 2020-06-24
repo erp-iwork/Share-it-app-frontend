@@ -13,18 +13,17 @@ import SignInPage from "./pages/signIn";
 import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
-
-// import authService from "./services/authService";
-
 import routes from "./config/routes";
 
 const store = configureStore();
+
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
 const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
 const AllItemsPage = React.lazy(() => import("./pages/allItems"));
 const SingleItemPage = React.lazy(() => import("./pages/singleItemView"));
 const ProfilePage = React.lazy(() => import("./pages/profilePage"));
+const SettingsPage = React.lazy(() => import("./pages/settings"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -92,6 +91,11 @@ class App extends React.Component {
                       exact
                       path={routes.profile}
                       component={ProfilePage}
+                    />
+                    <Route
+                      exact
+                      path={routes.settings}
+                      component={SettingsPage}
                     />
                   </React.Suspense>
                 </MainLayout>
