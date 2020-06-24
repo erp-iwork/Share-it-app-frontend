@@ -33,6 +33,8 @@ class ItemViewComp extends Component {
       accepted: false,
     };
   }
+
+  
   toggle = (status) => () => {
     if (!status) {
       return this.setState({
