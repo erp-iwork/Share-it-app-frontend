@@ -10,11 +10,8 @@ import {
   CardFooter,
   Form,
   Alert,
-  FormFeedback,
 } from "reactstrap";
 import ServiceSharingForm from "./serviceSharingForm";
-import Joi from "joi-browser";
-import MainForm from "../../../components/MainForm";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import { getCategories, loadCategories } from "../../../store/categories";

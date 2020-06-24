@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { Input, Label, Col, FormGroup, Button, FormFeedback } from "reactstrap";
-
-import Joi from "joi-browser";
 import LoadingSpinner from "./loader";
 
 class NestedForm extends Component {
   state = {
     data: {},
-    errors: {},
   };
 
   // when the user types to change the value of the state accordingly
@@ -60,7 +57,7 @@ class NestedForm extends Component {
     );
   }
   renderInput(name, label, placeholder, type = "text") {
-    const { errors, data } = this.state;
+    const { data } = this.state;
     return (
       <FormGroup>
         <Label for={name} sm={12}>

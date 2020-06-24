@@ -23,13 +23,11 @@ const slice = createSlice({
       items.loading = false;
       items.lastFetch = Date.now();
       items.errors = null;
-      items.status = "success";
     },
     itemReceived: (items, action) => {
       items.selectedItem = action.payload;
       items.loading = false;
       items.errors = null;
-      items.status = "success";
     },
     itemsRequestFailed: (items, action) => {
       items.loading = false;
