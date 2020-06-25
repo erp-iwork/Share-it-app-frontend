@@ -13,6 +13,28 @@ class NestedForm extends Component {
   nameMapToLabel = {
     subject: "Subject",
     levelOfStudy: "Level Of Study",
+    tutorTimeDedication: "Time Dedication",
+    tutorAvailability: "Availability",
+    methodOfTutoring: "Method of Tutoring",
+    tutorPaymentDuration: "Payment Duration",
+    methodOfService: "Service Method",
+    ownACar: "Do you Own a Car?",
+    personalDriverTimeDedication: "Time Dedication",
+    experience: "Experience",
+    paymentOptions: "Payment Options",
+    comfortServiceZone: "Comfort Service Zonr",
+    cleanerTimeDedication: "Time Dedication",
+    cleanerAvailability: "Availability",
+    cleanerNumberOfPeople: "Cleaners",
+    cleanerPaymentDuration: "Payment Duration",
+    subscriptionType: "Type",
+    numberofSubscriptionLeft: "Subscriptions Left",
+    subscriptionStartDate: "Start Date",
+    subscriptionEndDate: "End Date",
+    eventType: "Event Type",
+    seasonTicketsNumberOfPeople: "People/Ticket",
+    numberOfTickets: "No' of Tickets",
+    eventStartDate: "Start Date",
   };
 
   tutor = [
