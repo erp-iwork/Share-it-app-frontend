@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import MainBodyPage from "./components/mainBody";
-// import FilterComponent from "./components/filterComp";
 import { Col } from "reactstrap";
+import { BuyHistory, Header, SellHistory } from "./components";
 
-class AllItems extends Component {
+class BuyAndSellHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -11,10 +10,12 @@ class AllItems extends Component {
   render() {
     return (
       <Col>
-        <MainBodyPage />
+        <Header />
+        <BuyHistory />
+        <SellHistory />
       </Col>
     );
   }
 }
 
-export default AllItems;
+export default BuyAndSellHistory;

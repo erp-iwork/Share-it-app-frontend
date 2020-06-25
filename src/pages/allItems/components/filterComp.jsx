@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Button, CardHeader, Input, Label } from "reactstrap";
 import { Slider } from "antd";
-import Items from "../../../components/items-Home";
+// import Items from "../../../components/items-Home";
 // import Items from "../../homePage/components/items";
 import { search } from "../../../store/items";
 import { connect } from "react-redux";
