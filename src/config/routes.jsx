@@ -8,4 +8,7 @@ export default {
   singleItem: "/items/:id",
   profile: "/profile",
   settings: "/settings",
+  buyAndSell: "/buyAndSell",
+  Availability: "/Availability",
+
 };

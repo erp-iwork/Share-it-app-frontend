@@ -129,82 +129,113 @@ class Header extends React.Component {
 
           <NavItem>
             <NavLink id="Popover2">
-              {this.props.currentUser && (
+              {!this.props.currentUser && (
                 <>
-                  <Avatar
-                    onClick={this.toggleUserCardPopover}
-                    className="can-click"
-                  />
+                  <div onClick={this.toggleUserCardPopover}>
+                    <Avatar className="can-click" />
+                    <Popover
+                      onClick={this.toggleUserCardPopover}
+                      placement="bottom-end"
+                      isOpen={this.state.isOpenUserCardPopover}
+                      toggle={this.toggleUserCardPopover}
+                      target="Popover2"
+                      className="p-0 border-0"
+                      style={{ minWidth: 250 }}
+                    >
+                      <PopoverBody className="p-0 border-light">
+                        <UserCard
+                          title={
+                            this.props.currentUser
+                              ? this.props.currentUser.name
+                              : "User Name"
+                          }
+                          subtitle={
+                            this.props.currentUser
+                              ? this.props.currentUser.email
+                              : "User Email"
+                          }
+                          text={
+                            this.props.currentUser
+                              ? this.props.currentUser.location
+                              : "User Location"
+                          }
+                          className="border-light"
+                        >
+                          <ListGroup flush>
+                            <Link to={{ pathname: routes.profile }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdPersonPin /> Profile
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: routes.buyAndSell }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdInsertChart /> Activities
+                              </ListGroupItem>
+                            </Link>
+
+                            <ListGroupItem
+                              tag="button"
+                              action
+                              className="border-light"
+                            >
+                              <MdMessage /> Messages
+                            </ListGroupItem>
+
+                            <Link to={{ pathname: routes.Availability }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdInsertChart /> Your Items
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: routes.settings }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdSettingsApplications /> Settings
+                              </ListGroupItem>
+                            </Link>
+
+                            <ListGroupItem
+                              tag="button"
+                              action
+                              className="border-light"
+                            >
+                              <MdHelp /> Help
+                            </ListGroupItem>
+                            <ListGroupItem
+                              onClick={this.logout}
+                              tag="button"
+                              action
+                              className="border-light"
+                            >
+                              <MdExitToApp /> Signout
+                            </ListGroupItem>
+                          </ListGroup>
+                        </UserCard>
+                      </PopoverBody>
+                    </Popover>
+                  </div>
                 </>
               )}
-              {!this.props.currentUser && (
+              {/* {!this.props.currentUser && (
                 <Link to={{ pathname: "/login" }}>
                   <Button>Login</Button>
                 </Link>
-              )}
+              )} */}
             </NavLink>
-            <Popover
-              placement="bottom-end"
-              isOpen={this.state.isOpenUserCardPopover}
-              toggle={this.toggleUserCardPopover}
-              target="Popover2"
-              className="p-0 border-0"
-              style={{ minWidth: 250 }}
-            >
-              <PopoverBody className="p-0 border-light">
-                <UserCard
-                  title={
-                    this.props.currentUser
-                      ? this.props.currentUser.name
-                      : "User Name"
-                  }
-                  subtitle={
-                    this.props.currentUser
-                      ? this.props.currentUser.email
-                      : "User Email"
-                  }
-                  text={
-                    this.props.currentUser
-                      ? this.props.currentUser.location
-                      : "User Location"
-                  }
-                  className="border-light"
-                >
-                  <ListGroup flush>
-                    <Link to={{ pathname: routes.profile }}>
-                      <ListGroupItem
-                        tag="button"
-                        action
-                        className="border-light"
-                      >
-                        <MdPersonPin /> Profile
-                      </ListGroupItem>
-                    </Link>
-
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdInsertChart /> Wish List
-                    </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdMessage /> Messages
-                    </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdSettingsApplications /> Settings
-                    </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdHelp /> Help
-                    </ListGroupItem>
-                    <ListGroupItem
-                      onClick={this.logout}
-                      tag="button"
-                      action
-                      className="border-light"
-                    >
-                      <MdExitToApp /> Signout
-                    </ListGroupItem>
-                  </ListGroup>
-                </UserCard>
-              </PopoverBody>
-            </Popover>
           </NavItem>
         </Nav>
       </Navbar>

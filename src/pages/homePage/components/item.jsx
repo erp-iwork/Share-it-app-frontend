@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, CardBody, Button, CardHeader, Col } from "reactstrap";
+import { Card, CardImg, CardBody, CardHeader, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 /**
@@ -17,12 +17,11 @@ const Item = ({ item }) => {
           </Col>
           <CardHeader className="cardHeader">
             {item.title}
-            <Button size="sm" color="success" disabled>
-              {/* {boost ? "Boosted" : ""} */}
+            {/* <Button size="sm" color="success" disabled>
               Boosted
-            </Button>
+            </Button> */}
           </CardHeader>
-          <CardBody className="cardBody">{item.price}</CardBody>
+          <CardBody className="cardBody">Price : {item.price}</CardBody>
         </Card>
       </Link>
     </div>
