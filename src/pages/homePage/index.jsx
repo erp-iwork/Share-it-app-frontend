@@ -70,11 +70,11 @@ class HomePage extends Component {
         {this.props.loading && this.state.waitingContent}
         {this.props.items && (
           <Row>
-            <Col md={3}>
+            <Col md={3} className="filterContainer">
               <FilterComp />
             </Col>
-            <Col md={9}>
-        <SubHeader />
+            <Col md={9} className="mainBodyContainer">
+              <SubHeader />
 
               <Row>
                 {this.props.items.map((item) => (
