@@ -34,7 +34,6 @@ class ItemViewComp extends Component {
     };
   }
 
-  
   toggle = (status) => () => {
     if (!status) {
       return this.setState({
@@ -80,7 +79,7 @@ class ItemViewComp extends Component {
             Terms And Conditions for <b>{title}</b>
           </ModalHeader>
           <ModalBody>
-            {location}
+            {"Terms and conditions goes here"}
             <br />
           </ModalBody>
           <ModalFooter>
@@ -175,9 +174,9 @@ class ItemViewComp extends Component {
                   ? Object.keys(properties).map((key) => (
                       <Col md={6} key={key}>
                         <div>
-                          <i>{key}</i>
+                          <i>{properties[key].label}</i>
                         </div>
-                        <b>{properties[key]}</b>
+                        <b>{properties[key].value}</b>
                       </Col>
                     ))
                   : null}

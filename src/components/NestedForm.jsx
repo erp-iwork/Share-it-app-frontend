@@ -11,6 +11,8 @@ class NestedForm extends Component {
   sharingType = ["serviceType", "digitalServiceType"];
 
   nameMapToLabel = {
+    serviceType: "Service Type",
+    digitalServiceType: "Service Type",
     subject: "Subject",
     levelOfStudy: "Level Of Study",
     tutorTimeDedication: "Time Dedication",
@@ -22,7 +24,7 @@ class NestedForm extends Component {
     personalDriverTimeDedication: "Time Dedication",
     experience: "Experience",
     paymentOptions: "Payment Options",
-    comfortServiceZone: "Comfort Service Zonr",
+    comfortServiceZone: "Comfort Service Zone",
     cleanerTimeDedication: "Time Dedication",
     cleanerAvailability: "Availability",
     cleanerNumberOfPeople: "Cleaners",
@@ -74,90 +76,22 @@ class NestedForm extends Component {
   ];
 
   handlePropertyChange = ({ currentTarget: input }) => {
+    console.log(input.name, input.value);
     const data = { ...this.state.data };
-    data.properties[input.name] = input.value;
-    if (input.name === "serviceType") {
-      delete data.properties["digitalServiceType"];
+    if (input.name === ("serviceType" || "digitalServiceType")) {
+      data.properties = {};
     }
-    if (input.name === "digitalServiceType") {
-      delete data.properties["serviceType"];
-    }
-    if (input.value === "Tutor") {
-      for (const key of this.personalDriver) {
-        delete data.properties[key];
-      }
-      for (const key of this.cleaner) {
-        delete data.properties[key];
-      }
-      for (const key of this.subscriptionService) {
-        delete data.properties[key];
-      }
-      for (const key of this.seasonTickets) {
-        delete data.properties[key];
-      }
-    }
-    if (input.value === "Cleaner") {
-      for (const key of this.tutor) {
-        delete data.properties[key];
-      }
-      for (const key of this.personalDriver) {
-        delete data.properties[key];
-      }
-      for (const key of this.subscriptionService) {
-        delete data.properties[key];
-      }
-      for (const key of this.seasonTickets) {
-        delete data.properties[key];
-      }
-    }
-    if (input.value === "Personal Driver") {
-      for (const key of this.tutor) {
-        delete data.properties[key];
-      }
-      for (const key of this.cleaner) {
-        delete data.properties[key];
-      }
-      for (const key of this.subscriptionService) {
-        delete data.properties[key];
-      }
-      for (const key of this.seasonTickets) {
-        delete data.properties[key];
-      }
-    }
-    if (input.value === "Subscription Service") {
-      for (const key of this.seasonTickets) {
-        delete data.properties[key];
-      }
-      for (const key of this.tutor) {
-        delete data.properties[key];
-      }
-      for (const key of this.cleaner) {
-        delete data.properties[key];
-      }
-      for (const key of this.personalDriver) {
-        delete data.properties[key];
-      }
-    }
-    if (input.value === "Season Tickets") {
-      for (const key of this.subscriptionService) {
-        delete data.properties[key];
-      }
-      for (const key of this.tutor) {
-        delete data.properties[key];
-      }
-      for (const key of this.cleaner) {
-        delete data.properties[key];
-      }
-      for (const key of this.personalDriver) {
-        delete data.properties[key];
-      }
-    }
+    data.properties[input.name] = {
+      label: this.nameMapToLabel[input.name],
+      value: input.value,
+    };
     this.setState({ data });
   };
 
   // when the user types to change the value of the state accordingly
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
+    if (input.name === "category_id") data.properties = {}; //reset properties TODO
     data[input.name] = input.value; //dynamically access .. property
     this.setState({ data });
   };
