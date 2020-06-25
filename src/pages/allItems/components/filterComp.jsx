@@ -129,7 +129,7 @@ class FilterComponent extends Component {
           </Button>
         </div>
         <hr />
-        <div>
+        {/* <div>
           <h5>Premium Ads</h5>
           <Items />
           <Items />
@@ -138,7 +138,7 @@ class FilterComponent extends Component {
           <Items />
           <Items />
           <Items />
-        </div>
+        </div> */}
       </>
     );
   }
