@@ -10,6 +10,11 @@ class NestedForm extends Component {
   digitalServiceType = ["Subscription Service", "Season Tickets"];
   sharingType = ["serviceType", "digitalServiceType"];
 
+  nameMapToLabel = {
+    subject: "Subject",
+    levelOfStudy: "Level Of Study",
+  };
+
   tutor = [
     "subject",
     "levelOfStudy",
