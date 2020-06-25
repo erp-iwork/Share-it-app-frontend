@@ -6,6 +6,7 @@ import Item from "./components/item";
 import { loadItems, getItems, getLoading } from "../../store/items";
 import { connect } from "react-redux";
 import Shimmer from "react-shimmer-effect";
+import FilterComp from "../allItems/components/filterComp";
 
 class HomePage extends Component {
   constructor() {
@@ -66,15 +67,23 @@ class HomePage extends Component {
   render() {
     return (
       <div className="BackContainer">
-        <SubHeader />
         {this.props.loading && this.state.waitingContent}
         {this.props.items && (
           <Row>
-            {this.props.items.map((item) => (
-              <Col key={item.itemId} md={3} sm={12} xs={12}>
-                <Item item={item} />
-              </Col>
-            ))}
+            <Col md={3}>
+              <FilterComp />
+            </Col>
+            <Col md={9}>
+        <SubHeader />
+
+              <Row>
+                {this.props.items.map((item) => (
+                  <Col key={item.itemId} md={3} sm={12} xs={12}>
+                    <Item item={item} />
+                  </Col>
+                ))}
+              </Row>
+            </Col>
           </Row>
         )}
       </div>

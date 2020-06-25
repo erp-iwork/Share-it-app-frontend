@@ -10,14 +10,14 @@ class AllItems extends Component {
   }
   render() {
     return (
-      <Row>
-        <Col className="filterContainer" md={3}>
-          <FilterComponent />
-        </Col>
-        <Col md={9}>
+      // <Row>
+      //   <Col className="filterContainer" md={3}>
+      //     <FilterComponent />
+      //   </Col>
+        <Col >
           <MainBodyPage />
         </Col>
-      </Row>
+      // </Row>
     );
   }
 }

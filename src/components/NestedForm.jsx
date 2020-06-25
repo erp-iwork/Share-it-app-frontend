@@ -6,6 +6,7 @@ class NestedForm extends Component {
   state = {
     data: {},
   };
+  
   serviceType = ["Tutor", "Cleaner", "Personal Driver"];
   digitalServiceType = ["Subscription Service", "Season Tickets"];
   sharingType = ["serviceType", "digitalServiceType"];
