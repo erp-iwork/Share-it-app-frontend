@@ -8,20 +8,16 @@
 }
 .containerBackground {
   width: auto;
-  height: 500px;
+  height: 250px;
   background-color: #ffffff;
   object-fit:cover;
-top: 20%;
-min-height: 100%;
-min-width: 100%;
-object-fit:cover;
+  border-radius: 20px;
 
 }
 .containerBackground img {
   position: relative;
-vertical-align: middle;
 margin-bottom: 20px;
-height: 50%;
+height: 100%;
 width: 100%;
 object-fit:cover;
 }

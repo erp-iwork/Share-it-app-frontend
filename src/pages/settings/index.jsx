@@ -14,6 +14,8 @@ import {
     Row,
     CardHeader,
     CardImg,
+    CardFooter,
+    CardBody,
 } from "reactstrap";
 
 class Settings extends Component {
@@ -26,11 +28,14 @@ class Settings extends Component {
             <Page breadcrumbs={[{ name: "person Name", active: true }]}>
                 <Card>
                     <Form className="form">
-                        <Row className="containerBackground">
+                        <Row >
                             <Col align="center" md={6} sm={12} >
                                 <CardHeader> Update Picture </CardHeader>
                                 {/* <Avatar size={250} /> */}
+                                <div className="containerBackground">
                                 <CardImg alt="" src={CoverImage} />
+
+                                </div>
                                 <Row>
                                     <Col>
                                         <Avatar size={150} />
@@ -89,7 +94,22 @@ class Settings extends Component {
                                     </Col>
                                 </FormGroup>
                                 <CardHeader>Update contact Information </CardHeader>
-                                <Row md={2}>
+                                <CardBody>
+
+                                <Row>
+                                <Col md={6}>
+
+                                    <FormGroup row>
+                                            <Label>Phone number </Label>
+
+                                            <Input
+                                                type="number"
+                                                name="phoneNumber"
+                                                placeholder="Enter new Phone number  "
+                                            />
+                                    </FormGroup>
+                                    </Col>
+
                                     <FormGroup>
                                         <Col>
                                             <Label>Phone number </Label>
@@ -133,13 +153,18 @@ class Settings extends Component {
                                         </Col>
                                     </FormGroup>
                                 </Row>
+                                </CardBody>
+                                <CardFooter>
+
                                 <Col className="submitbutton">
                                     <Button color="success" size="lg">
                                         Update Profile
                   </Button>
                                 </Col>
+                                </CardFooter>
                             </Col>
                         </Row>
+
                     </Form>
                 </Card>
             </Page>
