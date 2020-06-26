@@ -19,6 +19,8 @@ class BuyHistory extends Component {
                 <th>Product ID</th>
                 <th>Product Name</th>
                 <th>Transaction ID</th>
+                <th>Shared From</th>
+
                 <th>Date Issued</th>
                 <th>Date Returned</th>
                 <th>See More</th>
@@ -29,6 +31,7 @@ class BuyHistory extends Component {
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
+                <td>Mark</td>
                 <td>Mark</td>
                 <td>Otto</td>
                 <td>Mark</td>
@@ -43,6 +46,7 @@ class BuyHistory extends Component {
                 <td>Mark</td>
                 <td>Otto</td>
                 <td>Mark</td>
+                <td>Mark</td>
                 <td>Otto</td>
                 <td>Mark</td>
                 <td>
@@ -56,6 +60,7 @@ class BuyHistory extends Component {
                 <th scope="row">3</th>
                 <td>Mark</td>
                 <td>Otto</td>
+                <td>Mark</td>
                 <td>Mark</td>
                 <td>Otto</td>
                 <td>Mark</td>

@@ -38,7 +38,6 @@ class Availability extends Component {
                 <td>Mark</td>
                 <td>
                   <Switch
-                    activeBoxShadow="0 0 2px 3px #3bf"
                     onChange={this.handleChange}
                     checked={this.state.checked}
                     onColor="#86d3ff"
