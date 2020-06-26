@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import Avatar from "../../components/Avatar";
+import Page from "../../components/Page";
+import CoverImage from "../../assets/background.jpg";
+
+
 import {
-     Col, Form, Card,
+    Col, Form, Card,
     FormGroup, Label, Input,
-    Button, Row, CardHeader,
+    Button, Row, CardHeader, CardImg,
 } from 'reactstrap';
+
 
 class Settings extends Component {
     constructor(props) {
@@ -13,17 +18,40 @@ class Settings extends Component {
     }
     render() {
         return (
-            <div>
+            <Page breadcrumbs={[{ name: "person Name", active: true }]}>
+
                 <Card >
+
                     <Form className="form">
+
                         <Row>
+
+
                             <Col align='center' md={6} sm={12}>
                                 <CardHeader> Update Profile Picture </CardHeader>
-                                <Avatar size={300} />
-                                <div className='changeProfile'>
-                                    <Button outline>Change Picture</Button>
-                                </div>
+                                {/* <Avatar size={250} /> */}
+                                <CardImg alt=''  src={CoverImage}/>
+                             
+
+
+                                <Row>
+                                    <Col>
+                                       
+                                        <Avatar size={150} />
+                                    </Col>
+                                    <Col align='center'>
+                                        <div className='changeProfile'>
+                                            <Button outline>Change background Picture</Button>
+                                        </div>
+                                        <div className='changeProfile'>
+                                            <Button outline>Change Picture</Button>
+                                        </div>
+
+                                    </Col>
+                                </Row>
                             </Col>
+
+
                             <Col>
                                 <CardHeader>Update Personal Information </CardHeader>
                                 <FormGroup>
@@ -113,7 +141,7 @@ class Settings extends Component {
                         </Row>
                     </Form>
                 </Card>
-            </div>
+            </Page>
         );
     }
 }
