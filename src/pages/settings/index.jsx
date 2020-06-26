@@ -97,19 +97,7 @@ class Settings extends Component {
                                 <CardBody>
 
                                 <Row>
-                                <Col md={6}>
-
-                                    <FormGroup row>
-                                            <Label>Phone number </Label>
-
-                                            <Input
-                                                type="number"
-                                                name="phoneNumber"
-                                                placeholder="Enter new Phone number  "
-                                            />
-                                    </FormGroup>
-                                    </Col>
-
+                              
                                     <FormGroup>
                                         <Col>
                                             <Label>Phone number </Label>
@@ -152,12 +140,22 @@ class Settings extends Component {
                                             />
                                         </Col>
                                     </FormGroup>
+                                    <FormGroup>
+                                        <Col>
+                                            <Label>Website</Label>
+                                            <Input
+                                                type="text"
+                                                name="wbsite"
+                                                placeholder="Enter new website "
+                                            />
+                                        </Col>
+                                    </FormGroup>
                                 </Row>
                                 </CardBody>
                                 <CardFooter>
 
                                 <Col className="submitbutton">
-                                    <Button color="success" size="lg">
+                                    <Button color="success" >
                                         Update Profile
                   </Button>
                                 </Col>
