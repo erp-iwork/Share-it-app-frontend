@@ -146,7 +146,8 @@ class PostItemForm extends NestedForm {
                                 ["Tutor", "Cleaner", "Personal Driver"]
                               )}
 
-                              {properties.serviceType === "Tutor" ? (
+                              {properties.serviceType &&
+                              properties.serviceType.value === "Tutor" ? (
                                 <>
                                   <Row>
                                     <Col xs={12} md={6}>
@@ -224,7 +225,9 @@ class PostItemForm extends NestedForm {
                                   </Row>
                                 </>
                               ) : null}
-                              {properties.serviceType === "Personal Driver" ? (
+                              {properties.serviceType &&
+                              properties.serviceType.value ===
+                                "Personal Driver" ? (
                                 <>
                                   <Row>
                                     <Col xs={12} md={6}>
@@ -282,7 +285,8 @@ class PostItemForm extends NestedForm {
                                   </Row>
                                 </>
                               ) : null}
-                              {properties.serviceType === "Cleaner" ? (
+                              {properties.serviceType &&
+                              properties.serviceType.value === "Cleaner" ? (
                                 <>
                                   <Row>
                                     <Col xs={12} md={6}>
@@ -357,8 +361,9 @@ class PostItemForm extends NestedForm {
                               ["Subscription Services", "Season Tickets"]
                             )}
 
-                            {properties.digitalServiceType ===
-                            "Subscription Services" ? (
+                            {properties.digitalServiceType &&
+                            properties.digitalServiceType.value ===
+                              "Subscription Services" ? (
                               <>
                                 <Row>
                                   <Col xs={12} md={6}>
@@ -396,8 +401,9 @@ class PostItemForm extends NestedForm {
                                 </Row>
                               </>
                             ) : null}
-                            {properties.digitalServiceType ===
-                            "Season Tickets" ? (
+                            {properties.digitalServiceType &&
+                            properties.digitalServiceType.value ===
+                              "Season Tickets" ? (
                               <>
                                 <Row>
                                   <Col xs={12} md={6}>

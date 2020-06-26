@@ -67,7 +67,9 @@ class HomePage extends Component {
   render() {
     return (
       <div className="BackContainer">
-        {this.props.loading && this.state.waitingContent}
+        {this.props.loading && 
+          this.state.waitingContent
+         }
         {this.props.items && (
           <Row>
             <Col md={3} className="filterContainer">

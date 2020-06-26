@@ -16,7 +16,6 @@ import configureStore from "./store/configureStore";
 import routes from "./config/routes";
 
 const store = configureStore();
-
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
 const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
@@ -24,6 +23,8 @@ const AllItemsPage = React.lazy(() => import("./pages/allItems"));
 const SingleItemPage = React.lazy(() => import("./pages/singleItemView"));
 const ProfilePage = React.lazy(() => import("./pages/profilePage"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
+const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
+const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -96,6 +97,16 @@ class App extends React.Component {
                       exact
                       path={routes.settings}
                       component={SettingsPage}
+                    />
+                    <Route
+                      exact
+                      path={routes.buyAndSell}
+                      component={BuyAndSell}
+                    />
+                    <Route
+                      exact
+                      path={routes.Availability}
+                      component={AvailabilityPage}
                     />
                   </React.Suspense>
                 </MainLayout>

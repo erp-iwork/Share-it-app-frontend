@@ -3,9 +3,9 @@ import * as actions from "../api";
 import { toast } from "react-toastify";
 //TODO
 //config file
-const baseURL = "https://shareit-develop.herokuapp.com/api/v1";
+const baseURL = "http://0.0.0.0:9000/api/v1";
 axios.defaults.headers.common["Authorization"] =
-  "Token 8bed074866b6935d615cb761520b94c959d9559e";
+  "Token 7e596e2f846f267cee5e2bb898d3e43496a495c8";
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
