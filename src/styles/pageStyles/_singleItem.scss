@@ -127,3 +127,23 @@
 .singleItemViewBody {
     margin-bottom: 10px;
 }
+
+.relatedAdImageContainer {
+    flex-direction: row;
+    width: 180px;
+    height: 130px;
+    background-color: #ffffff;
+    object-fit:cover;
+
+}
+
+.relatedAdImageContainer img{
+  	position: relative;
+	vertical-align: middle;
+	height: 100%;
+	width: 100%;
+	object-fit:cover;
+
+}
+
+

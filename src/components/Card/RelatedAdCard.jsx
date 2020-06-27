@@ -11,7 +11,11 @@ class Items extends Component {
           <Card className="relatedAdzoom">
             <Row>
               <Col md={6}>
+                <div className='relatedAdImageContainer'>
+
                 <CardImg src={item_images[0].image} />
+                </div>
+
               </Col>
               <Col md={6}>
                 <CardHeader className="cardHeader">{title}</CardHeader>

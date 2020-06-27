@@ -137,7 +137,6 @@ class Header extends React.Component {
               </Form>
 
               <Popover
-                // className="popoverSearch"
                 placement="bottom-start"
                 onClick={this.toggleSearchCardPopover}
                 isOpen={this.state.isOpenSearchCardPopover}
@@ -146,31 +145,35 @@ class Header extends React.Component {
                 className="p-0 border-0"
                 target="Popover1"
               >
-                <PopoverBody className="p-4 border-secondary">
+                <div className="popoverSearch">
+                  <PopoverBody className="p-4 border-secondary">
                   <h4>Search Results for "{this.state.query}"</h4>
-                  <hr />
-                  <Row>
-                    {/* //Do your Search Result Mapping Here */}
-                    {this.props.items.map((item) => (
-                      <Col md={4} className="searchResultsHeader">
-                        <Link to={`/items/${item.itemId}`}>
-                          <Card className="flex-row">
-                            <div className="searchImgContainer">
-                              <CardImg src={item.item_images[0].image} />
+                    <hr />
+                    <Row>
+                      {/* //Do your Search Result Mapping Here */}
+                      {this.props.items.map((item) => (
+                        <Col md={4} className="searchResultsHeader">
+                          <Link to={`/items/${item.itemId}`}>
+                            <div className="zoom">
+                              <Card className="flex-row">
+                                <div className="searchImgContainer">
+                                  <CardImg src={item.item_images[0].image} />
+                                </div>
+
+                                <CardBody>
+                                  <CardTitle>{item.title}</CardTitle>
+                                  <CardText>{item.price}</CardText>
+                                </CardBody>
+                              </Card>
                             </div>
+                          </Link>
+                        </Col>
+                      ))}
 
-                            <CardBody>
-                              <CardTitle>{item.title}</CardTitle>
-                              <CardText>{item.price}</CardText>
-                            </CardBody>
-                          </Card>
-                        </Link>
-                      </Col>
-                    ))}
-
-                    {/* //Do your Search Result Mapping Here */}
-                  </Row>
-                </PopoverBody>
+                      {/* //Do your Search Result Mapping Here */}
+                    </Row>
+                  </PopoverBody>
+                </div>
               </Popover>
             </NavLink>
           </Nav>

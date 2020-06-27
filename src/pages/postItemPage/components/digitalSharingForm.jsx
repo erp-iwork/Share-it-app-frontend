@@ -48,7 +48,7 @@ class DigitalSharing extends Component {
               name="SharingType"
               onChange={this.handleChange}
             >
-              <option value=""> Type</option>
+              <option selected value="Selected"> Type</option>
               <option value="SubscriptionServices">
                 Subscription Services
               </option>

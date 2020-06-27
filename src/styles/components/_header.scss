@@ -24,7 +24,7 @@
 }
 
 .popover{
-  min-width: 100%;
+  min-width: 98%;
 }
 
 .searchImgContainer {
@@ -51,4 +51,9 @@
 
 .SearchPopover {
   margin-top: 30px;
+}
+
+.popoverSearch {
+  box-shadow:  7px 7px 7px darken($color: #d4d4d4, $amount: 5);;
+
 }

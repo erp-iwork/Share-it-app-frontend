@@ -38,7 +38,7 @@ class MainForm extends Component {
       }
     }
   };
-  
+
   // when the user types to change the value of the state accordingly
   handleChange = ({ currentTarget: input }) => {
     //to validate single input when we type
