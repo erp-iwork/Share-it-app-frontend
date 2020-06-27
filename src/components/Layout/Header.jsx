@@ -129,7 +129,7 @@ class Header extends React.Component {
 
           <NavItem>
             <NavLink id="Popover2">
-              {!this.props.currentUser && (
+              {this.props.currentUser && (
                 <>
                   <div onClick={this.toggleUserCardPopover}>
                     <Avatar className="can-click" />
@@ -230,11 +230,11 @@ class Header extends React.Component {
                   </div>
                 </>
               )}
-              {/* {!this.props.currentUser && (
+              {!this.props.currentUser && (
                 <Link to={{ pathname: "/login" }}>
                   <Button>Login</Button>
                 </Link>
-              )} */}
+              )}
             </NavLink>
           </NavItem>
         </Nav>
