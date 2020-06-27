@@ -95,7 +95,7 @@ class NestedForm extends Component {
     if (input.name === "category_id") {
       data.properties = {};
       let selectedCategory = this.props.categories.find(
-        (catagory) => catagory.id == input.value
+        (catagory) => catagory.id === input.value
       );
       this.setState({ selectedCategory });
     } //reset properties TODO

@@ -38,6 +38,7 @@ class MainForm extends Component {
       }
     }
   };
+  
   // when the user types to change the value of the state accordingly
   handleChange = ({ currentTarget: input }) => {
     //to validate single input when we type
@@ -54,7 +55,7 @@ class MainForm extends Component {
     event.preventDefault();
     const errors = this.validate();
     console.log(errors);
-    this.setState({ errors: errors || {} }); //if trusy errors eles empty object
+    this.setState({ errors: errors || {} }); //if trusy errors else empty object
     if (errors) return;
     this.doSubmit();
   };
@@ -62,7 +63,7 @@ class MainForm extends Component {
   renderButton(label) {
     return (
       <FormGroup align="center" md={12}>
-        <Button block outline disabled={this.validate() || this.props.loading}>
+        <Button outline disabled={this.validate() || this.props.loading}>
           {this.props.loading ? <LoadingSpinner /> : label}
         </Button>
       </FormGroup>

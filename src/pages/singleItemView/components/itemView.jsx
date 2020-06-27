@@ -65,7 +65,7 @@ class ItemViewComp extends Component {
       description,
       condition,
       is_available,
-      location,
+      // location,
       properties,
     } = this.props.selectedItem;
     return (
