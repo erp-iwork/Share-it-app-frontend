@@ -62,7 +62,6 @@ class PostItemForm extends NestedForm {
         longitude: position.coords.longitude,
       });
     });
-
     this.props.loadCategories();
     this.setState({ data });
   }
@@ -76,7 +75,7 @@ class PostItemForm extends NestedForm {
     data.is_donating = data.is_donating === "true" ? true : false; //todo refactor
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
-    data.owner_id = this.props.currentUser.id;
+    data.owner_id = JSON.parse(this.props.currentUser).id;
     const pictures = [...this.state.pictures];
     const formData = new FormData();
     for (const key in pictures) {

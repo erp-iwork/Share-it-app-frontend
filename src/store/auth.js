@@ -81,5 +81,5 @@ export const getStatus = createSelector(
 //Selectors
 export const getCurrentUser = createSelector(
   (state) => state.auth,
-  (auth) => JSON.parse(auth.currentUser)
+  (auth) => auth.currentUser
 );
