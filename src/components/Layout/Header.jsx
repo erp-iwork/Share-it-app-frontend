@@ -148,16 +148,18 @@ class Header extends React.Component {
                     {/* //Do your Search Result Mapping Here */}
                     {this.props.items.map((item) => (
                       <Col md={4} className="searchResultsHeader">
-                        <Card className="flex-row">
-                          <div className="searchImgContainer">
-                            <CardImg src={Mercedes1} />
-                          </div>
+                        <Link to={`/items/${item.itemId}`}>
+                          <Card className="flex-row">
+                            <div className="searchImgContainer">
+                              <CardImg src={item.item_images[0].image} />
+                            </div>
 
-                          <CardBody>
-                            <CardTitle>{item.title}</CardTitle>
-                            <CardText>{item.price}</CardText>
-                          </CardBody>
-                        </Card>
+                            <CardBody>
+                              <CardTitle>{item.title}</CardTitle>
+                              <CardText>{item.price}</CardText>
+                            </CardBody>
+                          </Card>
+                        </Link>
                       </Col>
                     ))}
 
