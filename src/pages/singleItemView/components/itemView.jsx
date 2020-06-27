@@ -180,12 +180,12 @@ class ItemViewComp extends Component {
                       </Col>
                     ))
                   : null}
-                <Col md={6}>
+                {/* <Col md={6}>
                   <div>
                     <i>location</i>
                   </div>{" "}
                   <b>{location}</b>
-                </Col>
+                </Col> */}
               </Row>
               <div className="singlePadding">
                 <div>

@@ -6,7 +6,7 @@ class NestedForm extends Component {
   state = {
     data: {},
   };
-  
+
   serviceType = ["Tutor", "Cleaner", "Personal Driver"];
   digitalServiceType = ["Subscription Service", "Season Tickets"];
   sharingType = ["serviceType", "digitalServiceType"];
@@ -92,7 +92,13 @@ class NestedForm extends Component {
   // when the user types to change the value of the state accordingly
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
-    if (input.name === "category_id") data.properties = {}; //reset properties TODO
+    if (input.name === "category_id") {
+      data.properties = {};
+      let selectedCategory = this.props.categories.find(
+        (catagory) => catagory.id == input.value
+      );
+      this.setState({ selectedCategory });
+    } //reset properties TODO
     data[input.name] = input.value; //dynamically access .. property
     this.setState({ data });
   };

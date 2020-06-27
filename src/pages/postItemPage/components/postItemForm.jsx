@@ -27,9 +27,10 @@ class PostItemForm extends NestedForm {
     super(props);
     this.state = {
       data: {
-        owner_id: this.props.currentUser.id,
+        owner_id: "",
         title: "",
-        location: "",
+        location: {},
+        zip_code: "",
         price: "",
         description: "",
         termsAndConditions: "",
@@ -39,7 +40,7 @@ class PostItemForm extends NestedForm {
         is_donating: false,
       },
       pictures: [],
-      categories: this.props.categories,
+      selectedCategory: { id: "", category: "" },
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -55,7 +56,16 @@ class PostItemForm extends NestedForm {
     },
   ];
   componentDidMount() {
+    const data = { ...this.state.data };
+    navigator.geolocation.getCurrentPosition(function (position) {
+      data.location = JSON.stringify({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    });
+
     this.props.loadCategories();
+    this.setState({ data });
   }
   onDrop(picture) {
     this.setState({
@@ -64,9 +74,10 @@ class PostItemForm extends NestedForm {
   }
   doSubmit = () => {
     const data = { ...this.state.data };
-    data.is_donating = data.is_donating === "true" ? true : false;
+    data.is_donating = data.is_donating === "true" ? true : false; //todo refactor
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
+    data.owner_id = this.props.currentUser.id;
     const pictures = [...this.state.pictures];
     const formData = new FormData();
     for (const key in pictures) {
@@ -78,7 +89,10 @@ class PostItemForm extends NestedForm {
     this.props.addItem(formData);
   };
   render() {
-    const { category_id, properties } = this.state.data;
+    const { properties } = this.state.data;
+    const {
+      selectedCategory: { category },
+    } = this.state;
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
@@ -120,13 +134,13 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("title", "Name", "Name")}
                         </Col>
                         <Col xs={12} md={4}>
-                          {this.renderInput("location", "Location", "Location")}
+                          {this.renderInput("zip_code", "Zip code", "zip code")}
                         </Col>
                         <Col xs={12} md={4}>
                           {this.renderInput("price", "Price", "Price")}
                         </Col>
 
-                        {category_id === "2" ? (
+                        {category === "Product" ? (
                           <>
                             <Col xs={12} md={12}>
                               {this.renderInput(
@@ -137,7 +151,7 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category_id === "1" ? (
+                        {category === "Service" ? (
                           <>
                             <Col xs={12} md={12}>
                               {this.renderCustomSelect(
@@ -353,7 +367,7 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category_id === "3" ? (
+                        {category === "Digital" ? (
                           <Col xs={12} md={12}>
                             {this.renderCustomSelect(
                               "digitalServiceType",
