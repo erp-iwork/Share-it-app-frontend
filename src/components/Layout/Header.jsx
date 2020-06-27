@@ -133,9 +133,11 @@ class Header extends React.Component {
                   target="Popover1"
                 >
                   <PopoverBody className="p-2 border-light">
+                    <h4>Search Results for ""</h4>
+                    <hr />
                     <Row>
                       {/* //Do your Search Result Mapping Here */}
-                      <Col md={4} className='searchResultsHeader'>
+                      <Col md={4} className="searchResultsHeader">
                         <Card className="flex-row">
                           <div className="searchImgContainer">
                             <CardImg src={Mercedes1} />
