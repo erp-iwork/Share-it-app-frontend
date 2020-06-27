@@ -77,7 +77,6 @@ class NestedForm extends Component {
   ];
 
   handlePropertyChange = ({ currentTarget: input }) => {
-    console.log(input.name, input.value);
     const data = { ...this.state.data };
     if (input.name === ("serviceType" || "digitalServiceType")) {
       data.properties = {};
@@ -94,10 +93,6 @@ class NestedForm extends Component {
     const data = { ...this.state.data };
     if (input.name === "category_id") {
       data.properties = {};
-      let selectedCategory = this.props.categories.find(
-        (catagory) => catagory.id === input.value
-      );
-      this.setState({ selectedCategory });
     } //reset properties TODO
     data[input.name] = input.value; //dynamically access .. property
     this.setState({ data });

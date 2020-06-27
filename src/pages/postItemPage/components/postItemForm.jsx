@@ -40,7 +40,6 @@ class PostItemForm extends NestedForm {
         is_donating: false,
       },
       pictures: [],
-      selectedCategory: { id: "", category: "" },
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -89,10 +88,10 @@ class PostItemForm extends NestedForm {
     this.props.addItem(formData);
   };
   render() {
-    const { properties } = this.state.data;
-    const {
-      selectedCategory: { category },
-    } = this.state;
+    const { properties, category_id } = this.state.data;
+    const category = this.props.categories.find(
+      (catagory) => catagory.id == category_id
+    );
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
@@ -140,7 +139,7 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("price", "Price", "Price")}
                         </Col>
 
-                        {category === "Product" ? (
+                        {category && category.category === "Product" ? (
                           <>
                             <Col xs={12} md={12}>
                               {this.renderInput(
@@ -151,7 +150,7 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category === "Service" ? (
+                        {category && category.category === "Service" ? (
                           <>
                             <Col xs={12} md={12}>
                               {this.renderCustomSelect(
@@ -367,7 +366,7 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category === "Digital" ? (
+                        {category && category.category === "Digital" ? (
                           <Col xs={12} md={12}>
                             {this.renderCustomSelect(
                               "digitalServiceType",

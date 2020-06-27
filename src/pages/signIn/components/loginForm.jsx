@@ -13,7 +13,12 @@ import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
 import { connect } from "react-redux";
-import { loginUser, getStatus, getLoading, resetErrors } from "../../../store/auth";
+import {
+  loginUser,
+  getStatus,
+  getLoading,
+  resetErrors,
+} from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
 import { Link, Redirect } from "react-router-dom";
 import routes from "../../../config/routes";
@@ -31,9 +36,8 @@ class LoginFormPage extends MainForm {
     };
   }
   componentWillMount() {
-    this.props.resetErrors()
+    this.props.resetErrors();
   }
-  
 
   doSubmit = () => {
     this.props.loginUser(this.state.data);
@@ -91,7 +95,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (userInfo) => dispatch(loginUser(userInfo)),
-  resetErrors:()=>dispatch(resetErrors())
+  resetErrors: () => dispatch(resetErrors()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginFormPage);
