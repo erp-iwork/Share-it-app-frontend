@@ -32,6 +32,8 @@
   height: 150px;
   background-color: #ffffff;
   object-fit:cover;
+	z-index: !important;
+
 }
 
 .searchImgContainer img {
@@ -43,7 +45,6 @@
   object-fit:cover;
 
 }
-
 .searchResultsHeader {
   margin-bottom: 10px;
 }
