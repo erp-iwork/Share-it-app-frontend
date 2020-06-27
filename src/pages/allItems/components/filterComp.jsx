@@ -78,7 +78,7 @@ class FilterComponent extends Component {
               <Col md={10}>
                 <Slider defaultValue={10} />
               </Col>
-              <Col md={2}>KM</Col>
+              <Col md={2}>Miles</Col>
             </Row>
 
             <hr />
