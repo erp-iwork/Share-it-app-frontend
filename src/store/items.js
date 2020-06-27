@@ -12,8 +12,10 @@ const slice = createSlice({
     lastFetch: null,
     selectedItem: {},
     filterOptions: "",
+    searchQuery: "",
     errors: null,
     status: "initial",
+    searchedItems: [],
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -57,6 +59,11 @@ const slice = createSlice({
     itemFiltered: (items, action) => {
       items.filterOptions = action.payload;
     },
+    itemSearched: (items, action) => {
+      items.searchedItems = action.payload;
+      items.loading = false;
+      items.errors = null;
+    },
   },
 });
 
@@ -69,6 +76,7 @@ const {
   itemUpdated,
   itemRemoved,
   itemFiltered,
+  itemSearched,
 } = slice.actions;
 export default slice.reducer;
 
@@ -123,8 +131,16 @@ export const removeItem = (id) =>
     onSuccess: itemRemoved.type,
   });
 
+export const filter = (options) => itemFiltered(options);
+export const search = (query) =>
+  apiCallBegan({
+    url: "/items?search=" + query,
+    onSuccess: itemSearched,
+    onStart: itemsRequested.type,
+    onError: itemsRequestFailed.type,
+  });
+
 //Selectors
-export const search = (options) => itemFiltered(options);
 
 export const getItems = createSelector(
   (state) => state.entities.items,
@@ -181,4 +197,9 @@ export const getErrors = createSelector(
 export const getStatus = createSelector(
   (state) => state.entities.items.status,
   (status) => status
+);
+
+export const getSearchedItems = createSelector(
+  (state) => state.entities.items.searchedItems,
+  (items) => items
 );

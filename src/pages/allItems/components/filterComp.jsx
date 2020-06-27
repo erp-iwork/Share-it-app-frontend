@@ -3,7 +3,7 @@ import { Col, Row, Button, CardHeader, Input, Label } from "reactstrap";
 import { Slider } from "antd";
 // import Items from "../../../components/items-Home";
 // import Items from "../../homePage/components/items";
-import { search } from "../../../store/items";
+import { filter } from "../../../store/items";
 import { connect } from "react-redux";
 
 class FilterComponent extends Component {
@@ -140,7 +140,7 @@ class FilterComponent extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(search(query)),
+  search: (option) => dispatch(filter(option)),
 });
 
 export default connect(null, mapDispatchToProps)(FilterComponent);

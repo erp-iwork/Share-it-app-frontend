@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import PageSpinner from "../../components/PageSpinner";
 import { getLoading } from "../../store/items";
 
-
 class SingleItemViewPage extends Component {
   componentDidMount() {
     const itemId = this.props.match.params.id;
@@ -15,6 +14,8 @@ class SingleItemViewPage extends Component {
   }
 
   render() {
+    if (this.props.selectedItem.itemId !== this.props.match.params.id)
+      this.props.getItemById(this.props.match.params.id);
     return (
       <Col>
         {this.props.loading && <PageSpinner />}

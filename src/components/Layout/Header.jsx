@@ -1,7 +1,5 @@
 import Avatar from "../Avatar";
 import { MdSearch } from "react-icons/md";
-// import { Form, Input } from "reactstrap";
-import { Mercedes1 } from "../../assets/demoImages";
 
 import React from "react";
 import { connect } from "react-redux";
@@ -38,14 +36,11 @@ import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
-import { getCurrentUser } from "../../store/auth";
 import { UserCard } from "../Card";
 import routes from "../../config/routes";
-// import authService from "../../services/authService";
-import { search, getFilteredItems } from "../../store/items";
-
-// const user = authService.getUser();
-
+import PageSpinner from "../../components/PageSpinner";
+import { getCurrentUser } from "../../store/auth";
+import { getSearchedItems, search, getLoading } from "../../store/items";
 const bem = bn.create("header");
 
 class Header extends React.Component {
@@ -53,10 +48,17 @@ class Header extends React.Component {
     isOpenUserCardPopover: false,
     isOpenSearchCardPopover: false,
     query: "",
+    focused: false,
   };
   logout = () => {
     localStorage.clear();
     window.location = routes.homePage;
+  };
+  onFocus = () => {
+    this.setState({ focused: true });
+  };
+  onBlur = () => {
+    this.setState({ focused: false });
   };
 
   toggleUserCardPopover = () => {
@@ -67,9 +69,9 @@ class Header extends React.Component {
   };
 
   toggleSearchCardPopover = (evt) => {
-    this.props.search({ query: evt.target.value });
+    this.props.search(evt.target.value);
     this.setState({
-      isOpenSearchCardPopover: !this.state.isOpenSearchCardPopover,
+      isOpenSearchCardPopover: this.state.focused,
       isOpenUserCardPopover: false,
       query: evt.target.value,
     });
@@ -128,7 +130,10 @@ class Header extends React.Component {
                   placeholder="Search ..."
                   value={this.state.query}
                   onChange={this.toggleSearchCardPopover}
+                  onFocus={this.onFocus}
+                  onBlur={this.onBlur}
                 />
+                {this.props.loading && this.state.query && <PageSpinner />}
               </Form>
 
               <Popover
@@ -142,7 +147,7 @@ class Header extends React.Component {
                 target="Popover1"
               >
                 <PopoverBody className="p-4 border-secondary">
-                  <h4>Search Results for ""</h4>
+                  <h4>Search Results for "{this.state.query}"</h4>
                   <hr />
                   <Row>
                     {/* //Do your Search Result Mapping Here */}
@@ -323,7 +328,8 @@ class Header extends React.Component {
 }
 const mapStateToProps = (state) => ({
   currentUser: getCurrentUser(state),
-  items: getFilteredItems(state),
+  items: getSearchedItems(state),
+  loading: getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
