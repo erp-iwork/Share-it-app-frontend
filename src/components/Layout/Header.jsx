@@ -95,7 +95,7 @@ class Header extends React.Component {
 
     const { isNotificationConfirmed } = this.state;
     return (
-      <div id="Popover1">
+      <div>
         <Navbar fixed="top" light expand className={bem.b("bg-white")}>
           <Nav navbar>
             <img className="App-logo" alt="" src={Logo} />
@@ -120,10 +120,11 @@ class Header extends React.Component {
                   <Input
                     type="search"
                     className="cr-search-form__input"
-                    placeholder="Search..."
+                    placeholder="Search ..."
                     onChange={this.toggleSearchCardPopover}
                   />
                 </Form>
+
                 <Popover
                   className="popover"
                   placement="bottom-start"
