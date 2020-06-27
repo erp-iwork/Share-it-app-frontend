@@ -21,6 +21,8 @@ import {
   resetErrors,
 } from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
+import { getUser } from "../../../services/authService";
+import { Redirect } from "react-router-dom";
 
 class RegistrationFormPage extends MainForm {
   state = {
@@ -75,6 +77,7 @@ class RegistrationFormPage extends MainForm {
 
   render() {
     if (this.props.status === "success") window.location = "/";
+    if (getUser()) return <Redirect to="/" />;
     return (
       <Col md={12}>
         <Card>
