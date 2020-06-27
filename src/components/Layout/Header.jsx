@@ -137,11 +137,12 @@ class Header extends React.Component {
                 onClick={this.toggleSearchCardPopover}
                 isOpen={this.state.isOpenSearchCardPopover}
                 toggle={this.toggleSearchCardPopover}
-                onClic={this.toggleSearchCardPopover}
+                onClick={this.toggleSearchCardPopover}
+                className="p-0 border-0"
                 target="Popover1"
               >
-                <PopoverBody className="p-2 border-light">
-                  <h6>Search Results for ""</h6>
+                <PopoverBody className="p-4 border-secondary">
+                  <h4>Search Results for ""</h4>
                   <hr />
                   <Row>
                     {/* //Do your Search Result Mapping Here */}
