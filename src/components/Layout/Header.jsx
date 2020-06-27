@@ -42,6 +42,7 @@ import { getCurrentUser } from "../../store/auth";
 import { UserCard } from "../Card";
 import routes from "../../config/routes";
 // import authService from "../../services/authService";
+import { search, getFilteredItems } from "../../store/items";
 
 // const user = authService.getUser();
 
@@ -51,6 +52,7 @@ class Header extends React.Component {
   state = {
     isOpenUserCardPopover: false,
     isOpenSearchCardPopover: false,
+    query: "",
   };
   logout = () => {
     localStorage.clear();
@@ -64,10 +66,12 @@ class Header extends React.Component {
     });
   };
 
-  toggleSearchCardPopover = () => {
+  toggleSearchCardPopover = (evt) => {
+    this.props.search({ query: evt.target.value });
     this.setState({
       isOpenSearchCardPopover: !this.state.isOpenSearchCardPopover,
       isOpenUserCardPopover: false,
+      query: evt.target.value,
     });
   };
 
@@ -119,9 +123,10 @@ class Header extends React.Component {
                   className="cr-search-form__icon-search text-secondary"
                 />
                 <Input
-                  type="search"
+                  type="text"
                   className="cr-search-form__input"
                   placeholder="Search ..."
+                  value={this.state.query}
                   onChange={this.toggleSearchCardPopover}
                 />
               </Form>
@@ -134,74 +139,27 @@ class Header extends React.Component {
                 toggle={this.toggleSearchCardPopover}
                 onClic={this.toggleSearchCardPopover}
                 target="Popover1"
-                
-
               >
                 <PopoverBody className="p-2 border-light">
-                  <h4>Search Results for ""</h4>
+                  <h6>Search Results for ""</h6>
                   <hr />
                   <Row>
                     {/* //Do your Search Result Mapping Here */}
-                    <Col md={4} className="searchResultsHeader">
-                      <Card className="flex-row">
-                        <div className="searchImgContainer">
-                          <CardImg src={Mercedes1} />
-                        </div>
+                    {this.props.items.map((item) => (
+                      <Col md={4} className="searchResultsHeader">
+                        <Card className="flex-row">
+                          <div className="searchImgContainer">
+                            <CardImg src={Mercedes1} />
+                          </div>
 
-                        <CardBody>
-                          <CardTitle>Title Goes Here</CardTitle>
-                          <CardText>Price</CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col md={4}>
-                      <Card className="flex-row">
-                        <div className="searchImgContainer">
-                          <CardImg src={Mercedes1} />
-                        </div>
+                          <CardBody>
+                            <CardTitle>{item.title}</CardTitle>
+                            <CardText>{item.price}</CardText>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    ))}
 
-                        <CardBody>
-                          <CardTitle>Title Goes Here</CardTitle>
-                          <CardText>Price</CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col md={4}>
-                      <Card className="flex-row">
-                        <div className="searchImgContainer">
-                          <CardImg src={Mercedes1} />
-                        </div>
-
-                        <CardBody>
-                          <CardTitle>Title Goes Here</CardTitle>
-                          <CardText>Price</CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col md={4}>
-                      <Card className="flex-row">
-                        <div className="searchImgContainer">
-                          <CardImg src={Mercedes1} />
-                        </div>
-
-                        <CardBody>
-                          <CardTitle>Title Goes Here</CardTitle>
-                          <CardText>Price</CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col md={4}>
-                      <Card className="flex-row">
-                        <div className="searchImgContainer">
-                          <CardImg src={Mercedes1} />
-                        </div>
-
-                        <CardBody>
-                          <CardTitle>Title Goes Here</CardTitle>
-                          <CardText>Price</CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
                     {/* //Do your Search Result Mapping Here */}
                   </Row>
                 </PopoverBody>
@@ -362,6 +320,11 @@ class Header extends React.Component {
 }
 const mapStateToProps = (state) => ({
   currentUser: getCurrentUser(state),
+  items: getFilteredItems(state),
 });
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = (dispatch) => ({
+  search: (query) => dispatch(search(query)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

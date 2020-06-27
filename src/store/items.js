@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
 import moment from "moment";
+import _ from "lodash";
 
 const slice = createSlice({
   name: "items",
@@ -154,11 +155,20 @@ export const getLoading = createSelector(
 export const getFilteredItems = createSelector(
   (state) => state.entities.items,
   (items) => {
-    if (items.filterOptions.from && items.filterOptions.to) {
+    if (
+      _.has(items.filterOptions, "from") &&
+      _.has(items.filterOptions, "to")
+    ) {
       const { from, to } = items.filterOptions;
       return items.list.filter(
         (item) => item.price >= from && item.price <= to
       );
+    } else return items.list;
+  },
+  (items) => {
+    if (_.has(items.filterOptions, "query")) {
+      const { query } = items.filterOptions;
+      return items.list.filter((item) => item.title.startsWith(query));
     } else return items.list;
   }
 );
