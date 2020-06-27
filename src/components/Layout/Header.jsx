@@ -92,30 +92,16 @@ class Header extends React.Component {
         ) : null}
 
         <Nav navbar className={bem.e("nav-right")}>
-          {this.props.currentUser ? (
-            <NavItem>
-              <Link to={{ pathname: routes.postItem }}>
-                <NavLink>
-                  <Button>
-                    {" "}
-                    <MdExitToApp /> Share
-                  </Button>
-                </NavLink>
-              </Link>
-            </NavItem>
-          ) : (
-            <NavItem>
-              <Link to={{ pathname: "/login" }}>
-                <NavLink>
-                  <Button>
-                    {" "}
-                    <MdExitToApp /> Share
-                  </Button>
-                </NavLink>
-              </Link>
-            </NavItem>
-          )}
-
+          <NavItem>
+            <Link to={{ pathname: routes.postItem }}>
+              <NavLink>
+                <Button>
+                  {" "}
+                  <MdExitToApp /> Share
+                </Button>
+              </NavLink>
+            </Link>
+          </NavItem>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
               {isNotificationConfirmed ? null : (

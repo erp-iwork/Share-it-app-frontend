@@ -22,6 +22,7 @@ import {
 import MainForm from "../../../components/MainForm";
 import { Link, Redirect } from "react-router-dom";
 import routes from "../../../config/routes";
+import { getUser } from "../../../services/authService";
 
 class LoginFormPage extends MainForm {
   constructor(props) {
@@ -44,8 +45,14 @@ class LoginFormPage extends MainForm {
   };
 
   render() {
-    if (this.props.status === "success")
-      return <Redirect to={routes.homePage} />;
+    if (this.props.status === "success") {
+      return (
+        <Redirect
+          to={this.props.from ? this.props.from.pathname : routes.homePage}
+        />
+      );
+    }
+    if (getUser()) return <Redirect to="/" />;
     return (
       <Col md={12}>
         <Card>

@@ -14,6 +14,7 @@ import RegistrationPage from "./pages/registration";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import routes from "./config/routes";
+import ProtectedRoute from "./components/protectedRoute";
 
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
@@ -72,7 +73,7 @@ class App extends React.Component {
                       path={routes.categories}
                       component={CategoriesPage}
                     />
-                    <Route
+                    <ProtectedRoute
                       exact
                       path={routes.postItem}
                       component={PostItemPage}
