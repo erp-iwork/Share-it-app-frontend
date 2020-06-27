@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col } from "reactstrap";
-import { BuyHistory, Header, SellHistory } from "./components";
+import { BuyHistory, Header } from "./components";
 
 class BuyAndSellHistory extends Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class BuyAndSellHistory extends Component {
       <Col>
         <Header />
         <BuyHistory />
-        <SellHistory />
       </Col>
     );
   }
