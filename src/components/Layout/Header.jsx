@@ -134,6 +134,7 @@ class Header extends React.Component {
                 toggle={this.toggleSearchCardPopover}
                 onClic={this.toggleSearchCardPopover}
                 target="Popover1"
+                
 
               >
                 <PopoverBody className="p-2 border-light">
