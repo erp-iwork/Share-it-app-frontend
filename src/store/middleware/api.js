@@ -1,11 +1,12 @@
 import axios from "axios";
 import * as actions from "../api";
 import { toast } from "react-toastify";
+import { getToken } from "../../services/authService";
 //TODO
 //config file
+const token = getToken();
 const baseURL = "http://0.0.0.0:9000/api/v1";
-axios.defaults.headers.common["Authorization"] =
-  "Token e7fe44f2ac8f57a342b861cca39229314e7b0343";
+if (token) axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
