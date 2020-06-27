@@ -39,7 +39,6 @@ class FilterComponent extends Component {
               </Col>
               <Col>
                 <Label>Category</Label>
-
                 <Input type="select">
                   <option>Product Sharing</option>
                   <option>Service Sharing</option>
@@ -48,13 +47,9 @@ class FilterComponent extends Component {
               </Col>
             </Row>
             <hr />
-            <Label>Location</Label>
+            <Label>Sub-Category</Label>
             <Input type="select">
-              <option>Hello</option>
-              <option>Hello</option>
-              <option>Hello</option>
-              <option>Hello</option>
-              <option>Hello</option>
+              <option>this will be mapped based on the category list</option>
             </Input>
             <hr />
             <Label>Price</Label>
@@ -83,7 +78,7 @@ class FilterComponent extends Component {
               <Col md={10}>
                 <Slider defaultValue={10} />
               </Col>
-              <Col md={2}>KM</Col>
+              <Col md={2}>Miles</Col>
             </Row>
 
             <hr />

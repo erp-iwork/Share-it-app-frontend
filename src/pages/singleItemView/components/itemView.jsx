@@ -91,7 +91,9 @@ class ItemViewComp extends Component {
             </Button>
           </ModalFooter>
         </Modal>
-        <CardHeader>Mercedes Benz C-200</CardHeader>
+        <CardHeader>
+          <b>{title}</b>
+        </CardHeader>
 
         <CardBody>
           <Row>
@@ -120,13 +122,11 @@ class ItemViewComp extends Component {
               </Carousel>
             </Col>
             <Col md={4}>
-              <CardHeader className="singlePadding">
-                Product Information
-              </CardHeader>
+              <hr />
               <Row>
                 <Col md={6} className="singlePadding">
                   <div>
-                    <i>Product Name</i>
+                    <i>Name</i>
                   </div>
                   <b>{title}</b>
                 </Col>
@@ -142,7 +142,7 @@ class ItemViewComp extends Component {
                   <div>
                     <i>Availability</i>
                   </div>
-                  <b>{is_available ? "Available" : "Not Available"}</b>
+                  <b>{is_available ? "Not Available" : "Available"}</b>
                 </Col>
                 <Col md={6}>
                   <div>
@@ -172,7 +172,7 @@ class ItemViewComp extends Component {
               <Row className="singlePadding">
                 {properties
                   ? Object.keys(properties).map((key) => (
-                      <Col md={6} key={key}>
+                      <Col md={6} key={key} className="singleItemViewBody">
                         <div>
                           <i>{properties[key].label}</i>
                         </div>

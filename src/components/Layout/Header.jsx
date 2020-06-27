@@ -1,5 +1,8 @@
 import Avatar from "../Avatar";
-import SearchInput from "../SearchInput";
+import { MdSearch } from "react-icons/md";
+// import { Form, Input } from "reactstrap";
+import { Mercedes1 } from "../../assets/demoImages";
+
 import React from "react";
 import { connect } from "react-redux";
 import {
@@ -10,8 +13,17 @@ import {
   Popover,
   PopoverBody,
   ListGroup,
-  Button,
   ListGroupItem,
+  Form,
+  Input,
+  CardImg,
+  Row,
+  Col,
+  Button,
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
 } from "reactstrap";
 import {
   MdExitToApp,
@@ -38,6 +50,7 @@ const bem = bn.create("header");
 class Header extends React.Component {
   state = {
     isOpenUserCardPopover: false,
+    isOpenSearchCardPopover: false,
   };
   logout = () => {
     localStorage.clear();
@@ -47,6 +60,12 @@ class Header extends React.Component {
   toggleUserCardPopover = () => {
     this.setState({
       isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
+    });
+  };
+
+  toggleSearchCardPopover = () => {
+    this.setState({
+      isOpenSearchCardPopover: !this.state.isOpenSearchCardPopover,
     });
   };
 
@@ -76,155 +95,252 @@ class Header extends React.Component {
 
     const { isNotificationConfirmed } = this.state;
     return (
-      <Navbar fixed="top" light expand className={bem.b("bg-white")}>
-        <Nav navbar>
-          <img className="App-logo" alt="" src={Logo} />
-        </Nav>
-        <Nav navbar>
-          <Link to={{ pathname: routes.homePage }}>
-            <img className="App-logo2" alt="" src={SharreIt} />
-          </Link>
-        </Nav>
-        {isDesktop ? (
+      <div id="Popover1">
+        <Navbar fixed="top" light expand className={bem.b("bg-white")}>
           <Nav navbar>
-            <SearchInput />
+            <img className="App-logo" alt="" src={Logo} />
           </Nav>
-        ) : null}
-
-        <Nav navbar className={bem.e("nav-right")}>
-          <NavItem>
-            <Link to={{ pathname: routes.postItem }}>
-              <NavLink>
-                <Button>
-                  {" "}
-                  <MdExitToApp /> Share
-                </Button>
-              </NavLink>
+          <Nav navbar>
+            <Link to={{ pathname: routes.homePage }}>
+              <img className="App-logo2" alt="" src={SharreIt} />
             </Link>
-          </NavItem>
-          <NavItem className="d-inline-flex">
-            <NavLink id="Popover1" className="position-relative">
-              {isNotificationConfirmed ? null : (
-                <MdNotificationsNone
-                  size={25}
-                  className="text-secondary can-click"
-                />
-              )}
-            </NavLink>
-          </NavItem>
+          </Nav>
+          {isDesktop ? (
+            <Nav>
+              <NavLink id="Popover1">
+                <Form
+                  inline
+                  className="cr-search-form"
+                  onSubmit={(e) => e.preventDefault()}
+                >
+                  <MdSearch
+                    size="20"
+                    className="cr-search-form__icon-search text-secondary"
+                  />
+                  <Input
+                    type="search"
+                    className="cr-search-form__input"
+                    placeholder="Search..."
+                    onChange={this.toggleSearchCardPopover}
+                  />
+                </Form>
+                <Popover
+                  className="popover"
+                  placement="bottom-start"
+                  onClick={this.toggleSearchCardPopover}
+                  isOpen={this.state.isOpenSearchCardPopover}
+                  toggle={this.toggleSearchCardPopover}
+                  target="Popover1"
+                >
+                  <PopoverBody className="p-2 border-light">
+                    <h4>Search Results for ""</h4>
+                    <hr />
+                    <Row>
+                      {/* //Do your Search Result Mapping Here */}
+                      <Col md={4} className="searchResultsHeader">
+                        <Card className="flex-row">
+                          <div className="searchImgContainer">
+                            <CardImg src={Mercedes1} />
+                          </div>
 
-          <NavItem>
-            <NavLink id="Popover2">
-              {this.props.currentUser && (
-                <>
-                  <div onClick={this.toggleUserCardPopover}>
-                    <Avatar className="can-click" />
-                    <Popover
-                      onClick={this.toggleUserCardPopover}
-                      placement="bottom-end"
-                      isOpen={this.state.isOpenUserCardPopover}
-                      toggle={this.toggleUserCardPopover}
-                      target="Popover2"
-                      className="p-0 border-0"
-                      style={{ minWidth: 250 }}
-                    >
-                      <PopoverBody className="p-0 border-light">
-                        <UserCard
-                          title={
-                            this.props.currentUser
-                              ? this.props.currentUser.name
-                              : "User Name"
-                          }
-                          subtitle={
-                            this.props.currentUser
-                              ? this.props.currentUser.email
-                              : "User Email"
-                          }
-                          text={
-                            this.props.currentUser
-                              ? this.props.currentUser.location
-                              : "User Location"
-                          }
-                          className="border-light"
-                        >
-                          <ListGroup flush>
-                            <Link to={{ pathname: routes.profile }}>
+                          <CardBody>
+                            <CardTitle>Title Goes Here</CardTitle>
+                            <CardText>Price</CardText>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                      <Col md={4}>
+                        <Card className="flex-row">
+                          <div className="searchImgContainer">
+                            <CardImg src={Mercedes1} />
+                          </div>
+
+                          <CardBody>
+                            <CardTitle>Title Goes Here</CardTitle>
+                            <CardText>Price</CardText>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                      <Col md={4}>
+                        <Card className="flex-row">
+                          <div className="searchImgContainer">
+                            <CardImg src={Mercedes1} />
+                          </div>
+
+                          <CardBody>
+                            <CardTitle>Title Goes Here</CardTitle>
+                            <CardText>Price</CardText>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                      <Col md={4}>
+                        <Card className="flex-row">
+                          <div className="searchImgContainer">
+                            <CardImg src={Mercedes1} />
+                          </div>
+
+                          <CardBody>
+                            <CardTitle>Title Goes Here</CardTitle>
+                            <CardText>Price</CardText>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                      <Col md={4}>
+                        <Card className="flex-row">
+                          <div className="searchImgContainer">
+                            <CardImg src={Mercedes1} />
+                          </div>
+
+                          <CardBody>
+                            <CardTitle>Title Goes Here</CardTitle>
+                            <CardText>Price</CardText>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                      {/* //Do your Search Result Mapping Here */}
+                    </Row>
+                  </PopoverBody>
+                </Popover>
+              </NavLink>
+            </Nav>
+          ) : null}
+
+          <Nav navbar className={bem.e("nav-right")}>
+            <NavItem>
+              <Link to={{ pathname: routes.postItem }}>
+                <NavLink>
+                  <Button>
+                    {" "}
+                    <MdExitToApp /> Share
+                  </Button>
+                </NavLink>
+              </Link>
+            </NavItem>
+
+            <NavItem className="d-inline-flex">
+              <NavLink className="position-relative">
+                {isNotificationConfirmed ? null : (
+                  <MdNotificationsNone
+                    size={25}
+                    className="text-secondary can-click"
+                  />
+                )}
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink id="Popover2">
+                {this.props.currentUser && (
+                  <>
+                    <div onClick={this.toggleUserCardPopover}>
+                      <Avatar className="can-click" />
+                      <Popover
+                        onClick={this.toggleUserCardPopover}
+                        placement="bottom-end"
+                        isOpen={this.state.isOpenUserCardPopover}
+                        toggle={this.toggleUserCardPopover}
+                        target="Popover2"
+                        className="p-0 border-0"
+                        style={{ minWidth: 250 }}
+                      >
+                        <PopoverBody className="p-0 border-light">
+                          <UserCard
+                            title={
+                              this.props.currentUser
+                                ? this.props.currentUser.name
+                                : "User Name"
+                            }
+                            subtitle={
+                              this.props.currentUser
+                                ? this.props.currentUser.email
+                                : "User Email"
+                            }
+                            text={
+                              this.props.currentUser
+                                ? this.props.currentUser.location
+                                : "User Location"
+                            }
+                            className="border-light"
+                          >
+                            <ListGroup flush>
+                              <Link to={{ pathname: routes.profile }}>
+                                <ListGroupItem
+                                  tag="button"
+                                  action
+                                  className="border-light"
+                                >
+                                  <MdPersonPin /> Profile
+                                </ListGroupItem>
+                              </Link>
+                              <Link to={{ pathname: routes.buyAndSell }}>
+                                <ListGroupItem
+                                  tag="button"
+                                  action
+                                  className="border-light"
+                                >
+                                  <MdInsertChart /> Activities
+                                </ListGroupItem>
+                              </Link>
+
                               <ListGroupItem
                                 tag="button"
                                 action
                                 className="border-light"
                               >
-                                <MdPersonPin /> Profile
+                                <MdMessage /> Messages
                               </ListGroupItem>
-                            </Link>
-                            <Link to={{ pathname: routes.buyAndSell }}>
+
+                              <Link to={{ pathname: routes.Availability }}>
+                                <ListGroupItem
+                                  tag="button"
+                                  action
+                                  className="border-light"
+                                >
+                                  <MdInsertChart /> Your Items
+                                </ListGroupItem>
+                              </Link>
+                              <Link to={{ pathname: routes.settings }}>
+                                <ListGroupItem
+                                  tag="button"
+                                  action
+                                  className="border-light"
+                                >
+                                  <MdSettingsApplications /> Settings
+                                </ListGroupItem>
+                              </Link>
+
                               <ListGroupItem
                                 tag="button"
                                 action
                                 className="border-light"
                               >
-                                <MdInsertChart /> Activities
+                                <MdHelp /> Help
                               </ListGroupItem>
-                            </Link>
-
-                            <ListGroupItem
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdMessage /> Messages
-                            </ListGroupItem>
-
-                            <Link to={{ pathname: routes.Availability }}>
                               <ListGroupItem
+                                onClick={this.logout}
                                 tag="button"
                                 action
                                 className="border-light"
                               >
-                                <MdInsertChart /> Your Items
+                                <MdExitToApp /> Signout
                               </ListGroupItem>
-                            </Link>
-                            <Link to={{ pathname: routes.settings }}>
-                              <ListGroupItem
-                                tag="button"
-                                action
-                                className="border-light"
-                              >
-                                <MdSettingsApplications /> Settings
-                              </ListGroupItem>
-                            </Link>
-
-                            <ListGroupItem
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdHelp /> Help
-                            </ListGroupItem>
-                            <ListGroupItem
-                              onClick={this.logout}
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdExitToApp /> Signout
-                            </ListGroupItem>
-                          </ListGroup>
-                        </UserCard>
-                      </PopoverBody>
-                    </Popover>
-                  </div>
-                </>
-              )}
-              {!this.props.currentUser && (
-                <Link to={{ pathname: "/login" }}>
-                  <Button>Login</Button>
-                </Link>
-              )}
-            </NavLink>
-          </NavItem>
-        </Nav>
-      </Navbar>
+                            </ListGroup>
+                          </UserCard>
+                        </PopoverBody>
+                      </Popover>
+                    </div>
+                  </>
+                )}
+                {!this.props.currentUser && (
+                  <Link to={{ pathname: "/login" }}>
+                    <Button>Login</Button>
+                  </Link>
+                )}
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </Navbar>
+      </div>
     );
   }
 }

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 //config file
 const baseURL = "http://0.0.0.0:9000/api/v1";
 axios.defaults.headers.common["Authorization"] =
-  "Token 7e596e2f846f267cee5e2bb898d3e43496a495c8";
+  "Token e7fe44f2ac8f57a342b861cca39229314e7b0343";
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&

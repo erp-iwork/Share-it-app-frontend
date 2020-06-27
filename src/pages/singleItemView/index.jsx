@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { ItemView, Profile, NotFound } from "./components/";
+import { ItemView, Profile, NotFound, RelatedAds } from "./components/";
 import { Col, Row } from "reactstrap";
 import { getItemById, getSelectedItem } from "../../store/items";
 import { connect } from "react-redux";
 import PageSpinner from "../../components/PageSpinner";
 import { getLoading } from "../../store/items";
+
+
 class SingleItemViewPage extends Component {
   componentDidMount() {
     const itemId = this.props.match.params.id;
@@ -27,7 +29,7 @@ class SingleItemViewPage extends Component {
             <Col md={3}>
               <Profile selectedItem={this.props.selectedItem} />
               {/* TODO - */}
-              {/* <RelatedAds selectedItem={this.props.selectedItem} /> */}
+              <RelatedAds />
             </Col>
           </Row>
         )}
