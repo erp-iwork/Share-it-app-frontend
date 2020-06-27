@@ -119,7 +119,7 @@ class Header extends React.Component {
                   className="cr-search-form__icon-search text-secondary"
                 />
                 <Input
-                  type="search"
+                  type="text"
                   className="cr-search-form__input"
                   placeholder="Search ..."
                   onChange={this.toggleSearchCardPopover}
@@ -132,12 +132,11 @@ class Header extends React.Component {
                 onClick={this.toggleSearchCardPopover}
                 isOpen={this.state.isOpenSearchCardPopover}
                 toggle={this.toggleSearchCardPopover}
-                onClic={this.toggleSearchCardPopover}
+                onClick={this.toggleSearchCardPopover}
+                className="p-0 border-0"
                 target="Popover1"
-                
-
               >
-                <PopoverBody className="p-2 border-light">
+                <PopoverBody className="p-4 border-secondary">
                   <h4>Search Results for ""</h4>
                   <hr />
                   <Row>
