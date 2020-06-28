@@ -19,7 +19,10 @@ class PersonalInformationComp extends Component {
   render() {
     return (
       <>
-          <img className='coverImageContainerimg' src={CoverImage} alt="" />
+      <div className='coverImageContainer'>
+      <img  src={CoverImage} alt="" />
+
+      </div>
           <Col>
             <Card className="personalInformationMargin">
               <Row>

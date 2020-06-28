@@ -1,17 +1,14 @@
 .coverImageContainer {
     width: auto;
-    height: 100vh;
+    height: 350px;
     background-color: #ffffff;
     // object-fit:cover;
 	top: 50%;
-	min-height: 100vh;
-	min-width: 100%;
 }
-.coverImageContainerimg {
+.coverImageContainer img {
   	position: relative;
 	vertical-align: middle;
-	max-height: 20%;
-	height: 100vh;
+	height: 100%;
 	width: 100%;
 	object-fit:cover;
 	border-radius: 20px;

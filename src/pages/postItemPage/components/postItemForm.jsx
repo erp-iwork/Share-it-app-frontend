@@ -140,7 +140,14 @@ class PostItemForm extends NestedForm {
 
                         {category && category.category === "Product" ? (
                           <>
-                            <Col xs={12} md={12}>
+                            <Col xs={12} md={6}>
+                              {this.renderCustomSelect(
+                                "subCategory",
+                                "Sub Category",
+                                ["Something", "Something", "Something"]
+                              )}
+                            </Col>
+                            <Col xs={12} md={6}>
                               {this.renderInput(
                                 "condition",
                                 "Condition",

@@ -147,7 +147,7 @@ class Header extends React.Component {
               >
                 <div className="popoverSearch">
                   <PopoverBody className="p-4 border-secondary">
-                  <h4>Search Results for "{this.state.query}"</h4>
+                    <h4>Search Results for "{this.state.query}"</h4>
                     <hr />
                     <Row>
                       {/* //Do your Search Result Mapping Here */}
