@@ -152,7 +152,6 @@ class PostItemForm extends NestedForm {
                                 "condition",
                                 "Condition",
                                 "Condition"
-                                
                               )}
                             </Col>
                           </>
