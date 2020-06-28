@@ -13,7 +13,12 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
-import { getCategories, loadCategories } from "../../../store/categories";
+import {
+  getCategories,
+  loadCategories,
+  getSubcategories,
+  loadSubcategories,
+} from "../../../store/categories";
 import NestedForm from "../../../components/NestedForm";
 import {
   addItem,
@@ -33,13 +38,15 @@ class PostItemForm extends NestedForm {
         zip_code: "",
         price: "",
         description: "",
-        termsAndConditions: "",
+        term_and_conditions: "",
         category_id: "",
+        sub_category_id: "",
         condition: "",
         properties: {},
         is_donating: false,
       },
       pictures: [],
+      subCategories: [],
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -63,6 +70,7 @@ class PostItemForm extends NestedForm {
       });
     });
     this.props.loadCategories();
+    this.props.loadSubcategories();
     this.setState({ data });
   }
   onDrop(picture) {
@@ -73,6 +81,7 @@ class PostItemForm extends NestedForm {
   doSubmit = () => {
     const data = { ...this.state.data };
     data.is_donating = data.is_donating === "true" ? true : false; //todo refactor
+    delete data.category_id;
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
     data.owner_id = JSON.parse(this.props.currentUser).id;
@@ -141,10 +150,10 @@ class PostItemForm extends NestedForm {
                         {category && category.category === "Product" ? (
                           <>
                             <Col xs={12} md={6}>
-                              {this.renderCustomSelect(
-                                "subCategory",
-                                "Sub Category",
-                                ["Something", "Something", "Something"]
+                              {this.renderSubcategorySelect(
+                                "sub_category_id",
+                                "Sub category",
+                                this.props.subcategories
                               )}
                             </Col>
                             <Col xs={12} md={6}>
@@ -152,7 +161,6 @@ class PostItemForm extends NestedForm {
                                 "condition",
                                 "Condition",
                                 "Condition"
-                                
                               )}
                             </Col>
                           </>
@@ -470,7 +478,7 @@ class PostItemForm extends NestedForm {
                         </Col>
                         <Col xs={12} md={12}>
                           {this.renderInput(
-                            "termsAndConditions",
+                            "term_and_conditions",
                             "Terms And Conditions",
                             "Terms And Conditions",
                             "textarea"
@@ -509,6 +517,7 @@ const mapStateToProps = (state) => ({
   loading: getLoading(state),
   currentUser: getCurrentUser(state),
   categories: getCategories(state),
+  subcategories: getSubcategories(state),
   errors: getErrors(state),
   status: getStatus(state),
 });
@@ -516,6 +525,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   loadCategories: () => dispatch(loadCategories()),
+  loadSubcategories: () => dispatch(loadSubcategories()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostItemForm);

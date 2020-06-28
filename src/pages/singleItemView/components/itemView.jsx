@@ -65,7 +65,7 @@ class ItemViewComp extends Component {
       description,
       condition,
       is_available,
-      // location,
+      term_and_conditions,
       properties,
     } = this.props.selectedItem;
     return (
@@ -79,7 +79,7 @@ class ItemViewComp extends Component {
             Terms And Conditions for <b>{title}</b>
           </ModalHeader>
           <ModalBody>
-            {"Terms and conditions goes here"}
+            {term_and_conditions}
             <br />
           </ModalBody>
           <ModalFooter>
