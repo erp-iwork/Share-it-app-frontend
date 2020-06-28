@@ -211,7 +211,7 @@ class ItemViewComp extends Component {
                   <Col md={9}>
                     <Input
                       type="textarea"
-                      value="Hello There, I am Interested in your Item {ItemId}"
+                      value="Hello There, I am Interested in what i see"
                     />
                   </Col>
                   {accepted ? (

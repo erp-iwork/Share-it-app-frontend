@@ -102,7 +102,7 @@ class RegistrationFormPage extends MainForm {
             <Form onSubmit={this.handleSubmit}>
               {this.renderInput("name", "Name", "Full Name")}
               {this.renderInput("email", "Email", "Email")}
-              {this.renderInput("location", "Location", "Location")}
+              {this.renderInput("location", "State", "State")}
               <Row>
                 <Col md={6} sm={12} xs={12}>
                   {this.renderInput(

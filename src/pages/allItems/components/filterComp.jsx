@@ -49,7 +49,7 @@ class FilterComponent extends Component {
             <hr />
             <Label>Sub-Category</Label>
             <Input type="select">
-              <option>this will be mapped based on the category list</option>
+              <option></option>
             </Input>
             <hr />
             <Label>Price</Label>
