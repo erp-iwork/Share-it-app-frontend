@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { Card, CardHeader, Table, Button } from "reactstrap";
 import Page from "../../../components/Page";
 import Switch from "react-switch";
+import Toggle from "react-toggle";
+import { loadMyItems, getMyItems, updateItem } from "../../../store/items";
+import { connect } from "react-redux";
+import "react-toggle/style.css";
+import { Link } from "react-router-dom";
 
 class Availability extends Component {
   constructor(props) {
@@ -9,8 +14,18 @@ class Availability extends Component {
     this.state = { checked: false };
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(checked) {
-    this.setState({ checked });
+  handleChange = (event) => {
+    // const item = this.props.myItems.filter(
+    //   (item) => item.itemId === event.target.value
+    // );
+    // if (item) {
+    //   console.log(item);
+    //   delete item.itemId;
+    //   this.props.updateItem(event.target.value, item);
+    // }
+  };
+  componentDidMount() {
+    this.props.loadMyItems();
   }
   render() {
     return (
@@ -24,98 +39,37 @@ class Availability extends Component {
                 <th>Product ID</th>
                 <th>Product Name</th>
                 <th>Posted Date</th>
-                <th>Share Count</th>
                 <th>Availability</th>
                 <th>See Product</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Otto</td>
-                <td>Mark</td>
-                <td>
-                  <Switch
-                    onChange={this.handleChange}
-                    checked={this.state.checked}
-                    onColor="#00AF58"
-                    offColor="#FF0000"
-                    handleDiameter={30}
-                    boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                    activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                    height={20}
-                    width={55}
-                    className="react-switch"
-                    id="material-switch"
-                  />
-                </td>
-                <td>
-                  {" "}
-                  <Button size="sm" outline>
-                    See More
-                  </Button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>
-                  {" "}
-                  <Switch
-                    onChange={this.handleChange}
-                    checked={this.state.checked}
-                    onColor="#00AF58"
-                    offColor="#FF0000"
-                    handleDiameter={30}
-                    boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                    activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                    height={20}
-                    width={55}
-                    className="react-switch"
-                    id="material-switch"
-                  />
-                </td>
-                <td>
-                  {" "}
-                  <Button size="sm" outline>
-                    See More
-                  </Button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>
-                  {" "}
-                  <Switch
-                    onChange={this.handleChange}
-                    checked={this.state.checked}
-                    onColor="#00AF58"
-                    offColor="#FF0000"
-                    handleDiameter={30}
-                    boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                    activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                    height={20}
-                    width={55}
-                    className="react-switch"
-                    id="material-switch"
-                  />
-                </td>
-                <td>
-                  {" "}
-                  <Button size="sm" outline>
-                    See More
-                  </Button>
-                </td>
-              </tr>
+              {this.props.myItems.map((item) => (
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{item.itemId}</td>
+                  <td>{item.title}</td>
+                  <td>{item.created_at}</td>
+                  <td>
+                    <Toggle
+                      defaultChecked={item.is_available}
+                      name="milkIsReady"
+                      value={item.itemId}
+                      onChange={this.handleChange}
+                    />
+                  </td>
+                  <td>
+                    {" "}
+                    <Link
+                      className="btn btn-primary"
+                      to={`/items/${item.itemId}`}
+                      size="sm"
+                    >
+                      See More
+                    </Link>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Card>
@@ -124,4 +78,12 @@ class Availability extends Component {
   }
 }
 
-export default Availability;
+const mapStateToProps = (state) => ({
+  myItems: getMyItems(state),
+});
+const mapDispatchToProps = (dispatch) => ({
+  loadMyItems: () => dispatch(loadMyItems()),
+  updateItem: (itemId, item) => dispatch(updateItem(itemId, item)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Availability);

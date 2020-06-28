@@ -16,6 +16,7 @@ const slice = createSlice({
     errors: null,
     status: "initial",
     searchedItems: [],
+    myItems: [],
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -32,6 +33,11 @@ const slice = createSlice({
       items.loading = false;
       items.errors = null;
     },
+    myItemReceived: (items, action) => {
+      items.myItems = action.payload;
+      items.loading = false;
+      items.errors = null;
+    },
     itemsRequestFailed: (items, action) => {
       items.loading = false;
       items.errors = action.payload;
@@ -45,10 +51,16 @@ const slice = createSlice({
       items.status = "success";
     },
     itemUpdated: (items, action) => {
-      const index = items.list.findIndex(
-        (item) => item.id === action.payload.item.id
+      let index = items.list.findIndex(
+        (item) => item.itemId === action.payload.itemId
       );
       items.list[index] = action.payload.item;
+
+      //update myitems list
+      index = items.myItems.findIndex(
+        (item) => item.itemId === action.payload.itemId
+      );
+      items.myItems[index] = action.payload;
     },
     itemRemoved: (items, action) => {
       const index = items.list.findIndex(
@@ -77,6 +89,7 @@ const {
   itemRemoved,
   itemFiltered,
   itemSearched,
+  myItemReceived,
 } = slice.actions;
 export default slice.reducer;
 
@@ -137,6 +150,15 @@ export const search = (query) =>
     url: "/items?search=" + query,
     onSuccess: itemSearched,
     onStart: itemsRequested.type,
+    onError: itemsRequestFailed.type,
+  });
+
+//action creators for profile
+export const loadMyItems = () =>
+  apiCallBegan({
+    url: "/my_items/",
+    onStart: itemsRequested.type,
+    onSuccess: myItemReceived.type,
     onError: itemsRequestFailed.type,
   });
 
@@ -202,4 +224,9 @@ export const getStatus = createSelector(
 export const getSearchedItems = createSelector(
   (state) => state.entities.items.searchedItems,
   (items) => items
+);
+
+export const getMyItems = createSelector(
+  (state) => state.entities.items.myItems,
+  (myItems) => myItems
 );
