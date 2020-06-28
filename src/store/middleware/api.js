@@ -41,6 +41,7 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
     //General
     dispatch(actions.apiCallFailed(error.message));
     //Specific
+    
     if (onError) {
       if (
         error.response &&
