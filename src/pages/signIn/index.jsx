@@ -48,32 +48,39 @@ class SignInPage extends Component {
   }
 
   render() {
+    const { state: stateFromLocation } = this.props.location;
     const isDesktop = this.state.isDesktop;
     return (
-      <div className="loginBackground">
-        {isDesktop ? (
-          <Card md={12} sm={12} className="loginContainer">
-            <Col md={7} sm={12} xs={12}>
-              <CardImg
-                width="100%"
-                className="loginImage"
-                src={this.state.selectedImage}
-                alt="login image"
-              />
-            </Col>
-            <Col md={5} sm={12} xs={12} className="loginFormContainer">
-              <LoginFormPage />
-            </Col>
-            )
-          </Card>
-        ) : (
-          <Card md={12} sm={12} className="loginContainerMobile">
-            <Col md={12} sm={12} xs={12} className="loginFormContainer">
-              <LoginFormPage />
-            </Col>
-          </Card>
-        )}
-      </div>
+      <>
+        <div className="loginBackground" />
+        <div>
+          {isDesktop ? (
+            <Card md={12} sm={12} className="loginContainer">
+              <Col md={7} sm={12} xs={12}>
+                <CardImg
+                  width="100%"
+                  className="loginImage"
+                  src={this.state.selectedImage}
+                  alt="login image"
+                />
+              </Col>
+              <Col md={5} sm={12} xs={12} className="loginFormContainer">
+                <LoginFormPage
+                  from={stateFromLocation ? stateFromLocation.from : ""}
+                />
+              </Col>
+            </Card>
+          ) : (
+            <Card md={12} sm={12} className="loginContainerMobile">
+              <Col md={12} sm={12} xs={12} className="loginFormContainer">
+                <LoginFormPage
+                  from={stateFromLocation ? stateFromLocation.from : ""}
+                />
+              </Col>
+            </Card>
+          )}
+        </div>
+      </>
     );
   }
 }

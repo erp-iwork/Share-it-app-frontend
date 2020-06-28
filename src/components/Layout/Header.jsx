@@ -1,7 +1,8 @@
 import Avatar from "../Avatar";
-import SearchInput from "../SearchInput";
+import { MdSearch } from "react-icons/md";
+
 import React from "react";
-import { MdNotificationsNone, MdExitToApp } from "react-icons/md";
+import { connect } from "react-redux";
 import {
   Nav,
   Navbar,
@@ -9,26 +10,97 @@ import {
   NavLink,
   Popover,
   PopoverBody,
+  ListGroup,
   ListGroupItem,
+  Form,
+  Input,
+  CardImg,
+  Row,
+  Col,
+  Button,
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
 } from "reactstrap";
+import {
+  MdExitToApp,
+  MdHelp,
+  MdInsertChart,
+  MdMessage,
+  MdNotificationsNone,
+  MdPersonPin,
+  MdSettingsApplications,
+} from "react-icons/md";
 import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
-
+import { Link } from "react-router-dom";
+import { UserCard } from "../Card";
+import routes from "../../config/routes";
+import PageSpinner from "../../components/PageSpinner";
+import { getCurrentUser } from "../../store/auth";
+import { getSearchedItems, search, getLoading } from "../../store/items";
 const bem = bn.create("header");
 
 class Header extends React.Component {
   state = {
-    isOpenNotificationPopover: false,
-    isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
+    isOpenSearchCardPopover: false,
+    query: "",
+    focused: false,
   };
-
   logout = () => {
     localStorage.clear();
-    window.location = "/login";
+    window.location = routes.homePage;
   };
+  onFocus = () => {
+    this.setState({ focused: true });
+  };
+  onBlur = () => {
+    this.setState({ focused: false });
+  };
+
+  toggleUserCardPopover = () => {
+    this.setState({
+      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
+      isOpenSearchCardPopover: false,
+    });
+  };
+
+  toggleSearchCardPopover = (evt) => {
+    this.props.search(evt.target.value);
+    this.setState({
+      isOpenSearchCardPopover: this.state.focused,
+      isOpenUserCardPopover: false,
+      query: evt.target.value,
+    });
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDesktop: false,
+    };
+    this.updatePredicate = this.updatePredicate.bind(this);
+  }
+
+  componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate() {
+    this.setState({ isDesktop: window.innerWidth > 1000 });
+  }
+
   render() {
+    const isDesktop = this.state.isDesktop;
+
     const { isNotificationConfirmed } = this.state;
     return (
       <Navbar fixed="top" light expand className={bem.b("bg-white")}>
@@ -36,23 +108,104 @@ class Header extends React.Component {
           <img className="App-logo" alt="" src={Logo} />
         </Nav>
         <Nav navbar>
-          <img className="App-logo2" alt="" src={SharreIt} />
+          <Link to={{ pathname: routes.homePage }}>
+            <img className="App-logo2" alt="" src={SharreIt} />
+          </Link>
         </Nav>
-        <Nav navbar>
-          <SearchInput />
-        </Nav>
+        {isDesktop ? (
+          <Nav navbar>
+            <NavLink id="Popover1">
+              <Form
+                inline
+                className="cr-search-form"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <MdSearch
+                  size="20"
+                  className="cr-search-form__icon-search text-secondary"
+                />
+                <Input
+                  type="text"
+                  className="cr-search-form__input"
+                  placeholder="Search ..."
+                  value={this.state.query}
+                  onChange={this.toggleSearchCardPopover}
+                  onFocus={this.onFocus}
+                  onBlur={this.onBlur}
+                />
+                {this.props.loading && this.state.query && <PageSpinner />}
+              </Form>
+
+              <Popover
+                placement="bottom-start"
+                onClick={this.toggleSearchCardPopover}
+                isOpen={this.state.isOpenSearchCardPopover}
+                toggle={this.toggleSearchCardPopover}
+                onClick={this.toggleSearchCardPopover}
+                className="p-0 border-0"
+                target="Popover1"
+              >
+                <div className="popoverSearch">
+                  <PopoverBody className="p-4 border-secondary">
+                    <h4>Search Results for "{this.state.query}"</h4>
+                    <hr />
+                    <Row>
+                      {/* //Do your Search Result Mapping Here */}
+                      {this.props.items.map((item) => (
+                        <Col md={4} className="searchResultsHeader">
+                          <Link to={`/items/${item.itemId}`}>
+                            <div className="zoom">
+                              <Card className="flex-row">
+                                <div className="searchImgContainer">
+                                  <CardImg src={item.item_images[0].image} />
+                                </div>
+
+                                <CardBody>
+                                  <CardTitle>{item.title}</CardTitle>
+                                  <CardText>{item.price}</CardText>
+                                </CardBody>
+                              </Card>
+                            </div>
+                          </Link>
+                        </Col>
+                      ))}
+
+                      {/* //Do your Search Result Mapping Here */}
+                    </Row>
+                  </PopoverBody>
+                </div>
+              </Popover>
+            </NavLink>
+          </Nav>
+        ) : null}
 
         <Nav navbar className={bem.e("nav-right")}>
+          {this.props.currentUser ? (
+            <NavItem>
+              <Link to={{ pathname: routes.postItem }}>
+                <NavLink>
+                  <Button>
+                    {" "}
+                    <MdExitToApp /> Share
+                  </Button>
+                </NavLink>
+              </Link>
+            </NavItem>
+          ) : (
+            <NavItem>
+              <Link to={{ pathname: "/login" }}>
+                <NavLink>
+                  <Button>
+                    {" "}
+                    <MdExitToApp /> Share
+                  </Button>
+                </NavLink>
+              </Link>
+            </NavItem>
+          )}
+
           <NavItem className="d-inline-flex">
-            <ListGroupItem
-              tag="button"
-              action
-              className="border-light"
-              onClick={this.logout}
-            >
-              <MdExitToApp /> Signout
-            </ListGroupItem>
-            <NavLink id="Popover1" className="position-relative">
+            <NavLink className="position-relative">
               {isNotificationConfirmed ? null : (
                 <MdNotificationsNone
                   size={25}
@@ -64,21 +217,126 @@ class Header extends React.Component {
 
           <NavItem>
             <NavLink id="Popover2">
-              <Avatar className="can-click" />
+              {this.props.currentUser && (
+                <>
+                  <div onClick={this.toggleUserCardPopover}>
+                    <Avatar className="can-click" />
+                    <Popover
+                      placement="bottom-end"
+                      isOpen={this.state.isOpenUserCardPopover}
+                      toggle={this.toggleUserCardPopover}
+                      target="Popover2"
+                      className="p-0 border-0"
+                      style={{ minWidth: 250 }}
+                    >
+                      <PopoverBody className="p-0 border-light">
+                        <UserCard
+                          title={
+                            this.props.currentUser
+                              ? this.props.currentUser.name
+                              : "User Name"
+                          }
+                          subtitle={
+                            this.props.currentUser
+                              ? this.props.currentUser.email
+                              : "User Email"
+                          }
+                          text={
+                            this.props.currentUser
+                              ? this.props.currentUser.location
+                              : "User Location"
+                          }
+                          className="border-light"
+                        >
+                          <ListGroup flush>
+                            <Link to={{ pathname: routes.profile }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdPersonPin /> Profile
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: routes.buyAndSell }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdInsertChart /> Activities
+                              </ListGroupItem>
+                            </Link>
+
+                            <ListGroupItem
+                              tag="button"
+                              action
+                              className="border-light"
+                            >
+                              <MdMessage /> Messages
+                            </ListGroupItem>
+
+                            <Link to={{ pathname: routes.Availability }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdInsertChart /> Your Items
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: routes.settings }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdSettingsApplications /> Settings
+                              </ListGroupItem>
+                            </Link>
+
+                            <ListGroupItem
+                              tag="button"
+                              action
+                              className="border-light"
+                            >
+                              <MdHelp /> Help
+                            </ListGroupItem>
+                            <ListGroupItem
+                              onClick={this.logout}
+                              tag="button"
+                              action
+                              className="border-light"
+                            >
+                              <MdExitToApp /> Signout
+                            </ListGroupItem>
+                          </ListGroup>
+                        </UserCard>
+                      </PopoverBody>
+                    </Popover>
+                  </div>
+                </>
+              )}
+              {!this.props.currentUser && (
+                <Link to={{ pathname: "/login" }}>
+                  <Button>Login</Button>
+                </Link>
+              )}
             </NavLink>
-            <Popover
-              placement="bottom-end"
-              target="Popover2"
-              className="p-0 border-0"
-              style={{ minWidth: 250 }}
-            >
-              <PopoverBody className="p-0 border-light"></PopoverBody>
-            </Popover>
           </NavItem>
         </Nav>
       </Navbar>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  currentUser: getCurrentUser(state),
+  items: getSearchedItems(state),
+  loading: getLoading(state),
+});
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  search: (query) => dispatch(search(query)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

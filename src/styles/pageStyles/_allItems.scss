@@ -1,0 +1,28 @@
+.filterButtons {
+    margin: 2px;
+}
+.filterContainer {
+    margin-top: 20px;
+    overflow:scroll; 
+    height:100vh;
+}
+.mainBodyContainer {
+    margin-top: 10px;
+    overflow:scroll; 
+    height:100vh;
+}
+
+.itemImageContainer {
+    background-color: #ffffff;
+    height: 160px;
+    width: 400px;
+    object-fit: cover;
+
+}
+
+.itemImageContainer img {
+	height: 100%;
+	width: 100%;
+	object-fit:cover;
+
+}

@@ -1,12 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
-import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Form,
+  Alert,
+} from "reactstrap";
 import Logo from "./formLayout";
 import { MdLock } from "react-icons/md";
 import Typography from "../../../components/Typography";
 import { connect } from "react-redux";
-import { loginUser, getStatus, getLoading } from "../../../store/auth";
+import {
+  loginUser,
+  getStatus,
+  getLoading,
+  resetErrors,
+} from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
+import { Link, Redirect } from "react-router-dom";
+import routes from "../../../config/routes";
+import { getUser } from "../../../services/authService";
 
 class LoginFormPage extends MainForm {
   constructor(props) {
@@ -20,12 +36,23 @@ class LoginFormPage extends MainForm {
       password: Joi.string().min(8).required().label("Password"),
     };
   }
+  componentWillMount() {
+    this.props.resetErrors();
+  }
 
   doSubmit = () => {
     this.props.loginUser(this.state.data);
   };
+
   render() {
-    if (this.props.status === "success") window.location = "/home";
+    if (this.props.status === "success") {
+      return (
+        <Redirect
+          to={this.props.from ? this.props.from.pathname : routes.homePage}
+        />
+      );
+    }
+    if (getUser()) return <Redirect to="/" />;
     return (
       <Col md={12}>
         <Card>
@@ -50,8 +77,18 @@ class LoginFormPage extends MainForm {
             <Form onSubmit={this.handleSubmit}>
               {this.renderInput("email", "Email", "Email", "email")}
               {this.renderInput("password", "Password", "Password", "password")}
+              {this.props.errors && (
+                <Alert color="danger">
+                  {Object.values(this.props.errors)[0]}
+                </Alert>
+              )}
               {this.renderButton("Login")}
             </Form>
+            <Link to={{ pathname: routes.registration }}>
+              <Col align="right" className="dir-registration">
+                <h8>Don't have an Account? Register here ... </h8>
+              </Col>
+            </Link>
           </CardBody>
         </Card>
       </Col>
@@ -61,10 +98,11 @@ class LoginFormPage extends MainForm {
 const mapStateToProps = (state) => ({
   status: getStatus(state),
   loading: getLoading(state),
-  error: state.auth.error,
+  errors: state.auth.errors,
 });
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (userInfo) => dispatch(loginUser(userInfo)),
+  resetErrors: () => dispatch(resetErrors()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginFormPage);

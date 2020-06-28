@@ -1,12 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 import { connect } from "react-redux";
-import { Button, Card, CardBody, CardHeader, Col, Form } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Row,
+  Col,
+  Form,
+  Alert,
+} from "reactstrap";
 import { MdLock } from "react-icons/md";
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
-import { registerUser, getStatus, getLoading } from "../../../store/auth";
+import {
+  registerUser,
+  getStatus,
+  getLoading,
+  resetErrors,
+} from "../../../store/auth";
 import MainForm from "../../../components/MainForm";
+import { getUser } from "../../../services/authService";
+import { Redirect } from "react-router-dom";
 
 class RegistrationFormPage extends MainForm {
   state = {
@@ -20,7 +36,17 @@ class RegistrationFormPage extends MainForm {
     errors: {},
   };
   schema = {
-    name: Joi.string().required().label("Name"),
+    name: Joi.string()
+      .regex(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g)
+      .trim()
+      .required()
+      .label("Name")
+      .error((er) => {
+        return {
+          message: "Invalid name",
+        };
+      }),
+
     email: Joi.string().email().required().label("email"),
     location: Joi.string().required().label("Location"),
     password: Joi.string().min(8).required().label("Password"),
@@ -45,9 +71,13 @@ class RegistrationFormPage extends MainForm {
     //   this.setState({ errors });
     // }
   };
+  componentWillMount() {
+    this.props.resetErrors();
+  }
 
   render() {
     if (this.props.status === "success") window.location = "/";
+    if (getUser()) return <Redirect to="/" />;
     return (
       <Col md={12}>
         <Card>
@@ -73,12 +103,28 @@ class RegistrationFormPage extends MainForm {
               {this.renderInput("name", "Name", "Full Name")}
               {this.renderInput("email", "Email", "Email")}
               {this.renderInput("location", "Location", "Location")}
-              {this.renderInput("password", "Password", "Password", "password")}
-              {this.renderInput(
-                "confirmPassword",
-                "Confirm Password",
-                "Confirm Password",
-                "password"
+              <Row>
+                <Col md={6} sm={12} xs={12}>
+                  {this.renderInput(
+                    "password",
+                    "Password",
+                    "Password",
+                    "password"
+                  )}
+                </Col>
+                <Col md={6} sm={12} xs={12}>
+                  {this.renderInput(
+                    "confirmPassword",
+                    "Confirm Password",
+                    "Confirm Password",
+                    "password"
+                  )}
+                </Col>
+              </Row>
+              {this.props.errors && (
+                <Alert color="danger">
+                  {Object.values(this.props.errors)[0]}
+                </Alert>
               )}
 
               {this.renderButton("Register")}
@@ -92,10 +138,11 @@ class RegistrationFormPage extends MainForm {
 const mapStateToProps = (state) => ({
   status: getStatus(state),
   loading: getLoading(state),
-  error: state.auth.error,
+  errors: state.auth.errors,
 });
 const mapDispatchToProps = (dispatch) => ({
   registerUser: (userInfo) => dispatch(registerUser(userInfo)),
+  resetErrors: () => dispatch(resetErrors()),
 });
 
 export default connect(

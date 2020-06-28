@@ -4,15 +4,24 @@
 }
 
 .loginContainer {
-    margin: 90px;
-    flex-direction: row;
+  margin: 90px;
+  flex-direction: row;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-20%, -20%);
+  z-index: 2;
+  width: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .loginContainerMobile {
     flex-direction: row;
 }
 
 .loginFormContainer {
-    padding-top: 100px;
+    padding-top: 50px;
     flex-direction: column;
 }
 
@@ -32,9 +41,12 @@
 }
 
 .loginBackground {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-image: url('../../assets/background.jpg');
-    background-color: #F4F4F4;
+    filter: blur(4px);
+    background-color: rgba(103, 103, 103, 0.4);
+  -webkit-filter: blur(4px);
 }
 
 .label {
@@ -42,4 +54,8 @@
     padding-top: 10px;
     font-size: 30px;
     font-weight: 700;
+}
+
+.dir-registration {
+    color: hsl(205, 77%, 37%);
 }

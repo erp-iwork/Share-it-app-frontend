@@ -1,13 +1,10 @@
-import React from 'react';
-import PropTypes from '../utils/propTypes';
+import React from "react";
+import PropTypes from "../utils/propTypes";
+import bn from "../utils/bemnames";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import Typography from "./Typography";
 
-import bn from '../utils/bemnames';
-
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-
-import Typography from './Typography';
-
-const bem = bn.create('page');
+const bem = bn.create("page");
 
 const Page = ({
   title,
@@ -17,21 +14,21 @@ const Page = ({
   children,
   ...restProps
 }) => {
-  const classes = bem.b('px-3', className);
+  const classes = bem.b("px-3", className);
 
   return (
     <Tag className={classes} {...restProps}>
-      <div className={bem.e('header')}>
-        {title && typeof title === 'string' ? (
-          <Typography type="h1" className={bem.e('title')}>
+      <div className={bem.e("header")}>
+        {title && typeof title === "string" ? (
+          <Typography type="h4" className={bem.e("title")}>
             {title}
           </Typography>
         ) : (
-            title
-          )}
+          title
+        )}
         {breadcrumbs && (
-          <Breadcrumb className={bem.e('breadcrumb')}>
-            <BreadcrumbItem>Home</BreadcrumbItem>
+          <Breadcrumb className={bem.e("breadcrumb")}>
+            {/* <BreadcrumbItem>Home</BreadcrumbItem> */}
             {breadcrumbs.length &&
               breadcrumbs.map(({ name, active }, index) => (
                 <BreadcrumbItem key={index} active={active}>
@@ -60,8 +57,8 @@ Page.propTypes = {
 };
 
 Page.defaultProps = {
-  tag: 'div',
-  title: '',
+  tag: "div",
+  title: "",
 };
 
 export default Page;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Input, Label, Col, FormGroup, Button, FormFeedback } from "reactstrap";
 
 import Joi from "joi-browser";
+import LoadingSpinner from "./loader";
 
 class MainForm extends Component {
   state = {
@@ -22,13 +23,22 @@ class MainForm extends Component {
 
   //validate only one input
   validateProperty = ({ name, value }) => {
+    const { data } = this.state;
     if (name !== "confirmPassword") {
       const obj = { [name]: value }; // [name](computed property) ==> username as a key or somethig, value= value of it.
       const schema = { [name]: this.schema[name] };
       const { error } = Joi.validate(obj, schema);
       return error ? error.details[0].message : null;
+    } else {
+      if (data["password"] !== value) {
+        const obj = { [name]: value }; // [name](computed property) ==> username as a key or somethig, value= value of it.
+        const schema = { [name]: this.schema[name] };
+        const { error } = Joi.validate(obj, schema);
+        return error ? error.details[0].message : null;
+      }
     }
   };
+
   // when the user types to change the value of the state accordingly
   handleChange = ({ currentTarget: input }) => {
     //to validate single input when we type
@@ -45,7 +55,7 @@ class MainForm extends Component {
     event.preventDefault();
     const errors = this.validate();
     console.log(errors);
-    this.setState({ errors: errors || {} }); //if trusy errors eles empty object
+    this.setState({ errors: errors || {} }); //if trusy errors else empty object
     if (errors) return;
     this.doSubmit();
   };
@@ -53,9 +63,34 @@ class MainForm extends Component {
   renderButton(label) {
     return (
       <FormGroup align="center" md={12}>
-        <Button disabled={this.validate() || this.props.loading}>
-          {label}
+        <Button outline disabled={this.validate() || this.props.loading}>
+          {this.props.loading ? <LoadingSpinner /> : label}
         </Button>
+      </FormGroup>
+    );
+  }
+  renderSelect(name, label, options) {
+    const { data, errors } = this.state;
+    return (
+      <FormGroup>
+        <Label htmlFor={name} sm={12}>
+          {label}
+        </Label>
+        <Col sm={12}>
+          <Input
+            type="select"
+            name={name}
+            onChange={this.handleChange}
+            value={data[name]}
+            invalid={errors[name] ? true : false}
+          >
+            <option value="" />
+            {options.map((option) => (
+              <option value={option.id}>{option.category}</option>
+            ))}
+          </Input>
+          <FormFeedback>{errors[name]}</FormFeedback>
+        </Col>
       </FormGroup>
     );
   }
