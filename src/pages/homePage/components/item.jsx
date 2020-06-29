@@ -21,7 +21,7 @@ const Item = ({ item }) => {
               Boosted
             </Button> */}
           </CardHeader>
-          <CardBody className="cardBody">Price : {item.price}</CardBody>
+          <CardBody className="cardBody">Price : {item.price + "$"} </CardBody>
         </Card>
       </Link>
     </div>

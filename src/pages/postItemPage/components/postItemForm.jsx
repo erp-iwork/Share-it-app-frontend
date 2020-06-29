@@ -40,10 +40,11 @@ class PostItemForm extends NestedForm {
         description: "",
         term_and_conditions: "",
         category_id: "",
-        sub_category_id: "",
+        sub_category_id: 1,
         condition: "",
         properties: {},
         is_donating: false,
+        
       },
       pictures: [],
       subCategories: [],

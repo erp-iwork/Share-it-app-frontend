@@ -13,7 +13,7 @@ class SharedItemsComp extends Component {
 
   render() {
     return (
-      <Page breadcrumbs={[{ name: "John's Shares", active: true }]}>
+      <Page breadcrumbs={[{ name: "Posted Shares", active: true }]}>
         <Row>
           {this.props.myItems.map((item) => (
             <Col md={3} sm={12} xs={12}>
