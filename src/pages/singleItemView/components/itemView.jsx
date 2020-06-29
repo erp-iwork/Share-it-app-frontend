@@ -142,7 +142,7 @@ class ItemViewComp extends Component {
                   <div>
                     <i>Availability</i>
                   </div>
-                  <b>{is_available ? "Not Available" : "Available"}</b>
+                  <b>{is_available ? "Available" : "Not Available"}</b>
                 </Col>
                 <Col md={6}>
                   <div>
