@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardHeader, Table, Button } from "reactstrap";
 import Page from "../../../components/Page";
-import Switch from "react-switch";
 import Toggle from "react-toggle";
 import { loadMyItems, getMyItems, updateItem } from "../../../store/items";
 import { connect } from "react-redux";
@@ -15,14 +14,15 @@ class Availability extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange = (event) => {
-    // const item = this.props.myItems.filter(
-    //   (item) => item.itemId === event.target.value
-    // );
-    // if (item) {
-    //   console.log(item);
-    //   delete item.itemId;
-    //   this.props.updateItem(event.target.value, item);
-    // }
+    const item = this.props.myItems.find(
+      (item) => item.itemId === event.target.value
+    );
+    if (item) {
+      const { is_available } = item;
+      this.props.updateItem(event.target.value, {
+        is_available: !is_available,
+      });
+    }
   };
   componentDidMount() {
     this.props.loadMyItems();
@@ -52,7 +52,7 @@ class Availability extends Component {
                   <td>{item.created_at}</td>
                   <td>
                     <Toggle
-                      defaultChecked={item.is_available}
+                      checked={item.is_available}
                       name="milkIsReady"
                       value={item.itemId}
                       onChange={this.handleChange}

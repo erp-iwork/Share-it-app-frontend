@@ -131,7 +131,7 @@ export const addItem = (item) =>
   });
 export const updateItem = (itemId, item) =>
   apiCallBegan({
-    url: url + itemId,
+    url: url + itemId + "/",
     method: "put",
     data: item,
     onSuccess: itemUpdated.type,
