@@ -166,7 +166,7 @@ export const loadMyItems = () =>
 
 export const getItems = createSelector(
   (state) => state.entities.items,
-  (items) => items.list
+  (items) => _.orderBy(items.list, "title", "asc")
 );
 
 export const getSelectedItem = createSelector(
