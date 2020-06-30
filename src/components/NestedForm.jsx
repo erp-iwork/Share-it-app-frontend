@@ -92,6 +92,7 @@ class NestedForm extends Component {
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
     if (input.name === "category_id") {
+      this.props.loadSubcategoriesByCategoryId(input.value);
       data.properties = {};
     } //reset properties TODO
     data[input.name] = input.value; //dynamically access .. property
@@ -144,35 +145,7 @@ class NestedForm extends Component {
       </FormGroup>
     );
   }
-  renderSubcategorySelect(name, label, options) {
-    const { data } = this.state;
-    return (
-      <FormGroup>
-        <Label htmlFor={name} sm={12}>
-          {label}
-        </Label>
-        <Col sm={12}>
-          <Input
-            type="select"
-            name={name}
-            onChange={this.handleChange}
-            value={data[name]}
-            invalid={
-              this.props.errors && this.props.errors[name] ? true : false
-            }
-          >
-            <option value="" />
-            {options.map((option) => (
-              <option value={option.id}>{option.sub_category}</option>
-            ))}
-          </Input>
-          <FormFeedback>
-            {this.props.errors && this.props.errors[name]}
-          </FormFeedback>
-        </Col>
-      </FormGroup>
-    );
-  }
+
   renderSelect(name, label, options) {
     const { data } = this.state;
     return (
@@ -192,7 +165,7 @@ class NestedForm extends Component {
           >
             <option value="" />
             {options.map((option) => (
-              <option value={option.id}>{option.category}</option>
+              <option value={option.id}>{option.name}</option>
             ))}
           </Input>
           <FormFeedback>

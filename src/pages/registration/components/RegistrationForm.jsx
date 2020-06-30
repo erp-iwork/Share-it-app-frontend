@@ -62,8 +62,8 @@ class RegistrationFormPage extends MainForm {
       }),
   };
   doSubmit = async () => {
-    const { name, email, password, location } = this.state.data;
-    await this.props.registerUser({ email, password, name, location });
+    const { name, email, password } = this.state.data;
+    await this.props.registerUser({ email, password, name });
     // if (this.props.status === "success") window.location = "/";
     // if (this.props.error) {
     //   const errors = { ...this.state.errors };

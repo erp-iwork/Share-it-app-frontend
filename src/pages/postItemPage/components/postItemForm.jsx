@@ -16,8 +16,8 @@ import { getCurrentUser } from "../../../store/auth";
 import {
   getCategories,
   loadCategories,
-  getSubcategories,
-  loadSubcategories,
+  getSubcategoriesByCategoryId,
+  loadSubcategoriesByCategoryId,
 } from "../../../store/categories";
 import NestedForm from "../../../components/NestedForm";
 import {
@@ -46,7 +46,6 @@ class PostItemForm extends NestedForm {
         is_donating: false,
       },
       pictures: [],
-      subCategories: [],
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -54,24 +53,23 @@ class PostItemForm extends NestedForm {
   isDonatingOptions = [
     {
       id: "false",
-      category: "Sharing",
+      name: "Sharing",
     },
     {
       id: "true",
-      category: "Donating",
+      name: "Donating",
     },
   ];
   componentDidMount() {
-    const data = { ...this.state.data };
-    navigator.geolocation.getCurrentPosition(function (position) {
-      data.location = JSON.stringify({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
+    // const data = { ...this.state.data };
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //   data.location = JSON.stringify({
+    //     latitude: position.coords.latitude,
+    //     longitude: position.coords.longitude,
+    //   });
+    // });
     this.props.loadCategories();
-    this.props.loadSubcategories();
-    this.setState({ data });
+    // this.setState({ data });
   }
   onDrop(picture) {
     this.setState({
@@ -81,10 +79,17 @@ class PostItemForm extends NestedForm {
   doSubmit = () => {
     const data = { ...this.state.data };
     data.is_donating = data.is_donating === "true" ? true : false; //todo refactor
-    delete data.category_id;
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
     data.owner_id = JSON.parse(this.props.currentUser).id;
+    //TODO remove when the backed fixed
+    console.log(data.category_id, parseInt(data.category_id));
+    data.category = parseInt(data.category_id);
+    data.location = JSON.stringify({
+      latitude: 23112,
+      longitude: 32423,
+    });
+    delete data.category_id;
     const pictures = [...this.state.pictures];
     const formData = new FormData();
     for (const key in pictures) {
@@ -96,10 +101,14 @@ class PostItemForm extends NestedForm {
     this.props.addItem(formData);
   };
   render() {
-    const { properties, category_id } = this.state.data;
+    const { properties, category_id, sub_category_id } = this.state.data;
     const category = this.props.categories.find(
       (catagory) => catagory.id == category_id
     );
+    const subcategory = this.props.subcategories.find(
+      (subcategory) => subcategory.id == sub_category_id
+    );
+
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
@@ -147,10 +156,10 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("price", "Price", "Price")}
                         </Col>
 
-                        {category && category.category === "Product" ? (
+                        {category && category.name === "Product" ? (
                           <>
                             <Col xs={12} md={6}>
-                              {this.renderSubcategorySelect(
+                              {this.renderSelect(
                                 "sub_category_id",
                                 "Sub category",
                                 this.props.subcategories
@@ -165,17 +174,16 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category && category.category === "Service" ? (
+                        {category && category.name === "Service" ? (
                           <>
                             <Col xs={12} md={12}>
-                              {this.renderCustomSelect(
-                                "serviceType",
+                              {this.renderSelect(
+                                "sub_category_id",
                                 "Service Type",
-                                ["Tutor", "Cleaner", "Personal Driver"]
+                                this.props.subcategories
                               )}
 
-                              {properties.serviceType &&
-                              properties.serviceType.value === "Tutor" ? (
+                              {subcategory && subcategory.name === "Tutor" ? (
                                 <>
                                   <Row>
                                     <Col xs={12} md={6}>
@@ -253,9 +261,8 @@ class PostItemForm extends NestedForm {
                                   </Row>
                                 </>
                               ) : null}
-                              {properties.serviceType &&
-                              properties.serviceType.value ===
-                                "Personal Driver" ? (
+                              {subcategory &&
+                              subcategory.name === "Personal Driver" ? (
                                 <>
                                   <Row>
                                     <Col xs={12} md={6}>
@@ -313,8 +320,7 @@ class PostItemForm extends NestedForm {
                                   </Row>
                                 </>
                               ) : null}
-                              {properties.serviceType &&
-                              properties.serviceType.value === "Cleaner" ? (
+                              {subcategory && subcategory.name === "Cleaner" ? (
                                 <>
                                   <Row>
                                     <Col xs={12} md={6}>
@@ -381,7 +387,7 @@ class PostItemForm extends NestedForm {
                             </Col>
                           </>
                         ) : null}
-                        {category && category.category === "Digital" ? (
+                        {category && category.name === "Digital" ? (
                           <Col xs={12} md={12}>
                             {this.renderCustomSelect(
                               "digitalServiceType",
@@ -517,7 +523,7 @@ const mapStateToProps = (state) => ({
   loading: getLoading(state),
   currentUser: getCurrentUser(state),
   categories: getCategories(state),
-  subcategories: getSubcategories(state),
+  subcategories: getSubcategoriesByCategoryId(state),
   errors: getErrors(state),
   status: getStatus(state),
 });
@@ -525,7 +531,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   loadCategories: () => dispatch(loadCategories()),
-  loadSubcategories: () => dispatch(loadSubcategories()),
+  loadSubcategoriesByCategoryId: (category_id) =>
+    dispatch(loadSubcategoriesByCategoryId(category_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostItemForm);

@@ -34,7 +34,7 @@ const {
   subcategoriesReceived,
 } = slice.actions;
 export default slice.reducer;
-const url = "/category/";
+const url = "/categories/";
 export const loadCategories = () =>
   apiCallBegan({
     url,
@@ -42,9 +42,9 @@ export const loadCategories = () =>
     onSuccess: categoriesReceived.type,
     onError: categoriesRequestFailed.type,
   });
-export const loadSubcategories = () =>
+export const loadSubcategoriesByCategoryId = (id) =>
   apiCallBegan({
-    url: "/sub_category/",
+    url: "/categories?id=" + id,
     onStart: categoriesRequested.type,
     onSuccess: subcategoriesReceived.type,
     onError: categoriesRequestFailed.type,
@@ -56,7 +56,7 @@ export const getCategories = createSelector(
   (categories) => categories.list
 );
 
-export const getSubcategories = createSelector(
+export const getSubcategoriesByCategoryId = createSelector(
   (state) => state.entities.categories,
   (categories) => categories.subcategoriesList
 );
