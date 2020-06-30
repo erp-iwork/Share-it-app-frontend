@@ -14,11 +14,10 @@ import {
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 import {
-  getCategories,
-  loadCategories,
   getSubcategoriesByCategoryId,
   loadSubcategoriesByCategoryId,
-} from "../../../store/categories";
+} from "../../../store/subcategories";
+import { getCategories, loadCategories } from "../../../store/categories";
 import NestedForm from "../../../components/NestedForm";
 import {
   addItem,

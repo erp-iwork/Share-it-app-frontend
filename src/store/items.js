@@ -175,13 +175,13 @@ export const getSelectedItem = createSelector(
 );
 
 export const getItemsByCategory = createSelector(
-  (state) => state.entities.items,
+  (state) => state.entities.items.list,
   (items) =>
-    items.list.filter((item) =>
-      item.category
-        ? item.category.category
-        : null === items.selectedItem
-        ? items.selectedItem.category.category
+    items.filter((item) =>
+      item.sub_category
+        ? item.sub_category.id
+        : null == items.selectedItem
+        ? items.selectedItem.sub_category.id
         : "null"
     )
 );
