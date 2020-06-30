@@ -3,19 +3,23 @@ import { Col, Row } from "reactstrap";
 import Page from "../../../components/Page";
 // import Items from "../../homePage/components/item";??
 import Item from "../../homePage/components/item";
-import { loadItems, getFilteredItems } from "../../../store/items";
+import {
+  loadItemsBySubcategoryId,
+  getFilteredItems,
+} from "../../../store/items";
 import { connect } from "react-redux";
 
+//load items by subcategory and display
 class MainBodyPage extends Component {
   componentDidMount() {
-    this.props.loadItems();
+    console.log("main", this.props.subcategory);
+    this.props.loadItemsBySubcategoryId(this.props.subcategory.id);
   }
   render() {
-    console.log("main body", this.props.items);
     return (
       <Page
         className="mainBodyContainer"
-        breadcrumbs={[{ name: "SubCategory Name", active: true }]}
+        breadcrumbs={[{ name: this.props.subcategory.name, active: true }]}
       >
         <Row>
           {this.props.items.map((item) => (
@@ -34,7 +38,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadItems: () => dispatch(loadItems()),
+  loadItemsBySubcategoryId: (subcategory_id) =>
+    dispatch(loadItemsBySubcategoryId(subcategory_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainBodyPage);

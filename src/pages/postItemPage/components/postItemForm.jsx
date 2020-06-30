@@ -388,15 +388,14 @@ class PostItemForm extends NestedForm {
                         ) : null}
                         {category && category.name === "Digital" ? (
                           <Col xs={12} md={12}>
-                            {this.renderCustomSelect(
-                              "digitalServiceType",
+                            {this.renderSelect(
+                              "sub_category_id",
                               "Service Type",
-                              ["Subscription Services", "Season Tickets"]
+                              this.props.subcategories
                             )}
 
-                            {properties.digitalServiceType &&
-                            properties.digitalServiceType.value ===
-                              "Subscription Services" ? (
+                            {subcategory &&
+                            subcategory.name === "Subscription Services" ? (
                               <>
                                 <Row>
                                   <Col xs={12} md={6}>
@@ -434,9 +433,8 @@ class PostItemForm extends NestedForm {
                                 </Row>
                               </>
                             ) : null}
-                            {properties.digitalServiceType &&
-                            properties.digitalServiceType.value ===
-                              "Season Tickets" ? (
+                            {subcategory &&
+                            subcategory.name === "Season Tickets" ? (
                               <>
                                 <Row>
                                   <Col xs={12} md={6}>

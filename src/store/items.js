@@ -17,6 +17,7 @@ const slice = createSlice({
     status: "initial",
     searchedItems: [],
     myItems: [],
+    filterdItems: [],
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -61,6 +62,7 @@ const slice = createSlice({
         (item) => item.itemId === action.payload.itemId
       );
       items.myItems[index] = action.payload;
+      items.loading = false;
     },
     itemRemoved: (items, action) => {
       const index = items.list.findIndex(
@@ -69,7 +71,9 @@ const slice = createSlice({
       items.list.splice(index, 1);
     },
     itemFiltered: (items, action) => {
-      items.filterOptions = action.payload;
+      // items.filterOptions = action.payload;
+      items.filterdItems = action.payload;
+      items.loading = false;
     },
     itemSearched: (items, action) => {
       items.searchedItems = action.payload;
@@ -162,6 +166,13 @@ export const loadMyItems = () =>
     onError: itemsRequestFailed.type,
   });
 
+export const loadItemsBySubcategoryId = (subcategoryId) =>
+  apiCallBegan({
+    url: "/items?sub_category=" + subcategoryId,
+    onStart: itemsRequested.type,
+    onSuccess: itemFiltered.type,
+    onError: itemsRequestFailed.type,
+  });
 //Selectors
 
 export const getItems = createSelector(
@@ -191,24 +202,26 @@ export const getLoading = createSelector(
   (loading) => loading
 );
 export const getFilteredItems = createSelector(
+  // (state) => state.entities.items,
+  // (items) => {
+  //   if (
+  //     _.has(items.filterOptions, "from") &&
+  //     _.has(items.filterOptions, "to")
+  //   ) {
+  //     const { from, to } = items.filterOptions;
+  //     return items.list.filter(
+  //       (item) => item.price >= from && item.price <= to
+  //     );
+  //   } else return items.list;
+  // },
+  // (items) => {
+  //   if (_.has(items.filterOptions, "query")) {
+  //     const { query } = items.filterOptions;
+  //     return items.list.filter((item) => item.title.startsWith(query));
+  //   } else return items.list;
+  // }
   (state) => state.entities.items,
-  (items) => {
-    if (
-      _.has(items.filterOptions, "from") &&
-      _.has(items.filterOptions, "to")
-    ) {
-      const { from, to } = items.filterOptions;
-      return items.list.filter(
-        (item) => item.price >= from && item.price <= to
-      );
-    } else return items.list;
-  },
-  (items) => {
-    if (_.has(items.filterOptions, "query")) {
-      const { query } = items.filterOptions;
-      return items.list.filter((item) => item.title.startsWith(query));
-    } else return items.list;
-  }
+  (items) => items.filterdItems
 );
 
 export const getErrors = createSelector(
