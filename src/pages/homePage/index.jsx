@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
 import SubHeader from "../../components/Layout/SubHeader";
 import Item from "./components/item";
-import { loadItems, getItems, getLoading } from "../../store/items";
+import {
+  getLoading,
+  getFilteredItems,
+  loadFilteredItems,
+} from "../../store/items";
 import { connect } from "react-redux";
 import Shimmer from "react-shimmer-effect";
 import FilterComp from "../allItems/components/filterComp";
@@ -20,7 +24,8 @@ class HomePage extends Component {
   }
   componentDidMount() {
     this.setState({ waitingContent: this.preLoaders() });
-    this.props.loadItems();
+    //load filtered items without any filter option
+    this.props.loadFilterdItems({});
   }
 
   preLoaders = () => {
@@ -67,9 +72,7 @@ class HomePage extends Component {
   render() {
     return (
       <div className="BackContainer">
-        {this.props.loading && 
-          this.state.waitingContent
-         }
+        {this.props.loading && this.state.waitingContent}
         {this.props.items && (
           <Row>
             <Col md={3} className="filterContainer">
@@ -93,11 +96,11 @@ class HomePage extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  items: getItems(state),
+  items: getFilteredItems(state),
   loading: getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadItems: () => dispatch(loadItems()),
+  loadFilterdItems: (options) => dispatch(loadFilteredItems(options)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

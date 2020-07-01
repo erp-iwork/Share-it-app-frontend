@@ -11,6 +11,16 @@ class NestedForm extends Component {
   digitalServiceType = ["Subscription Service", "Season Tickets"];
   sharingType = ["serviceType", "digitalServiceType"];
 
+  isDonatingOptions = [
+    {
+      id: "false",
+      name: "Sharing",
+    },
+    {
+      id: "true",
+      name: "Donating",
+    },
+  ];
   nameMapToLabel = {
     serviceType: "Service Type",
     digitalServiceType: "Service Type",

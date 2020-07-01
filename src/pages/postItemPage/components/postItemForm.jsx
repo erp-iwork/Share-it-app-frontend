@@ -49,16 +49,6 @@ class PostItemForm extends NestedForm {
 
     this.onDrop = this.onDrop.bind(this);
   }
-  isDonatingOptions = [
-    {
-      id: "false",
-      name: "Sharing",
-    },
-    {
-      id: "true",
-      name: "Donating",
-    },
-  ];
   componentDidMount() {
     // const data = { ...this.state.data };
     // navigator.geolocation.getCurrentPosition(function (position) {
