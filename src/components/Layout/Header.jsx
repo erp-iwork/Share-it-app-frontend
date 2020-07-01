@@ -88,7 +88,7 @@ class Header extends React.Component {
   };
 
   toggleSearchCardPopover = (evt) => {
-    if (evt.target.value.length >= 3) {
+    if (evt.target.value && evt.target.value.length >= 3) {
       this.props.loadFilteredItems({ search: evt.target.value });
       this.setState({
         isOpenSearchCardPopover: this.state.focused,
