@@ -2,18 +2,34 @@ import React, { Component } from "react";
 import { RelatedAdCard } from "../../../components/Card";
 import { Col } from "reactstrap";
 import { connect } from "react-redux";
-import { getSelectedItem, getItemsByCategory } from "../../../store/items";
+import {
+  getSelectedItem,
+  loadFilteredItems,
+  getFilteredItems,
+} from "../../../store/items";
 
 class RelatedAdsComp extends Component {
+  componentDidMount() {
+    this.props.loadFilteredItems({
+      sub_category: this.props.selectedItem.sub_category.id,
+    });
+  }
+
   render() {
-    console.log(this.props.relatedItems);
+    if (this.props.selectedItem.itemId !== this.props.match.params.id)
+      this.props.loadFilteredItems({
+        sub_category: this.props.selectedItem.sub_category.id,
+      });
     return (
       <>
         Related Shares
         <Col className="relatedAdSingleItemContainer">
-          {this.props.relatedItems.slice(0, 7).map((item) => (
-            <RelatedAdCard item={item} />
-          ))}
+          {this.props.items
+            .filter((item) => item.itemId !== this.props.selectedItem.itemId)
+            .slice(0, 7)
+            .map((item) => (
+              <RelatedAdCard item={item} />
+            ))}
         </Col>
       </>
     );
@@ -22,6 +38,9 @@ class RelatedAdsComp extends Component {
 
 const mapStateToProps = (state) => ({
   selectedItem: getSelectedItem(state),
-  relatedItems: getItemsByCategory(state),
+  items: getFilteredItems(state),
 });
-export default connect(mapStateToProps, null)(RelatedAdsComp);
+const mapDispatchToProps = (dispatch) => ({
+  loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(RelatedAdsComp);

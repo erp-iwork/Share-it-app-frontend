@@ -74,6 +74,7 @@ const slice = createSlice({
       // items.filterOptions = action.payload;
       items.filterdItems = action.payload;
       items.loading = false;
+      items.errors = null;
     },
     itemSearched: (items, action) => {
       items.searchedItems = action.payload;
@@ -166,9 +167,25 @@ export const loadMyItems = () =>
     onError: itemsRequestFailed.type,
   });
 
-export const loadItemsBySubcategoryId = (subcategoryId) =>
+const makeUrl = (options) => {
+  const {
+    sub_category,
+    category,
+    min_price,
+    max_price,
+    condition,
+    search,
+  } = options;
+  return `items?sub_category=${sub_category ? sub_category : ""}&category=${
+    category ? category : ""
+  }&min_price=${min_price ? min_price : ""}&max_price=${
+    max_price ? max_price : ""
+  }&condition=${condition ? condition : ""}&search=${search ? search : ""}`;
+};
+
+export const loadFilteredItems = (options) =>
   apiCallBegan({
-    url: "/items?sub_category=" + subcategoryId,
+    url: makeUrl(options),
     onStart: itemsRequested.type,
     onSuccess: itemFiltered.type,
     onError: itemsRequestFailed.type,

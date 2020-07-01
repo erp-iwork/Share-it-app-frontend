@@ -3,17 +3,15 @@ import { Col, Row } from "reactstrap";
 import Page from "../../../components/Page";
 // import Items from "../../homePage/components/item";??
 import Item from "../../homePage/components/item";
-import {
-  loadItemsBySubcategoryId,
-  getFilteredItems,
-} from "../../../store/items";
+import { loadFilteredItems, getFilteredItems } from "../../../store/items";
 import { connect } from "react-redux";
 
 //load items by subcategory and display
 class MainBodyPage extends Component {
   componentDidMount() {
-    console.log("main", this.props.subcategory);
-    this.props.loadItemsBySubcategoryId(this.props.subcategory.id);
+    this.props.loadFilteredItems({
+      sub_category: this.props.subcategory.id,
+    });
   }
   render() {
     return (
@@ -38,8 +36,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadItemsBySubcategoryId: (subcategory_id) =>
-    dispatch(loadItemsBySubcategoryId(subcategory_id)),
+  loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainBodyPage);

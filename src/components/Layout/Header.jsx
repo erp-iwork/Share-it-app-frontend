@@ -40,47 +40,22 @@ import { UserCard } from "../Card";
 import routes from "../../config/routes";
 import PageSpinner from "../../components/PageSpinner";
 import { getCurrentUser } from "../../store/auth";
-import { getSearchedItems, search, getLoading } from "../../store/items";
+import {
+  getLoading,
+  loadFilteredItems,
+  getFilteredItems,
+} from "../../store/items";
 const bem = bn.create("header");
 
 class Header extends React.Component {
-  state = {
-    isOpenUserCardPopover: false,
-    isOpenSearchCardPopover: false,
-    query: "",
-    focused: false,
-  };
-  logout = () => {
-    localStorage.clear();
-    window.location = routes.homePage;
-  };
-  onFocus = () => {
-    this.setState({ focused: true });
-  };
-  onBlur = () => {
-    this.setState({ focused: false });
-  };
-
-  toggleUserCardPopover = () => {
-    this.setState({
-      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
-      isOpenSearchCardPopover: false,
-    });
-  };
-
-  toggleSearchCardPopover = (evt) => {
-    this.props.search(evt.target.value);
-    this.setState({
-      isOpenSearchCardPopover: this.state.focused,
-      isOpenUserCardPopover: false,
-      query: evt.target.value,
-    });
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       isDesktop: false,
+      isOpenUserCardPopover: false,
+      isOpenSearchCardPopover: false,
+      query: "",
+      focused: false,
     };
     this.updatePredicate = this.updatePredicate.bind(this);
   }
@@ -97,6 +72,40 @@ class Header extends React.Component {
   updatePredicate() {
     this.setState({ isDesktop: window.innerWidth > 1000 });
   }
+
+  onFocus = () => {
+    this.setState({ focused: true });
+  };
+  onBlur = () => {
+    this.setState({ focused: false, isOpenSearchCardPopover: false });
+  };
+
+  toggleUserCardPopover = () => {
+    this.setState({
+      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
+      isOpenSearchCardPopover: false,
+    });
+  };
+
+  toggleSearchCardPopover = (evt) => {
+    if (evt.target.value.length >= 3) {
+      this.props.loadFilteredItems({ search: evt.target.value });
+      this.setState({
+        isOpenSearchCardPopover: this.state.focused,
+        isOpenUserCardPopover: false,
+        query: evt.target.value,
+      });
+    } else {
+      this.setState({
+        query: evt.target.value,
+      });
+    }
+  };
+
+  logout = () => {
+    localStorage.clear();
+    window.location = routes.homePage;
+  };
 
   render() {
     const isDesktop = this.state.isDesktop;
@@ -141,7 +150,6 @@ class Header extends React.Component {
                 onClick={this.toggleSearchCardPopover}
                 isOpen={this.state.isOpenSearchCardPopover}
                 toggle={this.toggleSearchCardPopover}
-                onClick={this.toggleSearchCardPopover}
                 className="p-0 border-0"
                 target="Popover1"
               >
@@ -331,12 +339,12 @@ class Header extends React.Component {
 }
 const mapStateToProps = (state) => ({
   currentUser: getCurrentUser(state),
-  items: getSearchedItems(state),
+  items: getFilteredItems(state),
   loading: getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(search(query)),
+  loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
