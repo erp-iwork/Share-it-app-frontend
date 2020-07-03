@@ -15,7 +15,7 @@ class SubHeader extends React.Component {
       <Card className="mainPadding" align="center">
         <Row>
           {this.props.categories.map((category) => (
-            <Col md={3} xs={12} sm={6}>
+            <Col md={3} xs={12} sm={6} key={category.id}>
               <Link to={`/categories/${category.id}`}>
                 <Button outline block>
                   {category.name} Sharing

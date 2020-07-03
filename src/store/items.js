@@ -149,8 +149,7 @@ export const removeItem = (id) =>
     onSuccess: itemRemoved.type,
   });
 
-export const filter = (options) => itemFiltered(options);
-export const search = (query) =>
+export const searchItems = (query) =>
   apiCallBegan({
     url: "/items?search=" + query,
     onSuccess: itemSearched,

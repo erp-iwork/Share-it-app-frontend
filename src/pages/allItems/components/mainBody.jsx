@@ -21,7 +21,7 @@ class MainBodyPage extends Component {
       >
         <Row>
           {this.props.items.map((item) => (
-            <Col md={2} sm={12} xs={12}>
+            <Col md={2} sm={12} xs={12} key={item.itemId}>
               <Item item={item} />
             </Col>
           ))}

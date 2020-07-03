@@ -40,11 +40,7 @@ import { UserCard } from "../Card";
 import routes from "../../config/routes";
 import PageSpinner from "../../components/PageSpinner";
 import { getCurrentUser } from "../../store/auth";
-import {
-  getLoading,
-  loadFilteredItems,
-  getFilteredItems,
-} from "../../store/items";
+import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 const bem = bn.create("header");
 
 class Header extends React.Component {
@@ -89,7 +85,7 @@ class Header extends React.Component {
 
   toggleSearchCardPopover = (evt) => {
     if (evt.target.value && evt.target.value.length >= 3) {
-      this.props.loadFilteredItems({ search: evt.target.value });
+      this.props.searchItems(evt.target.value);
       this.setState({
         isOpenSearchCardPopover: this.state.focused,
         isOpenUserCardPopover: false,
@@ -160,7 +156,11 @@ class Header extends React.Component {
                     <Row>
                       {/* //Do your Search Result Mapping Here */}
                       {this.props.items.map((item) => (
-                        <Col md={4} className="searchResultsHeader">
+                        <Col
+                          md={4}
+                          className="searchResultsHeader"
+                          key={item.itemId}
+                        >
                           <Link to={`/items/${item.itemId}`}>
                             <div className="zoom">
                               <Card className="flex-row">
@@ -339,12 +339,12 @@ class Header extends React.Component {
 }
 const mapStateToProps = (state) => ({
   currentUser: getCurrentUser(state),
-  items: getFilteredItems(state),
+  items: getSearchedItems(state),
   loading: getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
+  searchItems: (query) => dispatch(searchItems(query)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
