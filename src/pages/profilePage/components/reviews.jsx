@@ -18,7 +18,7 @@ class ReviewsComp extends Component {
           <Col md={10}>
             <Row className="reviewbody">
               <Col md={7}>
-                <b>Header</b>
+                <b>John Doe</b>
               </Col>
               <Col md={5}>
                 <MdStar />
@@ -31,7 +31,7 @@ class ReviewsComp extends Component {
             <div>
               <div>
                 <i>
-                  SomethingSomethingSomethingSomethingSomethingSomethingSomethingSomethingSomethingSomething
+                  Seller was prompt. Item shared was exactly as the picture showed, not mis-leading, and communicative.
                 </i>
               </div>
             </div>

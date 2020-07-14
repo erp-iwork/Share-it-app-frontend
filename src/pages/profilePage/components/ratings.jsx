@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import {
   Button, Card, CardBody, CardHeader, Col,
-  Form, FormGroup, Input, Row,
+  Form, FormGroup, Input, Row, CardFooter,
 } from "reactstrap";
 import { MdStar } from "react-icons/md";
 import { Reviews } from ".";
+import { getCurrentUser } from "../../../store/auth";
 
 class RatingsComp extends Component {
   constructor(props) {
@@ -70,13 +71,22 @@ class RatingsComp extends Component {
             </>
           ) : null}
           <Col>
-            <Reviews />
+            {/* <Reviews /> */}
             <Reviews />
           </Col>
         </CardBody>
+        <CardFooter align='center'>
+          <Button outline size='sm'>
+            Show More
+          </Button>
+        </CardFooter>
       </Card>
     );
   }
 }
 
-export default RatingsComp;
+const mapStateToProps=(state)=>({
+  currentUser:getCurrentUser(state)
+})
+
+export default  RatingsComp;

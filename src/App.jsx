@@ -15,7 +15,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import routes from "./config/routes";
 import ProtectedRoute from "./components/protectedRoute";
-
+import Chat from "./components/ChatComponent"
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
@@ -23,6 +23,7 @@ const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
 const AllItemsPage = React.lazy(() => import("./pages/allItems"));
 const SingleItemPage = React.lazy(() => import("./pages/singleItemView"));
 const ProfilePage = React.lazy(() => import("./pages/profilePage"));
+const Messages = React.lazy(()=>import("./pages/messages/messages"))
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
@@ -78,6 +79,7 @@ class App extends React.Component {
                       path={routes.postItem}
                       component={PostItemPage}
                     />
+
                     <Route exact path={routes.homePage} component={HomePage} />
                     <Route
                       exact
@@ -108,6 +110,16 @@ class App extends React.Component {
                       exact
                       path={routes.Availability}
                       component={AvailabilityPage}
+                    />
+                      <Route
+                      exact
+                      path="/chat"
+                      component={Chat}
+                    />
+                    <Route
+                    exact
+                    path="/messages"
+                    component={Messages}
                     />
                   </React.Suspense>
                 </MainLayout>
@@ -146,3 +158,48 @@ const query = ({ width }) => {
 };
 
 export default componentQueries(query)(App);
+// import React, { Component } from 'react';
+// import './static/css/App.css';
+// import InitializeChatComponent from './components/InitializeChatComponent';
+// import ChatComponent from './components/ChatComponent';
+// import WebSocketInstance from './WebSocket';
+
+// class App extends Component {
+// 	constructor(props) {
+// 		super(props)
+
+// 		this.state = {
+// 			username: '',
+// 			loggedIn: false
+// 		};
+// 	}
+
+// 	handleLogin = (e, username) => {
+// 		e.preventDefault();
+// 		this.setState({ loggedIn: true, username: username });
+// 		WebSocketInstance.connect();
+// 		console.log(this.state);
+
+// 	}
+
+// 	render() {
+// 		const { username, loggedIn } = this.state;
+// 		return (
+// 			<div className="App">
+// 				{
+// 					loggedIn ?
+// 						<ChatComponent currentUser={username}
+// 						/>
+// 						:
+// 						<InitializeChatComponent
+// 							handleLogin={this.handleLogin}
+// 						/>
+// 				}
+
+// 			</div>
+// 		);
+// 	}
+
+// }
+
+// export default App;

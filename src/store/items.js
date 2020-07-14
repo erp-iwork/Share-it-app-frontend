@@ -17,6 +17,7 @@ const slice = createSlice({
     status: "initial",
     searchedItems: [],
     myItems: [],
+    filterdItems: [],
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -61,6 +62,7 @@ const slice = createSlice({
         (item) => item.itemId === action.payload.itemId
       );
       items.myItems[index] = action.payload;
+      items.loading = false;
     },
     itemRemoved: (items, action) => {
       const index = items.list.findIndex(
@@ -69,10 +71,13 @@ const slice = createSlice({
       items.list.splice(index, 1);
     },
     itemFiltered: (items, action) => {
-      items.filterOptions = action.payload;
+      // items.filterOptions = action.payload;
+      items.filterdItems = action.payload.results;
+      items.loading = false;
+      items.errors = null;
     },
     itemSearched: (items, action) => {
-      items.searchedItems = action.payload;
+      items.searchedItems = action.payload.results;
       items.loading = false;
       items.errors = null;
     },
@@ -144,8 +149,7 @@ export const removeItem = (id) =>
     onSuccess: itemRemoved.type,
   });
 
-export const filter = (options) => itemFiltered(options);
-export const search = (query) =>
+export const searchItems = (query) =>
   apiCallBegan({
     url: "/items?search=" + query,
     onSuccess: itemSearched,
@@ -162,6 +166,29 @@ export const loadMyItems = () =>
     onError: itemsRequestFailed.type,
   });
 
+const makeUrl = (options) => {
+  const {
+    sub_category,
+    category,
+    min_price,
+    max_price,
+    condition,
+    search,
+  } = options;
+  return `items?sub_category=${sub_category ? sub_category : ""}&category=${
+    category ? category : ""
+  }&min_price=${min_price ? min_price : ""}&max_price=${
+    max_price ? max_price : ""
+  }&condition=${condition ? condition : ""}&search=${search ? search : ""}`;
+};
+
+export const loadFilteredItems = (options) =>
+  apiCallBegan({
+    url: makeUrl(options),
+    onStart: itemsRequested.type,
+    onSuccess: itemFiltered.type,
+    onError: itemsRequestFailed.type,
+  });
 //Selectors
 
 export const getItems = createSelector(
@@ -175,13 +202,13 @@ export const getSelectedItem = createSelector(
 );
 
 export const getItemsByCategory = createSelector(
-  (state) => state.entities.items,
+  (state) => state.entities.items.list,
   (items) =>
-    items.list.filter((item) =>
-      item.category
-        ? item.category.category
-        : null === items.selectedItem
-        ? items.selectedItem.category.category
+    items.filter((item) =>
+      item.sub_category
+        ? item.sub_category.id
+        : null == items.selectedItem
+        ? items.selectedItem.sub_category.id
         : "null"
     )
 );
@@ -191,24 +218,26 @@ export const getLoading = createSelector(
   (loading) => loading
 );
 export const getFilteredItems = createSelector(
+  // (state) => state.entities.items,
+  // (items) => {
+  //   if (
+  //     _.has(items.filterOptions, "from") &&
+  //     _.has(items.filterOptions, "to")
+  //   ) {
+  //     const { from, to } = items.filterOptions;
+  //     return items.list.filter(
+  //       (item) => item.price >= from && item.price <= to
+  //     );
+  //   } else return items.list;
+  // },
+  // (items) => {
+  //   if (_.has(items.filterOptions, "query")) {
+  //     const { query } = items.filterOptions;
+  //     return items.list.filter((item) => item.title.startsWith(query));
+  //   } else return items.list;
+  // }
   (state) => state.entities.items,
-  (items) => {
-    if (
-      _.has(items.filterOptions, "from") &&
-      _.has(items.filterOptions, "to")
-    ) {
-      const { from, to } = items.filterOptions;
-      return items.list.filter(
-        (item) => item.price >= from && item.price <= to
-      );
-    } else return items.list;
-  },
-  (items) => {
-    if (_.has(items.filterOptions, "query")) {
-      const { query } = items.filterOptions;
-      return items.list.filter((item) => item.title.startsWith(query));
-    } else return items.list;
-  }
+  (items) => items.filterdItems
 );
 
 export const getErrors = createSelector(

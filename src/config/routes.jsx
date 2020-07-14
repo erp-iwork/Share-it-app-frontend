@@ -2,13 +2,12 @@ export default {
   homePage: "/",
   login: "/login",
   registration: "/registration",
-  categories: "/categories",
+  categories: "/categories/:id",
   postItem: "/postItem",
   allItems: "/items",
   singleItem: "/items/:id",
-  profile: "/profile",
+  profile: "/profiles/:id",
   settings: "/settings",
   buyAndSell: "/buyAndSell",
   Availability: "/Availability",
-
 };

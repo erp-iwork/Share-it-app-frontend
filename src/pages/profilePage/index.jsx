@@ -7,6 +7,11 @@ class UserProfilePage extends Component {
     super(props);
     this.state = {};
   }
+  componentDidMount() {
+    const userId = this.props.match.params.id;
+    console.log("works here", userId)
+    
+  }
   render() {
     return (
       <Col>

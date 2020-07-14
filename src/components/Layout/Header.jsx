@@ -40,47 +40,18 @@ import { UserCard } from "../Card";
 import routes from "../../config/routes";
 import PageSpinner from "../../components/PageSpinner";
 import { getCurrentUser } from "../../store/auth";
-import { getSearchedItems, search, getLoading } from "../../store/items";
+import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 const bem = bn.create("header");
 
 class Header extends React.Component {
-  state = {
-    isOpenUserCardPopover: false,
-    isOpenSearchCardPopover: false,
-    query: "",
-    focused: false,
-  };
-  logout = () => {
-    localStorage.clear();
-    window.location = routes.homePage;
-  };
-  onFocus = () => {
-    this.setState({ focused: true });
-  };
-  onBlur = () => {
-    this.setState({ focused: false });
-  };
-
-  toggleUserCardPopover = () => {
-    this.setState({
-      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
-      isOpenSearchCardPopover: false,
-    });
-  };
-
-  toggleSearchCardPopover = (evt) => {
-    this.props.search(evt.target.value);
-    this.setState({
-      isOpenSearchCardPopover: this.state.focused,
-      isOpenUserCardPopover: false,
-      query: evt.target.value,
-    });
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       isDesktop: false,
+      isOpenUserCardPopover: false,
+      isOpenSearchCardPopover: false,
+      query: "",
+      focused: false,
     };
     this.updatePredicate = this.updatePredicate.bind(this);
   }
@@ -98,14 +69,48 @@ class Header extends React.Component {
     this.setState({ isDesktop: window.innerWidth > 1000 });
   }
 
+  onFocus = () => {
+    this.setState({ focused: true });
+  };
+  onBlur = () => {
+    this.setState({ focused: false, isOpenSearchCardPopover: false });
+  };
+
+  toggleUserCardPopover = () => {
+    this.setState({
+      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
+      isOpenSearchCardPopover: false,
+    });
+  };
+
+  toggleSearchCardPopover = (evt) => {
+    if (evt.target.value && evt.target.value.length >= 3) {
+      this.props.searchItems(evt.target.value);
+      this.setState({
+        isOpenSearchCardPopover: this.state.focused,
+        isOpenUserCardPopover: false,
+        query: evt.target.value,
+      });
+    } else {
+      this.setState({
+        query: evt.target.value,
+      });
+    }
+  };
+
+  logout = () => {
+    localStorage.clear();
+    window.location = routes.homePage;
+  };
+
   render() {
     const isDesktop = this.state.isDesktop;
 
     const { isNotificationConfirmed } = this.state;
     return (
       <Navbar fixed="top" light expand className={bem.b("bg-white")}>
-        <Nav navbar>
-          <img className="App-logo" alt="" src={Logo} />
+        <Nav navbar className="App-logo">
+          <img alt="" src={Logo} />
         </Nav>
         <Nav navbar>
           <Link to={{ pathname: routes.homePage }}>
@@ -141,23 +146,30 @@ class Header extends React.Component {
                 onClick={this.toggleSearchCardPopover}
                 isOpen={this.state.isOpenSearchCardPopover}
                 toggle={this.toggleSearchCardPopover}
-                onClick={this.toggleSearchCardPopover}
                 className="p-0 border-0"
                 target="Popover1"
               >
                 <div className="popoverSearch">
                   <PopoverBody className="p-4 border-secondary">
-                    <h4>Search Results for "{this.state.query}"</h4>
+                    <h6>Search Results for "{this.state.query}"</h6>
                     <hr />
-                    <Row>
-                      {/* //Do your Search Result Mapping Here */}
-                      {this.props.items.map((item) => (
-                        <Col md={4} className="searchResultsHeader">
+                    {/* //Do your Search Result Mapping Here */}
+                    {console.log(this.props.items)}
+
+                    {this.props.items
+                      ? this.props.items.map((item) => (
+                        <Col
+                          // md={4}
+                          className="searchResultsHeader"
+                          key={item.itemId}
+                        >
                           <Link to={`/items/${item.itemId}`}>
                             <div className="zoom">
                               <Card className="flex-row">
                                 <div className="searchImgContainer">
-                                  <CardImg src={item.item_images[0].image} />
+                                  <CardImg
+                                    src={item.item_images[0].image}
+                                  />
                                 </div>
 
                                 <CardBody>
@@ -168,10 +180,10 @@ class Header extends React.Component {
                             </div>
                           </Link>
                         </Col>
-                      ))}
+                      ))
+                      : null}
 
-                      {/* //Do your Search Result Mapping Here */}
-                    </Row>
+                    {/* //Do your Search Result Mapping Here */}
                   </PopoverBody>
                 </div>
               </Popover>
@@ -186,23 +198,23 @@ class Header extends React.Component {
                 <NavLink>
                   <Button>
                     {" "}
-                    <MdExitToApp /> Share
+                    <MdExitToApp /> Start Sharing
                   </Button>
                 </NavLink>
               </Link>
             </NavItem>
           ) : (
-            <NavItem>
-              <Link to={{ pathname: "/login" }}>
-                <NavLink>
-                  <Button>
-                    {" "}
-                    <MdExitToApp /> Share
+              <NavItem>
+                <Link to={{ pathname: "/login" }}>
+                  <NavLink>
+                    <Button>
+                      {" "}
+                      <MdExitToApp /> Start Sharing
                   </Button>
-                </NavLink>
-              </Link>
-            </NavItem>
-          )}
+                  </NavLink>
+                </Link>
+              </NavItem>
+            )}
 
           <NavItem className="d-inline-flex">
             <NavLink className="position-relative">
@@ -267,14 +279,16 @@ class Header extends React.Component {
                                 <MdInsertChart /> Activities
                               </ListGroupItem>
                             </Link>
-
-                            <ListGroupItem
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdMessage /> Messages
+                            <Link to={{ pathname: "/messages" }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdMessage /> Messages
                             </ListGroupItem>
+                            </Link>
+
 
                             <Link to={{ pathname: routes.Availability }}>
                               <ListGroupItem
@@ -336,7 +350,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(search(query)),
+  searchItems: (query) => dispatch(searchItems(query)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

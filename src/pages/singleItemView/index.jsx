@@ -30,7 +30,7 @@ class SingleItemViewPage extends Component {
             <Col md={3}>
               <Profile selectedItem={this.props.selectedItem} />
               {/* TODO - */}
-              <RelatedAds />
+              <RelatedAds {...this.props} />
             </Col>
           </Row>
         )}

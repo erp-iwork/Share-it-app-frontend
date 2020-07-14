@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col, Row, Card, CardHeader } from "reactstrap";
-import CoverImage from "../../../assets/car1.png";
+import CoverImage from "../../../assets/Icons/CLogo.svg";
 import Avatar from "../../../components/Avatar";
 import { MdStar, MdStarBorder } from "react-icons/md";
 import {
@@ -13,6 +13,7 @@ import {
 } from "../../../assets/SharreIt-ContactIcons";
 import { getProfile, loadProfile } from "../../../store/users";
 import { connect } from "react-redux";
+import { getCurrentUser } from "../../../store/auth";
 
 class PersonalInformationComp extends Component {
   componentDidMount() {
@@ -20,19 +21,24 @@ class PersonalInformationComp extends Component {
   }
 
   render() {
+    console.log(this.props.currentUser, this.props.profile);
     return (
       <>
         <div className="coverImageContainer">
-          <img src={this.props.profile.image} alt="" />
+          <img src={CoverImage} alt="" />
         </div>
         <Col>
           <Card className="personalInformationMargin">
             <Row>
               <Col md={2} align="center">
-                <Avatar size={150} className="profileAvatar" />
+                <Avatar
+                  size={150}
+                  className="profileAvatar"
+                  src={this.props.currentUser.avatar}
+                />
               </Col>
               <Col md={5} className="profileName">
-                <h2>{this.props.profile.name}</h2>
+                <h2>{this.props.currentUser.name}</h2>
                 <MdStar fontSize={30} className="rating" />
                 <MdStar fontSize={30} className="rating" />
                 <MdStarBorder fontSize={30} />
@@ -125,6 +131,7 @@ class PersonalInformationComp extends Component {
 
 const mapStateToProps = (state) => ({
   profile: getProfile(state),
+  currentUser: getCurrentUser(state),
 });
 const mapDispatchToProps = (dispatch) => ({
   loadProfile: () => dispatch(loadProfile()),

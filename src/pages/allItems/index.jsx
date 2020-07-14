@@ -4,14 +4,11 @@ import MainBodyPage from "./components/mainBody";
 import { Col } from "reactstrap";
 
 class AllItems extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
+    const { state } = this.props.location;
     return (
       <Col>
-        <MainBodyPage />
+        <MainBodyPage subcategory={state ? state.subcategory : ""} />
       </Col>
     );
   }

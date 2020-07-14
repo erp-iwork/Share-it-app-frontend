@@ -15,6 +15,9 @@ import {
 import { toast } from "react-toastify";
 import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getCurrentUser } from "../../../store/auth";
 
 const openNotification = () => {
   toast.error("Did You Read the Terms and Conditions?");
@@ -67,6 +70,8 @@ class ItemViewComp extends Component {
       is_available,
       term_and_conditions,
       properties,
+      owner,
+      itemId
     } = this.props.selectedItem;
     return (
       <Card>
@@ -203,7 +208,7 @@ class ItemViewComp extends Component {
                   </Button>
                 </Col>
               </div>
-              <>
+              {JSON.parse(this.props.currentUser).email===owner.email? <>
                 <CardHeader className="singlePaddingterm">
                   Interested?<small>Contact the Supplier</small>
                 </CardHeader>
@@ -211,14 +216,14 @@ class ItemViewComp extends Component {
                   <Col md={9}>
                     <Input
                       type="textarea"
-                      value="Hello There, I am Interested in your Item {ItemId}"
+                      value={`Hello There, I am Interested in your ${title} Item `}
                     />
                   </Col>
                   {accepted ? (
                     <Col md={3}>
-                      <Button block outline>
+                      <Link to={{pathname:"/chat", state:{receiver:owner.email,itemTitle:title, id:itemId}}} block outline >
                         <MdSend />
-                      </Button>
+                      </Link>
                     </Col>
                   ) : (
                     <Col md={3}>
@@ -233,7 +238,7 @@ class ItemViewComp extends Component {
                     </Col>
                   )}
                 </Row>
-              </>
+              </>:null}
             </Col>
           </Row>
         </CardBody>
@@ -242,4 +247,8 @@ class ItemViewComp extends Component {
   }
 }
 
-export default ItemViewComp;
+const mapStateToProps = (state) => ({
+  currentUser: getCurrentUser(state)
+});
+
+export default connect(mapStateToProps,null)(ItemViewComp);

@@ -11,9 +11,12 @@ class SellerProfileComp extends Component {
       <Card renderAs={Link} className="sellerProfile">
         <Col>
           <Row>
+            <Link to={`/profiles/${owner.id}`}>
             <Col md={3}>
               <Avatar size={60} />
             </Col>
+            </Link>
+            
             <Col>
               <h4>{owner ? owner.name : ""}</h4>
               <MdStar fontSize={23} className="rating" />
