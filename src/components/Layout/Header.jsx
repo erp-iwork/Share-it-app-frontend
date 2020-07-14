@@ -109,8 +109,8 @@ class Header extends React.Component {
     const { isNotificationConfirmed } = this.state;
     return (
       <Navbar fixed="top" light expand className={bem.b("bg-white")}>
-        <Nav navbar className="App-logo">
-          <img alt="" src={Logo} />
+        <Nav navbar>
+          <img className="App-logo" alt="" src={Logo} />
         </Nav>
         <Nav navbar>
           <Link to={{ pathname: routes.homePage }}>

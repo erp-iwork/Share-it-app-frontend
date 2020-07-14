@@ -22,9 +22,6 @@ class ChatComponent extends Component {
             WebSocketInstance.fetchMessages(this.state.sender);
         });
 
-
-
-
     }
 
     waitForSocketConnection(callback) {
