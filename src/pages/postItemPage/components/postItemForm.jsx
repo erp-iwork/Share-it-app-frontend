@@ -49,7 +49,6 @@ class PostItemForm extends NestedForm {
         is_donating: false,
       },
       pictures: [],
-      boosted: false,
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -70,18 +69,12 @@ class PostItemForm extends NestedForm {
       pictures: this.state.pictures.concat(picture),
     });
   }
-  boost() {
-    this.setState({
-      boosted: !this.state.boosted,
-    });
-    // alert(this.state.boosted)
-  }
   doSubmit = () => {
     const data = { ...this.state.data };
     data.is_donating = data.is_donating === "true" ? true : false; //todo refactor
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
-    data.owner_id = JSON.parse(this.props.currentUser).id;
+    data.owner_id = this.props.currentUser.id;
     //TODO remove when the backed fixed
     console.log(data.category_id, parseInt(data.category_id));
     data.category = parseInt(data.category_id);
@@ -111,27 +104,6 @@ class PostItemForm extends NestedForm {
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
-          <Modal
-            isOpen={this.state.modal}
-            toggle={this.boost()}
-            className={this.props.className}
-          >
-            <ModalHeader toggle={this.boost()}>
-              Terms And Conditions for Wolla
-            </ModalHeader>
-            <ModalBody>
-              Hello
-              <br />
-            </ModalBody>
-            <ModalFooter>
-              <Button color="success" onClick={this.boost()}>
-                Accept
-              </Button>{" "}
-              <Button color="secondary" onClick={this.boost()}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </Modal>
           <Col xl={10} lg={12} md={12} sm={12}>
             <Card>
               <CardHeader>Share What You Have</CardHeader>
@@ -509,16 +481,6 @@ class PostItemForm extends NestedForm {
                           )}
                         </Col>
                       </Row>
-                      <Col>
-                        <Button
-                          block
-                          outline
-                          color="success"
-                          onClick={() => this.boost()}
-                        >
-                          Boost ... ??
-                        </Button>
-                      </Col>
                     </Col>
                     <Col xs={12} md={12}>
                       <CardFooter align="center">

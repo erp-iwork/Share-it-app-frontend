@@ -282,13 +282,15 @@ class Header extends React.Component {
                               </ListGroupItem>
                             </Link>
 
-                            <ListGroupItem
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdMessage /> Messages
-                            </ListGroupItem>
+                            <Link to={{ pathname: "/messages" }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdMessage /> Messages
+                              </ListGroupItem>
+                            </Link>
 
                             <Link to={{ pathname: routes.Availability }}>
                               <ListGroupItem

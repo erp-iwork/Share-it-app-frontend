@@ -5,7 +5,7 @@ import { getToken } from "../../services/authService";
 //TODO
 //config file
 const token = getToken();
-const baseURL = "https://d0f9a30f46bb.ngrok.io/api/v1";
+const baseURL = "http://0000:9000/api/v1";
 if (token) axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
