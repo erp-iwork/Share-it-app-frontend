@@ -71,7 +71,7 @@ class ItemViewComp extends Component {
       term_and_conditions,
       properties,
       owner,
-      itemId
+      itemId,
     } = this.props.selectedItem;
     return (
       <Card>
@@ -208,37 +208,51 @@ class ItemViewComp extends Component {
                   </Button>
                 </Col>
               </div>
-              {JSON.parse(this.props.currentUser).email===owner.email? <>
-                <CardHeader className="singlePaddingterm">
-                  Interested?<small>Contact the Supplier</small>
-                </CardHeader>
-                <Row>
-                  <Col md={9}>
-                    <Input
-                      type="textarea"
-                      value={`Hello There, I am Interested in your ${title} Item `}
-                    />
-                  </Col>
-                  {accepted ? (
-                    <Col md={3}>
-                      <Link to={{pathname:"/chat", state:{receiver:owner.email,itemTitle:title, id:itemId}}} block outline >
-                        <MdSend />
-                      </Link>
-                    </Col>
-                  ) : (
-                    <Col md={3}>
-                      <Button
-                        color="danger"
-                        onClick={() => openNotification()}
-                        block
-                        outline
-                      >
-                        <MdSend />
-                      </Button>
-                    </Col>
-                  )}
-                </Row>
-              </>:null}
+              {this.props.currentUser &&
+                this.props.currentUser.email === owner.email && (
+                  <>
+                    <CardHeader className="singlePaddingterm">
+                      Interested?<small>Contact the Supplier</small>
+                    </CardHeader>
+                    <Row>
+                      <Col md={9}>
+                        <Input
+                          type="textarea"
+                          value={`Hello There, I am Interested in your ${title} Item `}
+                        />
+                      </Col>
+                      {accepted ? (
+                        <Col md={3}>
+                          <Link
+                            to={{
+                              pathname: "/chat",
+                              state: {
+                                receiver: owner.email,
+                                itemTitle: title,
+                                id: itemId,
+                              },
+                            }}
+                            block
+                            outline
+                          >
+                            <MdSend />
+                          </Link>
+                        </Col>
+                      ) : (
+                        <Col md={3}>
+                          <Button
+                            color="danger"
+                            onClick={() => openNotification()}
+                            block
+                            outline
+                          >
+                            <MdSend />
+                          </Button>
+                        </Col>
+                      )}
+                    </Row>
+                  </>
+                )}
             </Col>
           </Row>
         </CardBody>
@@ -248,7 +262,7 @@ class ItemViewComp extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: getCurrentUser(state)
+  currentUser: getCurrentUser(state),
 });
 
-export default connect(mapStateToProps,null)(ItemViewComp);
+export default connect(mapStateToProps, null)(ItemViewComp);
