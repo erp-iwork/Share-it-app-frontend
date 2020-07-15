@@ -155,28 +155,34 @@ class Header extends React.Component {
                     <hr />
                     <Row>
                       {/* //Do your Search Result Mapping Here */}
-                      {this.props.items.map((item) => (
-                        <Col
-                          md={4}
-                          className="searchResultsHeader"
-                          key={item.itemId}
-                        >
-                          <Link to={`/items/${item.itemId}`}>
-                            <div className="zoom">
-                              <Card className="flex-row">
-                                <div className="searchImgContainer">
-                                  <CardImg src={item.item_images[0].image} />
-                                </div>
+                      {/* {console.log(this.props.items)} */}
 
-                                <CardBody>
-                                  <CardTitle>{item.title}</CardTitle>
-                                  <CardText>{item.price}</CardText>
-                                </CardBody>
-                              </Card>
-                            </div>
-                          </Link>
-                        </Col>
-                      ))}
+                      {this.props.items
+                        ? this.props.items.map((item) => (
+                            <Col
+                              md={4}
+                              className="searchResultsHeader"
+                              key={item.itemId}
+                            >
+                              <Link to={`/items/${item.itemId}`}>
+                                <div className="zoom">
+                                  <Card className="flex-row">
+                                    <div className="searchImgContainer">
+                                      <CardImg
+                                        src={item.item_images[0].image}
+                                      />
+                                    </div>
+
+                                    <CardBody>
+                                      <CardTitle>{item.title}</CardTitle>
+                                      <CardText>{item.price}</CardText>
+                                    </CardBody>
+                                  </Card>
+                                </div>
+                              </Link>
+                            </Col>
+                          ))
+                        : null}
 
                       {/* //Do your Search Result Mapping Here */}
                     </Row>

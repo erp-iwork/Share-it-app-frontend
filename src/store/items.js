@@ -72,12 +72,12 @@ const slice = createSlice({
     },
     itemFiltered: (items, action) => {
       // items.filterOptions = action.payload;
-      items.filterdItems = action.payload;
+      items.filterdItems = action.payload.results;
       items.loading = false;
       items.errors = null;
     },
     itemSearched: (items, action) => {
-      items.searchedItems = action.payload;
+      items.searchedItems = action.payload.results;
       items.loading = false;
       items.errors = null;
     },

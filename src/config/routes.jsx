@@ -6,7 +6,7 @@ export default {
   postItem: "/postItem",
   allItems: "/items",
   singleItem: "/items/:id",
-  profile: "/profile",
+  profile: "/profiles/:id",
   settings: "/settings",
   buyAndSell: "/buyAndSell",
   Availability: "/Availability",

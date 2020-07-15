@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 class Availability extends Component {
   constructor(props) {
     super(props);
-    this.state = { checked: false };
+    this.state = { checked: false,counter:0};
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange = (event) => {
@@ -28,6 +28,7 @@ class Availability extends Component {
     this.props.loadMyItems();
   }
   render() {
+    let counter = 1
     return (
       <Page breadcrumbs={[{ name: "Yohannes's Products", active: true }]}>
         <Card body>
@@ -36,8 +37,8 @@ class Availability extends Component {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Product ID</th>
                 <th>Product Name</th>
+                <th>Product ID</th>
                 <th>Posted Date</th>
                 <th>Availability</th>
                 <th>See Product</th>
@@ -46,9 +47,9 @@ class Availability extends Component {
             <tbody>
               {this.props.myItems.map((item) => (
                 <tr>
-                  <th scope="row">1</th>
-                  <td>{item.itemId}</td>
+                  <th scope="row">{counter++}</th>
                   <td>{item.title}</td>
+                  <td>{item.itemId}</td>
                   <td>{item.created_at}</td>
                   <td>
                     <Toggle

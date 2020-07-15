@@ -62,8 +62,12 @@ class RegistrationFormPage extends MainForm {
       }),
   };
   doSubmit = async () => {
+    const location = JSON.stringify({
+      latitude: 45656,
+      longitude: 7866,
+    });
     const { name, email, password } = this.state.data;
-    await this.props.registerUser({ email, password, name });
+    await this.props.registerUser({ email, password, name, location });
     // if (this.props.status === "success") window.location = "/";
     // if (this.props.error) {
     //   const errors = { ...this.state.errors };
