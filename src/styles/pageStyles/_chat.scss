@@ -2,20 +2,64 @@ $blue: #0084ff;
 $white : #fff;
 $grey : #eee;
 
+
+$primary-color: #808080;
+$accent-color: #EEE;
+$contrasted-primary-text: #FFF; 
+$contrasted-accent-text: #111;
+
+$input-border-color: darken($accent-color, 6.5%);
+$input-text-color: darken(adjust-hue($primary-color, -155), 23.33);
+$chat-form-top-border: darken($accent-color, 12.16);
+$speech-bubble-border-color: darken($accent-color, 13.18);
+#chat-form {
+  display: flex;
+  align-items: right;
+  grid-area: chat-form;
+  background: $accent-color;
+  border-radius: 6px 6px 6px 6px;
+  border: 2px solid $chat-form-top-border;
+  padding-top: 1px;;
+  align-self: flex-end;
+//   padding-left: 0px;
+//   padding-right: 22px;
+
+  input {
+    flex: 1 0 0;
+    outline: none;
+    padding: 2px;
+    border: 1px solid $input-border-color;
+    border-right: none;
+    color: $input-text-color;
+    border-radius: 6px 0 0 6px;
+    font-size: 1.4rem;
+    margin-left: 7.5px;
+  }
+
+  button {
+    height: 40px;
+    flex: 0 0 90px;
+    border-radius: 6px 6px 6px 6px;
+  }
+}
+
 .chat{
     
-    height : 100vh;
-    // padding : 30px;
+    height : 80%;
+    width: 50%;
+    //align-items: center;
+    padding : 30px;
+    align-self: center;
 
 
     
     .container{
         // padding : 30px;
-    height : 80%;
+    height : 70%;
 
         &.message-form{
             height : 10%;
-            margin-top : 5%;
+            margin-top : 55%;
         }
     }
     
@@ -48,12 +92,15 @@ $grey : #eee;
 
     ul {
         list-style : none;
-        overflow-y : scroll;
+       // overflow-y : scroll;
         margin : 0;
         padding : 0;
         height : 80%;
     }
-
+    .scroll {
+        max-height: 100px;
+        overflow-y: auto;
+    }
     ul li{
         clear : both;
         display : block;
@@ -81,24 +128,31 @@ $grey : #eee;
     .her {
         float : left;
         text-align : left;
-
-        p{
-            background : $grey;
-        }
+        background: $accent-color;
+        color: $contrasted-accent-text;
+        border: 1px solid $speech-bubble-border-color;
+        border-radius: 14px 14px 14px 0;
+        // p{
+        //     background : $grey;
+        // }
     }
 
     .me {
         float : right;
         text-align : right;
+        background: $primary-color;
+        color: $contrasted-primary-text;
+        border: 1px solid $primary-color;
+        border-radius: 14px 14px 0 14px;
 
         .author{
             display : none;
         }
 
-        p{
-            background : $blue;
-            color : $white;
-        }
+        // p{
+        //     background : $blue;
+        //     color : $white;
+        // }
     }
     
     .her + .me {

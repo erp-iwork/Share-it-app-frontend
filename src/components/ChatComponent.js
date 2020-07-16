@@ -9,6 +9,7 @@ import {
   Input,
   Button,
   Form,
+  CardBody,
 } from "reactstrap";
 
 class ChatComponent extends Component {
@@ -17,7 +18,7 @@ class ChatComponent extends Component {
     WebSocketInstance.connect();
     this.state = {
       message: this.props.location.state.itemTitle
-        ? `Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
+        ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
         : "",
       messages: [],
       receiver: this.props.location.state.receiver,
@@ -126,8 +127,10 @@ class ChatComponent extends Component {
             {messages && this.renderMessages(messages)}
           </ul>
         </div>
-        <CardFooter>
-          <Form
+
+        <CardBody>
+        <Form
+          id="chat-form"
             onSubmit={(e) => this.sendMessageHandler(e, this.state.message)}
           >
             <Input
@@ -141,6 +144,9 @@ class ChatComponent extends Component {
               Send
             </Button>
           </Form>
+        </CardBody>
+        <CardFooter>
+          
         </CardFooter>
       </Card>
     );
