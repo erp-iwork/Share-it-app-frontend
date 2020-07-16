@@ -39,7 +39,7 @@ class ChatComponent extends Component {
                     console.log("Waiting for connection..");
                     component.waitForSocketConnection(callback);
                 }
-            }, 100);
+            }, 1000);
     }
 
     scrollToBottom = () => {

@@ -3,9 +3,7 @@ import config from './config/index';
 class WebSocketService {
     static instance = null;
     callbacks = {};
-
     static getInstance() {
-        
         if (!WebSocketService.instance) {
             WebSocketService.instance = new WebSocketService();
         }
@@ -17,24 +15,18 @@ class WebSocketService {
     }
 
     connect() {
-        console.log("Connect");
         const path = config.API_PATH;
         this.socketRef = new WebSocket(path);
-     
         this.socketRef.onmessage = e => {
             this.socketNewMessage(e.data);
         };
-
         this.socketRef.onopen = () => {
             console.log("WebSocket open");
         };
-
         this.socketRef.onerror = e => {
-            
-            console.log(e.message);
-
+            console.log("e.message");
+            console.log(e);
         };
-
         this.socketRef.onclose = () => {
             console.log("WebSocket closed, restarting..");
             this.connect();
@@ -56,17 +48,17 @@ class WebSocketService {
     }
 
     initChatUser(username) {
-        
+
         this.sendMessage({ command: 'init_chat', email: username });
     }
 
     fetchMessages(username) {
-        
+
         this.sendMessage({ command: 'fetch_messages', email: username });
     }
 
     newChatMessage(message) {
-       
+
         this.sendMessage({ command: 'new_message', sender: message.sender, receiver: message.receiver, message: message.message });
     }
 
@@ -89,7 +81,6 @@ class WebSocketService {
         return this.socketRef.readyState;
     }
     waitForSocketConnection(callback) {
-
         const socket = this.socketRef;
         const recursion = this.waitForSocketConnection;
         setTimeout(
@@ -97,13 +88,12 @@ class WebSocketService {
                 if (socket.readyState === 1) {
                     console.log("Connection is made in china");
                     if (callback != null) {
-
                         callback();
                     }
                     return;
                 }
                 else {
-                    console.log("Wait for connection..");
+                    console.log("Wait for connection ...");
                     recursion(callback);
                 }
             }, 1);
