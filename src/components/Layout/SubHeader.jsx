@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Col, Row, Button } from "reactstrap";
-import routes from "../../config/routes";
 import { Link } from "react-router-dom";
 import { getCategories, loadCategories } from "../../store/categories";
 import { connect } from "react-redux";

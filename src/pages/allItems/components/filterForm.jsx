@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Input, Label, Col, FormGroup, Button, FormFeedback } from "reactstrap";
+import { Input, Label, Button, FormFeedback } from "reactstrap";
 import LoadingSpinner from "../../../components/loader";
 
 class FilterForm extends Component {
+
   state = {
     data: {},
   };
@@ -12,6 +13,7 @@ class FilterForm extends Component {
       id: "false",
       name: "Sharing",
     },
+    
     {
       id: "true",
       name: "Donating",

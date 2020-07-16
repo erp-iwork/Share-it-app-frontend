@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardHeader, Table, Button } from "reactstrap";
+import { Card, CardHeader, Table } from "reactstrap";
 import Page from "../../../components/Page";
 import Toggle from "react-toggle";
 import { loadMyItems, getMyItems, updateItem } from "../../../store/items";

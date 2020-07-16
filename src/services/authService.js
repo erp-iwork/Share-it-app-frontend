@@ -16,7 +16,7 @@ export function logout() {
 }
 
 export function setUser(user) {
-  localStorage.setItem(userKey, user);
+  localStorage.setItem(userKey, JSON.stringify(user));
 }
 
 export function getUser() {

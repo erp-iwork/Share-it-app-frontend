@@ -208,8 +208,9 @@ class ItemViewComp extends Component {
                   </Button>
                 </Col>
               </div>
+              {console.log(this.props.currentUser)}
               {this.props.currentUser &&
-                this.props.currentUser.email === owner.email && (
+                JSON.parse(this.props.currentUser).email !== owner.email && (
                   <>
                     <CardHeader className="singlePaddingterm">
                       Interested?<small>Contact the Supplier</small>

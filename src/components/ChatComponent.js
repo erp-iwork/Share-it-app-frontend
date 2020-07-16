@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import { getCurrentUser } from "../store/auth";
 import {
   Card,
-  Container,
   CardFooter,
   CardHeader,
   Input,
   Button,
   Form,
-  CardBody,
 } from "reactstrap";
 
 class ChatComponent extends Component {
