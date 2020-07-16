@@ -1,4 +1,4 @@
-const API_PATH = "ws://0000:9000/ws/chat";
+const API_PATH = "ws://a1551cb7b504.ngrok.io/ws/chat";
 
 export default {
   API_PATH,
