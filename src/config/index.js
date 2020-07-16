@@ -1,4 +1,6 @@
-const API_PATH = 'wss://share-it-app-backend.herokuapp.com/ws/chat';
+// const API_PATH = 'wss://share-it-app-backend.herokuapp.com/ws/chat';
+const API_PATH = "wss://a1551cb7b504.ngrok.io/ws/chat";
+
 export default {
-    API_PATH
+    API_PATH,
 };

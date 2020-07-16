@@ -151,39 +151,41 @@ class Header extends React.Component {
               >
                 <div className="popoverSearch">
                   <PopoverBody className="p-4 border-secondary">
-                    <h6>Search Results for "{this.state.query}"</h6>
+                    <h4>Search Results for "{this.state.query}"</h4>
                     <hr />
-                    {/* //Do your Search Result Mapping Here */}
-                    {console.log(this.props.items)}
+                    <Row>
+                      {/* //Do your Search Result Mapping Here */}
+                      {/* {console.log(this.props.items)} */}
 
-                    {this.props.items
-                      ? this.props.items.map((item) => (
-                        <Col
-                          // md={4}
-                          className="searchResultsHeader"
-                          key={item.itemId}
-                        >
-                          <Link to={`/items/${item.itemId}`}>
-                            <div className="zoom">
-                              <Card className="flex-row">
-                                <div className="searchImgContainer">
-                                  <CardImg
-                                    src={item.item_images[0].image}
-                                  />
+                      {this.props.items
+                        ? this.props.items.map((item) => (
+                            <Col
+                              md={4}
+                              className="searchResultsHeader"
+                              key={item.itemId}
+                            >
+                              <Link to={`/items/${item.itemId}`}>
+                                <div className="zoom">
+                                  <Card className="flex-row">
+                                    <div className="searchImgContainer">
+                                      <CardImg
+                                        src={item.item_images[0].image}
+                                      />
+                                    </div>
+
+                                    <CardBody>
+                                      <CardTitle>{item.title}</CardTitle>
+                                      <CardText>{item.price}</CardText>
+                                    </CardBody>
+                                  </Card>
                                 </div>
+                              </Link>
+                            </Col>
+                          ))
+                        : null}
 
-                                <CardBody>
-                                  <CardTitle>{item.title}</CardTitle>
-                                  <CardText>{item.price}</CardText>
-                                </CardBody>
-                              </Card>
-                            </div>
-                          </Link>
-                        </Col>
-                      ))
-                      : null}
-
-                    {/* //Do your Search Result Mapping Here */}
+                      {/* //Do your Search Result Mapping Here */}
+                    </Row>
                   </PopoverBody>
                 </div>
               </Popover>
@@ -198,23 +200,23 @@ class Header extends React.Component {
                 <NavLink>
                   <Button>
                     {" "}
-                    <MdExitToApp /> Start Sharing
+                    <MdExitToApp /> Share
                   </Button>
                 </NavLink>
               </Link>
             </NavItem>
           ) : (
-              <NavItem>
-                <Link to={{ pathname: "/login" }}>
-                  <NavLink>
-                    <Button>
-                      {" "}
-                      <MdExitToApp /> Start Sharing
+            <NavItem>
+              <Link to={{ pathname: "/login" }}>
+                <NavLink>
+                  <Button>
+                    {" "}
+                    <MdExitToApp /> Share
                   </Button>
-                  </NavLink>
-                </Link>
-              </NavItem>
-            )}
+                </NavLink>
+              </Link>
+            </NavItem>
+          )}
 
           <NavItem className="d-inline-flex">
             <NavLink className="position-relative">
@@ -279,6 +281,7 @@ class Header extends React.Component {
                                 <MdInsertChart /> Activities
                               </ListGroupItem>
                             </Link>
+
                             <Link to={{ pathname: "/messages" }}>
                               <ListGroupItem
                                 tag="button"
@@ -286,9 +289,8 @@ class Header extends React.Component {
                                 className="border-light"
                               >
                                 <MdMessage /> Messages
-                            </ListGroupItem>
+                              </ListGroupItem>
                             </Link>
-
 
                             <Link to={{ pathname: routes.Availability }}>
                               <ListGroupItem

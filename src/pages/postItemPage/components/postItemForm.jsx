@@ -11,10 +11,6 @@ import {
   Form,
   Alert,
   Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
@@ -30,6 +26,7 @@ import {
   getErrors,
   getStatus,
 } from "../../../store/items";
+import PaymentPage from "../../payment";
 
 class PostItemForm extends NestedForm {
   constructor(props) {
@@ -49,44 +46,33 @@ class PostItemForm extends NestedForm {
         is_donating: false,
       },
       pictures: [],
-      boosted: false,
     };
 
     this.onDrop = this.onDrop.bind(this);
   }
   componentDidMount() {
-    // const data = { ...this.state.data };
-    // navigator.geolocation.getCurrentPosition(function (position) {
-    //   data.location = JSON.stringify({
-    //     latitude: position.coords.latitude,
-    //     longitude: position.coords.longitude,
-    //   });
-    // });
+    //get longtude and latitude
+    const data = { ...this.state.data };
+    navigator.geolocation.getCurrentPosition(function (position) {
+      data.latitude = position.coords.latitude;
+      data.longitude = position.coords.longitude;
+    });
     this.props.loadCategories();
-    // this.setState({ data });
+    this.setState({ data });
   }
   onDrop(picture) {
     this.setState({
       pictures: this.state.pictures.concat(picture),
     });
   }
-  boost() {
-    this.setState({
-      boosted: !this.state.boosted
-    })
-    // alert(this.state.boosted)
-  }
   doSubmit = () => {
     const data = { ...this.state.data };
     data.is_donating = data.is_donating === "true" ? true : false; //todo refactor
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
-    data.owner_id = JSON.parse(this.props.currentUser).id;
+    data.owner_id = this.props.currentUser.id;
     //TODO remove when the backed fixed
-    console.log(data.category_id, parseInt(data.category_id));
     data.category = parseInt(data.category_id);
-    data.latitude = 23112.0;
-    data.longitude = 32423.0;
     data.is_available = true;
     delete data.category_id;
     const pictures = [...this.state.pictures];
@@ -111,27 +97,6 @@ class PostItemForm extends NestedForm {
     return (
       <Page breadcrumbs={[{ name: "Share", active: true }]}>
         <div className="d-flex justify-content-center align-items-center flex-column">
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.boost()}
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.boost()}>
-            Terms And Conditions for Wolla
-          </ModalHeader>
-          <ModalBody>
-             Hello
-            <br />
-          </ModalBody>
-          <ModalFooter>
-            <Button color="success" onClick={this.boost()}>
-              Accept
-            </Button>{" "}
-            <Button color="secondary" onClick={this.boost()}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
           <Col xl={10} lg={12} md={12} sm={12}>
             <Card>
               <CardHeader>Share What You Have</CardHeader>
@@ -282,64 +247,64 @@ class PostItemForm extends NestedForm {
                                 </>
                               ) : null}
                               {subcategory &&
-                                subcategory.name === "Personal Driver" ? (
-                                  <>
-                                    <Row>
-                                      <Col xs={12} md={6}>
-                                        {this.renderCustomSelect(
-                                          "methodOfService",
-                                          "Method Of Service",
-                                          [
-                                            "Personal",
-                                            "Hourly",
-                                            "Car-Pickup",
-                                            "Flexible",
-                                          ]
-                                        )}
-                                      </Col>
-                                      <Col xs={12} md={6}>
-                                        {this.renderCustomSelect(
-                                          "ownACar",
-                                          "Do You own a Car??",
-                                          ["Yes", "No"]
-                                        )}
-                                      </Col>
+                              subcategory.name === "Personal Driver" ? (
+                                <>
+                                  <Row>
+                                    <Col xs={12} md={6}>
+                                      {this.renderCustomSelect(
+                                        "methodOfService",
+                                        "Method Of Service",
+                                        [
+                                          "Personal",
+                                          "Hourly",
+                                          "Car-Pickup",
+                                          "Flexible",
+                                        ]
+                                      )}
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      {this.renderCustomSelect(
+                                        "ownACar",
+                                        "Do You own a Car??",
+                                        ["Yes", "No"]
+                                      )}
+                                    </Col>
 
-                                      <Col xs={12} md={6}>
-                                        {this.renderCustomSelect(
-                                          "cleanerTimeDedication",
-                                          "Time Dedication",
-                                          ["Occasional", "Full Time", "Flexible"]
-                                        )}
-                                      </Col>
-                                      <Col xs={12} md={6}>
-                                        {this.renderCustomSelect(
-                                          "experience",
-                                          "Any Driving Experience?",
-                                          [
-                                            "Less than a Year",
-                                            "One Year Experience",
-                                            "Two Years Experience",
-                                            "Three Years Experience",
-                                            "More Than Three Years",
-                                          ]
-                                        )}
-                                      </Col>
-                                      <Col xs={12} md={12}>
-                                        {this.renderCustomSelect(
-                                          "paymentOptions",
-                                          "Payment Options",
-                                          [
-                                            "On Hand",
-                                            "Credit Card",
-                                            "Online Transaction",
-                                            "Flexible",
-                                          ]
-                                        )}
-                                      </Col>
-                                    </Row>
-                                  </>
-                                ) : null}
+                                    <Col xs={12} md={6}>
+                                      {this.renderCustomSelect(
+                                        "cleanerTimeDedication",
+                                        "Time Dedication",
+                                        ["Occasional", "Full Time", "Flexible"]
+                                      )}
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                      {this.renderCustomSelect(
+                                        "experience",
+                                        "Any Driving Experience?",
+                                        [
+                                          "Less than a Year",
+                                          "One Year Experience",
+                                          "Two Years Experience",
+                                          "Three Years Experience",
+                                          "More Than Three Years",
+                                        ]
+                                      )}
+                                    </Col>
+                                    <Col xs={12} md={12}>
+                                      {this.renderCustomSelect(
+                                        "paymentOptions",
+                                        "Payment Options",
+                                        [
+                                          "On Hand",
+                                          "Credit Card",
+                                          "Online Transaction",
+                                          "Flexible",
+                                        ]
+                                      )}
+                                    </Col>
+                                  </Row>
+                                </>
+                              ) : null}
                               {subcategory && subcategory.name === "Cleaner" ? (
                                 <>
                                   <Row>
@@ -416,79 +381,79 @@ class PostItemForm extends NestedForm {
                             )}
 
                             {subcategory &&
-                              subcategory.name === "Subscription Services" ? (
-                                <>
-                                  <Row>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "subscriptionType",
-                                        "Subscription Type",
-                                        [
-                                          "Netflix",
-                                          "Amazon",
-                                          "Disney",
-                                          "ESPN",
-                                          "Other",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "numberofSubscriptionLeft",
-                                        "Number of Users",
-                                        ["1", "2", "3", "4", "5"]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderDateInput(
-                                        "subscriptionStartDate",
-                                        "Start Date"
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderDateInput(
-                                        "subscriptionEndDate",
-                                        "End Date"
-                                      )}
-                                    </Col>
-                                  </Row>
-                                </>
-                              ) : null}
+                            subcategory.name === "Subscription Services" ? (
+                              <>
+                                <Row>
+                                  <Col xs={12} md={6}>
+                                    {this.renderCustomSelect(
+                                      "subscriptionType",
+                                      "Subscription Type",
+                                      [
+                                        "Netflix",
+                                        "Amazon",
+                                        "Disney",
+                                        "ESPN",
+                                        "Other",
+                                      ]
+                                    )}
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    {this.renderCustomSelect(
+                                      "numberofSubscriptionLeft",
+                                      "Number of Users",
+                                      ["1", "2", "3", "4", "5"]
+                                    )}
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    {this.renderDateInput(
+                                      "subscriptionStartDate",
+                                      "Start Date"
+                                    )}
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    {this.renderDateInput(
+                                      "subscriptionEndDate",
+                                      "End Date"
+                                    )}
+                                  </Col>
+                                </Row>
+                              </>
+                            ) : null}
                             {subcategory &&
-                              subcategory.name === "Season Tickets" ? (
-                                <>
-                                  <Row>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "eventType",
-                                        "Event Type",
-                                        ["Sports", "Religious Sermons", "Others"]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "seasonTicketsNumberOfPeople",
-                                        "Number of People per ticket",
-                                        ["1", "2", "3", "4", "5"]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderInput(
-                                        "numberOfTickets",
-                                        "Number Of Tickets",
-                                        "Number Of Tickets",
-                                        "number"
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderDateInput(
-                                        "eventStartDate",
-                                        "Event Start Date"
-                                      )}
-                                    </Col>
-                                  </Row>
-                                </>
-                              ) : null}
+                            subcategory.name === "Season Tickets" ? (
+                              <>
+                                <Row>
+                                  <Col xs={12} md={6}>
+                                    {this.renderCustomSelect(
+                                      "eventType",
+                                      "Event Type",
+                                      ["Sports", "Religious Sermons", "Others"]
+                                    )}
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    {this.renderCustomSelect(
+                                      "seasonTicketsNumberOfPeople",
+                                      "Number of People per ticket",
+                                      ["1", "2", "3", "4", "5"]
+                                    )}
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    {this.renderInput(
+                                      "numberOfTickets",
+                                      "Number Of Tickets",
+                                      "Number Of Tickets",
+                                      "number"
+                                    )}
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    {this.renderDateInput(
+                                      "eventStartDate",
+                                      "Event Start Date"
+                                    )}
+                                  </Col>
+                                </Row>
+                              </>
+                            ) : null}
                           </Col>
                         ) : null}
 
@@ -509,13 +474,11 @@ class PostItemForm extends NestedForm {
                           )}
                         </Col>
                       </Row>
-                      <Col >
-                        <Button block outline color='success' onClick={() => this.boost()}>
-                          Boost ... ??
-                      </Button>
+                      <Col align='right'>
+                          <PaymentPage />
                       </Col>
-
                     </Col>
+
                     <Col xs={12} md={12}>
                       <CardFooter align="center">
                         {this.renderButton("Share")}
