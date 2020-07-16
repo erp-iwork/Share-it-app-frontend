@@ -11,10 +11,6 @@ import {
   Form,
   Alert,
   Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
@@ -30,6 +26,7 @@ import {
   getErrors,
   getStatus,
 } from "../../../store/items";
+import PaymentPage from "../../payment";
 
 class PostItemForm extends NestedForm {
   constructor(props) {
@@ -54,15 +51,14 @@ class PostItemForm extends NestedForm {
     this.onDrop = this.onDrop.bind(this);
   }
   componentDidMount() {
-    // const data = { ...this.state.data };
-    // navigator.geolocation.getCurrentPosition(function (position) {
-    //   data.location = JSON.stringify({
-    //     latitude: position.coords.latitude,
-    //     longitude: position.coords.longitude,
-    //   });
-    // });
+    //get longtude and latitude
+    const data = { ...this.state.data };
+    navigator.geolocation.getCurrentPosition(function (position) {
+      data.latitude = position.coords.latitude;
+      data.longitude = position.coords.longitude;
+    });
     this.props.loadCategories();
-    // this.setState({ data });
+    this.setState({ data });
   }
   onDrop(picture) {
     this.setState({
@@ -76,10 +72,7 @@ class PostItemForm extends NestedForm {
     data.properties = JSON.stringify(data.properties);
     data.owner_id = this.props.currentUser.id;
     //TODO remove when the backed fixed
-    console.log(data.category_id, parseInt(data.category_id));
     data.category = parseInt(data.category_id);
-    data.latitude = 23112.0;
-    data.longitude = 32423.0;
     data.is_available = true;
     delete data.category_id;
     const pictures = [...this.state.pictures];
@@ -481,7 +474,11 @@ class PostItemForm extends NestedForm {
                           )}
                         </Col>
                       </Row>
+                      <Col align='right'>
+                          <PaymentPage />
+                      </Col>
                     </Col>
+
                     <Col xs={12} md={12}>
                       <CardFooter align="center">
                         {this.renderButton("Share")}
