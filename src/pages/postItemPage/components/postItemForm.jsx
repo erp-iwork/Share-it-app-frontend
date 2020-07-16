@@ -10,6 +10,7 @@ import {
   CardFooter,
   Form,
   Alert,
+  Button,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
@@ -25,6 +26,7 @@ import {
   getErrors,
   getStatus,
 } from "../../../store/items";
+import PaymentPage from "../../payment";
 
 class PostItemForm extends NestedForm {
   constructor(props) {
@@ -52,8 +54,8 @@ class PostItemForm extends NestedForm {
     //get longtude and latitude
     const data = { ...this.state.data };
     navigator.geolocation.getCurrentPosition(function (position) {
-      data.latitude = position.coords.latitude
-      data.longitude=position.coords.longitude
+      data.latitude = position.coords.latitude;
+      data.longitude = position.coords.longitude;
     });
     this.props.loadCategories();
     this.setState({ data });
@@ -472,7 +474,11 @@ class PostItemForm extends NestedForm {
                           )}
                         </Col>
                       </Row>
+                      <Col align='right'>
+                          <PaymentPage />
+                      </Col>
                     </Col>
+
                     <Col xs={12} md={12}>
                       <CardFooter align="center">
                         {this.renderButton("Share")}
