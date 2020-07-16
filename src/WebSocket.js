@@ -68,7 +68,7 @@ class WebSocketService {
     }
 
     sendMessage(data) {
-
+  
         try {
             // console.log({ ...data })
             this.socketRef.send(JSON.stringify({ ...data }))
@@ -96,7 +96,7 @@ class WebSocketService {
                     console.log("Wait for connection ...");
                     recursion(callback);
                 }
-            }, 1);
+            }, 100);
     }
 }
 

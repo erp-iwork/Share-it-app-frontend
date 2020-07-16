@@ -8,6 +8,7 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 
 class Messages extends React.Component {
+  
   componentDidMount() {
     this.props.loadMessages();
   }
