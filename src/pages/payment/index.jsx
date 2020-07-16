@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import Checkout from "./components/Checkout";
-import {
-  Card,
-  CardTitle,
-  CardSubtitle,
-  CardImg,
-  CardBody,
-  CardText,
-  Row,
-  Col,
-} from "reactstrap";
+
 
 class PaymentPage extends Component {
   constructor(props) {

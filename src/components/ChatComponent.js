@@ -4,15 +4,12 @@ import { connect } from "react-redux";
 import { getCurrentUser } from "../store/auth";
 import {
   Card,
-  Container,
   CardFooter,
   CardHeader,
   Input,
   Button,
   Form,
-  CardBody,
 } from "reactstrap";
-import { log } from "joi-browser";
 
 class ChatComponent extends Component {
   constructor(props) {

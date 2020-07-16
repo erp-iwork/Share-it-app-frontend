@@ -5,7 +5,7 @@ import {
 } from "reactstrap";
 import { MdStar } from "react-icons/md";
 import { Reviews } from ".";
-import { getCurrentUser } from "../../../store/auth";
+// import { getCurrentUser } from "../../../store/auth";
 
 class RatingsComp extends Component {
   constructor(props) {
@@ -85,8 +85,8 @@ class RatingsComp extends Component {
   }
 }
 
-const mapStateToProps=(state)=>({
-  currentUser:getCurrentUser(state)
-})
+// const mapStateToProps=(state)=>({
+//   currentUser:getCurrentUser(state)
+// })
 
 export default  RatingsComp;

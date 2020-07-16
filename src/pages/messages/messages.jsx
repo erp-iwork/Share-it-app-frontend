@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 import { getMessages, loadMessages } from "../../store/messages";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../store/auth";
-import { message } from "antd";
+// import { message } from "antd";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ class Messages extends React.Component {
   }
 
   render() {
-    const currentUserEmail = this.props.currentUser.email;
+    // const currentUserEmail = this.props.currentUser.email;
     let users = _.uniqBy(this.props.messages, "id");
     console.log(users);
     users = users.filter(

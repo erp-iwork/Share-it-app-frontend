@@ -10,7 +10,6 @@ import {
   CardFooter,
   Form,
   Alert,
-  Button,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
@@ -47,7 +46,7 @@ class PostItemForm extends NestedForm {
         is_donating: false,
       },
       pictures: [],
-      boost: false
+      boost: false,
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -90,14 +89,14 @@ class PostItemForm extends NestedForm {
 
   onBoost = (e) => {
     this.setState({
-      boost: !this.state.boost
-    })
-  }
-
-
+      boost: !this.state.boost,
+    });
+  };
 
   render() {
-    const { properties, category_id, sub_category_id } = this.state.data;
+    // const { properties, category_id, sub_category_id } = this.state.data;
+    const { category_id, sub_category_id } = this.state.data;
+
     const category = this.props.categories.find(
       (catagory) => catagory.id == category_id
     );
@@ -105,161 +104,165 @@ class PostItemForm extends NestedForm {
       (subcategory) => subcategory.id == sub_category_id
     );
 
-
     return (
       console.log(this.state.boost),
-      <Page breadcrumbs={[{ name: "Share", active: true }]}>
-        <div className="d-flex justify-content-center align-items-center flex-column">
-          <Col xl={10} lg={12} md={12} sm={12}>
-            <Card>
-              <CardHeader>Share What You Have</CardHeader>
-              <Form onSubmit={this.handleSubmit}>
-                <CardBody>
-                  <Row>
-                    <Col sm={12} md={6} xs={12}>
-                      <ImageUploader
-                        label="Max file size: 2mb, accepted: jpg png"
-                        withIcon={true}
-                        withPreview={true}
-                        buttonText="Choose images"
-                        onChange={this.onDrop}
-                        imgExtension={[".jpg", ".png"]}
-                        maxFileSize={2242880}
-                      />
-                    </Col>
-                    {/* //Forms */}
-                    <Col sm={12} md={6} xs={12}>
-                      <Row>
-                        <Col xs={12} md={6}>
-                          {this.renderSelect(
-                            "is_donating",
-                            "Sharing || Donating?",
-                            this.isDonatingOptions
-                          )}
-                        </Col>
-                        <Col xs={12} md={6}>
-                          {this.renderSelect(
-                            "category_id",
-                            "Category",
-                            this.props.categories
-                          )}
-                        </Col>
-                        <Col xs={12} md={4}>
-                          {this.renderInput("title", "Name", "Name")}
-                        </Col>
-                        <Col xs={12} md={4}>
-                          {this.renderInput("zip_code", "Zip code", "zip code")}
-                        </Col>
-                        <Col xs={12} md={4}>
-                          {this.renderInput("price", "Price", "Price")}
-                        </Col>
+      (
+        <Page breadcrumbs={[{ name: "Share", active: true }]}>
+          <div className="d-flex justify-content-center align-items-center flex-column">
+            <Col xl={10} lg={12} md={12} sm={12}>
+              <Card>
+                <CardHeader>Share What You Have</CardHeader>
+                <Form onSubmit={this.handleSubmit}>
+                  <CardBody>
+                    <Row>
+                      <Col sm={12} md={6} xs={12}>
+                        <ImageUploader
+                          label="Max file size: 2mb, accepted: jpg png"
+                          withIcon={true}
+                          withPreview={true}
+                          buttonText="Choose images"
+                          onChange={this.onDrop}
+                          imgExtension={[".jpg", ".png"]}
+                          maxFileSize={2242880}
+                        />
+                      </Col>
+                      {/* //Forms */}
+                      <Col sm={12} md={6} xs={12}>
+                        <Row>
+                          <Col xs={12} md={6}>
+                            {this.renderSelect(
+                              "is_donating",
+                              "Sharing || Donating?",
+                              this.isDonatingOptions
+                            )}
+                          </Col>
+                          <Col xs={12} md={6}>
+                            {this.renderSelect(
+                              "category_id",
+                              "Category",
+                              this.props.categories
+                            )}
+                          </Col>
+                          <Col xs={12} md={4}>
+                            {this.renderInput("title", "Name", "Name")}
+                          </Col>
+                          <Col xs={12} md={4}>
+                            {this.renderInput(
+                              "zip_code",
+                              "Zip code",
+                              "zip code"
+                            )}
+                          </Col>
+                          <Col xs={12} md={4}>
+                            {this.renderInput("price", "Price", "Price")}
+                          </Col>
 
-                        {category && category.name === "Product" ? (
-                          <>
-                            <Col xs={12} md={6}>
-                              {this.renderSelect(
-                                "sub_category_id",
-                                "Sub category",
-                                this.props.subcategories
-                              )}
-                            </Col>
-                            <Col xs={12} md={6}>
-                              {this.renderInput(
-                                "condition",
-                                "Condition",
-                                "Condition"
-                              )}
-                            </Col>
-                          </>
-                        ) : null}
-                        {category && category.name === "Service" ? (
-                          <>
-                            <Col xs={12} md={12}>
-                              {this.renderSelect(
-                                "sub_category_id",
-                                "Service Type",
-                                this.props.subcategories
-                              )}
+                          {category && category.name === "Product" ? (
+                            <>
+                              <Col xs={12} md={6}>
+                                {this.renderSelect(
+                                  "sub_category_id",
+                                  "Sub category",
+                                  this.props.subcategories
+                                )}
+                              </Col>
+                              <Col xs={12} md={6}>
+                                {this.renderInput(
+                                  "condition",
+                                  "Condition",
+                                  "Condition"
+                                )}
+                              </Col>
+                            </>
+                          ) : null}
+                          {category && category.name === "Service" ? (
+                            <>
+                              <Col xs={12} md={12}>
+                                {this.renderSelect(
+                                  "sub_category_id",
+                                  "Service Type",
+                                  this.props.subcategories
+                                )}
 
-                              {subcategory && subcategory.name === "Tutor" ? (
-                                <>
-                                  <Row>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "subject",
-                                        "Subject",
-                                        [
-                                          "Art",
-                                          "Citizenship",
-                                          "Essay",
-                                          "French",
-                                          "Geography",
-                                          "Mathematics",
-                                          "Science",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "levelOfStudy",
-                                        "Level Of Study",
-                                        [
-                                          "Primary",
-                                          "A-Level",
-                                          "Secondary",
-                                          "Undergraduate",
-                                          "GCSE",
-                                          "IGCSE",
-                                          "Postgraduate",
-                                          "IB",
-                                          "Professional",
-                                          "Admission",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "tutorTimeDedication",
-                                        "Time Dedication",
-                                        [
-                                          "Occasional",
-                                          "1-2 hours per week",
-                                          "Over 2 hours per week",
-                                          "Intensive",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "tutorAvailability",
-                                        "Availability Comfort Zone",
-                                        [
-                                          "Weekend Evening",
-                                          "Weekend Morning",
-                                          "Weekday Evening",
-                                          "Weekday Morning",
-                                          "flexible",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "methodOfTutoring",
-                                        "Method Of Tutoring",
-                                        ["Online", "Face to Face"]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "tutorPaymentDuration",
-                                        "Payment Duration",
-                                        ["Weekly", "Monthly"]
-                                      )}
-                                    </Col>
-                                  </Row>
-                                </>
-                              ) : null}
-                              {subcategory &&
+                                {subcategory && subcategory.name === "Tutor" ? (
+                                  <>
+                                    <Row>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "subject",
+                                          "Subject",
+                                          [
+                                            "Art",
+                                            "Citizenship",
+                                            "Essay",
+                                            "French",
+                                            "Geography",
+                                            "Mathematics",
+                                            "Science",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "levelOfStudy",
+                                          "Level Of Study",
+                                          [
+                                            "Primary",
+                                            "A-Level",
+                                            "Secondary",
+                                            "Undergraduate",
+                                            "GCSE",
+                                            "IGCSE",
+                                            "Postgraduate",
+                                            "IB",
+                                            "Professional",
+                                            "Admission",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "tutorTimeDedication",
+                                          "Time Dedication",
+                                          [
+                                            "Occasional",
+                                            "1-2 hours per week",
+                                            "Over 2 hours per week",
+                                            "Intensive",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "tutorAvailability",
+                                          "Availability Comfort Zone",
+                                          [
+                                            "Weekend Evening",
+                                            "Weekend Morning",
+                                            "Weekday Evening",
+                                            "Weekday Morning",
+                                            "flexible",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "methodOfTutoring",
+                                          "Method Of Tutoring",
+                                          ["Online", "Face to Face"]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "tutorPaymentDuration",
+                                          "Payment Duration",
+                                          ["Weekly", "Monthly"]
+                                        )}
+                                      </Col>
+                                    </Row>
+                                  </>
+                                ) : null}
+                                {subcategory &&
                                 subcategory.name === "Personal Driver" ? (
                                   <>
                                     <Row>
@@ -287,7 +290,11 @@ class PostItemForm extends NestedForm {
                                         {this.renderCustomSelect(
                                           "cleanerTimeDedication",
                                           "Time Dedication",
-                                          ["Occasional", "Full Time", "Flexible"]
+                                          [
+                                            "Occasional",
+                                            "Full Time",
+                                            "Flexible",
+                                          ]
                                         )}
                                       </Col>
                                       <Col xs={12} md={6}>
@@ -318,82 +325,83 @@ class PostItemForm extends NestedForm {
                                     </Row>
                                   </>
                                 ) : null}
-                              {subcategory && subcategory.name === "Cleaner" ? (
-                                <>
-                                  <Row>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "comfortServiceZone",
-                                        "Comfort Service Zone",
-                                        [
-                                          "Commercial (e.g. office)",
-                                          "Religious Buildings",
-                                          "Industrial (e.g Warehouses)",
-                                          "Retail location",
-                                          "Restaurants || Bars",
-                                          "Flexible",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "personalDriverTimeDedication",
-                                        "Time Dedication",
-                                        [
-                                          "Daily",
-                                          "Twice a Month",
-                                          "Twice a Week",
-                                          "Weekly",
-                                          "Flexible",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "cleanerAvailability",
-                                        "Availability Comfort Zone",
-                                        ["Evenings", "Mornings", "Flexible"]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      {this.renderCustomSelect(
-                                        "cleanerNumberOfPeople",
-                                        "How Many are you?",
-                                        [
-                                          "Just Me",
-                                          "Me and A Friend",
-                                          "More Than Three",
-                                          "Depends on the Area",
-                                        ]
-                                      )}
-                                    </Col>
-                                    <Col xs={12} md={12}>
-                                      {this.renderCustomSelect(
-                                        "cleanerPaymentDuration",
-                                        "Payment Duration",
-                                        [
-                                          "Daily",
-                                          "Weekly",
-                                          "Monthly",
-                                          "Flexible",
-                                        ]
-                                      )}
-                                    </Col>
-                                  </Row>
-                                </>
-                              ) : null}
-                            </Col>
-                          </>
-                        ) : null}
-                        {category && category.name === "Digital" ? (
-                          <Col xs={12} md={12}>
-                            {this.renderSelect(
-                              "sub_category_id",
-                              "Service Type",
-                              this.props.subcategories
-                            )}
+                                {subcategory &&
+                                subcategory.name === "Cleaner" ? (
+                                  <>
+                                    <Row>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "comfortServiceZone",
+                                          "Comfort Service Zone",
+                                          [
+                                            "Commercial (e.g. office)",
+                                            "Religious Buildings",
+                                            "Industrial (e.g Warehouses)",
+                                            "Retail location",
+                                            "Restaurants || Bars",
+                                            "Flexible",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "personalDriverTimeDedication",
+                                          "Time Dedication",
+                                          [
+                                            "Daily",
+                                            "Twice a Month",
+                                            "Twice a Week",
+                                            "Weekly",
+                                            "Flexible",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "cleanerAvailability",
+                                          "Availability Comfort Zone",
+                                          ["Evenings", "Mornings", "Flexible"]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={6}>
+                                        {this.renderCustomSelect(
+                                          "cleanerNumberOfPeople",
+                                          "How Many are you?",
+                                          [
+                                            "Just Me",
+                                            "Me and A Friend",
+                                            "More Than Three",
+                                            "Depends on the Area",
+                                          ]
+                                        )}
+                                      </Col>
+                                      <Col xs={12} md={12}>
+                                        {this.renderCustomSelect(
+                                          "cleanerPaymentDuration",
+                                          "Payment Duration",
+                                          [
+                                            "Daily",
+                                            "Weekly",
+                                            "Monthly",
+                                            "Flexible",
+                                          ]
+                                        )}
+                                      </Col>
+                                    </Row>
+                                  </>
+                                ) : null}
+                              </Col>
+                            </>
+                          ) : null}
+                          {category && category.name === "Digital" ? (
+                            <Col xs={12} md={12}>
+                              {this.renderSelect(
+                                "sub_category_id",
+                                "Service Type",
+                                this.props.subcategories
+                              )}
 
-                            {subcategory &&
+                              {subcategory &&
                               subcategory.name === "Subscription Services" ? (
                                 <>
                                   <Row>
@@ -432,7 +440,7 @@ class PostItemForm extends NestedForm {
                                   </Row>
                                 </>
                               ) : null}
-                            {subcategory &&
+                              {subcategory &&
                               subcategory.name === "Season Tickets" ? (
                                 <>
                                   <Row>
@@ -440,7 +448,11 @@ class PostItemForm extends NestedForm {
                                       {this.renderCustomSelect(
                                         "eventType",
                                         "Event Type",
-                                        ["Sports", "Religious Sermons", "Others"]
+                                        [
+                                          "Sports",
+                                          "Religious Sermons",
+                                          "Others",
+                                        ]
                                       )}
                                     </Col>
                                     <Col xs={12} md={6}>
@@ -467,58 +479,60 @@ class PostItemForm extends NestedForm {
                                   </Row>
                                 </>
                               ) : null}
+                            </Col>
+                          ) : null}
+
+                          <Col xs={12} md={12}>
+                            {this.renderInput(
+                              "description",
+                              "Description",
+                              "Description",
+                              "textarea"
+                            )}
                           </Col>
-                        ) : null}
-
-                        <Col xs={12} md={12}>
-                          {this.renderInput(
-                            "description",
-                            "Description",
-                            "Description",
-                            "textarea"
-                          )}
+                          <Col xs={12} md={12}>
+                            {this.renderInput(
+                              "term_and_conditions",
+                              "Terms And Conditions",
+                              "Terms And Conditions",
+                              "textarea"
+                            )}
+                          </Col>
+                        </Row>
+                        <Col>
+                          <Checkbox onChange={this.onBoost}>Boost</Checkbox>
                         </Col>
-                        <Col xs={12} md={12}>
-                          {this.renderInput(
-                            "term_and_conditions",
-                            "Terms And Conditions",
-                            "Terms And Conditions",
-                            "textarea"
-                          )}
-                        </Col>
-                      </Row>
-                      <Col>
-                        <Checkbox onChange={this.onBoost}>Boost</Checkbox>
+                        {this.state.boost && (
+                          <Col align="right">
+                            <PaymentPage />
+                          </Col>
+                        )}
                       </Col>
-                      {this.state.boost && <Col align='right'>
-                        <PaymentPage />
-                      </Col>}
 
-                    </Col>
-
-                    <Col xs={12} md={12}>
-                      <CardFooter align="center">
-                        {this.renderButton("Share")}
-                      </CardFooter>
-                    </Col>
-                  </Row>
-                  {this.props.errors && this.props.errors.image && (
-                    <Alert color="danger">{this.props.errors.image}</Alert>
-                  )}
-                  {this.props.errors && this.props.errors.detail && (
-                    <Alert color="danger">{this.props.errors.detail}</Alert>
-                  )}
-                  {this.props.status === "success" && (
-                    <Alert color="success">
-                      An item has been successfully created
-                    </Alert>
-                  )}
-                </CardBody>
-              </Form>
-            </Card>
-          </Col>
-        </div>
-      </Page>
+                      <Col xs={12} md={12}>
+                        <CardFooter align="center">
+                          {this.renderButton("Share")}
+                        </CardFooter>
+                      </Col>
+                    </Row>
+                    {this.props.errors && this.props.errors.image && (
+                      <Alert color="danger">{this.props.errors.image}</Alert>
+                    )}
+                    {this.props.errors && this.props.errors.detail && (
+                      <Alert color="danger">{this.props.errors.detail}</Alert>
+                    )}
+                    {this.props.status === "success" && (
+                      <Alert color="success">
+                        An item has been successfully created
+                      </Alert>
+                    )}
+                  </CardBody>
+                </Form>
+              </Card>
+            </Col>
+          </div>
+        </Page>
+      )
     );
   }
 }
