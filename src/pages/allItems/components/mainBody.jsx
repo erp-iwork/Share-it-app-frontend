@@ -19,6 +19,9 @@ class MainBodyPage extends Component {
         className="mainBodyContainer"
         breadcrumbs={[{ name: this.props.subcategory.name, active: true }]}
       >
+        {this.props.items && this.props.items.length === 0 && (
+          <h3>No items in this subcategory yet</h3>
+        )}
         <Row>
           {this.props.items.map((item) => (
             <Col md={2} sm={12} xs={12} key={item.itemId}>
