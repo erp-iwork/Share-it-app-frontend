@@ -34,7 +34,7 @@ class PersonalInformationComp extends Component {
                 <Avatar
                   size={150}
                   className="profileAvatar"
-                  src={this.props.currentUser.avatar}
+                  // src={this.props.currentUser.avatar}
                 />
               </Col>
               <Col md={5} className="profileName">
