@@ -55,6 +55,7 @@
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "reselect": "^4.0.0",
+    "store": "^2.0.12",
     "sweetalert2": "^9.10.13",
     "victory": "^34.3.3"
   },

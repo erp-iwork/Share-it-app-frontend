@@ -5,6 +5,7 @@ import { getToken } from "../../services/authService";
 //TODO
 //config file
 const token = getToken();
+console.log("token", token);
 const baseURL = "http://0000:9000/api/v1";
 if (token) axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 axios.interceptors.response.use(null, (error) => {
@@ -23,7 +24,7 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
 
   const { url, method, data, onStart, onSuccess, onError } = action.payload;
-  console.log(data);
+  console.log("data", data);
   if (onStart) dispatch({ type: onStart });
   next(action);
   try {

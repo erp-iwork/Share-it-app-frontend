@@ -1,41 +1,56 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import STRIPE_PUBLISHABLE from "./stripe";
 import PAYMENT_SERVER_URL from "./server";
+import { Button } from "reactstrap";
 
-const CURRENCY = "USD";
+class Checkout extends Component {
+  state = {
+    valid: false,
+  };
+  CURRENCY = "USD";
 
-const fromUSDTOCent = (amount) => amount * 100;
+  fromUSDTOCent = (amount) => amount * 100;
 
-const sucessPayment = (data) => {
-  alert("Payment Sucessful");
-};
+  sucessPayment = (data) => {
+    alert("Payment Sucessful");
+  };
 
-const errorPayment = (data) => {
-  alert("Something went Wrong");
-};
+  errorPayment = (data) => {
+    alert("Something went Wrong");
+  };
 
-const onToken = (amount, description) => (token) =>
-  axios
-    .post(PAYMENT_SERVER_URL, {
-      description,
-      source: token.id,
-      currency: CURRENCY,
-      amount: fromUSDTOCent(amount),
-    })
-    .then(sucessPayment)
-    .catch(errorPayment);
-
-const Checkout = ({ name, description, amount }) => (
-  <StripeCheckout
-    name={name}
-    description={description}
-    amount={fromUSDTOCent(amount)}
-    token={onToken(amount, description)}
-    currency={CURRENCY}
-    stripeKey={STRIPE_PUBLISHABLE}
-  />
-);
+  onToken = (amount, description) => (token) =>
+    axios
+      .post(PAYMENT_SERVER_URL, {
+        description,
+        source: token.id,
+        currency: this.CURRENCY,
+        amount: this.fromUSDTOCent(amount),
+      })
+      .then(this.sucessPayment)
+      .catch(this.errorPayment);
+  onSubmit = () => {
+    console.log("submitted");
+  };
+  render() {
+    const { name, description, amount } = this.props;
+    return (
+      <StripeCheckout
+        name={name}
+        description={description}
+        amount={this.fromUSDTOCent(amount)}
+        token={this.onToken(amount, description)}
+        currency={this.CURRENCY}
+        stripeKey={STRIPE_PUBLISHABLE}
+      >
+        <Button enabled={this.state.valid} onClick={this.onSubmit}>
+          Pay with card
+        </Button>
+      </StripeCheckout>
+    );
+  }
+}
 
 export default Checkout;

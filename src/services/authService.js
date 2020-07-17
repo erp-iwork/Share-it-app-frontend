@@ -1,26 +1,26 @@
-// import jwtDecode from "jwt-decode";
+import store from "store";
 
 const tokenKey = "token";
 const userKey = "user";
 
 export function setToken(token) {
-  localStorage.setItem(tokenKey, token);
+  store.set(tokenKey, token);
 }
 
 export function getToken() {
-  return localStorage.getItem(tokenKey);
+  return store.get(tokenKey);
 }
 
 export function logout() {
-  localStorage.removeItem(tokenKey);
+  store.remove(tokenKey);
 }
 
 export function setUser(user) {
-  localStorage.setItem(userKey, JSON.stringify(user));
+  store.set(userKey, user);
 }
 
 export function getUser() {
-  return localStorage.getItem(userKey);
+  return store.get(userKey);
 }
 
 export default {
