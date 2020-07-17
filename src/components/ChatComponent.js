@@ -11,7 +11,7 @@ import {
   Form,
   CardBody,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 import { MdSend } from "react-icons/md";
 import Avatar from "../components/Avatar";
@@ -22,8 +22,8 @@ class ChatComponent extends Component {
   constructor(props) {
     super(props);
     WebSocketInstance.connect();
-    console.log("Props")
-    console.log(props)
+    console.log("Props");
+    console.log(props);
     this.state = {
       message: this.props.location.state.itemTitle
         ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
@@ -123,22 +123,26 @@ class ChatComponent extends Component {
 
   render() {
     const messages = this.state.messages;
+    if (this.state.receiver !== this.props.match.params.email)
+      window.location.reload();
+
     return (
       <Card className="chat">
         <Row>
           <Col md={4}>
             <CardHeader>
-              <Search placeholder='search your chats' />
+              <Search placeholder="search your chats" />
             </CardHeader>
-            <CardBody className='chatsScroll'>
-
+            <CardBody className="chatsScroll">
               <Chats />
             </CardBody>
           </Col>
           <Col md={8}>
-
             {/* <Card > */}
-            <CardHeader> <Avatar />  {this.state.receiver}</CardHeader>
+            <CardHeader>
+              {" "}
+              <Avatar /> {this.state.receiver}
+            </CardHeader>
             <div className="container">
               <ul
                 ref={(el) => {
@@ -156,7 +160,7 @@ class ChatComponent extends Component {
                 <Row>
                   <Col>
                     <Input
-                      type='text'
+                      type="text"
                       onChange={this.messageChangeHandler}
                       value={this.state.message}
                       placeholder="Start Typing"
@@ -164,9 +168,7 @@ class ChatComponent extends Component {
                     />
                   </Col>
                   <Button type="submit" outline>
-
-                    Send  {" "}
-                    <MdSend color='danger' />
+                    Send <MdSend color="danger" />
                   </Button>
                 </Row>
               </Form>
@@ -174,7 +176,6 @@ class ChatComponent extends Component {
           </Col>
         </Row>
       </Card>
-
     );
   }
 }

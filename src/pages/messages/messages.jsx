@@ -16,7 +16,7 @@ class Messages extends React.Component {
   render() {
     // const currentUserEmail = this.props.currentUser.email;
     let users = _.uniqBy(this.props.messages, "id");
-    
+
     users = users.filter(
       (user) => user.id !== this.props.currentUser.id && user.name !== ""
     );
@@ -31,7 +31,12 @@ class Messages extends React.Component {
     return (
       <div>
         {users.map((user) => (
-          <Link to={{ pathname: "/chat", state: { receiver: user.email } }}>
+          <Link
+            to={{
+              pathname: "/chat/" + user.email,
+              state: { receiver: user.email },
+            }}
+          >
             {" "}
             <div className="zoom">
               <Card className="chatlist">
@@ -42,7 +47,7 @@ class Messages extends React.Component {
                     </div>
                     <div className="chatListPaddingName">{user.name}</div>
                     <div>
-                      <Badge color='danger'>1</Badge>
+                      <Badge color="danger">1</Badge>
                     </div>
                   </Row>
                 </CardBody>
