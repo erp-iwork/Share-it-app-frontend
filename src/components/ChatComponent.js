@@ -22,6 +22,8 @@ class ChatComponent extends Component {
   constructor(props) {
     super(props);
     WebSocketInstance.connect();
+    console.log("Props")
+    console.log(props)
     this.state = {
       message: this.props.location.state.itemTitle
         ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
@@ -38,7 +40,7 @@ class ChatComponent extends Component {
         this.setMessages.bind(this),
         this.addMessage.bind(this)
       );
-      WebSocketInstance.fetchMessages(this.state.sender);
+      WebSocketInstance.fetchMessages(this.state.sender, this.state.receiver);
     });
   }
 
