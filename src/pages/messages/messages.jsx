@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Row,
-  Badge,
-  Card,
-  CardBody,
-} from "reactstrap";
+import { Row, Badge, Card, CardBody } from "reactstrap";
 import { getMessages, loadMessages } from "../../store/messages";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../store/auth";
@@ -28,7 +23,6 @@ class Messages extends React.Component {
     console.log(users);
 
     //     let userMessages = this.props.messages.filter(message=>message.sender.email===currentUserEmail)
-
     //   let newMessages = userMessages.map(message=>message.receiver.name)
     //   console.log(newMessages);
     //   userMessages = _.uniqBy(userMessages, 'receiver.name')
@@ -48,7 +42,7 @@ class Messages extends React.Component {
                     </div>
                     <div className="chatListPaddingName">{user.name}</div>
                     <div>
-                      <Badge pill>14</Badge>
+                      <Badge color='danger'>1</Badge>
                     </div>
                   </Row>
                 </CardBody>
