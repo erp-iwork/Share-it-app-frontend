@@ -124,8 +124,16 @@ class ChatComponent extends Component {
 
   render() {
     const messages = this.state.messages;
-    if (this.state.receiver !== this.props.match.params.email)
-      window.location.reload();
+    // if (this.state.receiver !== this.props.match.params.email)
+    // window.location.reload();
+    if (this.props.location.state.receiver !== this.state.receiver) {
+      WebSocketInstance.fetchMessages(
+        this.state.sender,
+        this.props.location.state.receiver
+      );
+      this.setState({ receiver: this.props.location.state.receiver });
+    }
+    // window.location.reload();
 
     return (
       <Card className="chat">

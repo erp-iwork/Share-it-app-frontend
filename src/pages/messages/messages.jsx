@@ -33,7 +33,7 @@ class Messages extends React.Component {
         {users.map((user) => (
           <Link
             to={{
-              pathname: "/chat/" + user.email,
+              pathname: "/chat",
               state: { receiver: user.email },
             }}
           >
