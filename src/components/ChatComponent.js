@@ -66,9 +66,12 @@ class ChatComponent extends Component {
     chat.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   };
   addMessage(message) {
-    this.setState({
-      messages: [...this.state.messages, message],
-    });
+    window.location.reload()
+    // this.setState({
+    //   messages: [...this.state.messages, message],
+    // });
+    
+    
   }
 
   setMessages(messages) {
