@@ -259,3 +259,8 @@ export const getMyItems = createSelector(
   (state) => state.entities.items.myItems,
   (myItems) => myItems
 );
+
+export const getBoostedItems = createSelector(
+  (state) => state.entities.items,
+  (items) => items.list.filter((item) => item.boost === true)
+);
