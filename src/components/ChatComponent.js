@@ -10,7 +10,13 @@ import {
   Button,
   Form,
   CardBody,
+  Row,
+  Col
 } from "reactstrap";
+import { MdSend } from "react-icons/md";
+import Avatar from "../components/Avatar";
+import Chats from "../pages/messages/messages";
+import Search from "antd/lib/input/Search";
 
 class ChatComponent extends Component {
   constructor(props) {
@@ -117,38 +123,60 @@ class ChatComponent extends Component {
     const messages = this.state.messages;
     return (
       <Card className="chat">
-        <CardHeader>Chat with {this.state.receiver}</CardHeader>
-        <div className="container">
-          <ul
-            ref={(el) => {
-              this.messagesEnd = el;
-            }}
-          >
-            {messages && this.renderMessages(messages)}
-          </ul>
-        </div>
 
-        <CardBody>
-        <Form
-          id="chat-form"
-            onSubmit={(e) => this.sendMessageHandler(e, this.state.message)}
-          >
-            <Input
-              type="text"
-              onChange={this.messageChangeHandler}
-              value={this.state.message}
-              placeholder="Start Typing"
-              required
-            />
-            <Button type="submit" outline>
-              Send
-            </Button>
-          </Form>
-        </CardBody>
-        <CardFooter>
-          
-        </CardFooter>
+        <Row>
+          <Col md={4}>
+            <CardHeader>
+              <Search placeholder='search your chats' />
+            </CardHeader>
+            <CardBody className='chatsScroll'>
+
+              <Chats />
+            </CardBody>
+
+
+
+          </Col>
+          <Col md={8}>
+
+            {/* <Card > */}
+            <CardHeader> <Avatar />  {this.state.receiver}</CardHeader>
+            <div className="container">
+              <ul
+                ref={(el) => {
+                  this.messagesEnd = el;
+                }}
+              >
+                {messages && this.renderMessages(messages)}
+              </ul>
+            </div>
+            <CardFooter>
+              <Form
+                // id="chat-form"
+                onSubmit={(e) => this.sendMessageHandler(e, this.state.message)}
+              >
+                <Row>
+                  <Col>
+                    <Input
+                      type='text'
+                      onChange={this.messageChangeHandler}
+                      value={this.state.message}
+                      placeholder="Start Typing"
+                      required
+                    />
+                  </Col>
+                  <Button type="submit" outline>
+                    Send
+                    <MdSend color='danger' />
+                  </Button>
+                </Row>
+              </Form>
+            </CardFooter>
+            {/* </Card> */}
+          </Col>
+        </Row>
       </Card>
+
     );
   }
 }

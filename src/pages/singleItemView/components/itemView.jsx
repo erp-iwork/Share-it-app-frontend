@@ -219,7 +219,7 @@ class ItemViewComp extends Component {
                       <Col md={9}>
                         <Input
                           type="textarea"
-                          value={`Hello There, I am Interested in your ${title} Item `}
+                          value={`Hello There, I am Interested in ${title} `}
                         />
                       </Col>
                       {accepted ? (
@@ -237,14 +237,13 @@ class ItemViewComp extends Component {
                             outline
                           >
                             <Button
-                            color="success"
-                            onClick={() => openNotification()}
-                            block
-                            outline
-                          >
-                            <MdSend />
-
-                          </Button>
+                              color="success"
+                              onClick={() => openNotification()}
+                              block
+                              outline
+                            >
+                              <MdSend />
+                            </Button>
                           </Link>
                         </Col>
                       ) : (
