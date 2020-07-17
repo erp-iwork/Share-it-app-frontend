@@ -4,18 +4,29 @@ import Page from "../../../components/Page";
 
 import Item from "../../homePage/components/item"; //TODO refactor PUT item.jsx in the componnet folder
 
-import { loadMyItems, getMyItems } from "../../../store/items";
 import { connect } from "react-redux";
+import { getSharedItems } from "../../../store/sharedItems";
 class SharedItemsComp extends Component {
   componentDidMount() {
-    this.props.loadMyItems();
+    // this.props.loadMyItems();
   }
 
   render() {
     return (
-      <Page breadcrumbs={[{ name: ` ${this.props.myItems[0]?this.props.myItems[0].owner.name:""} Shared items`, active: true }]}>
+      <Page
+        breadcrumbs={[
+          {
+            name: ` ${
+              this.props.sharedItems[0]
+                ? this.props.sharedItems[0].owner.name
+                : ""
+            } Shared items`,
+            active: true,
+          },
+        ]}
+      >
         <Row>
-          {this.props.myItems.map((item) => (
+          {this.props.sharedItems.map((item) => (
             <Col md={3} sm={12} xs={12}>
               <Item item={item} />
             </Col>
@@ -27,10 +38,7 @@ class SharedItemsComp extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  myItems: getMyItems(state),
-});
-const mapDispatchToProps = (dispatch) => ({
-  loadMyItems: () => dispatch(loadMyItems()),
+  sharedItems: getSharedItems(state),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SharedItemsComp);
+export default connect(mapStateToProps, null)(SharedItemsComp);

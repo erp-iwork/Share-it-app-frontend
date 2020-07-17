@@ -263,7 +263,7 @@ class Header extends React.Component {
                           className="border-light"
                         >
                           <ListGroup flush>
-                            <Link to={{ pathname: routes.profile }}>
+                            <Link to={`/profiles/${this.props.currentUser.id}`}>
                               <ListGroupItem
                                 tag="button"
                                 action

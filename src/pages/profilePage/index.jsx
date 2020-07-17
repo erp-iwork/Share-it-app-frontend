@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
 import { PersonalInformation, Ratings, SharedItems } from "./components";
+import { loadSharedItems } from "../../store/sharedItems";
+import { connect } from "react-redux";
 
 class UserProfilePage extends Component {
   constructor(props) {
@@ -9,8 +11,8 @@ class UserProfilePage extends Component {
   }
   componentDidMount() {
     const userId = this.props.match.params.id;
-    console.log("works here", userId)
-    
+    if (userId === "me") return;
+    this.props.loadSharedItems(userId);
   }
   render() {
     return (
@@ -29,4 +31,7 @@ class UserProfilePage extends Component {
   }
 }
 
-export default UserProfilePage;
+const mapDispatchToProps = (dispatch) => ({
+  loadSharedItems: (ownerId) => dispatch(loadSharedItems(ownerId)),
+});
+export default connect(null, mapDispatchToProps)(UserProfilePage);
