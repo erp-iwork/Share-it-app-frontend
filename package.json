@@ -56,7 +56,8 @@
     "redux": "^4.0.5",
     "reselect": "^4.0.0",
     "store": "^2.0.12",
-    "sweetalert2": "^9.10.13",
+    "sweetalert2": "^9.17.0",
+    "sweetalert2-react-content": "^3.0.3",
     "victory": "^34.3.3"
   },
   "scripts": {

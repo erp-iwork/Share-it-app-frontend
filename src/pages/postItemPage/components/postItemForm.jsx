@@ -1,4 +1,6 @@
 import React from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import Page from "../../../components/Page";
 import ImageUploader from "react-images-upload";
 import {
@@ -51,6 +53,7 @@ class PostItemForm extends NestedForm {
 
     this.onDrop = this.onDrop.bind(this);
   }
+  MySwal = withReactContent(Swal);
   componentDidMount() {
     //get longtude and latitude
     const data = { ...this.state.data };
@@ -96,6 +99,19 @@ class PostItemForm extends NestedForm {
   };
 
   render() {
+    if (this.props.status === "success") {
+      window.setTimeout(() => {
+        window.location.reload(false);
+      }, 2500);
+      this.MySwal.fire({
+        position: "center",
+        icon: "success",
+        title: "Congratulations!",
+        text: "Your item has been posted.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
     // const { properties, category_id, sub_category_id } = this.state.data;
     const { category_id, sub_category_id } = this.state.data;
 
@@ -507,12 +523,6 @@ class PostItemForm extends NestedForm {
                   )}
                   {this.props.errors && this.props.errors.detail && (
                     <Alert color="danger">{this.props.errors.detail}</Alert>
-                  )}
-                  {this.props.status === "success" && (
-                    <Alert color="success" fade={true}>
-                      <h4 className="alert-heading">Congratulations!</h4>
-                      <p>Your item has been posted.</p>
-                    </Alert>
                   )}
                 </CardBody>
               </Form>
