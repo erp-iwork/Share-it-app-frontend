@@ -12,6 +12,7 @@ $input-border-color: darken($accent-color, 6.5%);
 $input-text-color: darken(adjust-hue($primary-color, -155), 23.33);
 $chat-form-top-border: darken($accent-color, 12.16);
 $speech-bubble-border-color: darken($accent-color, 13.18);
+
 #chat-form {
   display: flex;
   align-items: right;
@@ -32,7 +33,7 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
     border-right: none;
     color: $input-text-color;
     border-radius: 6px 0 0 6px;
-    font-size: 1.4rem;
+    // font-size: 1.4rem;
     margin-left: 7.5px;
   }
 
@@ -46,16 +47,15 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
 .chat{
     
     height : 80%;
-    width: 50%;
-    //align-items: center;
-    padding : 30px;
+    width: 82%;
+    // padding : 30px;
     align-self: center;
 
 
     
     .container{
         // padding : 30px;
-    height : 70%;
+    height : 80%;
 
         &.message-form{
             height : 10%;
@@ -95,10 +95,10 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
        // overflow-y : scroll;
         margin : 0;
         padding : 0;
-        height : 80%;
+        height : 100%;
     }
     .scroll {
-        max-height: 100px;
+        max-height: 200px;
         overflow-y: auto;
     }
     ul li{
@@ -173,4 +173,13 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
             border-bottom-right-radius: 30px;
         }
     }
+}
+
+.chatlist {
+    padding: 10px
+}
+
+.chatsScroll {
+    height: 700px;
+    overflow: scroll;
 }

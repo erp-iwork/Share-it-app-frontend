@@ -1,14 +1,21 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+import {
+  ListGroup,
+  ListGroupItem,
+  Row,
+  Badge,
+  Card,
+  CardBody,
+} from "reactstrap";
 import { getMessages, loadMessages } from "../../store/messages";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../store/auth";
 // import { message } from "antd";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import Avatar from "../../components/Avatar";
 
 class Messages extends React.Component {
-  
   componentDidMount() {
     this.props.loadMessages();
   }
@@ -30,14 +37,26 @@ class Messages extends React.Component {
     //   console.log(userMessages)
 
     return (
-      <ListGroup>
+      <div>
         {users.map((user) => (
           <Link to={{ pathname: "/chat", state: { receiver: user.email } }}>
             {" "}
-            <ListGroupItem>{user.name}</ListGroupItem>
+            <Card className="chatlist">
+              <CardBody>
+                <Row>
+                  <div>
+                    <Avatar size={40} />
+                  </div>
+                  <div>{user.name}</div>
+                  <div>
+                    <Badge pill>14</Badge>
+                  </div>
+                </Row>
+              </CardBody>
+            </Card>
           </Link>
         ))}
-      </ListGroup>
+      </div>
     );
   }
 }
