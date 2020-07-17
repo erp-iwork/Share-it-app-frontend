@@ -133,9 +133,6 @@ class ChatComponent extends Component {
 
               <Chats />
             </CardBody>
-
-
-
           </Col>
           <Col md={8}>
 
@@ -166,7 +163,8 @@ class ChatComponent extends Component {
                     />
                   </Col>
                   <Button type="submit" outline>
-                    Send
+           
+                    Send  {" "}
                     <MdSend color='danger' />
                   </Button>
                 </Row>

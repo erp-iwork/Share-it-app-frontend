@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  ListGroup,
-  ListGroupItem,
-  Row,
-  Badge,
-  Card,
-  CardBody,
-} from "reactstrap";
+import { Row, Badge, Card, CardBody } from "reactstrap";
 import { getMessages, loadMessages } from "../../store/messages";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../store/auth";
@@ -30,7 +23,6 @@ class Messages extends React.Component {
     console.log(users);
 
     //     let userMessages = this.props.messages.filter(message=>message.sender.email===currentUserEmail)
-
     //   let newMessages = userMessages.map(message=>message.receiver.name)
     //   console.log(newMessages);
     //   userMessages = _.uniqBy(userMessages, 'receiver.name')
@@ -41,19 +33,21 @@ class Messages extends React.Component {
         {users.map((user) => (
           <Link to={{ pathname: "/chat", state: { receiver: user.email } }}>
             {" "}
-            <Card className="chatlist">
-              <CardBody>
-                <Row>
-                  <div>
-                    <Avatar size={40} />
-                  </div>
-                  <div>{user.name}</div>
-                  <div>
-                    <Badge pill>14</Badge>
-                  </div>
-                </Row>
-              </CardBody>
-            </Card>
+            <div className="zoom">
+              <Card className="chatlist">
+                <CardBody>
+                  <Row>
+                    <div className="chatListPadding">
+                      <Avatar size={40} />
+                    </div>
+                    <div className="chatListPaddingName">{user.name}</div>
+                    <div>
+                      <Badge color='danger'>1</Badge>
+                    </div>
+                  </Row>
+                </CardBody>
+              </Card>
+            </div>
           </Link>
         ))}
       </div>
