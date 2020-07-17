@@ -139,7 +139,6 @@ class ChatComponent extends Component {
             </CardBody>
           </Col>
           <Col md={8}>
-            {/* <Card > */}
             <CardHeader>
               {" "}
               <Avatar /> {this.state.receiver}
