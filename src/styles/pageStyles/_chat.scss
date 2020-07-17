@@ -14,20 +14,47 @@ $chat-form-top-border: darken($accent-color, 12.16);
 $speech-bubble-border-color: darken($accent-color, 13.18);
 
 .chat{
-    height : 100vh;
+    
+    height : 880px;
     width: 82%;
     align-self: center;
-
     .container{
-        padding : 10px;
-        height : 65%;
-        overflow: scroll;
+        // padding : 30px;
+    height : 750px;
+    overflow: scroll;
 
         &.message-form{
             height : 10%;
             margin-top : 55%;
         }
     }
+    
+    // h1, h3{
+    //     margin-top:0;
+    //     color : $blue;
+    // }
+    
+    // input{
+    //     color :#7e99a0;
+    //     font-size : 1em;
+    //     font-weight : 300;
+    //     line-height : 19px;
+    //     padding : 5px;
+    //     box-sizing : border-box;
+    //     display : inline-block;
+    //     width : 80%;
+    // }
+    
+    // button{
+    //     background-color: $blue;
+    //     border-color : $blue;
+    //     border-style : solid;
+    //     color : white;
+    //     font-size : 1em;
+    //     padding : 5px;
+    //     width : 20%;
+    //     float : left;
+    // }
 
     ul {
         list-style : none;
@@ -37,7 +64,7 @@ $speech-bubble-border-color: darken($accent-color, 13.18);
         height : 100%;
     }
     .scroll {
-        // max-height: 200px;
+        max-height: 200px;
         overflow-y: auto;
     }
     ul li{

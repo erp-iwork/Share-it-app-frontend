@@ -25,10 +25,9 @@ class ChatComponent extends Component {
     console.log("Props");
     console.log(props);
     this.state = {
-      message:
-        this.props.location.state && this.props.location.state.itemTitle
-          ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
-          : "",
+      message: this.props.location.state.itemTitle
+        ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
+        : "",
       messages: [],
       receiver: this.props.location.state.receiver,
       sender: this.props.currentUser.email,
@@ -67,9 +66,12 @@ class ChatComponent extends Component {
     chat.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   };
   addMessage(message) {
-    this.setState({
-      messages: [...this.state.messages, message],
-    });
+    window.location.reload()
+    // this.setState({
+    //   messages: [...this.state.messages, message],
+    // });
+    
+    
   }
 
   setMessages(messages) {
@@ -147,11 +149,7 @@ class ChatComponent extends Component {
             </CardBody>
           </Col>
           <Col md={8}>
-            {/* <Card > */}
-            <CardHeader>
-              {" "}
-              <Avatar /> {this.state.receiver}
-            </CardHeader>
+            <CardHeader> <Avatar />  {this.state.receiver}</CardHeader>
             <div className="container">
               <ul
                 ref={(el) => {
