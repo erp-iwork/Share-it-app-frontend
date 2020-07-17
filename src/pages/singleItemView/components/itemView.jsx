@@ -236,7 +236,15 @@ class ItemViewComp extends Component {
                             block
                             outline
                           >
+                            <Button
+                            color="success"
+                            onClick={() => openNotification()}
+                            block
+                            outline
+                          >
                             <MdSend />
+
+                          </Button>
                           </Link>
                         </Col>
                       ) : (

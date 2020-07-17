@@ -3,17 +3,14 @@ import { Input, Label, Button, FormFeedback } from "reactstrap";
 import LoadingSpinner from "../../../components/loader";
 
 class FilterForm extends Component {
-
   state = {
     data: {},
   };
-
   isDonatingOptions = [
     {
       id: "false",
       name: "Sharing",
     },
-    
     {
       id: "true",
       name: "Donating",
