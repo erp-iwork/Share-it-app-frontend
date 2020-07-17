@@ -133,9 +133,6 @@ class ChatComponent extends Component {
 
               <Chats />
             </CardBody>
-
-
-
           </Col>
           <Col md={8}>
 
