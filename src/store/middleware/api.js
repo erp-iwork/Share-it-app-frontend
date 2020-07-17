@@ -7,7 +7,7 @@ import { getToken } from "../../services/authService";
 const token = getToken();
 console.log("token", token);
 // const baseURL = "https://192.168.1.2:9000/api/v1";
-const baseURL = "https://49d53d500294.ngrok.io/api/v1";
+const baseURL = "https://share-it-app-backend.herokuapp.com/api/v1";
 if (token) axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 axios.interceptors.response.use(null, (error) => {
   const expectedError =

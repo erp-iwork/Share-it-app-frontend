@@ -22,6 +22,9 @@ import { getCurrentUser } from "../../../store/auth";
 const openNotification = () => {
   toast.error("Did You Read the Terms and Conditions?");
 };
+const openNotificationChat = () => {
+  toast.info("Chatting isn't Supported on this Server!");
+};
 
 //TODO - Refactor
 class ItemViewComp extends Component {
@@ -224,7 +227,7 @@ class ItemViewComp extends Component {
                       </Col>
                       {accepted ? (
                         <Col md={3}>
-                          <Link
+                          {/* <Link
                             to={{
                               pathname: "/chat",
                               state: {
@@ -235,16 +238,17 @@ class ItemViewComp extends Component {
                             }}
                             block
                             outline
+                          > */}
+                          <Button
+                            color="success"
+                            // onClick={() => openNotification()}
+                            onClick={() => openNotificationChat()}
+                            block
+                            outline
                           >
-                            <Button
-                              color="success"
-                              onClick={() => openNotification()}
-                              block
-                              outline
-                            >
-                              <MdSend />
-                            </Button>
-                          </Link>
+                            <MdSend />
+                          </Button>
+                          {/* </Link> */}
                         </Col>
                       ) : (
                         <Col md={3}>
