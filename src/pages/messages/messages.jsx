@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  ListGroup,
-  ListGroupItem,
   Row,
   Badge,
   Card,
@@ -41,19 +39,21 @@ class Messages extends React.Component {
         {users.map((user) => (
           <Link to={{ pathname: "/chat", state: { receiver: user.email } }}>
             {" "}
-            <Card className="chatlist">
-              <CardBody>
-                <Row>
-                  <div>
-                    <Avatar size={40} />
-                  </div>
-                  <div>{user.name}</div>
-                  <div>
-                    <Badge pill>14</Badge>
-                  </div>
-                </Row>
-              </CardBody>
-            </Card>
+            <div className="zoom">
+              <Card className="chatlist">
+                <CardBody>
+                  <Row>
+                    <div className="chatListPadding">
+                      <Avatar size={40} />
+                    </div>
+                    <div className="chatListPaddingName">{user.name}</div>
+                    <div>
+                      <Badge pill>14</Badge>
+                    </div>
+                  </Row>
+                </CardBody>
+              </Card>
+            </div>
           </Link>
         ))}
       </div>

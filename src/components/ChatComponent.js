@@ -163,7 +163,8 @@ class ChatComponent extends Component {
                     />
                   </Col>
                   <Button type="submit" outline>
-                    Send
+           
+                    Send  {" "}
                     <MdSend color='danger' />
                   </Button>
                 </Row>
