@@ -11,17 +11,23 @@ import {
   WhatsApp,
   Phone,
 } from "../../../assets/SharreIt-ContactIcons";
-import { getProfile, loadProfile } from "../../../store/users";
+import { getProfile } from "../../../store/profile";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 
 class PersonalInformationComp extends Component {
-  componentDidMount() {
-    this.props.loadProfile();
-  }
+  componentDidMount() {}
 
   render() {
     console.log(this.props.currentUser, this.props.profile);
+    const {
+      telegram,
+      facebook,
+      phonenumber,
+      website,
+      whatsapp,
+      email,
+    } = this.props.profile;
     return (
       <>
         <div className="coverImageContainer">
@@ -34,11 +40,15 @@ class PersonalInformationComp extends Component {
                 <Avatar
                   size={150}
                   className="profileAvatar"
-                  // src={this.props.currentUser.avatar}
+                  src={
+                    this.props.profile.user && this.props.profile.user.avater
+                  }
                 />
               </Col>
               <Col md={5} className="profileName">
-                <h2>{this.props.currentUser.name}</h2>
+                <h2>
+                  {this.props.profile.user && this.props.profile.user.name}
+                </h2>
                 <MdStar fontSize={30} className="rating" />
                 <MdStar fontSize={30} className="rating" />
                 <MdStarBorder fontSize={30} />
@@ -49,11 +59,11 @@ class PersonalInformationComp extends Component {
                 </div>
               </Col>
               <Col md={5} className="profileName">
-                {this.props.profile && this.props.profile.user_profile && (
-                  <>
-                    <CardHeader>Contact Information</CardHeader>
-                    <Row>
-                      <Col md={4}>
+                <>
+                  <CardHeader>Contact Information</CardHeader>
+                  <Row>
+                    <Col md={4}>
+                      {telegram && (
                         <Row className="contactInformations">
                           <img
                             className="contactInformationIcons"
@@ -61,9 +71,11 @@ class PersonalInformationComp extends Component {
                             alt=""
                           />
                           <div className="contactInformationLabels">
-                            Telegram Username
+                            {telegram}
                           </div>
                         </Row>
+                      )}
+                      {facebook && (
                         <Row className="contactInformations">
                           <img
                             className="contactInformationIcons"
@@ -71,11 +83,13 @@ class PersonalInformationComp extends Component {
                             alt=""
                           />
                           <div className="contactInformationLabels">
-                            Facebook Username
+                            {facebook}
                           </div>
                         </Row>
-                      </Col>
-                      <Col md={4}>
+                      )}
+                    </Col>
+                    <Col md={4}>
+                      {whatsapp && (
                         <Row className="contactInformations">
                           <img
                             className="contactInformationIcons"
@@ -83,9 +97,11 @@ class PersonalInformationComp extends Component {
                             alt=""
                           />
                           <div className="contactInformationLabels">
-                            WhatsApp Username
+                            {whatsapp}
                           </div>
                         </Row>
+                      )}
+                      {website && (
                         <Row className="contactInformations">
                           <img
                             className="contactInformationIcons"
@@ -93,19 +109,26 @@ class PersonalInformationComp extends Component {
                             alt=""
                           />
                           <div className="contactInformationLabels">
-                            Website(if-any)
+                            {website}
                           </div>
                         </Row>
-                      </Col>
-                      <Col md={4}>
+                      )}
+                    </Col>
+                    <Col md={4}>
+                      {
                         <Row className="contactInformations">
                           <img
                             className="contactInformationIcons"
                             src={Email}
                             alt=""
                           />
-                          <div className="contactInformationLabels">Email</div>
+                          <div className="contactInformationLabels">
+                            {this.props.profile.user &&
+                              this.props.profile.user.email}
+                          </div>
                         </Row>
+                      }
+                      {phonenumber && (
                         <Row className="contactInformations">
                           <img
                             className="contactInformationIcons"
@@ -113,13 +136,13 @@ class PersonalInformationComp extends Component {
                             alt=""
                           />
                           <div className="contactInformationLabels">
-                            Phone Number
+                            {phonenumber}
                           </div>
                         </Row>
-                      </Col>
-                    </Row>
-                  </>
-                )}
+                      )}
+                    </Col>
+                  </Row>
+                </>
               </Col>
             </Row>
           </Card>
@@ -133,11 +156,5 @@ const mapStateToProps = (state) => ({
   profile: getProfile(state),
   currentUser: getCurrentUser(state),
 });
-const mapDispatchToProps = (dispatch) => ({
-  loadProfile: () => dispatch(loadProfile()),
-});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PersonalInformationComp);
+export default connect(mapStateToProps)(PersonalInformationComp);

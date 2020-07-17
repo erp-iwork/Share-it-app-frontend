@@ -3,6 +3,7 @@ import { Col, Row } from "reactstrap";
 import { PersonalInformation, Ratings, SharedItems } from "./components";
 import { loadSharedItems } from "../../store/sharedItems";
 import { connect } from "react-redux";
+import { loadProfile } from "../../store/profile";
 
 class UserProfilePage extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class UserProfilePage extends Component {
   }
   componentDidMount() {
     const userId = this.props.match.params.id;
-    if (userId === "me") return;
+    this.props.loadProfile(userId);
     this.props.loadSharedItems(userId);
   }
   render() {
@@ -33,5 +34,6 @@ class UserProfilePage extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   loadSharedItems: (ownerId) => dispatch(loadSharedItems(ownerId)),
+  loadProfile: (userId) => dispatch(loadProfile(userId)),
 });
 export default connect(null, mapDispatchToProps)(UserProfilePage);
