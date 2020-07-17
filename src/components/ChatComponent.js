@@ -123,7 +123,6 @@ class ChatComponent extends Component {
     const messages = this.state.messages;
     return (
       <Card className="chat">
-
         <Row>
           <Col md={4}>
             <CardHeader>
@@ -149,7 +148,7 @@ class ChatComponent extends Component {
             </div>
             <CardFooter>
               <Form
-                // id="chat-form"
+                id="chat-form"
                 onSubmit={(e) => this.sendMessageHandler(e, this.state.message)}
               >
                 <Row>
@@ -163,14 +162,13 @@ class ChatComponent extends Component {
                     />
                   </Col>
                   <Button type="submit" outline>
-           
+
                     Send  {" "}
                     <MdSend color='danger' />
                   </Button>
                 </Row>
               </Form>
             </CardFooter>
-            {/* </Card> */}
           </Col>
         </Row>
       </Card>

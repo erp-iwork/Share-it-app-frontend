@@ -52,9 +52,9 @@ class WebSocketService {
         this.sendMessage({ command: 'init_chat', email: username });
     }
 
-    fetchMessages(username) {
+    fetchMessages(sender , receiver) {
 
-        this.sendMessage({ command: 'fetch_messages', email: username });
+        this.sendMessage({ command: 'fetch_messages', sender, receiver: 'John@gmail.com' });
     }
 
     newChatMessage(message) {
