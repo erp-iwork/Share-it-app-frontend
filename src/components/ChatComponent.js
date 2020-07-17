@@ -25,9 +25,10 @@ class ChatComponent extends Component {
     console.log("Props");
     console.log(props);
     this.state = {
-      message: this.props.location.state.itemTitle
-        ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
-        : "",
+      message:
+        this.props.location.state && this.props.location.state.itemTitle
+          ? ` Hello There, I am Interested in your ${this.props.location.state.itemTitle} Item \nUrl: localhost:3000/items/${this.props.location.state.id}`
+          : "",
       messages: [],
       receiver: this.props.location.state.receiver,
       sender: this.props.currentUser.email,
