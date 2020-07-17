@@ -16,7 +16,7 @@ class Messages extends React.Component {
   render() {
     // const currentUserEmail = this.props.currentUser.email;
     let users = _.uniqBy(this.props.messages, "id");
-    console.log(users);
+    
     users = users.filter(
       (user) => user.id !== this.props.currentUser.id && user.name !== ""
     );

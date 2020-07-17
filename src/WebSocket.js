@@ -54,7 +54,7 @@ class WebSocketService {
 
     fetchMessages(sender , receiver) {
 
-        this.sendMessage({ command: 'fetch_messages', sender, receiver: 'John@gmail.com' });
+        this.sendMessage({ command: 'fetch_messages', sender, receiver: receiver });
     }
 
     newChatMessage(message) {
