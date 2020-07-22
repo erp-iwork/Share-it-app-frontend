@@ -9,7 +9,10 @@ import {
 } from "../../store/items";
 import { connect } from "react-redux";
 import Shimmer from "react-shimmer-effect";
-import { PopularCategories, Search } from "./components";
+import { PopularCategories, Search, PopularAmongUsers } from "./components";
+import HorizontalScroll from 'react-scroll-horizontal'
+import ProductsComp from "./components/Products";
+
 
 class HomePage extends Component {
   constructor() {
@@ -69,17 +72,39 @@ class HomePage extends Component {
   };
 
   render() {
+    const child = { width: `100%`, height: `40px` }
+    const parent = { width: `100%`, height: `310px` }
     return (
       <div className="BackContainer">
-        {/* <Col className="mainBodyContainer"> */}
         <Col md={12} sm={12} xs={12}>
-        <Search />
-
+          <Search />
         </Col>
-        <PopularCategories />
-        {/* <PopularAmongUsers /> */}
+        <div style={parent}>
+          <HorizontalScroll
+            config={{ stiffness: 50, damping: 20, }}
+            animValues={2}
+            reverseScroll={false}
+          >
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+            <ProductsComp style={child} />
+          </HorizontalScroll>
+        </div>
+        <h1>
+          hello
+        </h1>
 
-        {/* </Col> */}
+
       </div>
     );
   }

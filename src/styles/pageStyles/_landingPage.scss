@@ -1,10 +1,12 @@
 .searchImageContainer {
     height: 450px;
     width: 30px;
+    object-fit: cover;
 }
 .searchImageContainer img {
     height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 .searchformLayout {
     align-self: center;
@@ -42,4 +44,15 @@
 }
 .buttonPaddingLeft:hover {
     transform: scale(1.05);
+}
+
+.cardText {
+    flex-direction: column;
+}
+.cardText1 {
+    flex-direction: row;
+}
+
+.pricetag {
+    color: #00AF58
 }

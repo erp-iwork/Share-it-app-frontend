@@ -12,13 +12,16 @@
 .zoom {
     transition: transform .2s; 
     box-shadow: none;
+    margin: 10px;
+    border-radius: 20px;
     min-height: 30px;
+    box-shadow:  -3px 3px 3px darken($color: #EDEDED, $amount: 5);;
+
   }
   .zoom:hover {
     transform: scale(1.05);
     overflow: hidden;
     box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 5);;
-    // z-index: 10000!important;
   }
 
   .itemImgContainer {
@@ -36,8 +39,8 @@
 
   .itemImgContainer-Home {
     background-color: #ffffff;
-    height: 200px;
-    width: 380px;
+    height: 169px;
+    width: 248px;
     object-fit: cover;
   }
 
@@ -68,4 +71,9 @@
     margin-left: 16px;
     border-radius: 8px;
     padding: 9
+  }
+
+  .itemContainer {
+    width: 248px;
+    height: 251px;
   }
