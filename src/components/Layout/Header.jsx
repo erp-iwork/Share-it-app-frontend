@@ -282,7 +282,7 @@ class Header extends React.Component {
                               </ListGroupItem>
                             </Link>
 
-                            {/* <Link to={{ pathname: "/messages" }}>
+                            <Link to={{ pathname: "/messages" }}>
                               <ListGroupItem
                                 tag="button"
                                 action
@@ -290,7 +290,7 @@ class Header extends React.Component {
                               >
                                 <MdMessage /> Messages
                               </ListGroupItem>
-                            </Link> */}
+                            </Link>
 
                             <Link to={{ pathname: routes.Availability }}>
                               <ListGroupItem
