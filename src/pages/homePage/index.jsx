@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 // import { Col, Row } from "reactstrap";
 import { Col, Row } from "reactstrap";
-import SubHeader from "../../components/Layout/SubHeader";
-import Item from "./components/item";
+
 import {
   getLoading,
   getFilteredItems,
@@ -10,7 +9,7 @@ import {
 } from "../../store/items";
 import { connect } from "react-redux";
 import Shimmer from "react-shimmer-effect";
-import FilterComp from "../allItems/components/filterComp";
+import { PopularCategories, Search } from "./components";
 
 class HomePage extends Component {
   constructor() {
@@ -72,25 +71,15 @@ class HomePage extends Component {
   render() {
     return (
       <div className="BackContainer">
-        {this.props.loading && this.state.waitingContent}
-        {this.props.items && (
-          <Row>
-            <Col md={3} className="filterContainer">
-              <FilterComp />
-            </Col>
-            <Col md={9} className="mainBodyContainer">
-              <SubHeader />
+        {/* <Col className="mainBodyContainer"> */}
+        <Col md={12} sm={12} xs={12}>
+        <Search />
 
-              <Row>
-                {this.props.items.map((item) => (
-                  <Col key={item.itemId} md={3} sm={12} xs={12}>
-                    <Item item={item} />
-                  </Col>
-                ))}
-              </Row>
-            </Col>
-          </Row>
-        )}
+        </Col>
+        <PopularCategories />
+        {/* <PopularAmongUsers /> */}
+
+        {/* </Col> */}
       </div>
     );
   }

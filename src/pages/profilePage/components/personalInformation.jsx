@@ -26,7 +26,7 @@ class PersonalInformationComp extends Component {
       phonenumber,
       website,
       whatsapp,
-      email,
+      // email,
     } = this.props.profile;
     return (
       <>

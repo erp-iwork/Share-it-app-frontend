@@ -15,7 +15,6 @@ import {
 import { toast } from "react-toastify";
 import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
 
@@ -74,7 +73,7 @@ class ItemViewComp extends Component {
       term_and_conditions,
       properties,
       owner,
-      itemId,
+      // itemId,
     } = this.props.selectedItem;
     return (
       <Card>

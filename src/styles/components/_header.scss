@@ -4,7 +4,8 @@
 
   &__nav-right {
     flex-direction: row;
-    justify-content: flex-start;
+    display: flex;
+    justify-self: flex-end;
     margin-left: auto;
   }
 
@@ -19,20 +20,24 @@
   }
 }
 
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .searchContainer {
   width: 400px
 }
 
-.popover{
-  min-width: 20%;
-}
+// .popover{
+//   min-width: 20%;
+// }
 
 .searchImgContainer {
   width: 200px;
   height: 150px;
   background-color: #ffffff;
   object-fit:cover;
-	z-index: !important;
 
 }
 
@@ -56,4 +61,13 @@
 .popoverSearch {
   box-shadow:  7px 7px 7px darken($color: #d4d4d4, $amount: 5);;
 
+}
+
+.headerLogoContainer {
+  margin-left: 40px;
+
+}
+
+.divider {
+  background-color: #FFFFFF
 }

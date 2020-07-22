@@ -1,0 +1,45 @@
+.searchImageContainer {
+    height: 450px;
+    width: 30px;
+}
+.searchImageContainer img {
+    height: 100%;
+    width: 100%;
+}
+.searchformLayout {
+    align-self: center;
+}
+.searchInputHome {
+    size: 90px;
+    height: 80px;
+    padding-left: 30px;
+    font-size: large;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: transform .75s; 
+    border-radius: 30px;
+    margin-bottom: 15px;
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 3);;
+    background: linear-gradient(to right, theme-color("light"), theme-color("secondary"));
+}
+.searchInputHome:hover {
+    transform: scale(1.03);
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 5);;
+    background: #FFFFFF
+}
+.buttonPaddingRight {
+    transition: transform .5s; 
+    margin-right: 30px;
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 3);;
+}
+.buttonPaddingRight:hover {
+    transform: scale(1.05);
+}
+.buttonPaddingLeft {
+    transition: transform .5s; 
+    margin-left: 30px;
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 3);;
+}
+.buttonPaddingLeft:hover {
+    transform: scale(1.05);
+}

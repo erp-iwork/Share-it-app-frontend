@@ -5,11 +5,9 @@ class MainLayout extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <main className="cr-app bg-light">
+      <main className="cr-app bg-background">
         <Content fluid>
-          <div className="appbarHeader">
-            <Header />
-          </div>
+          <Header />
           {children}
           <Footer />
         </Content>
