@@ -124,11 +124,14 @@ class Header extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink>
+                <NavLink >
+                  <Link to={{pathname: routes.login}}>
                   <Button outline color='light'>
                     {" "}
                     <MdExitToApp /> LOGIN
                   </Button>
+                  </Link>
+
                 </NavLink>
               </NavItem>
 

@@ -16,6 +16,7 @@ import configureStore from "./store/configureStore";
 import routes from "./config/routes";
 import ProtectedRoute from "./components/protectedRoute";
 import Chat from "./components/ChatComponent";
+
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
 const CategoriesPage = React.lazy(() => import("./pages/categoriesPage"));
@@ -69,6 +70,7 @@ class App extends React.Component {
               <React.Fragment>
                 <MainLayout breakpoint={this.props.breakpoint}>
                   <React.Suspense fallback={<PageSpinner />}>
+                    <Route exact path={routes.homePage} component={HomePage} />
                     <Route
                       exact
                       path={routes.categories}
@@ -80,7 +82,6 @@ class App extends React.Component {
                       component={PostItemPage}
                     />
 
-                    <Route exact path={routes.homePage} component={HomePage} />
                     <Route
                       exact
                       path={routes.singleItem}
