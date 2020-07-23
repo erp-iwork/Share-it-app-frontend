@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import bn from '../../utils/bemnames';
+import bn from "../../utils/bemnames";
 
-import { Container } from 'reactstrap';
+import { Container } from "reactstrap";
 
-const bem = bn.create('content');
+const bem = bn.create("content");
 
 const Content = ({ tag: Tag, className, ...restProps }) => {
   const classes = bem.b(className);
