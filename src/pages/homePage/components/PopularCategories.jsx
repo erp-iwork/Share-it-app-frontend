@@ -10,7 +10,7 @@ class PopularCategories extends Component {
       <div className="popularCategoriesContainer">
         <Col className="popularCategoriesSingleContainer">
           <Row>
-            <Col md={6} xs={12} sm={12}>
+            <Col md={6} xs={12} sm={12} >
               <img
                 className="popularCategoriesImage"
                 src={Electronics}
