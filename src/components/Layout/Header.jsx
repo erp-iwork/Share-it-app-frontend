@@ -2,14 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Nav, Navbar, NavItem, NavLink, Row, Col, Button } from "reactstrap";
 import { MdExitToApp, MdFilterList, MdArrowDropDown } from "react-icons/md";
-// import bn from "../../utils/bemnames";
+import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
 import routes from "../../config/routes";
 import { getCurrentUser } from "../../store/auth";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
-// const bem = bn.create("header");
+const bem = bn.create("header");
 
 class Header extends React.Component {
   constructor(props) {
