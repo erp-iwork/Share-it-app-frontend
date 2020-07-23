@@ -58,4 +58,36 @@
 }
 .mainspacer {
     margin-top: 20px;
+
+}
+.popularCategoriesContainer {
+    padding-top: 50px;
+    background-image: url(../../assets/newResources/PopularCategoriesBackground.svg);
+    min-height: 100vh;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.popularCategoriesDescription {
+    align-self: center;
+}
+.popularCategoriesImage {
+    height: 384px;
+    width: 754px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow:  15px 15px 15px darken($color: #D4D4D4, $amount: 5);;
+}
+.popularAmongUsersContainer {
+    background-color: #F1F6FA;
+    min-height: 100vh;
+    height: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.popularCategoriesSingleContainer {
+    padding-bottom: 40px;
 }

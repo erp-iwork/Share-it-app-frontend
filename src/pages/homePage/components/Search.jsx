@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Button, Input } from "reactstrap";
 import SearchImage from "../../../assets/newResources/SearchImage.jpg";
-import Divider from "../../../assets/newResources/Dividers.svg";
+import Spacer from "./Spacer";
 
 class HomePageSearch extends Component {
   state = {};
@@ -33,13 +33,7 @@ class HomePageSearch extends Component {
             </Col>
           </Col>
         </Row>
-        <div className="mainspacer" />
-        <Col align="center">
-          <img src={Divider} alt="" />
-          <div className="mainspacer" />
-          <h4>PREMIUM SHARES</h4>
-        </Col>
-        <div className="mainspacer" />
+        <Spacer title="PREMIUM SHARES" />
       </>
     );
   }
