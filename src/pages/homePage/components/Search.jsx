@@ -33,10 +33,13 @@ class HomePageSearch extends Component {
             </Col>
           </Col>
         </Row>
+        <div className="mainspacer" />
         <Col align="center">
           <img src={Divider} alt="" />
-          <h4>Premium Ads</h4>
+          <div className="mainspacer" />
+          <h4>PREMIUM SHARES</h4>
         </Col>
+        <div className="mainspacer" />
       </>
     );
   }
