@@ -112,6 +112,7 @@ class App extends React.Component {
                       path={routes.Availability}
                       component={AvailabilityPage}
                     />
+                   
                     <Route exact path="/chat" component={Chat} />
                     <Route exact path="/messages" component={Messages} />
                   </React.Suspense>

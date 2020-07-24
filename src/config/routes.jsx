@@ -10,4 +10,4 @@ export default {
   settings: "/settings",
   buyAndSell: "/buyAndSell",
   Availability: "/Availability",
-};
+  };

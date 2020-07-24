@@ -26,7 +26,9 @@ class CategoriesPage extends Component {
   }
   render() {
     return (
+
       <Page>
+<div>random text </div>
         <PremiumAds />
         <Page breadcrumbs={[{ name: "Sub-Categories", active: true }]}>
           <Row>

@@ -9,6 +9,11 @@
     display: flex;
     justify-content: space-between;
 }
+.cardTextCategory{
+  font-weight: bolder;
+  font-size: x-large;
+
+}
 .zoom {
     transition: transform .2s; 
     box-shadow: none;
@@ -77,3 +82,21 @@
     width: 248px;
     height: 251px;
   }
+
+  .itemImgContainer-Category {
+    background-color: #ffffff;
+    
+    height: 169px;
+    width: 248px;
+    object-fit: cover;
+  }
+
+
+
+  .itemImgContainer-Category img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+ 
