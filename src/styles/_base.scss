@@ -28,15 +28,15 @@ button,
 .alert {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: Poppins, Roboto, Raleway, Itims, "Helvetica Neue", Arial, sans-serif;
+  font-family: Itim ,Poppins, Roboto, Raleway,  "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
 }
 
 .cr-app {
   display: flex;
   width: 100%;
-  height: auto;
-  padding-left: 10px;
+  // height: auto;
+  // padding-left: 10px;
   min-height: 100vh;
   // margin-top: 15px;
   // padding-bottom: 200px;
@@ -51,13 +51,24 @@ button,
 }
 
 .BackContainer {
-min-height: 100vh;
 // height: auto;
-overflow: scroll;
+// overflow: scroll;
 background-color: #fff;
 }
 // .margin {
 //   margin: 5px;
 // }
 
+.floatingActionContainer {
 
+  z-index: 99 !important;
+  opacity: 1;
+
+}
+
+.floatingActionButton {
+  width: 100px;
+  height: 100px;
+  background-color: #bbdefb;
+  box-shadow:  2px 5px 15px darken($color: #686868, $amount: 5);;
+}

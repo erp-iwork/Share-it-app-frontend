@@ -76,7 +76,7 @@ class Header extends React.Component {
 
     // const { isNotificationConfirmed } = this.state;
     return (
-      <Navbar light expand className="bg-gradient-theme-right">
+      <Navbar light className="bg-gradient-theme-right">
         <Col className="headerLogoContainer">
           <Nav navbar>
             <img className="App-logo" alt="" src={Logo} />

@@ -20,12 +20,9 @@ import HorizontalScroll from "react-scroll-horizontal";
 class HomePage extends Component {
   constructor() {
     super();
-    this.myRef = React.createRef();
     this.state = {
       loading: true,
       waitingContent: [],
-      scrollTop: 0,
-      scrolled: false,
     };
 
     this.preLoaders = this.preLoaders.bind(this);
@@ -35,28 +32,6 @@ class HomePage extends Component {
     //load filtered items without any filter option
     this.props.loadFilterdItems({});
   }
-
-  onScroll = () => {
-    const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
-    const scrollTop = this.myRef.current.scrollTop;
-    // console.log(
-    //   `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
-    // );
-    if (scrollTop > 20) {
-      this.setState({
-        scrolled: true,
-      });
-      console.log(this.state.scrolled);
-    }
-    if (scrollTop < 20) {
-      this.setState({
-        scrolled: false,
-      });
-    }
-    this.setState({
-      scrollTop: scrollTop,
-    });
-  };
 
   preLoaders = () => {
     const loader = (
@@ -102,17 +77,8 @@ class HomePage extends Component {
   render() {
     const child = { width: `100%`, height: `40px` };
     const parent = { width: `100%`, height: `310px` };
-    const { scrollTop } = this.state;
     return (
-      <div
-        style={{
-          height: "100px",
-          overflow: "scroll",
-        }}
-        className="BackContainer"
-        onScroll={this.onScroll}
-        ref={this.myRef}
-      >
+      <div className="BackContainer">
         <Col md={12} sm={12} xs={12}>
           <Search />
         </Col>
