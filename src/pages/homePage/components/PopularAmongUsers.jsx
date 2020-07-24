@@ -74,63 +74,6 @@ class PopularAmongUsers extends Component {
           <Col md={2} sm={12} xs={12}>
             <ProductsComp />
           </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>{" "}
-          <Col md={2} sm={12} xs={12}>
-            <ProductsComp />
-          </Col>
         </Row>
       </div>
     );

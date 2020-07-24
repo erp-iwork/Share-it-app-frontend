@@ -51,7 +51,8 @@ class MainLayout extends React.Component {
       >
         <main className="cr-app bg-background">
           <Content fluid>
-            {scrolled ? <FloatingActionButton /> : <Header />}
+            <Header />
+            {scrolled && <FloatingActionButton /> }
 
             {children}
             <Footer />

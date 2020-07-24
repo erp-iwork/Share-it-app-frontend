@@ -6,46 +6,97 @@ import {
   lightColors,
   darkColors,
 } from "react-floating-action-button";
-import { MdAccessAlarms } from "react-icons/md";
+import {
+  MdAccessAlarms,
+  MdPerson,
+  MdSettings,
+  MdCallMissedOutgoing,
+} from "react-icons/md";
 
 class FloatingActionButton extends Component {
   state = {};
   render() {
     return (
       <Container className="floatingActionContainer">
-        <Link className='floatingActionButtonLinks' href="#" tooltip="Create note link">
-          <MdAccessAlarms color="#000000" size={20} />
-        </Link>
-        <Link href="#" tooltip="Add user link">
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Create note link"
+        >
           <MdAccessAlarms size={20} />
         </Link>
-        <Link href="#" tooltip="Create note link">
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Profile"
+        >
           <MdAccessAlarms size={20} />
         </Link>
-        <Link href="#" tooltip="Add user link">
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Create note link"
+        >
           <MdAccessAlarms size={20} />
         </Link>
-        <Link href="#" tooltip="Create note link">
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Add user link"
+        >
           <MdAccessAlarms size={20} />
         </Link>
-        <Link href="#" tooltip="Add user link">
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Create note link"
+        >
           <MdAccessAlarms size={20} />
         </Link>
-        <Link href="#" tooltip="Create note link">
-          <MdAccessAlarms size={20} />
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Add user link"
+        >
+          <MdCallMissedOutgoing size={20} />
         </Link>
-        <Link href="#" tooltip="Add user link">
-          <MdAccessAlarms size={20} />
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Settings"
+        >
+          <MdSettings size={20} />
+        </Link>
+        <Link
+          styles={{
+            backgroundColor: lightColors.lightBlue,
+            color: darkColors.white,
+          }}
+          tooltip="Profile"
+        >
+          <MdPerson size={20} />
         </Link>
 
         <Button
           className="floatingActionButton"
-          tooltip="Categories"
-          rotate={true}
-          //   onClick={() => alert("FAB Rocks!")}
+          rotate={false}
           styles={{
-            backgroundColor: darkColors.white,
-            color: lightColors.lightBlue,
+            backgroundColor: lightColors.lightBlue,
+            color: lightColors.white,
           }}
         >
           <MdAccessAlarms size={40} />
