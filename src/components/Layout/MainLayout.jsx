@@ -1,4 +1,4 @@
-import { Content, Footer, Header } from "./index";
+import { Content, Footer, Header, SubHeader } from "./index";
 import React from "react";
 import FloatingActionButton from "./FloatingActionButton";
 
@@ -47,6 +47,7 @@ class MainLayout extends React.Component {
         <main className="cr-app bg-background">
           <Content fluid>
             <Header />
+            <SubHeader />
             {scrolled && <FloatingActionButton /> }
 
             {children}

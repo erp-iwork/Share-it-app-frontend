@@ -1,9 +1,11 @@
 import React from "react";
-import { Card, Col, Row, Button } from "reactstrap";
+import { Card, Col, Row, Button, NavLink, NavItem, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 import { getCategories, loadCategories } from "../../store/categories";
 import { connect } from "react-redux";
+import { MdArrowDropDown } from "react-icons/md";
 //load categories
+
 class SubHeader extends React.Component {
   componentDidMount() {
     this.props.loadCategories();
@@ -11,24 +13,36 @@ class SubHeader extends React.Component {
 
   render() {
     return (
-      <Card className="mainPadding" align="center">
-        <Row>
-          {this.props.categories.map((category) => (
-            <Col md={3} xs={12} sm={6} key={category.id}>
-              <Link to={`/categories/${category.id}`}>
-                <Button outline block>
-                  {category.name} Sharing
-                </Button>
-              </Link>
-            </Col>
-          ))}
-          <Col md={3} xs={12} sm={6}>
-            <Button onClick={() => alert("Digoma")} block color="success">
-              Donations
-            </Button>
-          </Col>
+      <div className="bg-gradient-theme-right">
+        <Row className="nav-right">
+          <NavItem>
+            <NavLink>
+              <Button outline color="light">
+                {" "}
+                PRODUCT SHARING <MdArrowDropDown />
+              </Button>
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink>
+              <Button outline color="light">
+                {" "}
+                SERVICE SHARING <MdArrowDropDown />
+              </Button>
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink>
+              <Button outline color="light">
+                {" "}
+                DIGITAL SHARING <MdArrowDropDown />
+              </Button>
+            </NavLink>
+          </NavItem>
         </Row>
-      </Card>
+      </div>
     );
   }
 }
