@@ -72,6 +72,7 @@ class FloatingActionButton extends Component {
         >
           <MdCallMissedOutgoing size={20} />
         </Link>
+
         <Link
           styles={{
             backgroundColor: lightColors.lightBlue,

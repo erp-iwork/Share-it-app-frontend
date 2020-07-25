@@ -1,7 +1,17 @@
 import React from "react";
 import "rsuite/dist/styles/rsuite-default.css";
 import { connect } from "react-redux";
-import { Nav, Navbar, NavItem, NavLink, Row, Col, Button } from "reactstrap";
+import {
+  Nav,
+  Navbar,
+  NavItem,
+  NavLink,
+  Row,
+  Col,
+  Button,
+  Popover,
+  PopoverBody,
+} from "reactstrap";
 import { MdExitToApp, MdFilterList, MdArrowDropDown } from "react-icons/md";
 import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
@@ -25,11 +35,20 @@ class Header extends React.Component {
       focused: false,
       show: false,
       backdrop: true,
+      isOpenNotificationPopover: false,
     };
     this.updatePredicate = this.updatePredicate.bind(this);
     this.close = this.close.bind(this);
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
+
+  toggleNotificationPopover = () => {
+    this.setState({
+      isOpenNotificationPopover: !this.state.isOpenNotificationPopover,
+    });
+
+    console.log(this.state.isOpenNotificationPopover);
+  };
   close() {
     this.setState({
       show: false,
@@ -57,28 +76,6 @@ class Header extends React.Component {
   };
   onBlur = () => {
     this.setState({ focused: false, isOpenSearchCardPopover: false });
-  };
-
-  toggleUserCardPopover = () => {
-    this.setState({
-      isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
-      isOpenSearchCardPopover: false,
-    });
-  };
-
-  toggleSearchCardPopover = (evt) => {
-    if (evt.target.value && evt.target.value.length >= 3) {
-      this.props.searchItems(evt.target.value);
-      this.setState({
-        isOpenSearchCardPopover: this.state.focused,
-        isOpenUserCardPopover: false,
-        query: evt.target.value,
-      });
-    } else {
-      this.setState({
-        query: evt.target.value,
-      });
-    }
   };
 
   logout = () => {
@@ -118,18 +115,22 @@ class Header extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink>
-                  <Button outline color="light">
-                    {" "}
-                    <MdExitToApp /> REGISTER
-                  </Button>
+                  <Link to={{ pathname: routes.registration }}>
+                    <Button outline color="light">
+                      {" "}
+                      <MdExitToApp /> REGISTER
+                    </Button>
+                  </Link>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink>
-                  <Button outline color="light">
-                    {" "}
-                    <MdExitToApp /> LOGIN
-                  </Button>
+                  <Link to={{ pathname: routes.login }}>
+                    <Button outline color="light">
+                      {" "}
+                      <MdExitToApp /> LOGIN
+                    </Button>
+                  </Link>
                 </NavLink>
               </NavItem>
 
@@ -150,7 +151,7 @@ class Header extends React.Component {
                 </NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink id="Popover2">
+                <NavLink>
                   <Button outline color="light" onClick={this.toggleDrawer}>
                     <MdFilterList />
                   </Button>
@@ -174,14 +175,29 @@ class Header extends React.Component {
             </Row>
             <hr className="divider" />
             <Row>
-              <NavItem>
+              <NavItem id="Popover1">
                 <NavLink>
-                  <Button outline color="light">
+                  <Button
+                    outline
+                    color="light"
+                    onClick={this.toggleNotificationPopover}
+                  >
                     {" "}
                     PRODUCT SHARING <MdArrowDropDown />
                   </Button>
                 </NavLink>
               </NavItem>
+              <Popover
+                placement="bottom"
+                isOpen={this.state.isOpenNotificationPopover}
+                toggle={this.toggleNotificationPopover}
+                target="Popover1"
+              >
+                <PopoverBody>
+                  {/* <Notifications notificationsData={notificationsData} /> */}
+                  Hello
+                </PopoverBody>
+              </Popover>
 
               <NavItem>
                 <NavLink>
