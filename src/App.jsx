@@ -73,7 +73,7 @@ class App extends React.Component {
                     <Route exact path={routes.homePage} component={HomePage} />
                     <Route
                       exact
-                      path={routes.categories}
+                      path={routes.Categories}
                       component={CategoriesPage}
                     />
                     <ProtectedRoute

@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { Col, Row, Button, Input } from "reactstrap";
+import { Col, Row, Button, Input, Container, Jumbotron } from "reactstrap";
 import Page from "../../../components/Page";
 // import Items from "../../homePage/components/item";??
 import Item from "../../homePage/components/item";
 import { loadFilteredItems, getFilteredItems } from "../../../store/items";
 import { connect } from "react-redux";
-import ItemsImage from "../../../assets/newResources/itemsPagePic.png";
+import categoryRibbon from "../../../assets/newResources/categoryRibbon.jpg";
 import Shimmer from "react-shimmer-effect";
 import CategoryCard from '../components/categoryCard';
 import HorizontalScroll from "react-scroll-horizontal";
 import CategorySpacer from '../spacer';
+import PopularAmongUsers from '../../homePage/components/PopularAmongUsers';
 
 
 
@@ -21,32 +22,30 @@ class MainBodyPage extends Component {
     });
   }
   render() {
-    const child = { width: `100%`, height: `70px` };
-    const parent = { width: `100%`, height: `250px` };
+    const child = { width: `100%`, height: `300px` };
+    const parent = { width: `100%`, height: `350px` };
+   
     return (
-      <div className="BackContainer">
+      <div >
         {/* <Page
           className="mainBodyContainer"
           breadcrumbs={[{ name: this.props.subcategory.name, active: true }]}
         > */}
 
-
-          <Row>
-            <Col md={3} className="searchImageContainer">
-              <img src={ItemsImage} alt="" />
-            </Col>
-            <Col md={7} align="center" className="searchformLayout">
-              <h1>
-                <b>
+        <Jumbotron className="containerSize" style={{ backgroundImage: `url(${categoryRibbon})` }}>
+      
+          <Container>
+            <Row >
+          <Row  >
+              <h2>
                   SHARE ANYTHING ,ANYWHERE ...
-                </b>
-              </h1>
+              </h2>
               <Input
                 placeholder="Search Sharreit ..."
                 className="searchInputHome"
-              />
-              <Col align="right">
-                <Button className="buttonPaddingRight">SEARCH</Button>
+            />      
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+                  <Button size="lg" className="buttonPaddingRight">SEARCH</Button>
                 <b>
                   <i>OR</i>
                 </b>
@@ -54,19 +53,52 @@ class MainBodyPage extends Component {
                   START SHARING
               </Button>
               </Col>
-            </Col>
+              </Row>
+            </Row>
 
-
-          </Row>
+          
+          </Container>
+          
+          <Container>
+            <Row className="featureditemButton" >
+              <Row>
+                <h2>
+                  <b>
+                    Top searches
+                    </b>
+                  </h2>
+                  <Col>                  
+                  <Button outline color="secondary" size="lg" >searched item </Button> 
+                  <b>
+                    <i>  </i>
+                  </b>
+                  <Button outline color="secondary" size="lg" >searched item</Button>
+                  <b>
+                    <i>  </i>
+                  </b>
+                  <Button outline color="secondary" size="lg" >searched item</Button>
+                  <b>
+                    <i>  </i>
+                  </b>
+                  <Button outline color="secondary" size="lg" >searched item</Button>
+                  <b>
+                    <i>  </i>
+                  </b>
+                  <Button outline color="secondary" size="lg" >searched item</Button>
+                  </Col>
+                </Row>                
+            </Row>    
+          </Container>
+        </Jumbotron>
         
-            
-        <CategorySpacer title="Featired categories "/>
+
+        <CategorySpacer title="Todays Featured Items "/>
           <Row>
 
             <div style={parent}>
               <HorizontalScroll
                 config={{ stiffness: 50, damping: 20 }}
-                animValues={2}
+                animValues={10}
                 reverseScroll={false}
               >
                 <CategoryCard style={child} />
@@ -75,9 +107,16 @@ class MainBodyPage extends Component {
                 <CategoryCard style={child} />
                 <CategoryCard style={child} />
                 <CategoryCard style={child} />
-                <CategoryCard style={child} />
+              <CategoryCard style={child} />
+              <CategoryCard style={child} />
+              <CategoryCard style={child} />
+              <CategoryCard style={child} />
+              <CategoryCard style={child} />
 
-              </HorizontalScroll>
+            </HorizontalScroll>
+            <CategorySpacer title="Suggested items  " />
+
+            <PopularAmongUsers/>
             </div>
 
           </Row>

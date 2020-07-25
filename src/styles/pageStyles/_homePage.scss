@@ -1,102 +1,101 @@
-.cardBody{
+.cardBody {
     flex-direction: row;
     display: flex;
     justify-content: space-between;
 }
 
-.cardHeader{
+.cardHeader {
     flex-direction: row;
     display: flex;
     justify-content: space-between;
 }
-.cardTextCategory{
-  font-weight: bolder;
-  font-size: x-large;
 
+.cardTextCategory {
+    font-weight: bolder;
+    font-size: x-large;
 }
+
 .zoom {
-    transition: transform .2s; 
+    transition: transform .2s;
     box-shadow: none;
     margin: 10px;
     border-radius: 20px;
     min-height: 30px;
-    box-shadow:  -3px 3px 3px darken($color: #EDEDED, $amount: 5);;
+    box-shadow: -3px 3px 3px darken($color: #EDEDED, $amount: 5);
+    ;
+}
 
-  }
-  .zoom:hover {
+.zoom:hover {
     transform: scale(1.05);
     overflow: hidden;
-    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 5);;
-  }
+    box-shadow: 5px 5px 5px darken($color: #EDEDED, $amount: 5);
+    ;
+}
 
-  .itemImgContainer {
+.itemImgContainer {
     height: 260px;
     width: 267px;
     object-fit: cover;
-  }
+}
 
-  .itemImgContainer img {
+.itemImgContainer img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     vertical-align: middle;
-  }
+}
 
-  .itemImgContainer-Home {
+.itemImgContainer-Home {
     background-color: #ffffff;
     height: 169px;
     width: 248px;
     object-fit: cover;
-  }
+}
 
-  .itemImgContainer-Home img {
+.itemImgContainer-Home img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
+}
 
-  .itemImgContainer-HomeShimmer {
+.itemImgContainer-HomeShimmer {
     background-color: #ffffff;
     min-height: 200px;
     width: 380px;
     object-fit: cover;
     margin-bottom: 20px;
-  }
+}
 
-  .itemImgContainer-HomeShimmerImg {
+.itemImgContainer-HomeShimmerImg {
     min-height: 260px;
     width: 380px;
     object-fit: cover;
     margin-top: 20px;
-  }
-  .ShimmerLine {
+}
+
+.ShimmerLine {
     width: 96px;
     height: 20px;
     align-self: center;
     margin-left: 16px;
     border-radius: 8px;
     padding: 9
-  }
+}
 
-  .itemContainer {
+.itemContainer {
     width: 248px;
     height: 251px;
-  }
+}
 
-  .itemImgContainer-Category {
+.itemImgContainer-Category {
     background-color: #ffffff;
-    
     height: 169px;
     width: 248px;
     object-fit: cover;
-  }
+}
 
-
-
-  .itemImgContainer-Category img {
+.itemImgContainer-Category img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
-
- 
+}
