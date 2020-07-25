@@ -48,7 +48,7 @@ class MainLayout extends React.Component {
           <Content fluid>
             <Header />
             <SubHeader />
-            {scrolled && <FloatingActionButton /> }
+            {scrolled && <FloatingActionButton />}
 
             {children}
             <Footer />

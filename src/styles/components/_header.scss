@@ -38,7 +38,6 @@
   height: 150px;
   background-color: #ffffff;
   object-fit:cover;
-
 }
 
 .searchImgContainer img {
@@ -48,7 +47,6 @@
   height: 100%;
   width: 100%;
   object-fit:cover;
-
 }
 .searchResultsHeader {
   margin-bottom: 10px;
@@ -62,12 +60,11 @@
   box-shadow:  7px 7px 7px darken($color: #d4d4d4, $amount: 5);;
 
 }
-
 .headerLogoContainer {
   margin-left: 40px;
-
 }
-
 .divider {
-  background-color: #FFFFFF
+  background-color: #FFFFFF;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
