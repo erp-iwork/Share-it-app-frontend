@@ -17,17 +17,11 @@ class CategoryCard extends Component {
           <CardImg src={Mercedes1} alt="" />
         </Col>
         <CardBody>
-          <div>Item Title Goes Here</div>
+         
           <CardText className="cardText">
-            <div>Christopher B.</div>
-            <div className="pricetag">$ 29 / Day</div>
-            <div>
-              <MdStar fontSize={15} className="rating" />
-              <MdStar fontSize={15} className="rating" />
-              <MdStarBorder fontSize={15} />
-              <MdStarBorder fontSize={15} />
-              <MdStarBorder fontSize={15} /> (23)
-            </div>
+            <b>This category </b>
+           
+           
           </CardText>
         </CardBody>
       </Card>

@@ -22,8 +22,8 @@ class MainBodyPage extends Component {
     });
   }
   render() {
-    const child = { width: `100%`, height: `300px` };
-    const parent = { width: `100%`, height: `350px` };
+    const child = { width: `100%`, height: `200px` };
+    const parent = { width: `100%`, height: `250px` };
    
     return (
       <div >
@@ -64,7 +64,7 @@ class MainBodyPage extends Component {
               <Row>
                 <h2>
                   <b>
-                    Top searches
+                    Top Categories
                     </b>
                   </h2>
                   <Col>                  
@@ -92,7 +92,7 @@ class MainBodyPage extends Component {
         </Jumbotron>
         
 
-        <CategorySpacer title="Todays Featured Items "/>
+        <CategorySpacer title="Todays Featured Categories "/>
           <Row>
 
             <div style={parent}>
