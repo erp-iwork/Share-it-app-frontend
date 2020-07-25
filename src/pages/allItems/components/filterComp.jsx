@@ -50,8 +50,10 @@ class FilterComponent extends FilterForm {
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
+          <hr />
           <div>
             <CardHeader>Filter Item Results</CardHeader>
+            <hr />
 
             <Col>
               <Row>
@@ -91,7 +93,6 @@ class FilterComponent extends FilterForm {
                 </Col>
                 <Col md={2}>Miles</Col>
               </Row>
-
               <hr />
 
               <Label>Sort By</Label>
