@@ -68,32 +68,32 @@ class SubHeader extends React.Component {
                 <PopoverHeader>SubCategories</PopoverHeader>
                 <ListGroup flush>
                   <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes HEre
+                    <MdList /> Sub-category Goes Here
                   </ListGroupItem>
                   <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes HEre
-                  </ListGroupItem>
-
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes HEre
+                    <MdList /> Sub-category Goes Here
                   </ListGroupItem>
 
                   <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes HEre
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes HEre
+                    <MdList /> Sub-category Goes Here
                   </ListGroupItem>
 
                   <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes HEre
+                    <MdList /> Sub-category Goes Here
+                  </ListGroupItem>
+                  <ListGroupItem tag="button" action className="border-light">
+                    <MdList /> Sub-category Goes Here
+                  </ListGroupItem>
+
+                  <ListGroupItem tag="button" action className="border-light">
+                    <MdList /> Sub-category Goes Here
                   </ListGroupItem>
                   <ListGroupItem
                     tag="button"
                     action
                     className="border-light"
                   >
-                    <MdList /> Sub-category Goes HEre
+                    <MdList /> Sub-category Goes Here
                   </ListGroupItem>
                 </ListGroup>
               </PopoverBody>
@@ -101,7 +101,7 @@ class SubHeader extends React.Component {
             <Button
               outline
               color="light"
-              onClick={this.toggleSubCategoriesPopover}
+              onMouseEnter={this.toggleSubCategoriesPopover}
             >
               {" "}
               PRODUCT SHARING <MdArrowDropDown />
@@ -109,7 +109,7 @@ class SubHeader extends React.Component {
 
             <Button
               id="Popover3"
-              onClick={this.toggleSubCategoriesPopover}
+              onMouseEnter={this.toggleSubCategoriesPopover}
               outline
               color="light"
               className="subHeaderButtons"
@@ -120,7 +120,7 @@ class SubHeader extends React.Component {
 
             <Button
               id="Popover3"
-              onClick={this.toggleSubCategoriesPopover}
+              onMouseEnter={this.toggleSubCategoriesPopover}
               outline
               color="light"
             >
