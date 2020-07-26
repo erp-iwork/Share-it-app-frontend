@@ -4,31 +4,21 @@
 }
 
 .loginContainer {
-  margin: 90px;
-  flex-direction: row;
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  transform: translate(-20%, -20%);
-  z-index: 2;
-  width: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.loginContainerMobile {
-    flex-direction: row;
+    align-self: center;
+    margin-top: 5%;
 }
 
-.loginFormContainer {
-    padding-top: 50px;
-    flex-direction: column;
+.loginContainer1 {
+    align-self: center;
+    margin-top: 10%;
+    width: 30%;
 }
+
+
 
 .CLogo {
     width: 300px;
-    justify-content: center;
-    flex-direction: row;   
+    justify-self: center;
 }
 
 .loginIcon {
@@ -36,17 +26,12 @@
     border-radius: 1000px;
     padding: 25px;
     background-color: #083991;
-    // color: #fff;
     
 }
 
 .loginBackground {
     min-height: 100vh;
     height: auto;
-    background-image: url('../../assets/background.jpg');
-    filter: blur(4px);
-    background-color: rgba(103, 103, 103, 0.4);
-  -webkit-filter: blur(4px);
 }
 
 .label {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardBody, Col, CardText } from "reactstrap";
-import { Mercedes1, Mercedes2 } from "../../../assets/demoImages";
+import { Mercedes1 } from "../../../assets/demoImages";
 import { MdStar, MdStarBorder } from "react-icons/md";
 
 class ProductsComp extends Component {
@@ -13,7 +13,7 @@ class ProductsComp extends Component {
     return (
       <Card className="zoom">
         <Col className="itemImgContainer-Home">
-          <CardImg src={Mercedes2} alt="" />
+          <CardImg src={Mercedes1} alt="" />
         </Col>
         <CardBody>
           <div>Item Title Goes Here</div>

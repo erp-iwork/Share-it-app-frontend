@@ -33,7 +33,7 @@ import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
 import { UserCard } from "../Card";
 import routes from "../../config/routes";
-import PageSpinner from "../../components/PageSpinner";
+// import PageSpinner from "../../components/PageSpinner";
 import { getCurrentUser } from "../../store/auth";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 import FilterComp from "../../pages/allItems/components/filterComp";
@@ -111,9 +111,8 @@ class Header extends React.Component {
   };
 
   render() {
-    const isDesktop = this.state.isDesktop;
+    // const isDesktop = this.state.isDesktop;
 
-    const { isNotificationConfirmed } = this.state;
     return (
       <Navbar light expand className="bg-gradient-theme-right">
         <Nav navbar>

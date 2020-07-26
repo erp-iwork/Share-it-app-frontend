@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Col } from "reactstrap";
-import Divider from "../../../assets/newResources/Dividers.svg";
+import Divider from "../../assets/newResources/Dividers.svg";
 
-const Spacer = ({ title }) => {
+const CategorySpacer = ({ title }) => {
   return (
     <>
       <div className="mainspacer" />
@@ -16,4 +16,4 @@ const Spacer = ({ title }) => {
   );
 };
 
-export default Spacer;
+export default CategorySpacer;
