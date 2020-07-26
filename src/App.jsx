@@ -28,7 +28,6 @@ const Messages = React.lazy(() => import("./pages/messages/messages"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
-const SelectedCategory = React.lazy(() => import("./pages/selectedCategory"));
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
 };
@@ -111,11 +110,6 @@ class App extends React.Component {
                       exact
                       path={routes.Availability}
                       component={AvailabilityPage}
-                    />
-                    <Route
-                      exact
-                      path={routes.selectedCategory}
-                      component={SelectedCategory}
                     />
                     <Route exact path="/chat" component={Chat} />
                     <Route exact path="/messages" component={Messages} />

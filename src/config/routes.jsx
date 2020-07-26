@@ -4,8 +4,6 @@ export default {
   registration: "/registration",
   // categories: "/categories/:id",
   categories: "/categories",
-  // categories: "/CategoriesPage",
-  selectedCategory: "/selectedCategory",
   postItem: "/postItem",
   allItems: "/items",
   singleItem: "/items/:id",
