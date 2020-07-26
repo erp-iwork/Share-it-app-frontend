@@ -6,6 +6,8 @@ export { default as LayoutRoute } from './LayoutRoute';
 export { default as MainLayout } from './MainLayout';
 export { default as SubHeader } from './SubHeader';
 export { default as Spacer } from './Spacer';
+export { default as EmptyLayoutHeader } from './EmptyLayoutHeader';
+
 
 
 

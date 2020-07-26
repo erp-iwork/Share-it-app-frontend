@@ -25,7 +25,6 @@ import {
   MdList,
 } from "react-icons/md";
 // import "rsuite/dist/styles/rsuite-default.css";
-import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
 import { Link } from "react-router-dom";
@@ -36,6 +35,7 @@ import { getCurrentUser } from "../../store/auth";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 import FilterComp from "../../pages/allItems/components/filterComp";
 import { Drawer } from "rsuite";
+import bn from "../../utils/bemnames";
 const bem = bn.create("header");
 
 class Header extends React.Component {
