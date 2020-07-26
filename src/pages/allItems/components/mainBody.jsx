@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { Col, Row, Button, Input, Container, Jumbotron } from "reactstrap";
-import Page from "../../../components/Page";
-// import Items from "../../homePage/components/item";??
-import Item from "../../homePage/components/item";
+import { Col, Row, Button, Input } from "reactstrap";
 import { loadFilteredItems, getFilteredItems } from "../../../store/items";
 import { connect } from "react-redux";
-import categoryRibbon from "../../../assets/newResources/categoryRibbon.jpg";
-import Shimmer from "react-shimmer-effect";
+//
 import CategoryCard from "../components/categoryCard";
 import HorizontalScroll from "react-scroll-horizontal";
 import CategorySpacer from "../spacer";
@@ -21,57 +17,34 @@ class MainBodyPage extends Component {
   render() {
     const child = { width: `100%`, height: `300px` };
     const parent = { width: `100%`, height: `350px` };
-   
+
     return (
-      <div >
-        {/* <Page
-          className="mainBodyContainer"
-          breadcrumbs={[{ name: this.props.subcategory.name, active: true }]}
-        > */}
-
-        <Row>
-          <Col md={3} className="searchImageContainer">
-            <img src={ItemsImage} alt="" />
-          </Col>
-          <Col md={7} align="center" className="searchformLayout">
-            <h1>
-              <b>SHARE ANYTHING ,ANYWHERE ...</b>
-            </h1>
-            <Input
-              placeholder="Search Sharreit ..."
-              className="searchInputHome"
-            />
-            <Col align="right">
-              <Button className="buttonPaddingRight">SEARCH</Button>
-              <b>
-                <i>OR</i>
-              </b>
-              <Button outline className="buttonPaddingLeft" color="success">
-                START SHARING
-              </Button>
-            </Col>
-          </Col>
-        </Row>
-
-        <CategorySpacer title="Featired categories " />
-        <Row>
-          <div style={parent}>
-            <HorizontalScroll
-              config={{ stiffness: 50, damping: 20 }}
-              animValues={2}
-              reverseScroll={false}
-            >
-              <CategoryCard style={child} />
-              <CategoryCard style={child} />
-              <CategoryCard style={child} />
-              <CategoryCard style={child} />
-              <CategoryCard style={child} />
-              <CategoryCard style={child} />
-              <CategoryCard style={child} />
-            </HorizontalScroll>
-          </div>
-        </Row>
-      </div>
+      // <div>
+      //   <Row>
+      //     <Col md={7} align="center" className="searchformLayout">
+      //       <h1>
+      //         <b>SHARE ANYTHING ,ANYWHERE ...</b>
+      //       </h1>
+      //       <Input
+      //         placeholder="Search Sharreit ..."
+      //         className="searchInputHome"
+      //       />
+      //       <Col align="right">
+      //         <Button className="buttonPaddingRight">SEARCH</Button>
+      //         <b>
+      //           <i>OR</i>
+      //         </b>
+      //         <Button outline className="buttonPaddingLeft" color="success">
+      //           START SHARING
+      //         </Button>
+      //       </Col>
+      //     </Col>
+      //   </Row>
+      //   <CategorySpacer title="Featured Categories" />
+      // </div>
+      <h1>
+        Hello
+      </h1>
     );
   }
 }

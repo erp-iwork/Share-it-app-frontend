@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MainBodyPage from "../categoriesPage/components/mainBody";
+import MainBodyPage from "./components/mainBody";
 // import FilterComponent from "./components/filterComp";
 import { Col } from "reactstrap";
 

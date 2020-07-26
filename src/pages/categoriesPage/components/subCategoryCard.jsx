@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardBody, Col, CardText } from "reactstrap";
-import { Mercedes1, BlueCamera } from "../../../assets/demoImages";
-import { MdStar, MdStarBorder } from "react-icons/md";
-
+import { Mercedes1 } from "../../../assets/demoImages";
 
 class CategoryCard extends Component {
   constructor(props) {
@@ -17,11 +15,8 @@ class CategoryCard extends Component {
           <CardImg src={Mercedes1} alt="" />
         </Col>
         <CardBody>
-         
           <CardText className="cardText">
             <b>This category </b>
-           
-           
           </CardText>
         </CardBody>
       </Card>

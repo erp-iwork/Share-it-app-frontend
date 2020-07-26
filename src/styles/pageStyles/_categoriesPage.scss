@@ -41,3 +41,11 @@
     transform: scale(1.1);
     // z-index: 200!important;
 }
+
+.containerSize {
+    width: 100%;
+    height: 500px;
+    background-image: url("../../assets/demoImages/Mercedes2.jpeg");
+    background-size: cover;
+    image-resolution: inherit;
+}
