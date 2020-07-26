@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ProductsComp from "../homePage/components/Products";
-import Spacer from "../categoriesPage/components/spacer"
 import CategoryImageContainer from "../categoriesPage/components/categoryImageContainer";
 import PopularAmongUsers from "../homePage/components/PopularAmongUsers";
+import { Spacer } from "../../components/Layout";
 
 //load items by subcategory and display
 
