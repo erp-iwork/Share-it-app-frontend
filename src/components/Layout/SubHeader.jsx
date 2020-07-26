@@ -39,14 +39,14 @@ class SubHeader extends React.Component {
       <div className="bg-gradient-theme-right">
         <hr className="divider" />
         <Row align="right" className="subHeaderContainer">
-          <Col id="Popover3">
+          <Col >
             <Popover
-              placement="left-start"
+              placement="bottom-end"
               isOpen={this.state.isOpenSubCategoriesPopover}
               toggle={this.toggleSubCategoriesPopover}
               target="Popover3"
               className="p-2 border-5"
-              style={{ minWidth: 650 }}
+              style={{ minWidth: 450 }}
             >
               <PopoverBody className="p-2 border-light">
                 <PopoverHeader>SubCategories</PopoverHeader>
@@ -78,7 +78,7 @@ class SubHeader extends React.Component {
             <Button
               outline
               color="light"
-              onClick={this.toggleSubCategoriesPopover}
+              onMouseEnter={this.toggleSubCategoriesPopover}
               onFocus={this.toggleSubCategoriesPopover}
             >
               {" "}
@@ -86,18 +86,19 @@ class SubHeader extends React.Component {
             </Button>
 
             <Button
-              onClick={this.toggleSubCategoriesPopover}
+              onMouseEnter={this.toggleSubCategoriesPopover}
               onFocus={this.toggleSubCategoriesPopover}
               outline
               color="light"
               className="subHeaderButtons"
+              id='Popover3'
             >
               {" "}
               Service Sharing <MdArrowDropDown />
             </Button>
 
             <Button
-              onClick={this.toggleSubCategoriesPopover}
+              onMouseEnter={this.toggleSubCategoriesPopover}
               onFocus={this.toggleSubCategoriesPopover}
               outline
               color="light"

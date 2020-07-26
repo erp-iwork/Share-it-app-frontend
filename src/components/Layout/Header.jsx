@@ -180,7 +180,7 @@ class Header extends React.Component {
                 <div onClick={this.toggleUserCardPopover}>
                   <Avatar className="can-click" />
                   <Popover
-                    placement="bottom-end"
+                    placement="bottom-start"
                     isOpen={this.state.isOpenUserCardPopover}
                     toggle={this.toggleUserCardPopover}
                     target="Popover2"
