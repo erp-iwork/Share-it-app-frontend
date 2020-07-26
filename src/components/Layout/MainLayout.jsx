@@ -14,7 +14,6 @@ class MainLayout extends React.Component {
   }
 
   onScroll = () => {
-    const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
     const scrollTop = this.myRef.current.scrollTop;
     if (scrollTop > 160) {
       this.setState({
@@ -49,7 +48,6 @@ class MainLayout extends React.Component {
             <Header />
             <SubHeader />
             {scrolled && <FloatingActionButton />}
-
             {children}
             <Footer />
           </Content>

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col, Button, Input } from "reactstrap";
 import SearchImage from "../../../assets/newResources/SearchImage.jpg";
-import Spacer from "./Spacer";
+import { Spacer } from "../../../components/Layout";
+
 
 class HomePageSearch extends Component {
   state = {};

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import SubCategoryCard from "./components/subCategoryCard";
 import HorizontalScroll from "react-scroll-horizontal";
-import Spacer from "./components/spacer";
+// import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
+import { Mercedes2 } from "../../assets/demoImages";
+import { Spacer } from "../../components/Layout";
 
 //load items by subcategory and display
 
@@ -22,6 +24,7 @@ class index extends Component {
           are usually small and can be grouped together into packages called 
           integrated circuits.
         "
+          image={Mercedes2}
         />
         <Spacer title="Sub-Categories " />
         <div style={parent}>

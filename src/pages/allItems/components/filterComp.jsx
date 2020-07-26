@@ -1,8 +1,6 @@
 import React from "react";
 import { Col, Row, Button, CardHeader, Label, Form } from "reactstrap";
 import { Slider } from "antd";
-// import Items from "../../../components/items-Home";
-// import Items from "../../homePage/components/items";
 import { loadFilteredItems } from "../../../store/items";
 import { connect } from "react-redux";
 import { getCategories, loadCategories } from "../../../store/categories";

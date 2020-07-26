@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Col } from "reactstrap";
-// import LoginImage from "../../assets/Nunu.jpg";
-import RegistrationImage from "../../assets/demo-nanny.jpg";
-import { Card, CardImg } from "reactstrap";
+import { Card } from "reactstrap";
 import RegistrationFormPage from "./components/RegistrationForm";
 
 class RegistrationPage extends Component {
@@ -28,32 +25,11 @@ class RegistrationPage extends Component {
   }
 
   render() {
-    const isDesktop = this.state.isDesktop;
+    // const isDesktop = this.state.isDesktop;
     return (
-      <div>
-        <div className="loginBackground" />
-        {isDesktop ? (
-          <Card md={12} sm={12} className="loginContainer">
-            <Col md={5} sm={12} xs={12} className="loginFormContainer">
-              <RegistrationFormPage />
-            </Col>
-            <Col md={7} sm={12} xs={12}>
-              <CardImg
-                width="100%"
-                className="loginImage"
-                src={RegistrationImage}
-                alt="login image"
-              />
-            </Col>
-          </Card>
-        ) : (
-            <Card md={12} sm={12} className="loginContainerMobile">
-              <Col md={12} sm={12} xs={12} className="loginFormContainer">
-                <RegistrationFormPage />
-              </Col>
-            </Card>
-          )}
-      </div>
+      <Card md={12} sm={12} xs={12} className="loginContainer">
+        <RegistrationFormPage />
+      </Card>
     );
   }
 }
