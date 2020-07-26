@@ -9,7 +9,7 @@ class BuyAndSellHistory extends Component {
   }
   render() {
     return (
-      <Col>
+      <Col className="statsticsContainer">
         <Header />
         <BuyHistory />
       </Col>
