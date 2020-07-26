@@ -5,6 +5,7 @@ import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
 
 //load items by subcategory and display
+
 class index extends Component {
   render() {
     const child = { width: `100%`, height: `200px` };
