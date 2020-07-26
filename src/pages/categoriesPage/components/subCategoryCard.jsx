@@ -16,7 +16,7 @@ class CategoryCard extends Component {
         </Col>
         <CardBody>
           <CardText className="cardText">
-            <b>This category </b>
+            <b>SubCategory Name </b>
           </CardText>
         </CardBody>
       </Card>

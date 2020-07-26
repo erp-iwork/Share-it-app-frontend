@@ -39,13 +39,62 @@
 
 .zoomCategory:hover {
     transform: scale(1.1);
-    // z-index: 200!important;
 }
 
 .containerSize {
     width: 100%;
-    height: 500px;
+    height: 520px;
     background-image: url("../../assets/demoImages/Mercedes2.jpeg");
     background-size: cover;
-    image-resolution: inherit;
+    transition: transform 1s;
+    }
+.containerSize:hover {
+    width: 100%;
+    height: 520px;
+    background-image: url("../../assets/demoImages/Mercedes2.jpeg");
+    background-size: cover;
+    transform: scale(1.008);
+    }
+
+.searchInputCategory {
+    height: 80px;
+    align-self: center;
+    padding-left: 30px;
+    font-size: large;
+    font-weight: 700;
+    transition: transform .75s; 
+    border-radius: 30px;
+    margin-bottom: 15px;
+    background-color: inherit ;
+}
+.searchInputCategory:hover {
+    transform: scale(1.03);
+    background: #FFFFFF
+}
+
+.titleDescription {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 2px #000;
+}
+
+.titleCategory {
+    font-size: 40px;
+    font-weight: bolder;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+
+}
+.CategorySearchButton {
+    height: 80px;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.mostSearchesTitle {
+    font-size: 25px;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
 }

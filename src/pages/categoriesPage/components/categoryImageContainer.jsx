@@ -2,54 +2,52 @@ import React from "react";
 import { Col, Row, Button, Input, Jumbotron } from "reactstrap";
 // import { Mercedes1 } from "../../../assets/demoImages/index";
 
-const CategoryImageContainer = ({ title }) => {
+const CategoryImageContainer = ({ title, description }) => {
   return (
     <Jumbotron className="containerSize">
-      <div>
+      <Col md={12} sm={12} xs={12}>
+        <div className="titleCategory">{title}</div>
+        <Col md={6} className="titleDescription">
+          {description}
+        </Col>
         <Row>
-          <h2>{ title }</h2>
-          <Input
-            placeholder="Search Sharreit ..."
-            className="searchInputHome"
-          />
-          <Col sm="12">
-            <Button className="buttonPaddingRight">SEARCH</Button>
-            <b>
-              <i>OR</i>
-            </b>
-            <Button outline className="buttonPaddingLeft" color="success">
-              START SHARING
+          <Col md={11}>
+            <Input
+              placeholder="Search Sharreit ..."
+              className="searchInputCategory"
+            />
+          </Col>
+          <Col md={1}>
+            <Button outline color="light" className="CategorySearchButton">
+              SEARCH
             </Button>
           </Col>
         </Row>
-      </div>
+      </Col>
 
-      {/* <Row>
-        <h2>
-          <b> {title}</b>
-        </h2>
-        <Col>
-          <Button outline color="light">
-            searched item{" "}
-          </Button>
+      <Col>
+        <Col className="mostSearchesTitle">Most Searches ...</Col>
 
-          <Button outline color="light">
-            searched item
-          </Button>
+        <Button className="p-3 m-1" color="light">
+          Searched Item{" "}
+        </Button>
 
-          <Button outline color="light">
-            searched item
-          </Button>
+        <Button className="p-3 m-1" color="light">
+          Searched Item
+        </Button>
 
-          <Button outline color="light">
-            searched item
-          </Button>
+        <Button className="p-3 m-1" color="light">
+          Searched Item
+        </Button>
 
-          <Button outline color="light">
-            searched item
-          </Button>
-        </Col>
-      </Row> */}
+        <Button className="p-3 m-1" color="light">
+          Searched Item
+        </Button>
+
+        <Button className="p-3 m-1" color="light">
+          Searched Item
+        </Button>
+      </Col>
     </Jumbotron>
   );
 };

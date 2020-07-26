@@ -13,7 +13,16 @@ class index extends Component {
 
     return (
       <>
-        <CategoryImageContainer title="Walla" />
+        <CategoryImageContainer
+          title="Electronics"
+          description="Electronic devices are components for controlling 
+          the flow of electrical currents for the purpose of 
+          information processing and system control. Prominent 
+          examples include transistors and diodes. Electronic devices 
+          are usually small and can be grouped together into packages called 
+          integrated circuits.
+        "
+        />
         <Spacer title="Sub-Categories " />
         <div style={parent}>
           <HorizontalScroll
@@ -34,7 +43,6 @@ class index extends Component {
             <CategoryCard style={child} />
           </HorizontalScroll>
         </div>
-        <Spacer title="Suggested items" />
       </>
     );
   }
