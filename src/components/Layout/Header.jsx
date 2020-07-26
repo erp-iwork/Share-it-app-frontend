@@ -1,5 +1,4 @@
 import Avatar from "../Avatar";
-
 import React from "react";
 import { connect } from "react-redux";
 import {
@@ -11,9 +10,8 @@ import {
   PopoverBody,
   ListGroup,
   ListGroupItem,
-
   Button,
-
+  PopoverHeader,
 } from "reactstrap";
 import {
   MdExitToApp,
@@ -24,9 +22,9 @@ import {
   MdSettingsApplications,
   MdFilterList,
   MdArrowDropDown,
+  MdList,
 } from "react-icons/md";
 // import "rsuite/dist/styles/rsuite-default.css";
-
 import bn from "../../utils/bemnames";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
@@ -47,6 +45,7 @@ class Header extends React.Component {
       isDesktop: false,
       isOpenUserCardPopover: false,
       isOpenSearchCardPopover: false,
+      isOpenAboutPopover: false,
       query: "",
       focused: false,
     };
@@ -54,7 +53,6 @@ class Header extends React.Component {
     this.close = this.close.bind(this);
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
-
   close() {
     this.setState({
       show: false,
@@ -71,25 +69,21 @@ class Header extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
   }
-
   updatePredicate() {
     this.setState({ isDesktop: window.innerWidth > 1000 });
   }
-
   onFocus = () => {
     this.setState({ focused: true });
   };
   onBlur = () => {
     this.setState({ focused: false, isOpenSearchCardPopover: false });
   };
-
   toggleUserCardPopover = () => {
     this.setState({
       isOpenUserCardPopover: !this.state.isOpenUserCardPopover,
       isOpenSearchCardPopover: false,
     });
   };
-
   toggleSearchCardPopover = (evt) => {
     if (evt.target.value && evt.target.value.length >= 3) {
       this.props.searchItems(evt.target.value);
@@ -104,6 +98,13 @@ class Header extends React.Component {
       });
     }
   };
+  toggleAboutPopover = (target) => {
+    this.setState({
+      target: target,
+      isOpenAboutPopover: !this.state.isOpenAboutPopover,
+      isOpenSearchCardPopover: false,
+    });
+  };
 
   logout = () => {
     localStorage.clear();
@@ -115,6 +116,40 @@ class Header extends React.Component {
 
     return (
       <Navbar light expand className="bg-gradient-theme-right">
+        <Popover
+          placement="bottom"
+          isOpen={this.state.isOpenAboutPopover}
+          toggle={this.toggleAboutPopover}
+          target="AboutPopover"
+          className="p-2 border-5"
+        >
+          <PopoverBody className="p-2 border-light">
+            <PopoverHeader>SubCategories</PopoverHeader>
+            <ListGroup flush>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+            </ListGroup>
+          </PopoverBody>
+        </Popover>
         <Nav navbar>
           <img className="App-logo" alt="" src={Logo} />
         </Nav>
@@ -127,7 +162,7 @@ class Header extends React.Component {
         <Nav navbar className={bem.e("nav-right")}>
           <NavItem>
             <NavLink>
-              <Button outline color="light">
+              <Button outline color="light" id="AboutPopover">
                 {" "}
                 About <MdArrowDropDown />
               </Button>

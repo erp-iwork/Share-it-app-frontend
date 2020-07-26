@@ -10,10 +10,8 @@ class MainBodyPage extends Component {
     });
   }
   render() {
-
-
     return (
-      <h1>Hello</h1>
+      <h1>This is all Items</h1>
     );
   }
 }

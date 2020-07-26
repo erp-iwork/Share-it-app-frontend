@@ -30,23 +30,23 @@ const CategoryImageContainer = ({ title, description, image }) => {
       <Col>
         <Col className="mostSearchesTitle">Most Searches ...</Col>
 
-        <Button className="p-3 m-1" color="light">
+        <Button className="p-3 m-1 mostSearches" color="light">
           Searched Item{" "}
         </Button>
 
-        <Button className="p-3 m-1" color="light">
+        <Button className="p-3 m-1 mostSearches" color="light">
           Searched Item
         </Button>
 
-        <Button className="p-3 m-1" color="light">
+        <Button className="p-3 m-1 mostSearches" color="light">
           Searched Item
         </Button>
 
-        <Button className="p-3 m-1" color="light">
+        <Button className="p-3 m-1 mostSearches" color="light">
           Searched Item
         </Button>
 
-        <Button className="p-3 m-1" color="light">
+        <Button className="p-3 m-1 mostSearches" color="light">
           Searched Item
         </Button>
       </Col>
