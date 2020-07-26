@@ -13,6 +13,7 @@ import {
   MdLocalActivity,
   MdVpnLock,
   MdInput,
+  MdImportantDevices,
 } from "react-icons/md";
 import routes from "../../config/routes";
 
@@ -21,6 +22,9 @@ class FloatingActionButton extends Component {
   render() {
     return (
       <Container className="floatingActionContainer">
+        <Link href={routes.mobileOverview} tooltip="Sharreit Mobile App">
+          <MdImportantDevices size={20} />
+        </Link>
         <Link
           href={routes.registration}
           styles={{

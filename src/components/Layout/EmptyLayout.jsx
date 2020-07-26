@@ -6,8 +6,7 @@ const EmptyLayout = ({ children, ...restProps }) => (
     <Content fluid>
       <EmptyLayoutHeader />
       {children}
-      
-      </Content>
+    </Content>
   </main>
 );
 

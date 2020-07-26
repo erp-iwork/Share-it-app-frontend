@@ -21,13 +21,12 @@ class EmptyLayoutHeader extends Component {
             <img className="App-logo2" alt="" src={SharreIt} />
           </Link>
         </Nav>
-
         <Nav navbar className={bem.e("nav-right")}>
           <NavItem>
             <NavLink>
               <Button outline color="light" id="AboutPopover">
                 {" "}
-                Help <MdHelp />
+                <MdHelp /> Need Help? 
               </Button>
             </NavLink>
           </NavItem>
