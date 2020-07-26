@@ -1,5 +1,4 @@
 import Avatar from "../Avatar";
-import { MdSearch } from "react-icons/md";
 
 import React from "react";
 import { connect } from "react-redux";
@@ -12,23 +11,15 @@ import {
   PopoverBody,
   ListGroup,
   ListGroupItem,
-  Form,
-  Input,
-  CardImg,
-  Row,
-  Col,
+
   Button,
-  Card,
-  CardBody,
-  CardText,
-  CardTitle,
+
 } from "reactstrap";
 import {
   MdExitToApp,
   MdHelp,
   MdInsertChart,
   MdMessage,
-  MdNotificationsNone,
   MdPersonPin,
   MdSettingsApplications,
   MdFilterList,

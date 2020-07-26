@@ -1,33 +1,17 @@
 import React from "react";
 import {
-  Card,
   Col,
   Row,
   Button,
-  NavLink,
-  NavItem,
-  Nav,
   Popover,
   PopoverBody,
   ListGroup,
   ListGroupItem,
   PopoverHeader,
 } from "reactstrap";
-import { Link } from "react-router-dom";
 import { getCategories, loadCategories } from "../../store/categories";
 import { connect } from "react-redux";
-import {
-  MdExitToApp,
-  MdHelp,
-  MdInsertChart,
-  MdMessage,
-  MdNotificationsNone,
-  MdPersonPin,
-  MdSettingsApplications,
-  MdFilterList,
-  MdArrowDropDown,
-  MdList,
-} from "react-icons/md";
+import { MdArrowDropDown, MdList } from "react-icons/md";
 
 //load categories
 
@@ -55,14 +39,14 @@ class SubHeader extends React.Component {
       <div className="bg-gradient-theme-right">
         <hr className="divider" />
         <Row align="right" className="subHeaderContainer">
-          <Col>
+          <Col id="Popover3">
             <Popover
               placement="left-start"
               isOpen={this.state.isOpenSubCategoriesPopover}
               toggle={this.toggleSubCategoriesPopover}
               target="Popover3"
               className="p-2 border-5"
-              style={{ minWidth: 600 }}
+              style={{ minWidth: 650 }}
             >
               <PopoverBody className="p-2 border-light">
                 <PopoverHeader>SubCategories</PopoverHeader>
@@ -73,26 +57,19 @@ class SubHeader extends React.Component {
                   <ListGroupItem tag="button" action className="border-light">
                     <MdList /> Sub-category Goes Here
                   </ListGroupItem>
-
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-
                   <ListGroupItem tag="button" action className="border-light">
                     <MdList /> Sub-category Goes Here
                   </ListGroupItem>
                   <ListGroupItem tag="button" action className="border-light">
                     <MdList /> Sub-category Goes Here
                   </ListGroupItem>
-
                   <ListGroupItem tag="button" action className="border-light">
                     <MdList /> Sub-category Goes Here
                   </ListGroupItem>
-                  <ListGroupItem
-                    tag="button"
-                    action
-                    className="border-light"
-                  >
+                  <ListGroupItem tag="button" action className="border-light">
+                    <MdList /> Sub-category Goes Here
+                  </ListGroupItem>
+                  <ListGroupItem tag="button" action className="border-light">
                     <MdList /> Sub-category Goes Here
                   </ListGroupItem>
                 </ListGroup>
@@ -101,31 +78,32 @@ class SubHeader extends React.Component {
             <Button
               outline
               color="light"
-              onMouseEnter={this.toggleSubCategoriesPopover}
+              onClick={this.toggleSubCategoriesPopover}
+              onFocus={this.toggleSubCategoriesPopover}
             >
               {" "}
-              PRODUCT SHARING <MdArrowDropDown />
+              Product Sharing <MdArrowDropDown />
             </Button>
 
             <Button
-              id="Popover3"
-              onMouseEnter={this.toggleSubCategoriesPopover}
+              onClick={this.toggleSubCategoriesPopover}
+              onFocus={this.toggleSubCategoriesPopover}
               outline
               color="light"
               className="subHeaderButtons"
             >
               {" "}
-              SERVICE SHARING <MdArrowDropDown />
+              Service Sharing <MdArrowDropDown />
             </Button>
 
             <Button
-              id="Popover3"
-              onMouseEnter={this.toggleSubCategoriesPopover}
+              onClick={this.toggleSubCategoriesPopover}
+              onFocus={this.toggleSubCategoriesPopover}
               outline
               color="light"
             >
               {" "}
-              DIGITAL SHARING <MdArrowDropDown />
+              Digital Sharing <MdArrowDropDown />
             </Button>
           </Col>
         </Row>
