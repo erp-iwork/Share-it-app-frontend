@@ -83,9 +83,9 @@
 }
 .popularAmongUsersContainer {
     background-color: #F1F6FA;
-    min-height: 100vh;
-    height: auto;
+    height: 100vh;
     padding-left: 80px;
+    overflow-y: scroll;
     padding-right: 80px;
 }
 

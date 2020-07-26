@@ -21,14 +21,15 @@ class SubHeader extends React.Component {
     this.state = {
       isOpenSubCategoriesPopover: false,
       isOpenSearchCardPopover: false,
+      target: "ServicePopover",
     };
   }
   componentDidMount() {
     this.props.loadCategories();
   }
-
-  toggleSubCategoriesPopover = () => {
+  toggleSubCategoriesPopover = (target) => {
     this.setState({
+      target: target,
       isOpenSubCategoriesPopover: !this.state.isOpenSubCategoriesPopover,
       isOpenSearchCardPopover: false,
     });
@@ -37,70 +38,70 @@ class SubHeader extends React.Component {
   render() {
     return (
       <div className="bg-gradient-theme-right">
+        <Popover
+          placement="bottom-end"
+          isOpen={this.state.isOpenSubCategoriesPopover}
+          toggle={this.toggleSubCategoriesPopover}
+          target={this.state.target}
+          className="p-2 border-5"
+          style={{ minWidth: 450 }}
+        >
+          <PopoverBody className="p-2 border-light">
+            <PopoverHeader>SubCategories</PopoverHeader>
+            <ListGroup flush>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+              <ListGroupItem tag="button" action className="border-light">
+                <MdList /> Sub-category Goes Here
+              </ListGroupItem>
+            </ListGroup>
+          </PopoverBody>
+        </Popover>
+
         <hr className="divider" />
         <Row align="right" className="subHeaderContainer">
-          <Col >
-            <Popover
-              placement="bottom-end"
-              isOpen={this.state.isOpenSubCategoriesPopover}
-              toggle={this.toggleSubCategoriesPopover}
-              target="Popover3"
-              className="p-2 border-5"
-              style={{ minWidth: 450 }}
-            >
-              <PopoverBody className="p-2 border-light">
-                <PopoverHeader>SubCategories</PopoverHeader>
-                <ListGroup flush>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                  <ListGroupItem tag="button" action className="border-light">
-                    <MdList /> Sub-category Goes Here
-                  </ListGroupItem>
-                </ListGroup>
-              </PopoverBody>
-            </Popover>
+          <Col>
             <Button
               outline
               color="light"
-              onMouseEnter={this.toggleSubCategoriesPopover}
-              onFocus={this.toggleSubCategoriesPopover}
+              id="ProductPopver"
+              onClick={() => this.toggleSubCategoriesPopover("ProductPopver")}
             >
               {" "}
               Product Sharing <MdArrowDropDown />
             </Button>
 
             <Button
-              onMouseEnter={this.toggleSubCategoriesPopover}
-              onFocus={this.toggleSubCategoriesPopover}
+              onClick={() => this.toggleSubCategoriesPopover("ServicePopover")}
               outline
               color="light"
+              id="ServicePopover"
               className="subHeaderButtons"
-              id='Popover3'
             >
               {" "}
               Service Sharing <MdArrowDropDown />
             </Button>
 
             <Button
-              onMouseEnter={this.toggleSubCategoriesPopover}
-              onFocus={this.toggleSubCategoriesPopover}
+              onClick={() => this.toggleSubCategoriesPopover("DigitalPopover")}
               outline
+              id="DigitalPopover"
               color="light"
             >
               {" "}

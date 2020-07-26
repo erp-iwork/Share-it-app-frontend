@@ -1,10 +1,10 @@
 import React from "react";
 import { Col, Row, Button, Input, Jumbotron } from "reactstrap";
-// import { Mercedes1 } from "../../../assets/demoImages/index";
+import { Mercedes1 } from "../../../assets/demoImages/index";
 
-const CategoryImageContainer = ({ title, description }) => {
+const CategoryImageContainer = ({ title, description, image }) => {
   return (
-    <Jumbotron className="containerSize">
+    <Jumbotron  className="containerSize">
       <Col md={12} sm={12} xs={12}>
         <div className="titleCategory">{title}</div>
         <Col md={6} className="titleDescription">

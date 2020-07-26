@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CategoryCard from "./components/subCategoryCard";
+import SubCategoryCard from "./components/subCategoryCard";
 import HorizontalScroll from "react-scroll-horizontal";
 import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
@@ -30,17 +30,17 @@ class index extends Component {
             animValues={10}
             reverseScroll={false}
           >
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
-            <CategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
+            <SubCategoryCard style={child} />
           </HorizontalScroll>
         </div>
       </>
