@@ -2,9 +2,9 @@ export default {
   homePage: "/",
   login: "/login",
   registration: "/registration",
-  //categories: "/categories/:id",
- 
-  categories: "/CategoriesPage",
+  // categories: "/categories/:id",
+  categories: "/categories",
+  // categories: "/CategoriesPage",
   postItem: "/postItem",
   allItems: "/items",
   singleItem: "/items/:id",

@@ -4,10 +4,7 @@ import { Col, Row, Button, Input, Jumbotron } from "reactstrap";
 
 const CategoryImageContainer = ({ title }) => {
   return (
-    <Jumbotron
-      className="containerSize"
-      // style={{ backgroundImage: `url(${Mercedes1})` }}
-    >
+    <Jumbotron className="containerSize">
       <div>
         <Row>
           <h2>{ title }</h2>
