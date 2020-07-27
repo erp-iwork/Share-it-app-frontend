@@ -160,8 +160,8 @@ class Header extends React.Component {
             <img className="App-logo2" alt="" src={SharreIt} />
           </Link>
         </Nav>
-
         <Nav navbar className={bem.e("nav-right")}>
+
           <NavItem>
             <NavLink>
               <Button outline color="light" id="AboutPopover">
@@ -170,6 +170,7 @@ class Header extends React.Component {
               </Button>
             </NavLink>
           </NavItem>
+
           <NavItem>
             <NavLink>
               <Link to={{ pathname: routes.registration }}>
@@ -211,7 +212,7 @@ class Header extends React.Component {
 
           <NavItem>
             <NavLink id="Popover2">
-              {/* {this.props.currentUser && ( */}
+              {this.props.currentUser && (
               <>
                 <div onClick={this.toggleUserCardPopover}>
                   <Avatar className="can-click" />
@@ -309,6 +310,7 @@ class Header extends React.Component {
                   </Popover>
                 </div>
               </>
+              )}
             </NavLink>
           </NavItem>
         </Nav>

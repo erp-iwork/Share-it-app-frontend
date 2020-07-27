@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Row, Col, Button, Input } from "reactstrap";
 import SearchImage from "../../../assets/newResources/SearchImage.jpg";
 import { Spacer } from "../../../components/Layout";
+import { Link } from "react-router-dom";
+import routes from "../../../config/routes";
 
 
 class HomePageSearch extends Component {
@@ -28,9 +30,12 @@ class HomePageSearch extends Component {
               <b>
                 <i>OR</i>
               </b>
+              <Link to={{pathname: routes.postItem}}>
               <Button outline className="buttonPaddingLeft" color="success">
                 START SHARING
               </Button>
+              </Link>
+
             </Col>
           </Col>
         </Row>
