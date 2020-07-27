@@ -3,7 +3,7 @@ export default {
   login: "/login",
   registration: "/registration",
   // categories: "/categories/:id",
-  categories: "/categories",
+  categories: "/categories/:id",
   postItem: "/postItem",
   allItems: "/items",
   singleItem: "/items/:id",
@@ -12,5 +12,4 @@ export default {
   buyAndSell: "/buyAndSell",
   Availability: "/Availability",
   mobileOverview: "/mobileOverview",
-
-  };
+};

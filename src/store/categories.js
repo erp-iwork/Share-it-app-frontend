@@ -8,6 +8,7 @@ const slice = createSlice({
   initialState: {
     list: [],
     loading: false,
+    selectedCategory: null,
   },
   reducers: {
     categoriesRequested: (categories, action) => {
@@ -15,6 +16,10 @@ const slice = createSlice({
     },
     categoriesReceived: (categories, action) => {
       categories.list = action.payload;
+      categories.loading = false;
+    },
+    categoryReceived: (categories, action) => {
+      categories.selectedCategory = action.payload;
       categories.loading = false;
     },
     categoriesRequestFailed: (categories, action) => {
@@ -25,6 +30,7 @@ const slice = createSlice({
 const {
   categoriesRequested,
   categoriesReceived,
+  categoryReceived,
   categoriesRequestFailed,
 } = slice.actions;
 export default slice.reducer;
@@ -36,9 +42,20 @@ export const loadCategories = () =>
     onSuccess: categoriesReceived.type,
     onError: categoriesRequestFailed.type,
   });
-
+export const loadCategoryById = (id) =>
+  apiCallBegan({
+    url: url + id,
+    onStart: categoriesRequested.type,
+    onSuccess: categoryReceived.type,
+    onError: categoriesRequestFailed.type,
+  });
 //Selector
 export const getCategories = createSelector(
   (state) => state.entities.categories,
   (categories) => categories.list
+);
+
+export const getSelectedCategory = createSelector(
+  (state) => state.entities.categories,
+  (categories) => categories.selectedCategory
 );

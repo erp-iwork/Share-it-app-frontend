@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { MdList } from "react-icons/md";
 import { Link } from "react-router-dom";
 import routes from "../../config/routes";
+import { categories } from "../../pages/categoriesPage/categories";
 
 //load categories
 
@@ -22,33 +23,16 @@ class SubHeader extends React.Component {
       <div className="bg-gradient-theme-right">
         <hr className="divider" />
         <Row align="right" className="subHeaderContainer">
-          <Col>
-            <Link to={{ pathname: routes.categories }}>
-              <Button outline color="light" id="ProductPopver">
-                {" "}
-                Product Sharing <MdList className="ml-2" />
-              </Button>
-            </Link>
-
-            <Link to={{ pathname: routes.categories }}>
-              <Button
-                outline
-                color="light"
-                id="ServicePopover"
-                className="subHeaderButtons"
-              >
-                {" "}
-                Service Sharing <MdList className="ml-2" />
-              </Button>
-            </Link>
-
-            <Link to={{ pathname: routes.categories }}>
-              <Button outline id="DigitalPopover" color="light">
-                {" "}
-                Digital Sharing <MdList className="ml-2" />
-              </Button>
-            </Link>
-          </Col>
+          {this.props.categories.map((category) => (
+            <Col key={category.id}>
+              <Link to={`/categories/${category.id}`}>
+                <Button outline color="light" id="ProductPopver">
+                  {" "}
+                  {category.name} Sharing <MdList className="ml-2" />
+                </Button>
+              </Link>{" "}
+            </Col>
+          ))}
         </Row>
       </div>
     );
