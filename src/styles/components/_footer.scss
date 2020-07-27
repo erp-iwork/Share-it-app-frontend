@@ -13,3 +13,14 @@
     align-self: center;
     width: 100%
 }
+
+.footerTexts {
+    color: #FFFFFF;
+    transition: transform .2s;
+
+}
+.footerTexts:hover {
+    color: #FFFFFF;
+    transform: scale(1.10);
+
+}

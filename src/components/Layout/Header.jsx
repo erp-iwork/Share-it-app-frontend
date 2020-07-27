@@ -11,7 +11,6 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
-  PopoverHeader,
 } from "reactstrap";
 import {
   MdExitToApp,
@@ -23,6 +22,12 @@ import {
   MdFilterList,
   MdArrowDropDown,
   MdList,
+  MdSettingsBackupRestore,
+  MdSecurity,
+  MdPanoramaFishEye,
+  MdQuestionAnswer,
+  MdPageview,
+  MdPerson,
 } from "react-icons/md";
 // import "rsuite/dist/styles/rsuite-default.css";
 import Logo from "../../assets/Icons/Logo.svg";
@@ -113,7 +118,6 @@ class Header extends React.Component {
 
   render() {
     // const isDesktop = this.state.isDesktop;
-
     return (
       <Navbar light expand className="bg-gradient-theme-right">
         <Popover
@@ -124,28 +128,27 @@ class Header extends React.Component {
           className="p-2 border-5"
         >
           <PopoverBody className="p-2 border-light">
-            <PopoverHeader>SubCategories</PopoverHeader>
             <ListGroup flush>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdPerson className="mr-3" /> {"  "} About Us
               </ListGroupItem>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdHelp className="mr-3" /> How Sharreit Works
               </ListGroupItem>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdSecurity className="mr-3" /> Security
               </ListGroupItem>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdSettingsBackupRestore className="mr-3" /> Guarantee
               </ListGroupItem>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdPanoramaFishEye className="mr-3" /> Browse Sharreit
               </ListGroupItem>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdQuestionAnswer className="mr-3" /> FAQ
               </ListGroupItem>
               <ListGroupItem tag="button" action className="border-light">
-                <MdList /> Sub-category Goes Here
+                <MdPageview className="mr-3" /> Terms Of Service
               </ListGroupItem>
             </ListGroup>
           </PopoverBody>
@@ -259,7 +262,6 @@ class Header extends React.Component {
                               <MdInsertChart /> Activities
                             </ListGroupItem>
                           </Link>
-
                           <Link to={{ pathname: "/messages" }}>
                             <ListGroupItem
                               tag="button"
@@ -269,7 +271,6 @@ class Header extends React.Component {
                               <MdMessage /> Messages
                             </ListGroupItem>
                           </Link>
-
                           <Link to={{ pathname: routes.Availability }}>
                             <ListGroupItem
                               tag="button"
@@ -288,7 +289,6 @@ class Header extends React.Component {
                               <MdSettingsApplications /> Settings
                             </ListGroupItem>
                           </Link>
-
                           <ListGroupItem
                             tag="button"
                             action

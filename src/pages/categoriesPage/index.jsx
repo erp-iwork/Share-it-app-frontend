@@ -5,7 +5,7 @@ import HorizontalScroll from "react-scroll-horizontal";
 import CategoryImageContainer from "./components/categoryImageContainer";
 import { Mercedes2 } from "../../assets/demoImages";
 import { Spacer } from "../../components/Layout";
-
+import { Row, Col } from "reactstrap";
 //load items by subcategory and display
 
 class index extends Component {
@@ -14,7 +14,7 @@ class index extends Component {
     const parent = { width: `100%`, height: `250px` };
 
     return (
-      <>
+      <div className="categoriesMainContainer">
         <CategoryImageContainer
           title="Electronics"
           description="Electronic devices are components for controlling 
@@ -27,26 +27,45 @@ class index extends Component {
           image={Mercedes2}
         />
         <Spacer title="Sub-Categories " />
-        <div style={parent}>
-          <HorizontalScroll
-            config={{ stiffness: 50, damping: 20 }}
-            animValues={10}
-            reverseScroll={false}
-          >
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-            <SubCategoryCard style={child} />
-          </HorizontalScroll>
-        </div>
-      </>
+        <Row className="m-2">
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }

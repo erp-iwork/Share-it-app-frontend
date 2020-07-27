@@ -12,3 +12,6 @@
 .bg-gradient-theme-right {
   background: linear-gradient(to right, theme-color("light"), theme-color("secondary"));
 }
+.bg-gradient-theme-all {
+  background: linear-gradient(to right, theme-color("secondary"), theme-color("secondary"));
+}
