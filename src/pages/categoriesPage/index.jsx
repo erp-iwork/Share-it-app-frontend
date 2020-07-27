@@ -1,68 +1,73 @@
 import React, { Component } from "react";
-import PremiumAds from "./components/premiumAds";
-import Page from "../../components/Page";
-import { Row, Col, Card, CardHeader, CardImg } from "reactstrap";
-import { Link } from "react-router-dom";
-import routes from "../../config/routes";
-// import { categories, subCategories, icons } from "./categories";
-import {
-  getSubcategoriesByCategoryId,
-  loadSubcategoriesByCategoryId,
-} from "../../store/subcategories";
-import { connect } from "react-redux";
+import SubCategoryCard from "./components/subCategoryCard";
+import HorizontalScroll from "react-scroll-horizontal";
+// import Spacer from "./components/spacer";
+import CategoryImageContainer from "./components/categoryImageContainer";
+import { Mercedes2 } from "../../assets/demoImages";
+import { Spacer } from "../../components/Layout";
+import { Row, Col } from "reactstrap";
+//load items by subcategory and display
 
-//load subcategory by category id
-//category id from url
-class CategoriesPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: this.props.location.type,
-    };
-  }
-  componentDidMount() {
-    const categoryId = this.props.match.params.id;
-    this.props.loadSubcategoriesByCategoryId(categoryId);
-  }
+class index extends Component {
   render() {
+    const child = { width: `100%`, height: `200px` };
+    const parent = { width: `100%`, height: `250px` };
+
     return (
-
-      <Page>
-<div>random text </div>
-        <PremiumAds />
-        <Page breadcrumbs={[{ name: "Sub-Categories", active: true }]}>
-          <Row>
-            {this.props.subcategories.map((subcategory) => (
-              <Col xs={12} sm={6} md={2}>
-                <Link
-                  to={{
-                    pathname: routes.allItems,
-                    state: { subcategory: subcategory },
-                  }}
-                >
-                  <Card className="zoom">
-                    <div className="zoomCategory">
-                      <CardImg className="catIcons" src={subcategory.icon} />
-                    </div>
-
-                    <CardHeader align="center">{subcategory.name}</CardHeader>
-                  </Card>
-                </Link>
-              </Col>
-            ))}
-          </Row>
-        </Page>
-      </Page>
+      <div className="categoriesMainContainer">
+        <CategoryImageContainer
+          title="Electronics"
+          description="Electronic devices are components for controlling 
+          the flow of electrical currents for the purpose of 
+          information processing and system control. Prominent 
+          examples include transistors and diodes. Electronic devices 
+          are usually small and can be grouped together into packages called 
+          integrated circuits.
+        "
+          image={Mercedes2}
+        />
+        <Spacer title="Sub-Categories " />
+        <Row className="m-2">
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <SubCategoryCard />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  subcategories: getSubcategoriesByCategoryId(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadSubcategoriesByCategoryId: (category_id) =>
-    dispatch(loadSubcategoriesByCategoryId(category_id)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(CategoriesPage);
+export default index;

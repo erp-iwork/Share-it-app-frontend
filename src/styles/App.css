@@ -11,7 +11,7 @@
   height: 40px;
   margin-right: 10px;
   margin-left: 25px;
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   animation: App-logo-spin alternate 2.5s infinite;
 }
 

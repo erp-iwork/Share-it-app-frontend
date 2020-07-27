@@ -1,15 +1,17 @@
 .filterButtons {
     margin: 2px;
 }
+
 .filterContainer {
     margin-top: 20px;
-    overflow:scroll; 
-    height:100vh;
+    overflow: scroll;
+    height: 100vh;
 }
+
 .mainBodyContainer {
     margin-top: 10px;
-    overflow:scroll; 
-    height:100vh;
+    overflow: scroll;
+    height: 100vh;
 }
 
 .itemImageContainer {
@@ -17,12 +19,16 @@
     height: 160px;
     width: 400px;
     object-fit: cover;
-
 }
 
 .itemImageContainer img {
-	height: 100%;
-	width: 100%;
-	object-fit:cover;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
+.shadow-box-example {
+    height: 120px;
+    width: 100%;
+    background-color: #64b5f6;
 }

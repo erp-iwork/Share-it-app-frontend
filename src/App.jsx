@@ -28,6 +28,7 @@ const Messages = React.lazy(() => import("./pages/messages/messages"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
+const MobileOverview = React.lazy(() => import("./pages/mobileAppView/mobileAppOverview"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -112,7 +113,11 @@ class App extends React.Component {
                       path={routes.Availability}
                       component={AvailabilityPage}
                     />
-                   
+                    <Route
+                      exact
+                      path={routes.mobileOverview}
+                      component={MobileOverview}
+                    />
                     <Route exact path="/chat" component={Chat} />
                     <Route exact path="/messages" component={Messages} />
                   </React.Suspense>
@@ -152,48 +157,3 @@ const query = ({ width }) => {
 };
 
 export default componentQueries(query)(App);
-// import React, { Component } from 'react';
-// import './static/css/App.css';
-// import InitializeChatComponent from './components/InitializeChatComponent';
-// import ChatComponent from './components/ChatComponent';
-// import WebSocketInstance from './WebSocket';
-
-// class App extends Component {
-// 	constructor(props) {
-// 		super(props)
-
-// 		this.state = {
-// 			username: '',
-// 			loggedIn: false
-// 		};
-// 	}
-
-// 	handleLogin = (e, username) => {
-// 		e.preventDefault();
-// 		this.setState({ loggedIn: true, username: username });
-// 		WebSocketInstance.connect();
-// 		console.log(this.state);
-
-// 	}
-
-// 	render() {
-// 		const { username, loggedIn } = this.state;
-// 		return (
-// 			<div className="App">
-// 				{
-// 					loggedIn ?
-// 						<ChatComponent currentUser={username}
-// 						/>
-// 						:
-// 						<InitializeChatComponent
-// 							handleLogin={this.handleLogin}
-// 						/>
-// 				}
-
-// 			</div>
-// 		);
-// 	}
-
-// }
-
-// export default App;

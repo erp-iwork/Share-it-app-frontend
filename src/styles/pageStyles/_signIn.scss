@@ -2,60 +2,35 @@
 .loginImage {
     max-height: 1000px;
 }
-
 .loginContainer {
-  margin: 90px;
-  flex-direction: row;
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  transform: translate(-20%, -20%);
-  z-index: 2;
-  width: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    align-self: center;
+    margin-top: 5%;
 }
-.loginContainerMobile {
-    flex-direction: row;
+.loginContainer1 {
+    align-self: center;
+    margin-top: 7%;
+    width: 30%;
 }
-
-.loginFormContainer {
-    padding-top: 50px;
-    flex-direction: column;
-}
-
 .CLogo {
     width: 300px;
-    justify-content: center;
-    flex-direction: row;   
+    justify-self: center;
 }
-
 .loginIcon {
     justify-content: center;
     border-radius: 1000px;
     padding: 25px;
-    background-color: #083991;
-    // color: #fff;
-    
+    background-color: #083991;   
 }
-
 .loginBackground {
     min-height: 100vh;
     height: auto;
-    background-image: url('../../assets/background.jpg');
-    filter: blur(4px);
-    background-color: rgba(103, 103, 103, 0.4);
-  -webkit-filter: blur(4px);
 }
-
 .label {
     color: #1081D1;
     padding-top: 10px;
     font-size: 30px;
     font-weight: 700;
 }
-
 .dir-registration {
     color: hsl(205, 77%, 37%);
 }

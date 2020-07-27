@@ -1,0 +1,25 @@
+.mobileOverviewContainer {
+    background: url(../../assets/newResources/mobileOverviewBackground.png) ;
+    min-height: 100vh;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+}
+.mobileOverviewDescription {
+    align-self: center;
+}
+
+.mobileLogo {
+    height: 60px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+}
+
+.mobileOverviewDescription2 {
+    color: #686868;
+    font-size: 20px;
+}

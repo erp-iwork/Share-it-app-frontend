@@ -12,10 +12,11 @@ import {
   PopularCategories,
   Search,
   ProductsComp,
-  Spacer,
   PopularAmongUsers,
 } from "./components";
 import HorizontalScroll from "react-scroll-horizontal";
+import { Spacer } from "../../components/Layout";
+
 
 class HomePage extends Component {
   constructor() {

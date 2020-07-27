@@ -1,4 +1,4 @@
-import { Content, Footer, Header } from "./index";
+import { Content, Footer, Header, SubHeader } from "./index";
 import React from "react";
 import FloatingActionButton from "./FloatingActionButton";
 
@@ -14,22 +14,16 @@ class MainLayout extends React.Component {
   }
 
   onScroll = () => {
-    const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
     const scrollTop = this.myRef.current.scrollTop;
-    console.log(
-      `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
-    );
     if (scrollTop > 160) {
       this.setState({
         scrolled: true,
       });
-      console.log(this.state.scrolled);
     }
     if (scrollTop < 160) {
       this.setState({
         scrolled: false,
       });
-      console.log(this.state.scrolled);
     }
     this.setState({
       scrollTop: scrollTop,
@@ -52,8 +46,8 @@ class MainLayout extends React.Component {
         <main className="cr-app bg-background">
           <Content fluid>
             <Header />
-            {scrolled && <FloatingActionButton /> }
-
+            <SubHeader />
+            {scrolled && <FloatingActionButton />}
             {children}
             <Footer />
           </Content>

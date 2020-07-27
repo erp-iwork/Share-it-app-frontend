@@ -39,7 +39,7 @@ export const subCategories = {
     "Ladder",
     "Office Space",
     "Storage Space",
-    "Photography ",
+    "Photography",
   ],
 
   [categories[1]]: [

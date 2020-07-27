@@ -3,7 +3,7 @@ import MainBodyPage from "./components/mainBody";
 // import FilterComponent from "./components/filterComp";
 import { Col } from "reactstrap";
 
-class AllItems extends Component {
+class Alliems extends Component {
   render() {
     const { state } = this.props.location;
     return (
@@ -14,4 +14,4 @@ class AllItems extends Component {
   }
 }
 
-export default AllItems;
+export default Alliems;

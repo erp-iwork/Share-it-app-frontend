@@ -2,7 +2,8 @@ export default {
   homePage: "/",
   login: "/login",
   registration: "/registration",
-  categories: "/categories/:id",
+  // categories: "/categories/:id",
+  categories: "/categories",
   postItem: "/postItem",
   allItems: "/items",
   singleItem: "/items/:id",
@@ -10,4 +11,6 @@ export default {
   settings: "/settings",
   buyAndSell: "/buyAndSell",
   Availability: "/Availability",
+  mobileOverview: "/mobileOverview",
+
   };

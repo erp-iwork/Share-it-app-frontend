@@ -10,69 +10,55 @@ import {
   MdAccessAlarms,
   MdPerson,
   MdSettings,
-  MdCallMissedOutgoing,
+  MdLocalActivity,
+  MdVpnLock,
+  MdInput,
+  MdImportantDevices,
 } from "react-icons/md";
+import routes from "../../config/routes";
 
 class FloatingActionButton extends Component {
   state = {};
   render() {
     return (
       <Container className="floatingActionContainer">
+        <Link href={routes.mobileOverview} tooltip="Sharreit Mobile App">
+          <MdImportantDevices size={20} />
+        </Link>
         <Link
+          href={routes.registration}
           styles={{
             backgroundColor: lightColors.lightBlue,
             color: darkColors.white,
           }}
-          tooltip="Create note link"
+          tooltip="Registration"
         >
-          <MdAccessAlarms size={20} />
+          <MdVpnLock size={20} />
         </Link>
         <Link
+          href={routes.login}
           styles={{
             backgroundColor: lightColors.lightBlue,
             color: darkColors.white,
           }}
-          tooltip="Profile"
+          tooltip="Login"
         >
-          <MdAccessAlarms size={20} />
+          <MdInput size={20} />
         </Link>
         <Link
+          href={routes.buyAndSell}
           styles={{
             backgroundColor: lightColors.lightBlue,
             color: darkColors.white,
           }}
-          tooltip="Create note link"
+          tooltip="Activities"
         >
-          <MdAccessAlarms size={20} />
+          <MdLocalActivity size={20} />
         </Link>
+
         <Link
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Add user link"
-        >
-          <MdAccessAlarms size={20} />
-        </Link>
-        <Link
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Create note link"
-        >
-          <MdAccessAlarms size={20} />
-        </Link>
-        <Link
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Add user link"
-        >
-          <MdCallMissedOutgoing size={20} />
-        </Link>
-        <Link
+          href={routes.settings}
+          to={{ pathname: routes.settings }}
           styles={{
             backgroundColor: lightColors.lightBlue,
             color: darkColors.white,
@@ -82,6 +68,7 @@ class FloatingActionButton extends Component {
           <MdSettings size={20} />
         </Link>
         <Link
+          href={routes.profile}
           styles={{
             backgroundColor: lightColors.lightBlue,
             color: darkColors.white,
