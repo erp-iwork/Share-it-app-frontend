@@ -10,14 +10,17 @@ class AllItems extends Component {
   render() {
     const { state } = this.props.location;
     return (
-      <div className='allItemsContainer'>
-        <AllItemsImageContainer title="Sub-Category Name" description="sakdjlaskdjlask 
+      <div className="allItemsContainer">
+        <AllItemsImageContainer
+          title="Sub-Category Name"
+          description="sakdjlaskdjlask 
         sakdjlaskdjlasksakdjlaskdjlasksakdjlaskdjlask sakdjlaskdjlask 
         sakdjlaskdjlasksakdjlaskdjlasksakdjlaskdjlask sakdjlaskdjlask 
-        sakdjlaskdjlasksakdjlaskdjlasksakdjlaskdjlask" image={Luggage} />
+        sakdjlaskdjlasksakdjlaskdjlasksakdjlaskdjlask"
+          image={Luggage}
+        />
         <Spacer title="Sub-Category Name" />
         <MainBodyPage subcategory={state ? state.subcategory : ""} />
-
       </div>
     );
   }

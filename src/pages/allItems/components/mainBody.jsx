@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { loadFilteredItems, getFilteredItems } from "../../../store/items";
 import { connect } from "react-redux";
-// import { Spacer } from "../../../components/Layout";
+import { Col, Row } from "reactstrap";
+import ProductsComp from "../../homePage/components/Products";
 
 class MainBodyPage extends Component {
   componentDidMount() {
@@ -11,7 +12,76 @@ class MainBodyPage extends Component {
   }
   render() {
     return (
-      <h1>This is all Items</h1>
+      <div className="m-5">
+        <Row>
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>{" "}
+          <Col md={2} xs={12} sm={12}>
+            <ProductsComp />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
