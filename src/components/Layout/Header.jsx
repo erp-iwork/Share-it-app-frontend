@@ -21,7 +21,6 @@ import {
   MdSettingsApplications,
   MdFilterList,
   MdArrowDropDown,
-  MdList,
   MdSettingsBackupRestore,
   MdSecurity,
   MdPanoramaFishEye,

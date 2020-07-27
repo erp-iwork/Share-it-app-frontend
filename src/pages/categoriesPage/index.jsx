@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import SubCategoryCard from "./components/subCategoryCard";
-import HorizontalScroll from "react-scroll-horizontal";
 // import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
-import { Mercedes2 } from "../../assets/demoImages";
+import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
+
 import { Spacer } from "../../components/Layout";
 import { Row, Col } from "reactstrap";
 //load items by subcategory and display
 
 class index extends Component {
   render() {
-    const child = { width: `100%`, height: `200px` };
-    const parent = { width: `100%`, height: `250px` };
+
 
     return (
       <div className="categoriesMainContainer">
@@ -24,7 +23,7 @@ class index extends Component {
           are usually small and can be grouped together into packages called 
           integrated circuits.
         "
-          image={Mercedes2}
+          image={Luggage}
         />
         <Spacer title="Sub-Categories " />
         <Row className="m-2">

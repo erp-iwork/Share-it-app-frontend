@@ -3,6 +3,7 @@ import { Navbar, Nav, NavItem, Card, Row, CardBody, Col } from "reactstrap";
 import SharreitWhite from "../../assets/Icons/SharreitWhite.svg";
 import { Link } from "react-router-dom";
 import routes from "../../config/routes";
+import MobileStoreButton from "react-mobile-store-button";
 
 const Footer = () => {
   return (
@@ -67,21 +68,22 @@ const Footer = () => {
                 <NavItem className="footerTexts">
                   <b>Get The App</b>
                 </NavItem>
-                <Link>
-                  <NavItem className="footerTexts">2020, SharreIt App </NavItem>
-                </Link>
-                <Link>
-                  <NavItem className="footerTexts">2020, SharreIt App </NavItem>
-                </Link>{" "}
-                <Link>
-                  <NavItem className="footerTexts">2020, SharreIt App </NavItem>
-                </Link>{" "}
-                <Link>
-                  <NavItem className="footerTexts">2020, SharreIt App </NavItem>
-                </Link>{" "}
-                <Link>
-                  <NavItem className="footerTexts">2020, SharreIt App </NavItem>
-                </Link>
+                <NavItem className="footerTexts">
+                  <MobileStoreButton
+                    store="android"
+                    width={150}
+                    // url={iOSUrl}
+                    // linkProps={{ title: "iOS Store Button" }}
+                  />
+                </NavItem>
+                <NavItem className="footerTexts">
+                  <MobileStoreButton
+                    store="ios"
+                    width={150}
+                    // url={androidUrl}
+                    // linkProps={{ title: "Android Store Button" }}
+                  />
+                </NavItem>
               </Nav>
             </Navbar>
           </Col>
