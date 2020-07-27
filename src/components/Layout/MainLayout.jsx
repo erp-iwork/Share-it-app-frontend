@@ -6,7 +6,6 @@ class MainLayout extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef();
-
     this.state = {
       scrollTop: 0,
       scrolled: false,
@@ -39,7 +38,6 @@ class MainLayout extends React.Component {
           height: "100vh",
           overflow: "scroll",
         }}
-        // className="BackContainer"
         onScroll={this.onScroll}
         ref={this.myRef}
       >
@@ -49,7 +47,9 @@ class MainLayout extends React.Component {
             <SubHeader />
             {scrolled && <FloatingActionButton />}
             {children}
-            <Footer />
+            <div className="mt-5">
+              <Footer />
+            </div>
           </Content>
         </main>
       </div>

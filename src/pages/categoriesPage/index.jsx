@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import SubCategoryCard from "./components/subCategoryCard";
-import HorizontalScroll from "react-scroll-horizontal";
 // import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
-import { Mercedes2 } from "../../assets/demoImages";
+import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
+import { Mercedes2 } from "../../assets/demoImages/index";
+
 import { Spacer } from "../../components/Layout";
 import { Row, Col } from "reactstrap";
 import { getSelectedCategory, loadCategoryById } from "../../store/categories";
