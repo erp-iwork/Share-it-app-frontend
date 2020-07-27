@@ -5,7 +5,7 @@ export default {
   // categories: "/categories/:id",
   categories: "/categories/:id",
   postItem: "/postItem",
-  allItems: "/items",
+  allItems: "/items/subcategory/:subcategoryId",
   singleItem: "/items/:id",
   profile: "/profiles/:id",
   settings: "/settings",

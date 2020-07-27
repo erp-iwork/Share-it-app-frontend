@@ -5,14 +5,12 @@ import { connect } from "react-redux";
 
 class MainBodyPage extends Component {
   componentDidMount() {
-    this.props.loadFilteredItems({
-      sub_category: this.props.subcategory.id,
-    });
+    // this.props.loadFilteredItems({
+    //   sub_category: this.props.subcategoryId,
+    // });
   }
   render() {
-    return (
-      <h1>This is all Items</h1>
-    );
+    return <h1>This is all Items</h1>;
   }
 }
 
