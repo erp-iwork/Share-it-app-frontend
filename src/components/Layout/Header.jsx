@@ -161,7 +161,6 @@ class Header extends React.Component {
           </Link>
         </Nav>
         <Nav navbar className={bem.e("nav-right")}>
-
           <NavItem>
             <NavLink>
               <Button outline color="light" id="AboutPopover">
@@ -171,26 +170,30 @@ class Header extends React.Component {
             </NavLink>
           </NavItem>
 
-          <NavItem>
-            <NavLink>
-              <Link to={{ pathname: routes.registration }}>
-                <Button outline color="light">
-                  {" "}
-                  <MdExitToApp /> REGISTER
-                </Button>
-              </Link>
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink>
-              <Link to={{ pathname: routes.login }}>
-                <Button outline color="light">
-                  {" "}
-                  <MdExitToApp /> LOGIN
-                </Button>
-              </Link>
-            </NavLink>
-          </NavItem>
+          {!this.props.currentUser && (
+            <>
+              <NavItem>
+                <NavLink>
+                  <Link to={{ pathname: routes.registration }}>
+                    <Button outline color="light">
+                      {" "}
+                      <MdExitToApp /> REGISTER
+                    </Button>
+                  </Link>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink>
+                  <Link to={{ pathname: routes.login }}>
+                    <Button outline color="light">
+                      {" "}
+                      <MdExitToApp /> LOGIN
+                    </Button>
+                  </Link>
+                </NavLink>
+              </NavItem>
+            </>
+          )}
           <NavItem>
             <NavLink>
               <Button outline color="light" onClick={this.toggleDrawer}>
@@ -213,103 +216,103 @@ class Header extends React.Component {
           <NavItem>
             <NavLink id="Popover2">
               {this.props.currentUser && (
-              <>
-                <div onClick={this.toggleUserCardPopover}>
-                  <Avatar className="can-click" />
-                  <Popover
-                    placement="bottom-start"
-                    isOpen={this.state.isOpenUserCardPopover}
-                    toggle={this.toggleUserCardPopover}
-                    target="Popover2"
-                    className="p-0 border-0"
-                    style={{ minWidth: 250 }}
-                  >
-                    <PopoverBody className="p-0 border-light">
-                      <UserCard
-                        title={
-                          this.props.currentUser
-                            ? this.props.currentUser.name
-                            : "User Name"
-                        }
-                        subtitle={
-                          this.props.currentUser
-                            ? this.props.currentUser.email
-                            : "User Email"
-                        }
-                        text={
-                          this.props.currentUser
-                            ? this.props.currentUser.location
-                            : "User Location"
-                        }
-                        className="border-light"
-                      >
-                        <ListGroup flush>
-                          {/* <Link to={`/profiles/${this.props.currentUser.id}`}> */}
-                          <ListGroupItem
-                            tag="button"
-                            action
-                            className="border-light"
-                          >
-                            <MdPersonPin /> Profile
-                          </ListGroupItem>
-                          {/* </Link> */}
-                          <Link to={{ pathname: routes.buyAndSell }}>
+                <>
+                  <div onClick={this.toggleUserCardPopover}>
+                    <Avatar className="can-click" />
+                    <Popover
+                      placement="bottom-start"
+                      isOpen={this.state.isOpenUserCardPopover}
+                      toggle={this.toggleUserCardPopover}
+                      target="Popover2"
+                      className="p-0 border-0"
+                      style={{ minWidth: 250 }}
+                    >
+                      <PopoverBody className="p-0 border-light">
+                        <UserCard
+                          title={
+                            this.props.currentUser
+                              ? this.props.currentUser.name
+                              : "User Name"
+                          }
+                          subtitle={
+                            this.props.currentUser
+                              ? this.props.currentUser.email
+                              : "User Email"
+                          }
+                          text={
+                            this.props.currentUser
+                              ? this.props.currentUser.location
+                              : "User Location"
+                          }
+                          className="border-light"
+                        >
+                          <ListGroup flush>
+                            {/* <Link to={`/profiles/${this.props.currentUser.id}`}> */}
                             <ListGroupItem
                               tag="button"
                               action
                               className="border-light"
                             >
-                              <MdInsertChart /> Activities
+                              <MdPersonPin /> Profile
                             </ListGroupItem>
-                          </Link>
-                          <Link to={{ pathname: "/messages" }}>
+                            {/* </Link> */}
+                            <Link to={{ pathname: routes.buyAndSell }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdInsertChart /> Activities
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: "/messages" }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdMessage /> Messages
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: routes.Availability }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdInsertChart /> Your Items
+                              </ListGroupItem>
+                            </Link>
+                            <Link to={{ pathname: routes.settings }}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdSettingsApplications /> Settings
+                              </ListGroupItem>
+                            </Link>
                             <ListGroupItem
                               tag="button"
                               action
                               className="border-light"
                             >
-                              <MdMessage /> Messages
+                              <MdHelp /> Help
                             </ListGroupItem>
-                          </Link>
-                          <Link to={{ pathname: routes.Availability }}>
                             <ListGroupItem
+                              onClick={this.logout}
                               tag="button"
                               action
                               className="border-light"
                             >
-                              <MdInsertChart /> Your Items
+                              <MdExitToApp /> Signout
                             </ListGroupItem>
-                          </Link>
-                          <Link to={{ pathname: routes.settings }}>
-                            <ListGroupItem
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdSettingsApplications /> Settings
-                            </ListGroupItem>
-                          </Link>
-                          <ListGroupItem
-                            tag="button"
-                            action
-                            className="border-light"
-                          >
-                            <MdHelp /> Help
-                          </ListGroupItem>
-                          <ListGroupItem
-                            onClick={this.logout}
-                            tag="button"
-                            action
-                            className="border-light"
-                          >
-                            <MdExitToApp /> Signout
-                          </ListGroupItem>
-                        </ListGroup>
-                      </UserCard>
-                    </PopoverBody>
-                  </Popover>
-                </div>
-              </>
+                          </ListGroup>
+                        </UserCard>
+                      </PopoverBody>
+                    </Popover>
+                  </div>
+                </>
               )}
             </NavLink>
           </NavItem>
