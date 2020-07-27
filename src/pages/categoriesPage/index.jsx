@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import SubCategoryCard from "./components/subCategoryCard";
 // import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
@@ -16,10 +16,37 @@ import { connect } from "react-redux";
 import { subCategories } from "./categories";
 //load items by subcategory and display
 
+// const index = () => {
+//   const [categoryId, setCategoryId] = useState(null);
+
+//   return (
+//     <div className="categoriesMainContainer">
+//       <CategoryImageContainer
+//         title={categoryName}
+//         description={categoryDescription}
+//         image={Mercedes2}
+//       />
+//       <Spacer title="Sub-Categories " />
+//       <Row className="m-2">
+//         {this.props.subcategories.map((subCategory) => (
+//           <Col md={2} xs={12} sm={12}>
+//             <SubCategoryCard subCategory={subCategory} />
+//           </Col>
+//         ))}
+//       </Row>
+//     </div>
+//   );
+// };
 class index extends Component {
   state = {
     categoryId: null,
   };
+  componentDidMount() {
+    const categoryId = this.props.match.params.id;
+    this.props.loadCategoryById(categoryId);
+    this.props.loadSubcategoriesByCategoryId(categoryId);
+  }
+
   componentDidUpdate() {
     const { categoryId: id } = this.state;
     const categoryId = this.props.match.params.id;
