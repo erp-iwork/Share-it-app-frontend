@@ -88,19 +88,9 @@ class HomePage extends Component {
             animValues={2}
             reverseScroll={false}
           >
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
-            <ProductsComp style={child} />
+            {this.props.items.map((item) => (
+              <ProductsComp item={item} key={item.itemId} style={child} />
+            ))}
           </HorizontalScroll>
         </div>
         <Spacer title="POPULAR CATEGORIES" />
