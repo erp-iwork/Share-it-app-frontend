@@ -5,7 +5,6 @@ import { Spacer } from "../../../components/Layout";
 import { Link } from "react-router-dom";
 import routes from "../../../config/routes";
 
-
 class HomePageSearch extends Component {
   state = {};
   render() {
@@ -30,12 +29,11 @@ class HomePageSearch extends Component {
               <b>
                 <i>OR</i>
               </b>
-              <Link to={{pathname: routes.postItem}}>
-              <Button outline className="buttonPaddingLeft" color="success">
-                START SHARING
-              </Button>
+              <Link to={{ pathname: routes.postItem }}>
+                <Button outline className="buttonPaddingLeft" color="success">
+                  START SHARING
+                </Button>
               </Link>
-
             </Col>
           </Col>
         </Row>
