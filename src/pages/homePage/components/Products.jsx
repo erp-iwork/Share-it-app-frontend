@@ -15,7 +15,7 @@ class ProductsComp extends Component {
           <div>{item && item.title}</div>
           <CardText className="cardText">
             <div>{item && item.owner.name}</div>
-            <div className="pricetag">$ {item.price}</div>
+            <div className="pricetag">$ {item && item.price}</div>
             <div>
               <MdStar fontSize={15} className="rating" />
               <MdStar fontSize={15} className="rating" />
