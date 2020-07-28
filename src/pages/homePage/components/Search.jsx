@@ -39,9 +39,7 @@ class HomePageSearch extends Component {
           className="p-0"
           style={{ minWidth: 950 }}
         >
-          <PopoverBody
-          
-          className="border-light">
+          <PopoverBody className="border-light">
             <Card>
               <CardHeader>Search Results For "Search Input here"</CardHeader>
               <CardBody>

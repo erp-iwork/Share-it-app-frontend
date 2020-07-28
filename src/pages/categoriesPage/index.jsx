@@ -3,7 +3,7 @@ import SubCategoryCard from "./components/subCategoryCard";
 // import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
 import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
-import { Mercedes2 } from "../../assets/demoImages/index";
+import  Mercedes2  from "../../assets/newResources/ProductSharing.jpg";
 
 import { Spacer } from "../../components/Layout";
 import { Row, Col } from "reactstrap";
