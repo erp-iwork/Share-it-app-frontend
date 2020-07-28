@@ -247,14 +247,15 @@ class Header extends React.Component {
                           className="border-light"
                         >
                           <ListGroup flush>
-                            {/* <Link to={`/profiles/${this.props.currentUser.id}`}> */}
-                            <ListGroupItem
-                              tag="button"
-                              action
-                              className="border-light"
-                            >
-                              <MdPersonPin /> Profile
-                            </ListGroupItem>
+                            <Link to={`/profiles/${this.props.currentUser.id}`}>
+                              <ListGroupItem
+                                tag="button"
+                                action
+                                className="border-light"
+                              >
+                                <MdPersonPin /> Profile
+                              </ListGroupItem>
+                            </Link>
                             {/* </Link> */}
                             <Link to={{ pathname: routes.buyAndSell }}>
                               <ListGroupItem

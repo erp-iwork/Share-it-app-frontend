@@ -15,6 +15,11 @@ class UserProfilePage extends Component {
     this.props.loadProfile(userId);
     this.props.loadSharedItems(userId);
   }
+  componentDidUpdate() {
+    const userId = this.props.match.params.id;
+    this.props.loadProfile(userId);
+    this.props.loadSharedItems(userId);
+  }
   render() {
     return (
       <Col>
