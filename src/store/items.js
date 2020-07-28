@@ -45,7 +45,6 @@ const slice = createSlice({
       items.status = "failed";
     },
     itemAdded: (items, action) => {
-      console.log(action.payload);
       items.list.push(action.payload);
       items.loading = false;
       items.errors = null;
@@ -124,7 +123,6 @@ export const getItemById = (itemId) =>
     onSuccess: itemReceived.type,
     onError: itemsRequestFailed.type,
   });
-
 export const addItem = (item) =>
   apiCallBegan({
     url,
@@ -177,9 +175,9 @@ const makeUrl = (options) => {
   } = options;
   return `items?sub_category=${sub_category ? sub_category : ""}&category=${
     category ? category : ""
-  }&min_price=${min_price ? min_price : ""}&max_price=${
+    }&min_price=${min_price ? min_price : ""}&max_price=${
     max_price ? max_price : ""
-  }&condition=${condition ? condition : ""}&search=${search ? search : ""}`;
+    }&condition=${condition ? condition : ""}&search=${search ? search : ""}`;
 };
 
 export const loadFilteredItems = (options) =>
@@ -208,8 +206,8 @@ export const getItemsByCategory = createSelector(
       item.sub_category
         ? item.sub_category.id
         : null == items.selectedItem
-        ? items.selectedItem.sub_category.id
-        : "null"
+          ? items.selectedItem.sub_category.id
+          : "null"
     )
 );
 

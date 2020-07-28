@@ -66,6 +66,7 @@ export const loginUser = (user) =>
   });
 export const resetErrors = () => ({
   type: errorReseted.type,
+
 });
 // Selector
 export const getLoading = createSelector(

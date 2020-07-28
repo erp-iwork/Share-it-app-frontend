@@ -11,7 +11,8 @@ import {
 import { connect } from "react-redux";
 import Shimmer from "react-shimmer-effect";
 import FilterComp from "../allItems/components/filterComp";
-
+import { wsConnect } from "../../store/websocket"
+import { chatApi } from "../../store/chat-api"
 class HomePage extends Component {
   constructor() {
     super();
@@ -23,6 +24,7 @@ class HomePage extends Component {
     this.preLoaders = this.preLoaders.bind(this);
   }
   componentDidMount() {
+    this.props.wsConnect(chatApi)
     this.setState({ waitingContent: this.preLoaders() });
     //load filtered items without any filter option
     this.props.loadFilterdItems({});
@@ -100,7 +102,5 @@ const mapStateToProps = (state) => ({
   loading: getLoading(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  loadFilterdItems: (options) => dispatch(loadFilteredItems(options)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+
+export default connect(mapStateToProps, { wsConnect, loadFilterdItems: (options) => loadFilteredItems(options) },)(HomePage);

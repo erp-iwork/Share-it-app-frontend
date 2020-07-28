@@ -112,17 +112,17 @@ class ItemViewComp extends Component {
               >
                 {item_images
                   ? item_images.map((image) => (
-                      <div
-                        key={image.imageId}
-                        className="MainImageDisplayContainer"
-                      >
-                        <img
-                          alt=""
-                          class="singleItemMainImageDisplay"
-                          src={image.image}
-                        />
-                      </div>
-                    ))
+                    <div
+                      key={image.imageId}
+                      className="MainImageDisplayContainer"
+                    >
+                      <img
+                        alt=""
+                        class="singleItemMainImageDisplay"
+                        src={image.image}
+                      />
+                    </div>
+                  ))
                   : null}
               </Carousel>
             </Col>
@@ -177,13 +177,13 @@ class ItemViewComp extends Component {
               <Row className="singlePadding">
                 {properties
                   ? Object.keys(properties).map((key) => (
-                      <Col md={6} key={key} className="singleItemViewBody">
-                        <div>
-                          <i>{properties[key].label}</i>
-                        </div>
-                        <b>{properties[key].value}</b>
-                      </Col>
-                    ))
+                    <Col md={6} key={key} className="singleItemViewBody">
+                      <div>
+                        <i>{properties[key].label}</i>
+                      </div>
+                      <b>{properties[key].value}</b>
+                    </Col>
+                  ))
                   : null}
                 {/* <Col md={6}>
                   <div>
@@ -240,17 +240,17 @@ class ItemViewComp extends Component {
                           </Link>
                         </Col>
                       ) : (
-                        <Col md={3}>
-                          <Button
-                            color="danger"
-                            onClick={() => openNotification()}
-                            block
-                            outline
-                          >
-                            <MdSend />
-                          </Button>
-                        </Col>
-                      )}
+                          <Col md={3}>
+                            <Button
+                              color="danger"
+                              onClick={() => openNotification()}
+                              block
+                              outline
+                            >
+                              <MdSend />
+                            </Button>
+                          </Col>
+                        )}
                     </Row>
                   </>
                 )}

@@ -3,12 +3,12 @@ import itemsReducer from "./items";
 import categoriesReducer from "./categories";
 import profileReducer from "./users";
 import subcategoriesReducer from "./subcategories";
-import messagesReducer from "./messages";
+import messagesReducer from "./chat"
 
 export default combineReducers({
   items: itemsReducer,
   categories: categoriesReducer,
   subcategories: subcategoriesReducer,
   users: profileReducer,
-  messages: messagesReducer,
+  chat: messagesReducer,
 });
