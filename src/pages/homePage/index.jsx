@@ -16,7 +16,7 @@ import {
 } from "./components";
 import HorizontalScroll from "react-scroll-horizontal";
 import { Spacer } from "../../components/Layout";
-
+import { Link } from "react-router-dom";
 
 class HomePage extends Component {
   constructor() {
@@ -78,6 +78,7 @@ class HomePage extends Component {
   render() {
     const child = { width: `100%`, height: `40px` };
     const parent = { width: `100%`, height: `310px` };
+    const boostedItems = this.props.items.filter((item) => item.boost === true);
     return (
       <div className="BackContainer">
         <Col md={12} sm={12} xs={12}>
@@ -89,8 +90,11 @@ class HomePage extends Component {
             animValues={2}
             reverseScroll={false}
           >
-            {this.props.items.map((item) => (
-              <ProductsComp item={item} key={item.itemId} style={child} />
+            {boostedItems.length === 0 && <h1>There is no boosted item yet</h1>}
+            {boostedItems.map((item) => (
+              <Link to={`/items/${item.itemId}`}>
+                <ProductsComp item={item} style={child} />
+              </Link>
             ))}
           </HorizontalScroll>
         </div>

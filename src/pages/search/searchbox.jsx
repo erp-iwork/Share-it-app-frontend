@@ -22,8 +22,8 @@ import {
   getLoading,
   getSearchedItems,
 } from "../../../store/items";
-import { getCurrentUser } from "../../../store/auth";
-class HomePageSearch extends Component {
+
+class searchbox extends Component {
   state = {
     isOpenSearchPopover: false,
     focused: false,
@@ -123,13 +123,5 @@ class HomePageSearch extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  items: getSearchedItems(state),
-  loading: getLoading(state),
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  searchItems: (query) => dispatch(searchItems(query)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePageSearch);
+export default searchbox;
