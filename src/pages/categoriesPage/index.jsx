@@ -13,30 +13,7 @@ import {
   loadSubcategoriesByCategoryId,
 } from "../../store/subcategories";
 import { connect } from "react-redux";
-// import { subCategories } from "./categories";
-//load items by subcategory and display
 
-// const index = () => {
-//   const [categoryId, setCategoryId] = useState(null);
-
-//   return (
-//     <div className="categoriesMainContainer">
-//       <CategoryImageContainer
-//         title={categoryName}
-//         description={categoryDescription}
-//         image={Mercedes2}
-//       />
-//       <Spacer title="Sub-Categories " />
-//       <Row className="m-2">
-//         {this.props.subcategories.map((subCategory) => (
-//           <Col md={2} xs={12} sm={12}>
-//             <SubCategoryCard subCategory={subCategory} />
-//           </Col>
-//         ))}
-//       </Row>
-//     </div>
-//   );
-// };
 class index extends Component {
   state = {
     categoryId: null,
