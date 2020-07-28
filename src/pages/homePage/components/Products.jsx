@@ -4,22 +4,18 @@ import { Mercedes1 } from "../../../assets/demoImages";
 import { MdStar, MdStarBorder } from "react-icons/md";
 
 class ProductsComp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
+    const { item } = this.props;
     return (
       <Card className="zoom">
         <Col className="itemImgContainer-Home">
-          <CardImg src={Mercedes1} alt="" />
+          <CardImg src={item && item.item_images[0].image} alt="" />
         </Col>
         <CardBody>
-          <div>Item Title Goes Here</div>
+          <div>{item && item.title}</div>
           <CardText className="cardText">
-            <div>Christopher B.</div>
-            <div className="pricetag">$ 29 / Day</div>
+            <div>{item && item.owner.name}</div>
+            <div className="pricetag">$ {item.price}</div>
             <div>
               <MdStar fontSize={15} className="rating" />
               <MdStar fontSize={15} className="rating" />

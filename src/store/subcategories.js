@@ -9,6 +9,7 @@ const slice = createSlice({
     list: [],
     filteredSubcategories: [],
     loading: false,
+    selectedSubcategory: null,
   },
   reducers: {
     subcategoriesRequested: (subcategories, action) => {
@@ -16,6 +17,10 @@ const slice = createSlice({
     },
     subcategoriesReceived: (subcategories, action) => {
       subcategories.list = action.payload;
+      subcategories.loading = false;
+    },
+    subcategoryReceived: (subcategories, action) => {
+      subcategories.selectedSubcategory = action.payload;
       subcategories.loading = false;
     },
     subcategoriesFiltered: (subcategories, action) => {
@@ -32,6 +37,7 @@ const {
   subcategoriesReceived,
   subcategoriesRequestFailed,
   subcategoriesFiltered,
+  subcategoryReceived,
 } = slice.actions;
 export default slice.reducer;
 
@@ -44,7 +50,13 @@ export const loadSubcategories = () =>
     onSuccess: subcategoriesReceived.type,
     onError: subcategoriesRequestFailed.type,
   });
-
+export const loadSubcategoryById = (id) =>
+  apiCallBegan({
+    url: url + id,
+    onStart: subcategoriesRequested.type,
+    onSuccess: subcategoryReceived.type,
+    onError: subcategoriesRequestFailed.type,
+  });
 export const loadSubcategoriesByCategoryId = (id) =>
   apiCallBegan({
     url: "/categories?id=" + id,
@@ -56,4 +68,9 @@ export const loadSubcategoriesByCategoryId = (id) =>
 export const getSubcategoriesByCategoryId = createSelector(
   (state) => state.entities.subcategories,
   (subcategories) => subcategories.filteredSubcategories
+);
+
+export const getSelectedSubcategory = createSelector(
+  (state) => state.entities.subcategories,
+  (subcategories) => subcategories.selectedSubcategory
 );
