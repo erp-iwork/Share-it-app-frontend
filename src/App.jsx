@@ -15,7 +15,8 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import routes from "./config/routes";
 import ProtectedRoute from "./components/protectedRoute";
-import Chat from "./components/ChatComponent";
+import Messages from "./pages/messages/containers/shell/ChatShell";
+
 
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
@@ -24,7 +25,7 @@ const PostItemPage = React.lazy(() => import("./pages/postItemPage"));
 const AllItemsPage = React.lazy(() => import("./pages/allItems"));
 const SingleItemPage = React.lazy(() => import("./pages/singleItemView"));
 const ProfilePage = React.lazy(() => import("./pages/profilePage"));
-const Messages = React.lazy(() => import("./pages/messages/messages"));
+// const Messages = React.lazy(() => import("./pages/messages/messages"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
@@ -118,8 +119,7 @@ class App extends React.Component {
                       path={routes.mobileOverview}
                       component={MobileOverview}
                     />
-                    <Route exact path="/chat" component={Chat} />
-                    <Route exact path="/messages" component={Messages} />
+                    <Route exact path="/chat" component={Messages} />
                   </React.Suspense>
                 </MainLayout>
               </React.Fragment>
