@@ -17,7 +17,7 @@ class MessageList extends React.Component {
     }
 
     renderMessages = () => {
-        const myId = this.props.currentUser?this.props.currentUser.id:null
+        const myId = this.props.currentUser ? this.props.currentUser.id : null
         return this.props.messages ? this.props.messages.map((message, i) => {
 
             return <Message
