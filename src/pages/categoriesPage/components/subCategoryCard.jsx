@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, CardImg, CardBody, Col, CardText } from "reactstrap";
-import { Mercedes1 } from "../../../assets/demoImages";
 import { Link } from "react-router-dom";
 
 function CategoryCard({ subCategory }) {
@@ -8,7 +7,7 @@ function CategoryCard({ subCategory }) {
     <Link to={`/items/subcategory/${subCategory.id}`}>
       {" "}
       <Card className="zoom">
-        <Col className="itemImgContainer-Home">
+        <Col className="itemImgContainer-Home mt-2">
           <CardImg src={subCategory.icon} alt="" />
         </Col>
         <CardBody>
