@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { formatter } from "../../date-formatter/dateformatter"
-import './ConversationItem.scss';
+import Avatar from '../../../../../components/Avatar';
 
 
 const ConversationItem = ({ conversation, isActive, onConversationItemSelected }) => {
@@ -12,7 +12,7 @@ const ConversationItem = ({ conversation, isActive, onConversationItemSelected }
 
     return (
         <div className={className} onClick={() => onConversationItemSelected(conversation.id)}>
-            <img src={"http://0.0.0.0:9000" + conversation.avatar} alt={conversation.imageAlt} />
+            <Avatar />
             <div className="title-text">{conversation.name} <span className="unread"> {conversation.unread > 0 ? conversation.unread : null}</span>{conversation.timestamp}</div>
             <div className="created-date">{conversation.last_message ? formatter.format(Date.parse(conversation.last_message.timestamp)) : null}</div>
             <div className="conversation-message">

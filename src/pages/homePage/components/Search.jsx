@@ -22,7 +22,7 @@ import {
   getLoading,
   getSearchedItems,
 } from "../../../store/items";
-import { getCurrentUser } from "../../../store/auth";
+// import { getCurrentUser } from "../../../store/auth";
 class HomePageSearch extends Component {
   state = {
     isOpenSearchPopover: false,

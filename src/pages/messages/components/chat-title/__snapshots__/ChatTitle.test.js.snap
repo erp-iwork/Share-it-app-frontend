@@ -2,7 +2,7 @@
 
 exports[`Chat title loads with correct title 1`] = `
 <div
-  id="chat-title"
+  className="chat-title"
 >
   <span>
     My Conversation

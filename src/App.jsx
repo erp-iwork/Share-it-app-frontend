@@ -119,7 +119,7 @@ class App extends React.Component {
                       path={routes.mobileOverview}
                       component={MobileOverview}
                     />
-                    <Route exact path="/chat" component={Messages} />
+                    <Route exact path={routes.chat} component={Messages} />
                   </React.Suspense>
                 </MainLayout>
               </React.Fragment>

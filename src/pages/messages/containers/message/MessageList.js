@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getMessagesHistory } from "../../../../store/chat"
 import Message from '../../components/message/Message';
-import './MessageList.scss';
 import { getCurrentUser } from "../../../../store/auth";
 
 class MessageList extends React.Component {
@@ -32,7 +31,7 @@ class MessageList extends React.Component {
 
 
         return (
-            <div id="chat-message-list">
+            <div className="chat-message-list">
                 {this.renderMessages()}
             </div>
         );

@@ -12,16 +12,13 @@ import { getCurrentUser } from "../../../../store/auth";
 import { loadConversations, messagesRequested, getConversations, getSelectedConversation, conversationChanged, sendMessage } from "../../../../store/chat"
 import { wsConnect } from "../../../../store/websocket"
 import { chatApi } from "../../../../store/chat-api"
-import './ChatShell.scss';
 class ChatShell extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             sender: "",
             selectedConversationId: "",
-        }
-
-    }
+        }}
 
     componentDidMount() {
         this.props.wsConnect(chatApi)
@@ -70,11 +67,8 @@ class ChatShell extends React.Component {
         }
         const conversations = this.props.conversations
         const selectedConversation = this.props.selectedConversation
-
-
-
         return (
-            <div id="chat-container" >
+            <div className="chat-container" >
 
                 <ConversationSearch conversations={conversations} />
                 <ConversationList

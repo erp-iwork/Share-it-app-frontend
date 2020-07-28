@@ -1,8 +1,7 @@
 import React from 'react';
-
-import TrashIcon from '../controls/icons/trash-icon/TrashIcon';
-
-import './ChatTitle.scss';
+import { MdList,
+} from "react-icons/md";
+import Avatar from "../../../../components/Avatar";
 
 const ChatTitle = ({ selectedConversation, onDeleteConversation }) => {
     let chatTitleContents = null;
@@ -10,16 +9,16 @@ const ChatTitle = ({ selectedConversation, onDeleteConversation }) => {
     if (selectedConversation) {
         chatTitleContents = (
             <>
-                <span>{selectedConversation.name}</span>
+                <span> <Avatar size={50} /> {selectedConversation.name}</span>
                 <div onClick={() => { onDeleteConversation(); }} title="Delete Conversation">
-                    <TrashIcon />
+                    <MdList />
                 </div>
             </>
         );
     }
 
     return (
-        <div id="chat-title">
+        <div className="chat-title">
             {chatTitleContents}
         </div>
     );

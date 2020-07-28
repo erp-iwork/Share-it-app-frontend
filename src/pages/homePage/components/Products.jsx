@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardBody, Col, CardText } from "reactstrap";
-import { Mercedes1 } from "../../../assets/demoImages";
+// import { Mercedes1 } from "../../../assets/demoImages";
 import { MdStar, MdStarBorder } from "react-icons/md";
 
 class ProductsComp extends Component {

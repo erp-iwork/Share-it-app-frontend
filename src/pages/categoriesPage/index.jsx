@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import SubCategoryCard from "./components/subCategoryCard";
 // import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
-import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
-import  Mercedes2  from "../../assets/newResources/ProductSharing.jpg";
+// import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
+import Mercedes2 from "../../assets/newResources/ProductSharing.jpg";
 
 import { Spacer } from "../../components/Layout";
 import { Row, Col } from "reactstrap";
@@ -13,7 +13,7 @@ import {
   loadSubcategoriesByCategoryId,
 } from "../../store/subcategories";
 import { connect } from "react-redux";
-import { subCategories } from "./categories";
+// import { subCategories } from "./categories";
 //load items by subcategory and display
 
 // const index = () => {
@@ -58,8 +58,6 @@ class index extends Component {
   }
 
   render() {
-    const child = { width: `100%`, height: `200px` };
-    const parent = { width: `100%`, height: `250px` };
     const { name: categoryName, description: categoryDescription } = this.props
       .selectedCategory
       ? this.props.selectedCategory

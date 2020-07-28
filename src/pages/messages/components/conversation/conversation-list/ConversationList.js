@@ -1,7 +1,5 @@
 import React from 'react';
-
 import ConversationItem from '../conversation-item/ConversationItem';
-import './ConversationList.scss';
 
 const ConversationList = ({ conversations, selectedConversation, onConversationItemSelected }) => {
     const conversationItems = conversations.map((conversation) => {
@@ -15,7 +13,7 @@ const ConversationList = ({ conversations, selectedConversation, onConversationI
     });
 
     return (
-        <div id="conversation-list" >
+        <div className="conversation-list bg-gradient-theme-left" >
             {conversationItems}
         </div>
     );

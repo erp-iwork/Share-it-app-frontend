@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { MdAttachFile } from 'react-icons/md';
+import { Input, Button } from 'reactstrap';
 
-import FormButton from '../controls/buttons/FormButton';
-import AttachmentIcon from '../controls/icons/attachment-icon/AttachmentIcon';
-
-import './ChatForm.scss';
+// import './ChatForm.scss';
 
 const isMessageEmpty = (textMessage) => {
     return adjustTextMessage(textMessage).length === 0;
@@ -23,14 +22,14 @@ const ChatForm = ({ selectedConversation, onMessageSubmitted }) => {
         formContents = (
             <>
                 <div title="Add Attachment">
-                    <AttachmentIcon />
+                    <MdAttachFile size={40} />
                 </div>
-                <input
+                <Input
                     type="text"
                     placeholder="type a message"
                     value={textMessage}
                     onChange={(e) => { setTextMessage(e.target.value); }} />
-                <FormButton disabled={disableButton}>Send</FormButton>
+                <Button outline disabled={disableButton}>Send</Button>
             </>
         );
 
@@ -45,7 +44,7 @@ const ChatForm = ({ selectedConversation, onMessageSubmitted }) => {
     }
 
     return (
-        <form id="chat-form" onSubmit={handleFormSubmit}>
+        <form className="chat-form" onSubmit={handleFormSubmit}>
             {formContents}
         </form>
     );

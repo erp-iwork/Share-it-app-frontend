@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import MainBodyPage from "./components/mainBody";
 // import FilterComponent from "./components/filterComp";
-import { Col } from "reactstrap";
+// import { Col } from "reactstrap";
 import AllItemsImageContainer from "./components/allItemsImageContainer";
-import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
+// import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
 import { Spacer } from "../../components/Layout";
 import { connect } from "react-redux";
 import {

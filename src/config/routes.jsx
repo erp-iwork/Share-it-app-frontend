@@ -12,4 +12,6 @@ export default {
   buyAndSell: "/buyAndSell",
   Availability: "/Availability",
   mobileOverview: "/mobileOverview",
+  chat: "/chat",
+
 };

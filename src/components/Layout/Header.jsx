@@ -266,7 +266,7 @@ class Header extends React.Component {
                                 <MdInsertChart /> Activities
                               </ListGroupItem>
                             </Link>
-                            <Link to={{ pathname: "/messages" }}>
+                            <Link to={{ pathname: routes.chat }}>
                               <ListGroupItem
                                 tag="button"
                                 action

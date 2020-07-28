@@ -1,11 +1,11 @@
 import React from "react";
-import { Col, Row, Button } from "reactstrap";
+import { Row, Button } from "reactstrap";
 import { getCategories, loadCategories } from "../../store/categories";
 import { connect } from "react-redux";
 import { MdList } from "react-icons/md";
 import { Link } from "react-router-dom";
-import routes from "../../config/routes";
-import { categories } from "../../pages/categoriesPage/categories";
+// import routes from "../../config/routes";
+// import { categories } from "../../pages/categoriesPage/categories";
 
 //load categories
 

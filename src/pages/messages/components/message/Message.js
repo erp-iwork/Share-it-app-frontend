@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import './Message.scss';
 import { formatter } from "../date-formatter/dateformatter"
 
 const Message = ({ avatar, isMyMessage, message }) => {

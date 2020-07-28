@@ -1,17 +1,13 @@
 import React from 'react';
-
-import './ConversationSearch.scss';
-
-
+import { Input } from 'reactstrap';
 
 class ConversationSearch extends React.Component {
-
-
-
     render() {
         return (
-            <div id="search-container">
-                {this.props.conversations ? (<input type="text" placeholder="Search" />) : null}
+            <div className="search-container">
+                {this.props.conversations ? (
+                <Input type="text" placeholder="Search ... " />
+                ) : null}
             </div>
         );
     }
