@@ -11,6 +11,7 @@ import {
   Row,
   CardHeader,
   CardFooter,
+  Form
 } from "reactstrap";
 import { MdSave } from "react-icons/md";
 
@@ -31,8 +32,7 @@ class Settings extends Component {
               <CardHeader> Update Picture </CardHeader>
               <Avatar className="mt-3" size={400} />
               <div className="mt-4">
-                <Button outline
-                >
+                <Button outline>
                   <Input type="file" name="file" id="exampleFile" />
                 </Button>
               </div>
@@ -75,6 +75,8 @@ class Settings extends Component {
               </CardFooter>
 
               <CardHeader>Update Your Contact Information</CardHeader>
+              <Form>
+
 
               <Row className="m-3">
                 <Col md={6} sm={12} xs={12}>
@@ -125,6 +127,8 @@ class Settings extends Component {
                   Update Contact Information
                 </Button>
               </CardFooter>
+              </Form>
+
             </Col>
           </Row>
         </Card>
