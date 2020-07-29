@@ -128,27 +128,42 @@ class Header extends React.Component {
         >
           <PopoverBody className="p-2 border-light">
             <ListGroup flush>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdPerson className="mr-3" /> {"  "} About Us
-              </ListGroupItem>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdHelp className="mr-3" /> How Sharreit Works
-              </ListGroupItem>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdSecurity className="mr-3" /> Security
-              </ListGroupItem>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdSettingsBackupRestore className="mr-3" /> Guarantee
-              </ListGroupItem>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdPanoramaFishEye className="mr-3" /> Browse Sharreit
-              </ListGroupItem>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdQuestionAnswer className="mr-3" /> FAQ
-              </ListGroupItem>
-              <ListGroupItem tag="button" action className="border-light">
-                <MdPageview className="mr-3" /> Terms Of Service
-              </ListGroupItem>
+              <Link to={{ pathname: routes.aboutUs }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdPerson className="mr-3" /> {"  "} About Us
+                </ListGroupItem>
+              </Link>
+              <Link to={{ pathname: routes.howSharreitWorks }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdHelp className="mr-3" /> How Sharreit Works
+                </ListGroupItem>
+              </Link>
+
+              <Link to={{ pathname: routes.security }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdSecurity className="mr-3" /> Security
+                </ListGroupItem>
+              </Link>
+              <Link to={{ pathname: routes.guarentee }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdSettingsBackupRestore className="mr-3" /> Guarantee
+                </ListGroupItem>
+              </Link>
+              <Link to={{ pathname: routes.homePage }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdPanoramaFishEye className="mr-3" /> Browse Sharreit
+                </ListGroupItem>
+              </Link>
+              <Link to={{ pathname: routes.FAQ }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdQuestionAnswer className="mr-3" /> FAQ
+                </ListGroupItem>
+              </Link>
+              <Link to={{ pathname: routes.termsAndConditions }}>
+                <ListGroupItem tag="button" action className="border-light">
+                  <MdPageview className="mr-3" /> Terms Of Service
+                </ListGroupItem>
+              </Link>
             </ListGroup>
           </PopoverBody>
         </Popover>

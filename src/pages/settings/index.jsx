@@ -38,7 +38,6 @@ class Settings extends Component {
               </div>
             </Col>
             <Col>
-            
               <CardHeader>Update Your Personal Information </CardHeader>
               <Row className="m-3">
                 <Col md={12} sm={12} xs={12}>
