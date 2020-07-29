@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from '../../utils/propTypes';
+import React from "react";
+import PropTypes from "../../utils/propTypes";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Card, CardTitle, CardSubtitle, CardText, CardBody } from 'reactstrap';
+import { Card, CardTitle, CardSubtitle, CardText, CardBody } from "reactstrap";
 
-import Avatar from '../Avatar';
+import Avatar from "../Avatar";
+import { getProfile } from "../../store/profile";
+import { connect, useSelector } from "react-redux";
 
 const UserCard = ({
   avatar,
@@ -17,12 +19,17 @@ const UserCard = ({
   className,
   ...restProps
 }) => {
-  const classes = classNames('bg-gradient-theme', className);
+  const classes = classNames("bg-gradient-theme", className);
+  const profile = useSelector(getProfile);
 
   return (
     <Card inverse className={classes} {...restProps}>
       <CardBody className="d-flex justify-content-center align-items-center flex-column primary">
-        <Avatar src={avatar} size={avatarSize} className="mb-2" />
+        <Avatar
+          src={profile.user && profile.user.avatar}
+          size={avatarSize}
+          className="mb-2"
+        />
         <CardTitle>{title}</CardTitle>
         <CardSubtitle>{subtitle}</CardSubtitle>
         <CardText>
