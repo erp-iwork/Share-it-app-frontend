@@ -16,7 +16,14 @@ import configureStore from "./store/configureStore";
 import routes from "./config/routes";
 import ProtectedRoute from "./components/protectedRoute";
 import Messages from "./pages/messages/containers/shell/ChatShell";
-
+import {
+  AboutUs,
+  FAQ,
+  HowSharreitWorks,
+  Guarentee,
+  Security,
+  TermsAndConditions,
+} from "./pages/staticPages";
 
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
@@ -29,8 +36,12 @@ const ProfilePage = React.lazy(() => import("./pages/profilePage"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
-const SearchResults = React.lazy(() => import("./pages/searchResults/SearchResults"));
-const MobileOverview = React.lazy(() => import("./pages/mobileAppView/mobileAppOverview"));
+const SearchResults = React.lazy(() =>
+  import("./pages/searchResults/SearchResults")
+);
+const MobileOverview = React.lazy(() =>
+  import("./pages/mobileAppView/mobileAppOverview")
+);
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -121,8 +132,31 @@ class App extends React.Component {
                       component={MobileOverview}
                     />
                     <Route exact path={routes.chat} component={Messages} />
-                    <Route exact path={routes.searchResults} component={SearchResults} />
+                    <Route
+                      exact
+                      path={routes.searchResults}
+                      component={SearchResults}
+                    />
 
+                    {/* ================ static Pages ============ */}
+                    <Route exact path={routes.FAQ} component={FAQ} />
+                    <Route exact path={routes.aboutUs} component={AboutUs} />
+                    <Route
+                      exact
+                      path={routes.guarentee}
+                      component={Guarentee}
+                    />
+                    <Route
+                      exact
+                      path={routes.howSharreitWorks}
+                      component={HowSharreitWorks}
+                    />
+                    <Route exact path={routes.security} component={Security} />
+                    <Route
+                      exact
+                      path={routes.termsAndConditions}
+                      component={TermsAndConditions}
+                    />
                   </React.Suspense>
                 </MainLayout>
               </React.Fragment>

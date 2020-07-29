@@ -23,25 +23,25 @@ const Footer = () => {
                 <NavItem className="footerTexts">
                   <b>About</b>
                 </NavItem>
-                <Link>
+                <Link to={{ pathname: routes.aboutUs }}>
                   <NavItem className="footerTexts">About Us </NavItem>
                 </Link>
-                <Link>
+                <Link to={{ pathname: routes.howSharreitWorks }}>
                   <NavItem className="footerTexts">How Sharreit Works </NavItem>
                 </Link>{" "}
-                <Link>
+                <Link to={{ pathname: routes.security }}>
                   <NavItem className="footerTexts">Security </NavItem>
                 </Link>{" "}
-                <Link>
+                <Link to={{ pathname: routes.guarentee }}>
                   <NavItem className="footerTexts">Guarantee </NavItem>
                 </Link>{" "}
-                <Link>
+                <Link to={{ pathname: routes.homePage }}>
                   <NavItem className="footerTexts">Browse Sharreit </NavItem>
                 </Link>{" "}
-                <Link>
+                <Link to={{ pathname: routes.FAQ }}>
                   <NavItem className="footerTexts">FAQ </NavItem>
                 </Link>{" "}
-                <Link>
+                <Link to={{ pathname: routes.termsAndConditions }}>
                   <NavItem className="footerTexts">Terms Of Service </NavItem>
                 </Link>
               </Nav>

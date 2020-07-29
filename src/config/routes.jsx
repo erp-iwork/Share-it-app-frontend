@@ -14,4 +14,13 @@ export default {
   mobileOverview: "/mobileOverview",
   chat: "/chat",
   searchResults: "/searchResults",
+  // ================================= staticpages
+  aboutUs: "/aboutUs",
+  FAQ: "/FAQ",
+  guarentee: "/guarentee",
+  howSharreitWorks: "/howSharreitWorks",
+  security: "/security",
+  termsAndConditions: "/termsAndConditions"
+
+
 };
