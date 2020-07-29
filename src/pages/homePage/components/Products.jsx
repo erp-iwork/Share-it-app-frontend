@@ -12,11 +12,11 @@ class ProductsComp extends Component {
           <CardImg src={item && item.item_images[0].image} alt="" />
         </Col>
         <CardBody>
-          <div>{item && item.title}</div>
+          <div className="itemName">{item && item.title}</div>
           <CardText className="cardText">
-            <div>{item && item.owner.name}</div>
+            <div className="personName">{item && item.owner.name}</div>
             <div className="pricetag">$ {item && item.price}</div>
-            <div>
+            <div className="ratingColor">
               <MdStar fontSize={15} className="rating" />
               <MdStar fontSize={15} className="rating" />
               <MdStarBorder fontSize={15} />

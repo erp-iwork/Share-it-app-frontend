@@ -27,6 +27,7 @@ import {
   MdQuestionAnswer,
   MdPageview,
   MdPerson,
+  MdStraighten,
 } from "react-icons/md";
 // import "rsuite/dist/styles/rsuite-default.css";
 import Logo from "../../assets/Icons/Logo.svg";
@@ -161,6 +162,16 @@ class Header extends React.Component {
           </Link>
         </Nav>
         <Nav navbar className={bem.e("nav-right")}>
+          <NavItem>
+            <NavLink>
+              <Link to={{ pathname: routes.postItem }}>
+                <Button outline color="light">
+                  {" "}
+                  <MdInsertChart /> Start Sharing
+                </Button>
+              </Link>
+            </NavLink>
+          </NavItem>
           <NavItem>
             <NavLink>
               <Button outline color="light" id="AboutPopover">
