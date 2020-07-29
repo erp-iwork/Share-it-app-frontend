@@ -13,5 +13,5 @@ export default {
   Availability: "/Availability",
   mobileOverview: "/mobileOverview",
   chat: "/chat",
-
+  searchResults: "/searchResults",
 };

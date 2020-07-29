@@ -29,6 +29,7 @@ const ProfilePage = React.lazy(() => import("./pages/profilePage"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
+const SearchResults = React.lazy(() => import("./pages/searchResults/SearchResults"));
 const MobileOverview = React.lazy(() => import("./pages/mobileAppView/mobileAppOverview"));
 
 const getBasename = () => {
@@ -120,6 +121,8 @@ class App extends React.Component {
                       component={MobileOverview}
                     />
                     <Route exact path={routes.chat} component={Messages} />
+                    <Route exact path={routes.searchResults} component={SearchResults} />
+
                   </React.Suspense>
                 </MainLayout>
               </React.Fragment>

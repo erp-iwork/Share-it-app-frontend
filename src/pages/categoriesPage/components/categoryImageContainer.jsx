@@ -8,7 +8,7 @@ const CategoryImageContainer = ({ title, description, image }) => {
       style={{ backgroundImage: `url(${image})` }}
     >
       <Col md={12} sm={12} xs={12}>
-        <div className="titleCategory">{title}</div>
+        <div className="titleCategory">{title} Sharing</div>
         <Col md={6} className="titleDescription">
           {description}
         </Col>
@@ -20,7 +20,7 @@ const CategoryImageContainer = ({ title, description, image }) => {
             />
           </Col>
           <Col md={1}>
-            <Button outline color="light" className="CategorySearchButton">
+            <Button outline className="CategorySearchButton">
               SEARCH
             </Button>
           </Col>

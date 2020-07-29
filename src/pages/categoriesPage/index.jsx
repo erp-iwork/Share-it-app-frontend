@@ -3,7 +3,7 @@ import SubCategoryCard from "./components/subCategoryCard";
 // import Spacer from "./components/spacer";
 import CategoryImageContainer from "./components/categoryImageContainer";
 // import { Luggage } from "../../assets/newResources/Sharrit-Sub-CategoryImages";
-import Mercedes2 from "../../assets/newResources/ProductSharing.jpg";
+import CategoriesImageBackground from "../../assets/newResources/CategoriesBackground.png";
 
 import { Spacer } from "../../components/Layout";
 import { Row, Col } from "reactstrap";
@@ -45,7 +45,7 @@ class index extends Component {
         <CategoryImageContainer
           title={categoryName}
           description={categoryDescription}
-          image={Mercedes2}
+          image={CategoriesImageBackground}
         />
         <Spacer title="Sub-Categories " />
         <Row className="m-2">

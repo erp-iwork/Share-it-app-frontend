@@ -30,7 +30,7 @@ class Availability extends Component {
   render() {
     let counter = 1
     return (
-      <Page breadcrumbs={[{ name: "Yohannes's Products", active: true }]}>
+      <Page breadcrumbs={[{ name: "Your Products", active: true }]} className='availabilityContainer m-2'>
         <Card body>
           <CardHeader> Update Availabilities</CardHeader>
           <Table>

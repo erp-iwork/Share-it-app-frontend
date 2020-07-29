@@ -17,7 +17,7 @@ class SingleItemViewPage extends Component {
     if (this.props.selectedItem.itemId !== this.props.match.params.id)
       this.props.getItemById(this.props.match.params.id);
     return (
-      <Col>
+      <Col className='mt-4'>
         {this.props.loading && <PageSpinner />}
         {!this.props.loading && _.isEmpty(this.props.selectedItem) && (
           <NotFound />

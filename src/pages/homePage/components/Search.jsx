@@ -106,7 +106,10 @@ class HomePageSearch extends Component {
               onChange={this.toggleSearchPopover}
             />
             <Col align="right">
+              <Link to={{pathname: routes.searchResults}}>
               <Button className="buttonPaddingRight">SEARCH</Button>
+              </Link>
+
               <b>
                 <i>OR</i>
               </b>
