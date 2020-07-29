@@ -10,7 +10,7 @@ class PopularCategories extends Component {
       <div className="popularCategoriesContainer">
         <Col className="popularCategoriesSingleContainer">
           <Row>
-            <Col md={6} xs={12} sm={12} >
+            <Col md={6} xs={12} sm={12}>
               <img
                 className="popularCategoriesImage"
                 src={Electronics}
@@ -24,15 +24,14 @@ class PopularCategories extends Component {
               sm={12}
               className="popularCategoriesDescription"
             >
-              <h1 className='spacerTitle'>ELECTRONICS</h1>
+              <h1 className="spacerTitle">ELECTRONICS</h1>
               <CardBody>
                 <h5>
-                Electronic devices are components for controlling 
-                the flow of electrical currents for the purpose of 
-                information processing and system control. Prominent 
-                examples include transistors and diodes. Electronic devices 
-                are usually small and can be grouped together into packages called 
-                integrated circuits.
+                  Electronic devices are components for controlling the flow of
+                  electrical currents for the purpose of information processing
+                  and system control. Prominent examples include transistors and
+                  diodes. Electronic devices are usually small and can be
+                  grouped together into packages called integrated circuits.
                 </h5>
                 <Button outline size="md">
                   EXPLORE MORE
@@ -51,15 +50,14 @@ class PopularCategories extends Component {
               sm={12}
               className="popularCategoriesDescription"
             >
-              <h1 className='spacerTitle'>ELECTRONICS</h1>
+              <h1 className="spacerTitle">Storage Spaces</h1>
               <CardBody>
                 <h5>
-                Electronic devices are components for controlling 
-                the flow of electrical currents for the purpose of 
-                information processing and system control. Prominent 
-                examples include transistors and diodes. Electronic devices 
-                are usually small and can be grouped together into packages called 
-                integrated circuits.
+                  Storage Spaces is a technology in Windows and Windows Server
+                  that can help protect your data from drive failures. ... You
+                  can use Storage Spaces to group three or more drives together
+                  into a storage pool and then use capacity from that pool to
+                  create Storage Spaces.May 22, 2018
                 </h5>
                 <Button outline size="md">
                   EXPLORE MORE

@@ -16,6 +16,8 @@ import {
   MdImportantDevices,
 } from "react-icons/md";
 import routes from "../../config/routes";
+import { getCurrentUser } from "../../store/auth";
+import { connect } from "react-redux";
 
 class FloatingActionButton extends Component {
   state = {};
@@ -25,58 +27,65 @@ class FloatingActionButton extends Component {
         <Link href={routes.mobileOverview} tooltip="Sharreit Mobile App">
           <MdImportantDevices size={20} />
         </Link>
-        <Link
-          href={routes.registration}
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Registration"
-        >
-          <MdVpnLock size={20} />
-        </Link>
-        <Link
-          href={routes.login}
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Login"
-        >
-          <MdInput size={20} />
-        </Link>
-        <Link
-          href={routes.buyAndSell}
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Activities"
-        >
-          <MdLocalActivity size={20} />
-        </Link>
+        {this.props.currentUser ? (
+          <>
+            <Link
+              href={routes.buyAndSell}
+              styles={{
+                backgroundColor: lightColors.lightBlue,
+                color: darkColors.white,
+              }}
+              tooltip="Activities"
+            >
+              <MdLocalActivity size={20} />
+            </Link>
 
-        <Link
-          href={routes.settings}
-          to={{ pathname: routes.settings }}
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Settings"
-        >
-          <MdSettings size={20} />
-        </Link>
-        <Link
-          href={routes.profile}
-          styles={{
-            backgroundColor: lightColors.lightBlue,
-            color: darkColors.white,
-          }}
-          tooltip="Profile"
-        >
-          <MdPerson size={20} />
-        </Link>
+            <Link
+              href={routes.settings}
+              to={{ pathname: routes.settings }}
+              styles={{
+                backgroundColor: lightColors.lightBlue,
+                color: darkColors.white,
+              }}
+              tooltip="Settings"
+            >
+              <MdSettings size={20} />
+            </Link>
+            <Link
+              href={routes.profile}
+              styles={{
+                backgroundColor: lightColors.lightBlue,
+                color: darkColors.white,
+              }}
+              tooltip="Profile"
+            >
+              <MdPerson size={20} />
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href={routes.registration}
+              styles={{
+                backgroundColor: lightColors.lightBlue,
+                color: darkColors.white,
+              }}
+              tooltip="Registration"
+            >
+              <MdVpnLock size={20} />
+            </Link>
+            <Link
+              href={routes.login}
+              styles={{
+                backgroundColor: lightColors.lightBlue,
+                color: darkColors.white,
+              }}
+              tooltip="Login"
+            >
+              <MdInput size={20} />
+            </Link>
+          </>
+        )}
 
         <Button
           className="floatingActionButton"
@@ -93,4 +102,8 @@ class FloatingActionButton extends Component {
   }
 }
 
-export default FloatingActionButton;
+const mapStateToProps = (state) => ({
+  currentUser: getCurrentUser(state),
+});
+
+export default connect(mapStateToProps)(FloatingActionButton);

@@ -31,23 +31,19 @@ const CategoryImageContainer = ({ title, description, image }) => {
         <Col className="mostSearchesTitle">Most Searches ...</Col>
 
         <Button className="p-3 m-1 mostSearches" color="light">
-          Searched Item{" "}
+          <b>Bull-Dozers</b>
         </Button>
 
         <Button className="p-3 m-1 mostSearches" color="light">
-          Searched Item
+          <b>Drones</b>
         </Button>
 
         <Button className="p-3 m-1 mostSearches" color="light">
-          Searched Item
+          <b>Nanny</b>
         </Button>
 
         <Button className="p-3 m-1 mostSearches" color="light">
-          Searched Item
-        </Button>
-
-        <Button className="p-3 m-1 mostSearches" color="light">
-          Searched Item
+          <b>Mercedes C-200</b>
         </Button>
       </Col>
     </Jumbotron>
