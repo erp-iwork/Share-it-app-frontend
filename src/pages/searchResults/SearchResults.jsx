@@ -11,7 +11,7 @@ class SearchResultsPage extends Component {
     return (
       <Page
         className="SearchResultsContainer m-4"
-        breadcrumbs={[{ name: "Something", active: true }]}
+        breadcrumbs={[{ name: "Searched Keyword Goes here", active: true }]}
       >
         <hr />
         <Row>

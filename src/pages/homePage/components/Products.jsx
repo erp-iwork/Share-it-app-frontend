@@ -8,7 +8,7 @@ class ProductsComp extends Component {
     const { item } = this.props;
     return (
       <Card className="zoom">
-        <Col className="itemImgContainer-Home">
+        <Col className="itemImgContainer-Home mt-2">
           <CardImg src={item && item.item_images[0].image} alt="" />
         </Col>
         <CardBody>

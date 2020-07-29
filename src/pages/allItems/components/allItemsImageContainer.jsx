@@ -7,11 +7,8 @@ const AllItemsImageContainer = ({ title, description, image }) => {
       className="containerSize"
       style={{ backgroundImage: `url(${image})` }}
     >
-      <Col md={12} sm={12} xs={12}>
-        <div className="titleCategory">{title}</div>
-        <Col md={6} className="titleDescription">
-          {description}
-        </Col>
+      <Col md={12} sm={12} xs={12} className="allItemsImageContainer">
+        <div className="titleCategory mb-4">{title}</div>
         <Row>
           <Col md={11}>
             <Input
