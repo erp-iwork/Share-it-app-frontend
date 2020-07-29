@@ -122,7 +122,7 @@ class PostItemForm extends NestedForm {
     );
 
     return (
-      <Page breadcrumbs={[{ name: "Share", active: true }]}>
+      <Page breadcrumbs={[{ name: "Share", active: true }]} className='postItemContainer'>
         <div className="d-flex justify-content-center align-items-center flex-column">
           <Col xl={10} lg={12} md={12} sm={12}>
             <Card>

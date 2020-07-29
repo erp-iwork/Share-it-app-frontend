@@ -24,7 +24,7 @@ class PopularCategories extends Component {
               sm={12}
               className="popularCategoriesDescription"
             >
-              <h1>ELECTRONICS</h1>
+              <h1 className='spacerTitle'>ELECTRONICS</h1>
               <CardBody>
                 <h5>
                 Electronic devices are components for controlling 
@@ -51,7 +51,7 @@ class PopularCategories extends Component {
               sm={12}
               className="popularCategoriesDescription"
             >
-              <h1>ELECTRONICS</h1>
+              <h1 className='spacerTitle'>ELECTRONICS</h1>
               <CardBody>
                 <h5>
                 Electronic devices are components for controlling 

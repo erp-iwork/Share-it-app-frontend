@@ -65,13 +65,20 @@
 }
 .ratingColor {
     color: #000
-
-
 }
 
+.spacerTitle {
+    color: #083991;
+    transition: transform .5s; 
+}
+.spacerTitle:hover{
+    transform: scale(1.03);
+}
+.spacerTitle1 {
+    color: #1081D1
+}
 .mainspacer {
     margin-top: 20px;
-
 }
 .popularCategoriesContainer {
     padding-top: 50px; 
@@ -97,12 +104,50 @@
 }
 .popularAmongUsersContainer {
     background-color: #F1F6FA;
-    height: 100vh;
+    // max-height: 100vh;
+    height: auto;
+    // height: 500px;
     padding-left: 80px;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     padding-right: 80px;
 }
 
 .popularCategoriesSingleContainer {
     padding-bottom: 40px;
+}
+
+.noBoostedItems {
+    color: #00AF58;
+    display: flex;
+    align-self: center;
+}
+
+
+.my-button{
+    position: absolute;
+    border: 1px solid black;
+    background: green;
+    padding: 3px;
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    left: 148px;  /* Positioning over file-upload */
+    top: 0px;
+    z-index: 1; /* Lower z-index causes controls to sit under file upload */
+}
+
+.overlay{
+ position: absolute;
+ z-index: 1; /* Lower z-index causes controls to sit under file upload */
+ left: 0; /* Positioning over file-upload */
+}
+
+.original{
+    opacity: 0; /* Opacity makes it invisible*/
+    position: relative;
+    z-index: 100; /* z-index causes original file upload to sit above other controls*/
+}
+
+.file-upload-cont{
+    position: relative;
 }

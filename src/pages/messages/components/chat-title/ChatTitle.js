@@ -10,7 +10,8 @@ const ChatTitle = ({ selectedConversation, onDeleteConversation }) => {
         chatTitleContents = (
             <>
                 <span> <Avatar size={50} /> {selectedConversation.name}</span>
-                <div onClick={() => { onDeleteConversation(); }} title="Delete Conversation">
+                <div>
+                {/* <div onClick={() => { onDeleteConversation(); }} title="Delete Conversation"> */}
                     <MdList />
                 </div>
             </>

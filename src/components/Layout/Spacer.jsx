@@ -9,7 +9,7 @@ const CategorySpacer = ({ title }) => {
       <Col align="center">
         <img src={Divider} alt="" />
         <div className="mainspacer" />
-        <h4>{title}</h4>
+        <h4 className='spacerTitle'>{title}</h4>
       </Col>
       <div className="mainspacer" />
     </>

@@ -3,7 +3,6 @@ import Avatar from "../../components/Avatar";
 import Page from "../../components/Page";
 import {
   Col,
-  Form,
   Card,
   FormGroup,
   Label,
@@ -11,11 +10,9 @@ import {
   Button,
   Row,
   CardHeader,
-  CardImg,
   CardFooter,
-  CardBody,
 } from "reactstrap";
-import { MdSave, MdPictureInPicture } from "react-icons/md";
+import { MdSave } from "react-icons/md";
 
 class Settings extends Component {
   constructor(props) {
@@ -34,17 +31,16 @@ class Settings extends Component {
               <CardHeader> Update Picture </CardHeader>
               <Avatar className="mt-3" size={400} />
               <div className="mt-4">
-                <Button outline>
-                  {" "}
-                  <MdPictureInPicture className="mr-2" />
-                  Change Picture
+                <Button outline
+                >
+                  <Input type="file" name="file" id="exampleFile" />
                 </Button>
               </div>
             </Col>
             <Col>
               <CardHeader>Update Your Personal Information </CardHeader>
               <Row className="m-3">
-                <Col md={6} sm={12} xs={12}>
+                <Col md={12} sm={12} xs={12}>
                   <FormGroup>
                     <Label>Name</Label>
                     <Input type="text" name="name" placeholder="Name ..." />
@@ -62,16 +58,6 @@ class Settings extends Component {
                 </Col>
                 <Col md={6} sm={12} xs={12}>
                   <FormGroup>
-                    <Label>Password</Label>
-                    <Input
-                      type="password"
-                      name="password"
-                      placeholder="Old Password"
-                    />
-                  </FormGroup>
-                </Col>
-                <Col md={6} sm={12} xs={12}>
-                  <FormGroup>
                     <Label>New Password</Label>
                     <Input
                       type="password"
@@ -81,6 +67,13 @@ class Settings extends Component {
                   </FormGroup>
                 </Col>
               </Row>
+              <CardFooter align="center">
+                <Button outline>
+                  {" "}
+                  <MdSave className="mr-1" /> Update Personal Information
+                </Button>
+              </CardFooter>
+
               <CardHeader>Update Your Contact Information</CardHeader>
 
               <Row className="m-3">
@@ -125,14 +118,15 @@ class Settings extends Component {
                   </FormGroup>
                 </Col>
               </Row>
+              <CardFooter align="center">
+                <Button outline>
+                  {" "}
+                  <MdSave className="mr-1" />
+                  Update Contact Information
+                </Button>
+              </CardFooter>
             </Col>
           </Row>
-          <CardFooter align="center">
-            <Button outline>
-              {" "}
-              <MdSave className="mr-2" /> Save
-            </Button>
-          </CardFooter>
         </Card>
       </Page>
     );

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 // import { Row, Col, Button, Input } from "reactstrap";
 import SearchImage from "../../../assets/newResources/SearchImage.jpg";
-import { Spacer } from "../../../components/Layout";
 import { Link } from "react-router-dom";
 import routes from "../../../config/routes";
 import {
@@ -93,8 +92,8 @@ class HomePageSearch extends Component {
             id="SearchPopover"
           >
             <h1>
-              <b>
-                SHARE ANYTHING , <div>ANYWHERE ...</div>{" "}
+              <b className='spacerTitle1'>
+                SHARE ANYTHING , <div className='spacerTitle'>ANYWHERE ...</div>{" "}
               </b>
             </h1>
             <Input
@@ -121,7 +120,6 @@ class HomePageSearch extends Component {
             </Col>
           </Col>
         </Row>
-        <Spacer title="PREMIUM SHARES" />
       </>
     );
   }

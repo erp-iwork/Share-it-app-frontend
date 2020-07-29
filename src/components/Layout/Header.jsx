@@ -27,7 +27,6 @@ import {
   MdQuestionAnswer,
   MdPageview,
   MdPerson,
-  MdStraighten,
 } from "react-icons/md";
 // import "rsuite/dist/styles/rsuite-default.css";
 import Logo from "../../assets/Icons/Logo.svg";
