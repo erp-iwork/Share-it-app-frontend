@@ -8,6 +8,8 @@ const slice = createSlice({
   initialState: {
     info: {},
     loading: false,
+    status: "initial",
+    errors: null,
   },
   reducers: {
     usersRequested: (users, action) => {
@@ -15,9 +17,14 @@ const slice = createSlice({
     },
     usersRequestFailed: (users, action) => {
       users.loading = false;
+      users.errors = action.payload;
+      users.status = "failed";
     },
     userUpdated: (users, action) => {
       users.info = action.payload;
+      users.loading = false;
+      users.errors = null;
+      users.status = "success";
     },
   },
 });
@@ -28,10 +35,25 @@ const url = "/user/";
 
 export const updateUser = (userId, user) =>
   apiCallBegan({
-    url: url + userId,
+    url: url + userId + "/",
     method: "put",
     data: user,
     onStart: usersRequested.type,
     onSuccess: userUpdated.type,
     onError: usersRequestFailed,
   });
+
+export const getErrors = createSelector(
+  (state) => state.entities.users,
+  (users) => users.errors
+);
+
+export const getStatus = createSelector(
+  (state) => state.entities.users,
+  (users) => users.status
+);
+
+export const getLoading = createSelector(
+  (state) => state.entities.users,
+  (users) => users.loading
+);

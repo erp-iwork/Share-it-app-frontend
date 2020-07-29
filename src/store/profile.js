@@ -9,6 +9,8 @@ const slice = createSlice({
     info: {},
     loading: false,
     selectedUserId: "",
+    status: "initial",
+    errors: null,
   },
   reducers: {
     profileRequested: (profile, action) => {
@@ -17,14 +19,19 @@ const slice = createSlice({
     profileReceived: (profile, action) => {
       profile.info = action.payload;
       profile.loading = false;
+      profile.errors = null;
     },
     profileRequestFailed: (profile, action) => {
       profile.loading = false;
+      profile.errors = action.payload;
+      profile.status = "failed";
     },
     profileUpdated: (profile, action) => {
       // profile.info = action.payload;
       console.log("profile updated", action.payload);
       profile.loading = false;
+      profile.errors = null;
+      profile.status = "success";
     },
   },
 });
@@ -57,4 +64,19 @@ export const updateProfile = (userId, profile) =>
 export const getProfile = createSelector(
   (state) => state.entities.profile,
   (profile) => profile.info
+);
+
+export const getErrors = createSelector(
+  (state) => state.entities.profile,
+  (profile) => profile.errors
+);
+
+export const getStatus = createSelector(
+  (state) => state.entities.profile,
+  (profile) => profile.status
+);
+
+export const getLoading = createSelector(
+  (state) => state.entities.profile,
+  (profile) => profile.loading
 );
