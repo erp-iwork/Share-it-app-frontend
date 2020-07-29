@@ -17,12 +17,16 @@ import { Carousel } from "react-responsive-carousel";
 import { MdSend } from "react-icons/md";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
+import { Redirect } from "react-router";
+import routes from "../../../config/routes";
+import { Link } from "react-router-dom";
 
 const openNotification = () => {
   toast.error("Did You Read the Terms and Conditions?");
 };
 const openNotificationChat = () => {
   toast.info("Chatting isn't Supported on this Server!");
+  return <Redirect to={routes.chat} />;
 };
 
 //TODO - Refactor
@@ -238,15 +242,17 @@ class ItemViewComp extends Component {
                             block
                             outline
                           > */}
-                          <Button
+
+                          <Link
                             color="success"
                             // onClick={() => openNotification()}
-                            onClick={() => openNotificationChat()}
+                            // onClick={() => openNotificationChat()}
+                            to={routes.chat}
                             block
                             outline
                           >
                             <MdSend />
-                          </Button>
+                          </Link>
                           {/* </Link> */}
                         </Col>
                       ) : (

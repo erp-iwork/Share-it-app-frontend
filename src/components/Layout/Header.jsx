@@ -40,6 +40,7 @@ import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 import FilterComp from "../../pages/allItems/components/filterComp";
 import { Drawer } from "rsuite";
 import bn from "../../utils/bemnames";
+import { getProfile } from "../../store/profile";
 const bem = bn.create("header");
 
 class Header extends React.Component {
@@ -243,7 +244,13 @@ class Header extends React.Component {
               {this.props.currentUser && (
                 <>
                   <div onClick={this.toggleUserCardPopover}>
-                    <Avatar className="can-click" />
+                    <Avatar
+                      className="can-click"
+                      src={
+                        this.props.profile.user &&
+                        this.props.profile.user.avatar
+                      }
+                    />
                     <Popover
                       placement="bottom-start"
                       isOpen={this.state.isOpenUserCardPopover}
@@ -348,6 +355,7 @@ class Header extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
+  profile: getProfile(state),
   currentUser: getCurrentUser(state),
   items: getSearchedItems(state),
   loading: getLoading(state),

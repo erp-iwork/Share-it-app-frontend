@@ -41,7 +41,7 @@ class PersonalInformationComp extends Component {
                   size={150}
                   className="profileAvatar"
                   src={
-                    this.props.profile.user && this.props.profile.user.avater
+                    this.props.profile.user && this.props.profile.user.avatar
                   }
                 />
               </Col>

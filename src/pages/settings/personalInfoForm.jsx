@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardFooter,
   Form,
+  Alert,
 } from "reactstrap";
 import { MdSave } from "react-icons/md";
 import SettingForm from "./settingForm";
@@ -28,24 +29,24 @@ import { getUser } from "../../services/authService";
 
 class PersonalInfoForm extends SettingForm {
   state = {
-    data: { avater: "", name: "", location: "", password: "" },
+    data: { avatar: "", name: "", location: "", password: "" },
     preview: "",
     errors: [],
   };
   onSelectFile = (e) => {
     const data = { ...this.state.data };
     if (!e.target.files || e.target.files.length === 0) {
-      data.avater = undefined;
+      data.avatar = undefined;
       this.setState({ data });
       return;
     }
     // I've kept this example simple by using the first image instead of multiple
-    data.avater = e.target.files[0];
-    const objectUrl = URL.createObjectURL(data.avater);
+    data.avatar = e.target.files[0];
+    const objectUrl = URL.createObjectURL(data.avatar);
     this.setState({ data, preview: objectUrl });
   };
   schema = {
-    avater: Joi.string().allow("").optional().label("Profile picture"),
+    avatar: Joi.any().allow("").optional().label("Profile picture"),
     name: Joi.string().allow("").optional().label("Name"),
     location: Joi.string().allow("").optional().label("Location"),
     password: Joi.string().allow("").optional().label("Password"),
@@ -53,6 +54,7 @@ class PersonalInfoForm extends SettingForm {
 
   doSubmit = () => {
     const data = { ...this.state.data };
+    console.log(data.avatar);
     const currentUserId = getUser().id;
     if (!currentUserId) return;
     const formData = new FormData();
@@ -60,7 +62,7 @@ class PersonalInfoForm extends SettingForm {
       formData.append(key, data[key]);
     }
     data.email = getUser().email;
-    this.props.updateUser(currentUserId, data);
+    this.props.updateUser(currentUserId, formData);
   };
   render() {
     return (
@@ -95,6 +97,14 @@ class PersonalInfoForm extends SettingForm {
           <CardFooter align="center">
             {this.renderButton("Update Personal Information")}
           </CardFooter>
+          {this.props.status === "success" && (
+            <Alert color="success">
+              Contact Information Updated successfully
+            </Alert>
+          )}
+          {this.props.errors && this.props.errors.detail && (
+            <Alert color="danger">{this.props.errors.detail}</Alert>
+          )}
         </Col>
       </Form>
     );
