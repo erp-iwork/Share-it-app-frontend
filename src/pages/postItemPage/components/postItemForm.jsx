@@ -106,10 +106,9 @@ class PostItemForm extends NestedForm {
       this.MySwal.fire({
         position: "center",
         icon: "success",
-        title: "Congratulations!",
         text: "Your item has been posted.",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1000,
       });
     }
     // const { properties, category_id, sub_category_id } = this.state.data;

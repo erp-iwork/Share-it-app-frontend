@@ -10,8 +10,8 @@ class SearchResultsPage extends Component {
   render() {
     return (
       <Page
-        title="Search Results for ..."
         className="SearchResultsContainer m-4"
+        breadcrumbs={[{ name: "Something", active: true }]}
       >
         <hr />
         <Row>
