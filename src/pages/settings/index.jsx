@@ -11,7 +11,7 @@ import {
   Row,
   CardHeader,
   CardFooter,
-  Form
+  Form,
 } from "reactstrap";
 import { MdSave } from "react-icons/md";
 
@@ -26,11 +26,11 @@ class Settings extends Component {
         breadcrumbs={[{ name: "person Name", active: true }]}
         className="settingsContainer"
       >
-        <Card>
-          <Row>
-            <Col align="center" md={6} sm={12}>
-              <CardHeader> Update Picture </CardHeader>
-              <Avatar className="mt-3" size={400} />
+        <Card className="settingsFormContainer">
+          <Form>
+            <Col align="center" md={12} sm={12}>
+              <CardHeader> Update Profile </CardHeader>
+              <Avatar className="mt-3" size={200} />
               <div className="mt-4">
                 <Button outline>
                   <Input type="file" name="file" id="exampleFile" />
@@ -73,11 +73,12 @@ class Settings extends Component {
                   <MdSave className="mr-1" /> Update Personal Information
                 </Button>
               </CardFooter>
+            </Col>
+          </Form>
 
+          <Form>
+            <Col>
               <CardHeader>Update Your Contact Information</CardHeader>
-              <Form>
-
-
               <Row className="m-3">
                 <Col md={6} sm={12} xs={12}>
                   <FormGroup>
@@ -127,10 +128,8 @@ class Settings extends Component {
                   Update Contact Information
                 </Button>
               </CardFooter>
-              </Form>
-
             </Col>
-          </Row>
+          </Form>
         </Card>
       </Page>
     );
