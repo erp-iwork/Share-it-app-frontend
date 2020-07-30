@@ -18,6 +18,7 @@ const slice = createSlice({
     searchedItems: [],
     myItems: [],
     filterdItems: [],
+    filteredItemsBySubcategory: [],
   },
   reducers: {
     itemsRequested: (items, action) => {
@@ -76,6 +77,11 @@ const slice = createSlice({
       items.loading = false;
       items.errors = null;
     },
+    itemFilteredBySubcategory: (items, action) => {
+      items.filteredItemsBySubcategory = action.payload.results;
+      items.loading = false;
+      items.errors = null;
+    },
     itemSearched: (items, action) => {
       items.searchedItems = action.payload.results;
       items.loading = false;
@@ -95,6 +101,7 @@ const {
   itemFiltered,
   itemSearched,
   myItemReceived,
+  itemFilteredBySubcategory,
 } = slice.actions;
 export default slice.reducer;
 
@@ -189,8 +196,18 @@ export const loadFilteredItems = (options) =>
     onSuccess: itemFiltered.type,
     onError: itemsRequestFailed.type,
   });
+export const loadFilteredItemsBySubcategory = (options) =>
+  apiCallBegan({
+    url: makeUrl(options),
+    onStart: itemsRequested.type,
+    onSuccess: itemFilteredBySubcategory.type,
+    onError: itemsRequestFailed.type,
+  });
 //Selectors
-
+export const getFilteredItemsBySubcategory = createSelector(
+  (state) => state.entities.items,
+  (items) => items.filteredItemsBySubcategory
+);
 export const getItems = createSelector(
   (state) => state.entities.items,
   (items) => _.orderBy(items.list, "title", "asc")

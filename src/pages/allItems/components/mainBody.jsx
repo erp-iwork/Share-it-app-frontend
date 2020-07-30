@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { loadFilteredItems, getFilteredItems } from "../../../store/items";
+import {
+  loadFilteredItemsBySubcategory,
+  getFilteredItemsBySubcategory,
+} from "../../../store/items";
 import { connect } from "react-redux";
 import { Col, Row } from "reactstrap";
 import ProductsComp from "../../homePage/components/Products";
@@ -7,7 +10,7 @@ import { Link } from "react-router-dom";
 
 class MainBodyPage extends Component {
   componentDidMount() {
-    this.props.loadFilteredItems({
+    this.props.loadFilteredItemsBySubcategory({
       sub_category: this.props.subcategoryId,
     });
   }
@@ -29,11 +32,12 @@ class MainBodyPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: getFilteredItems(state),
+  items: getFilteredItemsBySubcategory(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
+  loadFilteredItemsBySubcategory: (options) =>
+    dispatch(loadFilteredItemsBySubcategory(options)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainBodyPage);
