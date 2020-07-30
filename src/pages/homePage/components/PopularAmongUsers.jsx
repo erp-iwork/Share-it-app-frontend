@@ -3,15 +3,11 @@ import { Col, Row } from "reactstrap";
 import ProductsComp from "./Products";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  getLoading,
-  getFilteredItems,
-  loadFilteredItems,
-} from "../../../store/items";
+import { getLoading, getItems, loadItems } from "../../../store/items";
 
 class PopularAmongUsers extends Component {
   componentDidMount() {
-    this.props.loadFilterdItems({});
+    this.props.loadItems();
   }
 
   render() {
@@ -31,12 +27,12 @@ class PopularAmongUsers extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  items: getFilteredItems(state),
+  items: getItems(state),
   loading: getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilterdItems: (options) => dispatch(loadFilteredItems(options)),
+  loadItems: (options) => dispatch(loadItems(options)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopularAmongUsers);

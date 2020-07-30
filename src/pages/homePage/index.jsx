@@ -2,11 +2,7 @@ import React, { Component } from "react";
 // import { Col, Row } from "reactstrap";
 import { Col, Row } from "reactstrap";
 
-import {
-  getLoading,
-  getFilteredItems,
-  loadFilteredItems,
-} from "../../store/items";
+import { getLoading, getItems, loadItems } from "../../store/items";
 import { connect } from "react-redux";
 import Shimmer from "react-shimmer-effect";
 import {
@@ -34,7 +30,7 @@ class HomePage extends Component {
   componentDidMount() {
     this.setState({ waitingContent: this.preLoaders() });
     //load filtered items without any filter option
-    this.props.loadFilterdItems({});
+    this.props.loadItems();
     //load user info if they are logged in
     const userId = getUser() && getUser().id;
     if (!userId) return;
@@ -124,12 +120,12 @@ class HomePage extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  items: getFilteredItems(state),
+  items: getItems(state),
   loading: getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilterdItems: (options) => dispatch(loadFilteredItems(options)),
+  loadItems: () => dispatch(loadItems()),
   loadUser: (userId) => dispatch(loadUser(userId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
