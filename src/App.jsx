@@ -24,6 +24,9 @@ import {
   Security,
   TermsAndConditions,
 } from "./pages/staticPages";
+import { getUser } from "./services/authService";
+import { loadUser } from "./store/users";
+import { connect } from "react-redux";
 
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
@@ -36,8 +39,12 @@ const ProfilePage = React.lazy(() => import("./pages/profilePage"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
-const SearchResults = React.lazy(() => import("./pages/searchResults/SearchResults"));
-const MobileOverview = React.lazy(() => import("./pages/mobileAppView/mobileAppOverview"));
+const SearchResults = React.lazy(() =>
+  import("./pages/searchResults/SearchResults")
+);
+const MobileOverview = React.lazy(() =>
+  import("./pages/mobileAppView/mobileAppOverview")
+);
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;
@@ -45,6 +52,13 @@ const getBasename = () => {
 // const user = authService.getUser();
 
 class App extends React.Component {
+  componentDidMount() {
+    //load user info if they are logged in
+    const userId = getUser() && getUser().id;
+    if (!userId) return;
+    store.dispatch(loadUser(userId));
+  }
+
   render() {
     return (
       <Provider store={store}>

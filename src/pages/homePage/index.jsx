@@ -14,8 +14,6 @@ import {
 import HorizontalScroll from "react-scroll-horizontal";
 import { Spacer } from "../../components/Layout";
 import { Link } from "react-router-dom";
-import { getUser } from "../../services/authService";
-import { loadUser } from "../../store/users";
 
 class HomePage extends Component {
   constructor() {
@@ -31,10 +29,6 @@ class HomePage extends Component {
     this.setState({ waitingContent: this.preLoaders() });
     //load filtered items without any filter option
     this.props.loadItems();
-    //load user info if they are logged in
-    const userId = getUser() && getUser().id;
-    if (!userId) return;
-    this.props.loadUser(userId);
   }
 
   preLoaders = () => {
@@ -126,6 +120,5 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadItems: () => dispatch(loadItems()),
-  loadUser: (userId) => dispatch(loadUser(userId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
