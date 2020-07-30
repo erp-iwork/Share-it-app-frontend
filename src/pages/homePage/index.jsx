@@ -18,6 +18,8 @@ import {
 import HorizontalScroll from "react-scroll-horizontal";
 import { Spacer } from "../../components/Layout";
 import { Link } from "react-router-dom";
+import { getUser } from "../../services/authService";
+import { loadUser } from "../../store/users";
 
 class HomePage extends Component {
   constructor() {
@@ -33,6 +35,10 @@ class HomePage extends Component {
     this.setState({ waitingContent: this.preLoaders() });
     //load filtered items without any filter option
     this.props.loadFilterdItems({});
+    //load user info if they are logged in
+    const userId = getUser().id;
+    if (!userId) return;
+    this.props.loadUser(userId);
   }
 
   preLoaders = () => {
@@ -88,9 +94,9 @@ class HomePage extends Component {
         <Spacer title="PREMIUM SHARES" />
 
         {boostedItems.length === 0 ? (
-        <Col md={12} sm={12} xs={12} align='center' >
-          <h3>There arent any premium Shares yet.</h3>
-        </Col>
+          <Col md={12} sm={12} xs={12} align="center">
+            <h3>There arent any premium Shares yet.</h3>
+          </Col>
         ) : (
           <>
             <div style={parent}>
@@ -124,5 +130,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadFilterdItems: (options) => dispatch(loadFilteredItems(options)),
+  loadUser: (userId) => dispatch(loadUser(userId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

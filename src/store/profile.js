@@ -8,7 +8,6 @@ const slice = createSlice({
   initialState: {
     info: {},
     loading: false,
-    selectedUserId: "",
     status: "initial",
     errors: null,
   },

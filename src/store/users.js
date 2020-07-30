@@ -7,6 +7,7 @@ const slice = createSlice({
   name: "users",
   initialState: {
     info: {},
+    selectedUserId: "",
     loading: false,
     status: "initial",
     errors: null,
@@ -14,6 +15,11 @@ const slice = createSlice({
   reducers: {
     usersRequested: (users, action) => {
       users.loading = true;
+    },
+    usersReceived: (users, action) => {
+      users.info = action.payload;
+      users.loading = false;
+      users.errors = null;
     },
     usersRequestFailed: (users, action) => {
       users.loading = false;
@@ -26,12 +32,29 @@ const slice = createSlice({
       users.errors = null;
       users.status = "success";
     },
+    userSelected: (users, action) => {
+      users.selectedUserId = action.payload;
+    },
   },
 });
-const { usersRequested, usersRequestFailed, userUpdated } = slice.actions;
+const {
+  usersRequested,
+  usersRequestFailed,
+  userUpdated,
+  usersReceived,
+  userSelected,
+} = slice.actions;
 export default slice.reducer;
 
 const url = "/user/";
+
+export const loadUser = (userId) =>
+  apiCallBegan({
+    url: url + userId + "/",
+    onStart: usersRequested.type,
+    onSuccess: usersReceived.type,
+    onError: usersRequestFailed.type,
+  });
 
 export const updateUser = (userId, user) =>
   apiCallBegan({
@@ -42,6 +65,8 @@ export const updateUser = (userId, user) =>
     onSuccess: userUpdated.type,
     onError: usersRequestFailed,
   });
+
+export const setSelectedUserId = (userId) => userSelected(userId);
 
 export const getErrors = createSelector(
   (state) => state.entities.users,
@@ -56,4 +81,14 @@ export const getStatus = createSelector(
 export const getLoading = createSelector(
   (state) => state.entities.users,
   (users) => users.loading
+);
+
+export const getUser = createSelector(
+  (state) => state.entities.users,
+  (users) => users.info
+);
+
+export const getSelectedUserId = createSelector(
+  (state) => state.entities.users,
+  (users) => users.selectedUserId
 );

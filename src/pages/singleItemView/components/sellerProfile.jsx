@@ -12,11 +12,11 @@ class SellerProfileComp extends Component {
         <Col>
           <Row>
             <Link to={`/profiles/${owner.id}`}>
-            <Col md={3}>
-              <Avatar size={60} />
-            </Col>
+              <Col md={3}>
+                <Avatar size={60} src={owner.avatar} />
+              </Col>
             </Link>
-            
+
             <Col>
               <h4>{owner ? owner.name : ""}</h4>
               <MdStar fontSize={23} className="rating" />

@@ -10,16 +10,32 @@ class UserProfilePage extends Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {
+  componentDidMount = async () => {
     const userId = this.props.match.params.id;
-    this.props.loadProfile(userId);
-    this.props.loadSharedItems(userId);
-  }
-  componentDidUpdate() {
+
+    await this.props.loadSharedItems(userId);
+    await this.props.loadProfile(userId);
+    this.state = {
+      userId,
+    };
+  };
+  componentDidUpdate = async (prevProps, prevState) => {
+    /**
+     * this is the initial render
+     * without a previous prop change
+     */
+    if (prevProps == undefined) {
+      return false;
+    }
     const userId = this.props.match.params.id;
-    this.props.loadProfile(userId);
-    this.props.loadSharedItems(userId);
-  }
+    if (this.state.userId != userId) {
+      await this.props.loadSharedItems(userId);
+      await this.props.loadProfile(userId);
+      this.state = {
+        userId,
+      };
+    }
+  };
   render() {
     return (
       <Col>

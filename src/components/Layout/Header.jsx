@@ -35,7 +35,7 @@ import { Link } from "react-router-dom";
 import { UserCard } from "../Card";
 import routes from "../../config/routes";
 // import PageSpinner from "../../components/PageSpinner";
-import { getCurrentUser } from "../../store/auth";
+import { getUser } from "../../store/users";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 import FilterComp from "../../pages/allItems/components/filterComp";
 import { Drawer } from "rsuite";
@@ -247,8 +247,7 @@ class Header extends React.Component {
                     <Avatar
                       className="can-click"
                       src={
-                        this.props.profile.user &&
-                        this.props.profile.user.avatar
+                        this.props.currentUser && this.props.currentUser.avatar
                       }
                     />
                     <Popover
@@ -355,8 +354,7 @@ class Header extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  profile: getProfile(state),
-  currentUser: getCurrentUser(state),
+  currentUser: getUser(state),
   items: getSearchedItems(state),
   loading: getLoading(state),
 });

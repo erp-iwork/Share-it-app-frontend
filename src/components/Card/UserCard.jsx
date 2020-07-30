@@ -6,8 +6,8 @@ import classNames from "classnames";
 import { Card, CardTitle, CardSubtitle, CardText, CardBody } from "reactstrap";
 
 import Avatar from "../Avatar";
-import { getProfile } from "../../store/profile";
 import { connect, useSelector } from "react-redux";
+import { getUser } from "../../store/users";
 
 const UserCard = ({
   avatar,
@@ -20,13 +20,13 @@ const UserCard = ({
   ...restProps
 }) => {
   const classes = classNames("bg-gradient-theme", className);
-  const profile = useSelector(getProfile);
+  const currentUser = useSelector(getUser);
 
   return (
     <Card inverse className={classes} {...restProps}>
       <CardBody className="d-flex justify-content-center align-items-center flex-column primary">
         <Avatar
-          src={profile.user && profile.user.avatar}
+          src={currentUser && currentUser.avatar}
           size={avatarSize}
           className="mb-2"
         />
