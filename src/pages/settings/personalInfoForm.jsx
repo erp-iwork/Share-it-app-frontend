@@ -2,7 +2,6 @@ import React from "react";
 import Avatar from "../../components/Avatar";
 import {
   Col,
-
   Input,
   Button,
   Row,
@@ -20,8 +19,8 @@ import {
   getStatus,
   updateUser,
 } from "../../store/users";
-import { getCurrentUser } from "../../store/auth";
-import { getUser } from "../../services/authService";
+import { getUser } from "../../store/users";
+import * as auth from "../../services/authService";
 
 class PersonalInfoForm extends SettingForm {
   state = {
@@ -29,6 +28,16 @@ class PersonalInfoForm extends SettingForm {
     preview: "",
     errors: [],
   };
+  componentDidMount() {
+    const { currentUser } = this.props;
+    if (currentUser) {
+      const data = { ...this.state.data };
+      data.name = currentUser.name;
+      data.location = currentUser.location;
+      this.setState({ data, preview: currentUser.avatar });
+    }
+  }
+
   onSelectFile = (e) => {
     const data = { ...this.state.data };
     if (!e.target.files || e.target.files.length === 0) {
@@ -51,13 +60,13 @@ class PersonalInfoForm extends SettingForm {
   doSubmit = () => {
     const data = { ...this.state.data };
     console.log(data.avatar);
-    const currentUserId = getUser().id;
+    const currentUserId = auth.getUser().id;
     if (!currentUserId) return;
     const formData = new FormData();
     for (var key in data) {
       formData.append(key, data[key]);
     }
-    data.email = getUser().email;
+    data.email = auth.getUser().email;
     this.props.updateUser(currentUserId, formData);
   };
   render() {
@@ -108,7 +117,7 @@ class PersonalInfoForm extends SettingForm {
 }
 const mapStateToProps = (state) => ({
   loading: getLoading(state),
-  currentUser: getCurrentUser(state),
+  currentUser: getUser(state),
   errors: getErrors(state),
   status: getStatus(state),
 });
