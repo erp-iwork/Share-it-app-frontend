@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as actions from "../api";
-// import { toast } from "react-toastify";
 import { getToken } from "../../services/authService";
 //TODO
 //config file
