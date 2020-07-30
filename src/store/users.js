@@ -35,6 +35,10 @@ const slice = createSlice({
     userSelected: (users, action) => {
       users.selectedUserId = action.payload;
     },
+    userErrorsAndStatusReseted: (users, action) => {
+      users.errors = null;
+      users.status = "initial";
+    },
   },
 });
 const {
@@ -43,6 +47,7 @@ const {
   userUpdated,
   usersReceived,
   userSelected,
+  userErrorsAndStatusReseted,
 } = slice.actions;
 export default slice.reducer;
 
@@ -67,6 +72,8 @@ export const updateUser = (userId, user) =>
   });
 
 export const setSelectedUserId = (userId) => userSelected(userId);
+
+export const resetUserErrorsAndStatus = () => userErrorsAndStatusReseted();
 
 export const getErrors = createSelector(
   (state) => state.entities.users,

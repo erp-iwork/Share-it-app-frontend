@@ -18,6 +18,7 @@ import {
   getErrors,
   getStatus,
   updateUser,
+  resetUserErrorsAndStatus,
 } from "../../store/users";
 import { getUser } from "../../store/users";
 import * as auth from "../../services/authService";
@@ -36,6 +37,9 @@ class PersonalInfoForm extends SettingForm {
       data.location = currentUser.location;
       this.setState({ data, preview: currentUser.avatar });
     }
+  }
+  componentWillUnmount() {
+    this.props.resetUserErrorsAndStatus();
   }
 
   onSelectFile = (e) => {
@@ -124,6 +128,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateUser: (userId, user) => dispatch(updateUser(userId, user)),
+  resetUserErrorsAndStatus: () => dispatch(resetUserErrorsAndStatus()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalInfoForm);
