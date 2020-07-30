@@ -17,12 +17,16 @@ const Avatar = ({
 }) => {
   const classes = classNames({ 'rounded-circle': circle, rounded }, className);
   return (
+    <div className='AvatarContainer'>
+
     <Tag
       src={src}
       style={{ width: size, height: size, ...style }}
       className={classes}
       {...restProps}
     />
+    </div>
+
   );
 };
 
