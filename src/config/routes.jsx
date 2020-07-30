@@ -2,7 +2,6 @@ export default {
   homePage: "/",
   login: "/login",
   registration: "/registration",
-  // categories: "/categories/:id",
   categories: "/categories/:id",
   postItem: "/postItem",
   allItems: "/items/subcategory/:subcategoryId",
@@ -14,7 +13,7 @@ export default {
   mobileOverview: "/mobileOverview",
   chat: "/chat",
   searchResults: "/searchResults",
-  // ================================= staticpages
+  //  ================= Static Pages ================ 
   aboutUs: "/aboutUs",
   FAQ: "/FAQ",
   guarentee: "/guarentee",

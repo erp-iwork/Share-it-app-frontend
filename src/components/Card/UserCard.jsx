@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Card, CardTitle, CardSubtitle, CardText, CardBody } from "reactstrap";
 
 import Avatar from "../Avatar";
-import { connect, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { getUser } from "../../store/users";
 
 const UserCard = ({

@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Avatar from "../../components/Avatar";
-import Page from "../../components/Page";
 import {
   Col,
-  Card,
-  FormGroup,
-  Label,
+
   Input,
   Button,
   Row,
@@ -14,7 +11,6 @@ import {
   Form,
   Alert,
 } from "reactstrap";
-import { MdSave } from "react-icons/md";
 import SettingForm from "./settingForm";
 import Joi from "joi-browser";
 import { connect } from "react-redux";

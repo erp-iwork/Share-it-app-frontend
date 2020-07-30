@@ -1,20 +1,14 @@
-import React, { Component } from "react";
-import Avatar from "../../components/Avatar";
-import Page from "../../components/Page";
+import React from "react";
+
 import {
   Col,
-  Card,
-  FormGroup,
-  Label,
-  Input,
-  Button,
+
   Row,
   CardHeader,
   CardFooter,
   Form,
   Alert,
 } from "reactstrap";
-import { MdSave } from "react-icons/md";
 import SettingForm from "./settingForm";
 import { connect } from "react-redux";
 import {

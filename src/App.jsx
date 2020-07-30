@@ -36,12 +36,8 @@ const ProfilePage = React.lazy(() => import("./pages/profilePage"));
 const SettingsPage = React.lazy(() => import("./pages/settings"));
 const BuyAndSell = React.lazy(() => import("./pages/buySellHistory"));
 const AvailabilityPage = React.lazy(() => import("./pages/availabilityPage"));
-const SearchResults = React.lazy(() =>
-  import("./pages/searchResults/SearchResults")
-);
-const MobileOverview = React.lazy(() =>
-  import("./pages/mobileAppView/mobileAppOverview")
-);
+const SearchResults = React.lazy(() => import("./pages/searchResults/SearchResults"));
+const MobileOverview = React.lazy(() => import("./pages/mobileAppView/mobileAppOverview"));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split("/").pop()}`;

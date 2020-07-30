@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Label, Col, FormGroup, Button, FormFeedback } from "reactstrap";
+import { Input, Label, FormGroup, Button, FormFeedback } from "reactstrap";
 
 import Joi from "joi-browser";
 import { MdSave } from "react-icons/md";

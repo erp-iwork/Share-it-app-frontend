@@ -1,19 +1,8 @@
 import React, { Component } from "react";
-import Avatar from "../../components/Avatar";
 import Page from "../../components/Page";
 import {
-  Col,
   Card,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Row,
-  CardHeader,
-  CardFooter,
-  Form,
 } from "reactstrap";
-import { MdSave } from "react-icons/md";
 import PersonalInfoForm from "./personalInfoForm";
 import ContactInfoForm from "./contactInfoForm";
 

@@ -37,8 +37,6 @@ import routes from "../../config/routes";
 // import PageSpinner from "../../components/PageSpinner";
 import { getUser } from "../../store/users";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
-import FilterComp from "../../pages/allItems/components/filterComp";
-import { Drawer } from "rsuite";
 import bn from "../../utils/bemnames";
 import { getProfile } from "../../store/profile";
 const bem = bn.create("header");
@@ -55,16 +53,6 @@ class Header extends React.Component {
       focused: false,
     };
     this.updatePredicate = this.updatePredicate.bind(this);
-    this.close = this.close.bind(this);
-    this.toggleDrawer = this.toggleDrawer.bind(this);
-  }
-  close() {
-    this.setState({
-      show: false,
-    });
-  }
-  toggleDrawer() {
-    this.setState({ show: true });
   }
   componentDidMount() {
     this.updatePredicate();
@@ -222,22 +210,11 @@ class Header extends React.Component {
           )}
           <NavItem>
             <NavLink>
-              <Button outline color="light" onClick={this.toggleDrawer}>
+              <Button outline color="light" onClick={this.props.toggle}>
                 <MdFilterList />
               </Button>
             </NavLink>
           </NavItem>
-
-          <Drawer backdrop={true} show={this.state.show} onHide={this.close}>
-            <Drawer.Header>
-              <Drawer.Title>
-                <MdFilterList size={49} />
-              </Drawer.Title>
-            </Drawer.Header>
-            <Drawer.Body>
-              <FilterComp />
-            </Drawer.Body>
-          </Drawer>
 
           <NavItem>
             <NavLink id="Popover2">
