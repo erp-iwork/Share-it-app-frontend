@@ -32,6 +32,10 @@ const slice = createSlice({
       profile.errors = null;
       profile.status = "success";
     },
+    profileErrorsAndStatusReseted: (profile, action) => {
+      profile.errors = null;
+      profile.status = "initial";
+    },
   },
 });
 
@@ -40,6 +44,7 @@ const {
   profileReceived,
   profileRequestFailed,
   profileUpdated,
+  profileErrorsAndStatusReseted,
 } = slice.actions;
 export default slice.reducer;
 
@@ -60,6 +65,9 @@ export const updateProfile = (userId, profile) =>
     onSuccess: profileUpdated.type,
     onError: profileRequestFailed.type,
   });
+
+export const resetProfileErrorsAndStatus = () =>
+  profileErrorsAndStatusReseted();
 export const getProfile = createSelector(
   (state) => state.entities.profile,
   (profile) => profile.info

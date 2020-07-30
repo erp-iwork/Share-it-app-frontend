@@ -8,10 +8,11 @@ import {
   getErrors,
   getStatus,
   updateProfile,
+  getProfile,
 } from "../../store/profile";
-import { getCurrentUser } from "../../store/auth";
 import Joi from "joi-browser";
 import { getUser } from "../../services/authService";
+import { resetProfileErrorsAndStatus } from "../../store/profile";
 
 class ContactInfoForm extends SettingForm {
   state = {
@@ -24,8 +25,24 @@ class ContactInfoForm extends SettingForm {
     },
     errors: [],
   };
+  componentDidMount() {
+    const { profile } = this.props;
+    if (profile) {
+      const data = { ...this.state.data };
+      data.phonenumber = profile.phonenumber;
+      data.telegram = profile.telegram;
+      data.facebook = profile.facebook;
+      data.website = profile.website;
+      data.whatsapp = profile.whatsapp;
+      this.setState({ data });
+    }
+  }
+  componentWillUnmount() {
+    this.props.resetProfileErrorsAndStatus();
+  }
+
   schema = {
-    phonenumber: Joi.string().allow("").optional().label("Phone Number"),
+    phonenumber: Joi.number().allow("").optional().label("Phone Number"),
     telegram: Joi.string().allow("").optional().label("Telegram"),
     facebook: Joi.string().allow("").optional().label("Facebook"),
     website: Joi.string().allow("").optional().label("Website"),
@@ -78,12 +95,13 @@ class ContactInfoForm extends SettingForm {
 
 const mapStateToProps = (state) => ({
   loading: getLoading(state),
-  currentUser: getCurrentUser(state),
+  profile: getProfile(state),
   errors: getErrors(state),
   status: getStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateProfile: (userId, profile) => dispatch(updateProfile(userId, profile)),
+  resetProfileErrorsAndStatus: () => dispatch(resetProfileErrorsAndStatus()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContactInfoForm);

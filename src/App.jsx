@@ -26,7 +26,7 @@ import {
 } from "./pages/staticPages";
 import { getUser } from "./services/authService";
 import { loadUser } from "./store/users";
-import { connect } from "react-redux";
+import { loadProfile } from "./store/profile";
 
 const store = configureStore();
 const HomePage = React.lazy(() => import("./pages/homePage"));
@@ -57,6 +57,7 @@ class App extends React.Component {
     const userId = getUser() && getUser().id;
     if (!userId) return;
     store.dispatch(loadUser(userId));
+    store.dispatch(loadProfile(userId));
   }
 
   render() {
