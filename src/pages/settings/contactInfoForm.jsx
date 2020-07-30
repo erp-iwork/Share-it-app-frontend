@@ -1,14 +1,6 @@
 import React from "react";
 
-import {
-  Col,
-
-  Row,
-  CardHeader,
-  CardFooter,
-  Form,
-  Alert,
-} from "reactstrap";
+import { Col, Row, CardHeader, CardFooter, Form, Alert } from "reactstrap";
 import SettingForm from "./settingForm";
 import { connect } from "react-redux";
 import {
@@ -41,7 +33,7 @@ class ContactInfoForm extends SettingForm {
   };
   doSubmit = () => {
     console.log(this.state.data);
-    const currentUserId = getUser().id;
+    const currentUserId = getUser() && getUser().id;
     if (!currentUserId) return;
     this.props.updateProfile(currentUserId, this.state.data);
   };

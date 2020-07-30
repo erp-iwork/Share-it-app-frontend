@@ -36,7 +36,7 @@ class HomePage extends Component {
     //load filtered items without any filter option
     this.props.loadFilterdItems({});
     //load user info if they are logged in
-    const userId = getUser().id;
+    const userId = getUser() && getUser().id;
     if (!userId) return;
     this.props.loadUser(userId);
   }
