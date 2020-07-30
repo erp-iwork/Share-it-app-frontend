@@ -38,7 +38,6 @@ import routes from "../../config/routes";
 import { getUser } from "../../store/users";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 import bn from "../../utils/bemnames";
-import { getProfile } from "../../store/profile";
 const bem = bn.create("header");
 
 class Header extends React.Component {
