@@ -24,7 +24,10 @@ html {
    padding: 40px;
     transform: translateX(0);
     margin-top: 40px;
-    height: 90%;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: scroll;
+
     border-radius: 10px;
     margin-right: 5px;
 
