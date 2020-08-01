@@ -15,10 +15,12 @@ class Checkout extends Component {
 
   sucessPayment = (data) => {
     alert("Payment Sucessful");
+    this.props.onBoost(true);
   };
 
   errorPayment = (data) => {
     alert("Something went Wrong");
+    this.props.onBoost(false);
   };
 
   onToken = (amount, description) => (token) =>

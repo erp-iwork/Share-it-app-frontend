@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Checkout from "./components/Checkout";
 
-
 class PaymentPage extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +9,7 @@ class PaymentPage extends Component {
   render() {
     return (
       <Checkout
+        onBoost={this.props.onBoost}
         name={"SharreIt Payment"}
         description={"Some Description Here"}
         amount={3}

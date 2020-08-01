@@ -49,6 +49,7 @@ class PostItemForm extends NestedForm {
         boost: false,
       },
       pictures: [],
+      checked: false,
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -90,12 +91,17 @@ class PostItemForm extends NestedForm {
     this.props.addItem(formData);
   };
 
-  onBoost = (e) => {
+  handleBoost = (bool) => {
     const data = { ...this.state.data };
-    data.boost = !data.boost;
+    console.log("boost", bool);
+    data.boost = bool;
     this.setState({
       data,
     });
+  };
+
+  toggleChecked = () => {
+    this.setState({ checked: !this.state.checked });
   };
 
   render() {
@@ -122,7 +128,10 @@ class PostItemForm extends NestedForm {
     );
 
     return (
-      <Page breadcrumbs={[{ name: "Share", active: true }]} className='postItemContainer'>
+      <Page
+        breadcrumbs={[{ name: "Share", active: true }]}
+        className="postItemContainer"
+      >
         <div className="d-flex justify-content-center align-items-center flex-column">
           <Col xl={10} lg={12} md={12} sm={12}>
             <Card>
@@ -502,11 +511,16 @@ class PostItemForm extends NestedForm {
                         </Col>
                       </Row>
                       <Col>
-                        <Checkbox onChange={this.onBoost}>Boost</Checkbox>
+                        <Checkbox
+                          checked={this.state.data.boost}
+                          onChange={this.toggleChecked}
+                        >
+                          Boost
+                        </Checkbox>
                       </Col>
-                      {this.state.data.boost && (
+                      {this.state.checked && (
                         <Col align="right">
-                          <PaymentPage />
+                          <PaymentPage onBoost={this.handleBoost} />
                         </Col>
                       )}
                     </Col>
