@@ -36,11 +36,7 @@ button,
 .cr-app {
     display: flex;
     width: 100%;
-    // height: auto;
-    // padding-left: 10px;
     min-height: 100vh;
-    // margin-top: 15px;
-    // padding-bottom: 200px;
     overflow-x: hidden;
 }
 
@@ -53,14 +49,9 @@ button,
 }
 
 .BackContainer {
-    // height: auto;
-    // overflow: scroll;
     background-color: #fff;
 }
 
-// .margin {
-//   margin: 5px;
-// }
 .floatingActionContainer {
     z-index: 99 !important;
     opacity: 1;
