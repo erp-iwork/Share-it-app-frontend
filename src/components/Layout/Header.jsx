@@ -38,6 +38,10 @@ import routes from "../../config/routes";
 import { getUser } from "../../store/users";
 import { getLoading, getSearchedItems, searchItems } from "../../store/items";
 import bn from "../../utils/bemnames";
+//for unread message
+import { wsConnect } from "../../store/websocket";
+import { chatApi } from "../../store/chat-api";
+
 const bem = bn.create("header");
 
 class Header extends React.Component {
@@ -54,6 +58,7 @@ class Header extends React.Component {
     this.updatePredicate = this.updatePredicate.bind(this);
   }
   componentDidMount() {
+    this.props.wsConnect(chatApi);
     this.updatePredicate();
     window.addEventListener("resize", this.updatePredicate);
   }
@@ -335,8 +340,11 @@ const mapStateToProps = (state) => ({
   loading: getLoading(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  searchItems: (query) => dispatch(searchItems(query)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   searchItems: (query) => dispatch(searchItems(query)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, {
+  searchItems: (query) => searchItems(query),
+  wsConnect,
+})(Header);
