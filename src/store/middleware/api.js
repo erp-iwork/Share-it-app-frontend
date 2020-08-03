@@ -1,12 +1,11 @@
 import axios from "axios";
 import * as actions from "../api";
-// import { toast } from "react-toastify";
 import { getToken } from "../../services/authService";
 //TODO
 //config file
 const token = getToken();
 console.log("token", token);
-const baseURL = "http://0.0.0.0:9000/api/v1";
+const baseURL = "https://share-app-test.herokuapp.com/api/v1";
 // const baseURL = "https://share-it-app-backend.herokuapp.com/api/v1";
 if (token) axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 axios.interceptors.response.use(null, (error) => {

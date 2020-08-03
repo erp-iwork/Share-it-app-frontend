@@ -219,10 +219,10 @@ class Header extends React.Component {
               </Button>
             </NavLink>
           </NavItem>
+          {this.props.currentUser && (
 
           <NavItem>
             <NavLink id="Popover2">
-              {this.props.currentUser && (
                 <>
                   <div onClick={this.toggleUserCardPopover}>
                     <Avatar
@@ -326,9 +326,10 @@ class Header extends React.Component {
                     </Popover>
                   </div>
                 </>
-              )}
             </NavLink>
           </NavItem>
+          )}
+
         </Nav>
       </Navbar>
     );
