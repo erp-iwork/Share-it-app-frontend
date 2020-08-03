@@ -38,11 +38,9 @@ class LoginFormPage extends MainForm {
 
   render() {
     if (this.props.status === "success") {
-      return (
-        <Redirect
-          to={this.props.from ? this.props.from.pathname : routes.homePage}
-        />
-      );
+      window.location = this.props.from
+        ? this.props.from.pathname
+        : routes.homePage;
     }
     if (getUser()) return <Redirect to="/" />;
     return (
