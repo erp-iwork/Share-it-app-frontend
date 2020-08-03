@@ -11,6 +11,7 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
+  Badge,
 } from "reactstrap";
 import {
   MdExitToApp,
@@ -27,6 +28,8 @@ import {
   MdQuestionAnswer,
   MdPageview,
   MdPerson,
+  MdNotificationsActive,
+  MdNotificationsNone,
 } from "react-icons/md";
 // import "rsuite/dist/styles/rsuite-default.css";
 import Logo from "../../assets/Icons/Logo.svg";
@@ -169,6 +172,23 @@ class Header extends React.Component {
           </Link>
         </Nav>
         <Nav navbar className={bem.e("nav-right")}>
+          <NavItem className="d-inline-flex">
+            <NavLink className="position-relative">
+              {/* //Use this if there isn't any notifications?? */}
+              <MdNotificationsNone size={25} className="text-light" />
+              {/* //Use the below if there is notifications?? */}
+
+              <MdNotificationsActive
+                size={25}
+                className="text-light can-click animated swing infinite"
+                onClick={this.toggleNotificationPopover}
+              />
+              <Badge pill className="mb-4 bg-danger" color="primary">
+                50
+              </Badge>
+            </NavLink>
+          </NavItem>
+
           <NavItem>
             <NavLink>
               <Link to={{ pathname: routes.postItem }}>
@@ -220,9 +240,8 @@ class Header extends React.Component {
             </NavLink>
           </NavItem>
           {this.props.currentUser && (
-
-          <NavItem>
-            <NavLink id="Popover2">
+            <NavItem>
+              <NavLink id="Popover2">
                 <>
                   <div onClick={this.toggleUserCardPopover}>
                     <Avatar
@@ -326,10 +345,9 @@ class Header extends React.Component {
                     </Popover>
                   </div>
                 </>
-            </NavLink>
-          </NavItem>
+              </NavLink>
+            </NavItem>
           )}
-
         </Nav>
       </Navbar>
     );
