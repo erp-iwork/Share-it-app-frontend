@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import STRIPE_PUBLISHABLE from "./stripe";
-import PAYMENT_SERVER_URL from "./server";
 import { Button } from "reactstrap";
+import { pay, getStatus } from "../../../store/payment";
+import { connect } from "react-redux";
 
 class Checkout extends Component {
   state = {
@@ -13,31 +13,24 @@ class Checkout extends Component {
 
   fromUSDTOCent = (amount) => amount * 100;
 
-  sucessPayment = (data) => {
-    alert("Payment Sucessful");
-    this.props.onBoost(true);
-  };
-
-  errorPayment = (data) => {
-    alert("Something went Wrong");
-    this.props.onBoost(false);
-  };
-
   onToken = (amount, description) => (token) =>
-    axios
-      .post(PAYMENT_SERVER_URL, {
-        description,
-        source: token.id,
-        currency: this.CURRENCY,
-        amount: this.fromUSDTOCent(amount),
-      })
-      .then(this.sucessPayment)
-      .catch(this.errorPayment);
-  onSubmit = () => {
-    console.log("submitted");
-  };
+    this.props.pay({
+      description,
+      source: token.id,
+      currency: this.CURRENCY,
+      amount: this.fromUSDTOCent(amount),
+    });
+
   render() {
     const { name, description, amount } = this.props;
+    if (this.props.status === "success") {
+      console.log("Payment Sucessful");
+      this.props.onBoost(true);
+    }
+    if (this.props.status === "failed") {
+      console.log("payment failed");
+      this.props.onBoost(false);
+    }
     return (
       <StripeCheckout
         name={name}
@@ -55,4 +48,11 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => ({
+  status: getStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  pay: (data) => dispatch(pay(data)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

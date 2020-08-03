@@ -1,5 +1,6 @@
-const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-  ? 'pk_test_51GyDMVIubp2SJpRJWKvi2AQbuBZ5k8fVHi9Qp7yQ95THwq1OaQ9mmxBmrhFyE9ipaK1acfPNdWj8G9STHRXCu5zh00mRoDIAhE'
-  : 'pk_test_51GyDMVIubp2SJpRJWKvi2AQbuBZ5k8fVHi9Qp7yQ95THwq1OaQ9mmxBmrhFyE9ipaK1acfPNdWj8G9STHRXCu5zh00mRoDIAhE';
- 
+const STRIPE_PUBLISHABLE =
+  process.env.NODE_ENV === "production"
+    ? "pk_test_51HBGyQADM9CkYQQFOqguxKTlPLk1Zvqo0t0127eHDY4xgJkRURwP62wCgQWgtOrxXL6pLCVhOrXnX3TG0ivMmxCb00PXQ3N7ir"
+    : "pk_test_51HBGyQADM9CkYQQFOqguxKTlPLk1Zvqo0t0127eHDY4xgJkRURwP62wCgQWgtOrxXL6pLCVhOrXnX3TG0ivMmxCb00PXQ3N7ir";
+
 export default STRIPE_PUBLISHABLE;

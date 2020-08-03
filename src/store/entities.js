@@ -6,6 +6,7 @@ import sharedItemsReducer from "./sharedItems";
 import profileReducer from "./profile";
 import messagesReducer from "./chat";
 import userReducer from "./users";
+import paymentReducer from "./payment";
 
 export default combineReducers({
   items: itemsReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   profile: profileReducer,
   chat: messagesReducer,
   users: userReducer,
+  payment: paymentReducer,
 });
