@@ -44,7 +44,6 @@ const slice = createSlice({
       state.newMessage = action.payload;
       console.log("getCurrentUser");
       console.log(auth.getUser());
-
       const currentUserId = auth.getUser() ? auth.getUser().id : null;
 
       const sender_index = state.conversations.findIndex(
@@ -62,6 +61,7 @@ const slice = createSlice({
       }
       if (receiver_index >= 0 && action.payload.sender === currentUserId) {
         state.conversations[receiver_index].unread = 0;
+        state.newMessage = null;
       }
       if (sender_index >= 0 && action.payload.receiver === currentUserId) {
         const count = state.conversations[sender_index].unread + 1;
@@ -183,5 +183,5 @@ export const filterConversationById = createSelector(
 
 export const getUnreadMessageCount = createSelector(
   (state) => state.entities.chat,
-  (chat) => chat.newMessage.unread
+  (chat) => chat.newMessage && chat.newMessage.unread
 );

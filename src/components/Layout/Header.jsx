@@ -34,7 +34,7 @@ import {
 // import "rsuite/dist/styles/rsuite-default.css";
 import Logo from "../../assets/Icons/Logo.svg";
 import SharreIt from "../../assets/Icons/Logo2.svg";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { UserCard } from "../Card";
 import routes from "../../config/routes";
 // import PageSpinner from "../../components/PageSpinner";
@@ -44,6 +44,7 @@ import bn from "../../utils/bemnames";
 //for unread message
 import { wsConnect } from "../../store/websocket";
 import { chatApi } from "../../store/chat-api";
+import { getUnreadMessageCount } from "../../store/chat";
 
 const bem = bn.create("header");
 
@@ -110,6 +111,10 @@ class Header extends React.Component {
     localStorage.clear();
     window.location = routes.homePage;
   };
+  // toggleNotificationPopover = () => {
+  //   console.log("clicked");
+  //   this.props.history.push("/chat");
+  // };
 
   render() {
     // const isDesktop = this.state.isDesktop;
@@ -175,17 +180,32 @@ class Header extends React.Component {
           <NavItem className="d-inline-flex">
             <NavLink className="position-relative">
               {/* //Use this if there isn't any notifications?? */}
-              <MdNotificationsNone size={25} className="text-light" />
+              {this.props.unreadMessageCount <= 0 || "" ? (
+                <Link to={routes.chat}>
+                  <MdNotificationsNone
+                    size={25}
+                    className="text-light"
+                    onClick={this.toggleNotificationPopover}
+                  />
+                </Link>
+              ) : (
+                <Link to={routes.chat}>
+                  <MdNotificationsActive
+                    size={25}
+                    className="text-light can-click animated swing infinite"
+                    onClick={this.toggleNotificationPopover}
+                  />
+                </Link>
+              )}
               {/* //Use the below if there is notifications?? */}
 
-              <MdNotificationsActive
-                size={25}
-                className="text-light can-click animated swing infinite"
-                onClick={this.toggleNotificationPopover}
-              />
-              <Badge pill className="mb-4 bg-danger" color="primary">
-                50
-              </Badge>
+              <>
+                {this.props.unreadMessageCount > 0 && (
+                  <Badge pill className="mb-4 bg-danger" color="primary">
+                    {this.props.unreadMessageCount}
+                  </Badge>
+                )}
+              </>
             </NavLink>
           </NavItem>
 
@@ -357,6 +377,7 @@ const mapStateToProps = (state) => ({
   currentUser: getUser(state),
   items: getSearchedItems(state),
   loading: getLoading(state),
+  unreadMessageCount: getUnreadMessageCount(state),
 });
 
 // const mapDispatchToProps = (dispatch) => ({
