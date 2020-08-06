@@ -4,6 +4,8 @@ import { PersonalInformation, Ratings, SharedItems } from "./components";
 import { loadSharedItems } from "../../store/sharedItems";
 import { connect } from "react-redux";
 import { loadProfile } from "../../store/profile";
+import { setSelectedUserId } from "../../store/users";
+import { loadRates } from "../../store/rates";
 
 class UserProfilePage extends Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class UserProfilePage extends Component {
 
     await this.props.loadSharedItems(userId);
     await this.props.loadProfile(userId);
+    this.props.setSelectedUserId(userId);
+    this.props.loadRates(userId);
     this.state = {
       userId,
     };
@@ -31,6 +35,8 @@ class UserProfilePage extends Component {
     if (this.state.userId != userId) {
       await this.props.loadSharedItems(userId);
       await this.props.loadProfile(userId);
+      this.props.setSelectedUserId(userId);
+      this.props.loadRates(userId);
       this.state = {
         userId,
       };
@@ -56,5 +62,7 @@ class UserProfilePage extends Component {
 const mapDispatchToProps = (dispatch) => ({
   loadSharedItems: (ownerId) => dispatch(loadSharedItems(ownerId)),
   loadProfile: (userId) => dispatch(loadProfile(userId)),
+  setSelectedUserId: (userId) => dispatch(setSelectedUserId(userId)),
+  loadRates: (userId) => dispatch(loadRates(userId)),
 });
 export default connect(null, mapDispatchToProps)(UserProfilePage);
