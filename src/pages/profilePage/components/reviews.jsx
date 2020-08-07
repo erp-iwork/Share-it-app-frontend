@@ -26,7 +26,7 @@ class ReviewsComp extends Component {
                     <b>{rate && rate.rater && rate.rater.name}</b>
                   </Col>
                   <Col md={5}>
-                    <Rate value={rate && rate.rating} />
+                    <Rate value={rate && rate.rating} disabled={true} />
                   </Col>
                 </Row>
                 <div>
