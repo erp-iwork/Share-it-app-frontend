@@ -19,9 +19,9 @@ class UserProfilePage extends Component {
     await this.props.loadProfile(userId);
     this.props.setSelectedUserId(userId);
     this.props.loadRates(userId);
-    this.state = {
+    this.setState({
       userId,
-    };
+    });
   };
   componentDidUpdate = async (prevProps, prevState) => {
     /**
@@ -37,9 +37,9 @@ class UserProfilePage extends Component {
       await this.props.loadProfile(userId);
       this.props.setSelectedUserId(userId);
       this.props.loadRates(userId);
-      this.state = {
+      this.setState({
         userId,
-      };
+      });
     }
   };
   render() {

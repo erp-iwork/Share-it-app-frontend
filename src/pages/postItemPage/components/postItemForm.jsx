@@ -105,6 +105,10 @@ class PostItemForm extends NestedForm {
   };
 
   render() {
+    const { data } = this.state;
+    if (data.is_donating === "true") {
+      data.price = "0.00";
+    }
     if (this.props.status === "success") {
       window.setTimeout(() => {
         window.location.reload(false);
@@ -174,7 +178,9 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("zip_code", "Zip code", "zip code")}
                         </Col>
                         <Col xs={12} md={4}>
-                          {this.renderInput("price", "Price", "Price")}
+                          {data.is_donating === "true"
+                            ? this.renderInput("price", "Price", "Price")
+                            : this.renderInput("price", "Price", "Price", true)}
                         </Col>
 
                         {category && category.name === "Product" ? (

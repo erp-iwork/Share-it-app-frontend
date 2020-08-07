@@ -124,13 +124,14 @@ export const loadItems = () => (dispatch, getState) => {
   );
 };
 
-export const getItemById = (itemId) =>
-  apiCallBegan({
+export const getItemById = (itemId) => {
+  return apiCallBegan({
     url: url + itemId,
     onStart: itemsRequested.type,
     onSuccess: itemReceived.type,
     onError: itemsRequestFailed.type,
   });
+};
 
 export const addItem = (item) =>
   apiCallBegan({

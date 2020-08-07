@@ -185,7 +185,7 @@ class NestedForm extends Component {
       </FormGroup>
     );
   }
-  renderInput(name, label, placeholder, type = "text") {
+  renderInput(name, label, placeholder, type = "text", readonly = false) {
     const { data } = this.state;
     return (
       <FormGroup>
@@ -194,6 +194,7 @@ class NestedForm extends Component {
         </Label>
         <Col sm={12}>
           <Input
+            readOnly={readonly}
             type={type}
             name={name}
             value={data[name]}

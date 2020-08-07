@@ -11,11 +11,26 @@ class SingleItemViewPage extends Component {
   componentDidMount() {
     const itemId = this.props.match.params.id;
     this.props.getItemById(itemId);
+    this.setState({
+      itemId,
+    });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps == undefined) {
+      return false;
+    }
+    const itemId = this.props.match.params.id;
+    if (this.state.itemId != itemId) {
+      this.props.getItemById(itemId);
+      this.setState({
+        itemId,
+      });
+    }
   }
 
   render() {
-    if (this.props.selectedItem.itemId !== this.props.match.params.id)
-      this.props.getItemById(this.props.match.params.id);
+    // if (this.props.selectedItem.itemId !== this.props.match.params.id)
+    //   this.props.getItemById(this.props.match.params.id);
     return (
       <Col className="mt-4">
         {this.props.loading && <PageSpinner />}
