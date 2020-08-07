@@ -3,18 +3,22 @@ import { Col, Row } from "reactstrap";
 import ProductsComp from "./Products";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getLoading, getItems, loadItems } from "../../../store/items";
+import {
+  loadTopItems,
+  getTopSharedItems,
+  getTopDonatedItems,
+} from "../../../store/topItems";
 
 class PopularAmongUsers extends Component {
   componentDidMount() {
-    this.props.loadItems();
+    this.props.loadTopItems();
   }
 
   render() {
     return (
       <div className="popularAmongUsersContainer">
         <Row>
-          {this.props.items.map((item) => (
+          {this.props.topSharedItems.map((item) => (
             <Col key={item.itemId} md={2} sm={12} xs={12}>
               <Link to={`/items/${item.itemId}`}>
                 <ProductsComp item={item} />
@@ -27,12 +31,12 @@ class PopularAmongUsers extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  items: getItems(state),
-  loading: getLoading(state),
+  topSharedItems: getTopSharedItems(state),
+  topDonatedItems: getTopDonatedItems(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadItems: (options) => dispatch(loadItems(options)),
+  loadTopItems: () => dispatch(loadTopItems()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopularAmongUsers);
