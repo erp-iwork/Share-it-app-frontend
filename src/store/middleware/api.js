@@ -5,8 +5,9 @@ import { getToken } from "../../services/authService";
 //config file
 const token = getToken();
 console.log("token", token);
-const baseURL = "http://0.0.0.0:9000/api/v1";
 if (token) axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+console.log("process", process.env.REACT_APP_API_URL);
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
@@ -28,7 +29,6 @@ const api = ({ dispatch, getState }) => (next) => async (action) => {
   next(action);
   try {
     const response = await axios.request({
-      baseURL,
       url,
       method,
       data,

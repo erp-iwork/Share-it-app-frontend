@@ -18,7 +18,13 @@ class ReviewsComp extends Component {
           {this.props.rates.map((rate) => (
             <>
               <div md={2}>
-                <Avatar src={rate && rate.rater && rate.rater.avatar} />
+                <Avatar
+                  src={
+                    rate &&
+                    rate.rater &&
+                    process.env.REACT_APP_API_URL + rate.rater.avatar
+                  }
+                />
               </div>
               <Col md={10}>
                 <Row className="reviewbody">
