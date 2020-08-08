@@ -182,12 +182,16 @@ const makeUrl = (options) => {
     max_price,
     condition,
     search,
+    city,
+    state,
   } = options;
   return `items?sub_category=${sub_category ? sub_category : ""}&category=${
     category ? category : ""
   }&min_price=${min_price ? min_price : ""}&max_price=${
     max_price ? max_price : ""
-  }&condition=${condition ? condition : ""}&search=${search ? search : ""}`;
+  }&condition=${condition ? condition : ""}&search=${
+    search ? search : ""
+  }&state=${state ? state : ""}&city=${city ? city : ""}`;
 };
 
 export const loadFilteredItems = (options) =>

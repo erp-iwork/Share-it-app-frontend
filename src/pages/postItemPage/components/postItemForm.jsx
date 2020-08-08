@@ -29,6 +29,7 @@ import {
 } from "../../../store/items";
 import PaymentPage from "../../payment";
 import { Checkbox } from "antd";
+import csc from "country-state-city";
 
 class PostItemForm extends NestedForm {
   constructor(props) {
@@ -38,6 +39,8 @@ class PostItemForm extends NestedForm {
         owner_id: "",
         title: "",
         zip_code: "",
+        city: "",
+        state: "",
         price: "",
         description: "",
         term_and_conditions: "",
@@ -49,6 +52,7 @@ class PostItemForm extends NestedForm {
         boost: false,
       },
       pictures: [],
+      usStates: [],
       checked: false,
     };
 
@@ -56,6 +60,10 @@ class PostItemForm extends NestedForm {
   }
   MySwal = withReactContent(Swal);
   componentDidMount() {
+    console.log("country", csc.getCountryByCode("US"));
+    console.log("us states", csc.getStatesOfCountry("231"));
+
+    // console.log(cities.filter((city) => city.name.match("Albuquerque")));
     //get longtude and latitude
     const data = { ...this.state.data };
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -63,7 +71,7 @@ class PostItemForm extends NestedForm {
       data.longitude = position.coords.longitude;
     });
     this.props.loadCategories();
-    this.setState({ data });
+    this.setState({ data, usStates: csc.getStatesOfCountry("231") });
   }
   onDrop(picture) {
     this.setState({
@@ -76,6 +84,9 @@ class PostItemForm extends NestedForm {
     if (!data.condition) data.condition = "none";
     data.properties = JSON.stringify(data.properties);
     data.owner_id = this.props.currentUser.id;
+    //convert city by city name && state by state name
+    data.city = csc.getCityById(data.city).name;
+    data.state = csc.getStateById(data.state).name;
     //TODO remove when the backed fixed
     data.category = parseInt(data.category_id);
     data.is_available = true;
@@ -175,12 +186,27 @@ class PostItemForm extends NestedForm {
                           {this.renderInput("title", "Name", "Name")}
                         </Col>
                         <Col xs={12} md={4}>
-                          {this.renderInput("zip_code", "Zip code", "zip code")}
-                        </Col>
-                        <Col xs={12} md={4}>
                           {data.is_donating === "true"
                             ? this.renderInput("price", "Price", "Price")
                             : this.renderInput("price", "Price", "Price", true)}
+                        </Col>
+
+                        <Col xs={12} md={4}>
+                          {this.renderSelect(
+                            "state",
+                            "State",
+                            this.state.usStates
+                          )}
+                        </Col>
+                        <Col xs={12} md={4}>
+                          {this.renderSelect(
+                            "city",
+                            "City",
+                            csc.getCitiesOfState(this.state.data.state)
+                          )}
+                        </Col>
+                        <Col xs={12} md={4}>
+                          {this.renderInput("zip_code", "Zip code", "zip code")}
                         </Col>
 
                         {category && category.name === "Product" ? (

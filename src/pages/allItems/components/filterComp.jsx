@@ -10,6 +10,7 @@ import {
   loadSubcategoriesByCategoryId,
   getSubcategoriesByCategoryId,
 } from "../../../store/subcategories";
+import csc from "country-state-city";
 
 class FilterComponent extends FilterForm {
   state = {
@@ -19,6 +20,8 @@ class FilterComponent extends FilterForm {
       max_price: "",
       sub_category_id: "",
       is_donating: "",
+      state: "",
+      city: "",
     },
   };
   componentDidMount() {
@@ -35,6 +38,8 @@ class FilterComponent extends FilterForm {
       sub_category_id,
       min_price,
       max_price,
+      state,
+      city,
     } = this.state.data;
 
     this.props.loadFilteredItems({
@@ -42,6 +47,8 @@ class FilterComponent extends FilterForm {
       sub_category: sub_category_id,
       min_price,
       max_price,
+      state: csc.getStateById(state).name,
+      city: csc.getCityById(city).name,
     });
   };
   render() {
@@ -83,26 +90,38 @@ class FilterComponent extends FilterForm {
                 <Label>To</Label>
                 <Col>{this.renderInput("max_price", "Highest", "number")}</Col>
               </Row>
-              <hr />
+              {/* <hr />
               <Label>Distance</Label>
               <Row>
                 <Col md={10}>
                   <Slider defaultValue={10} />
                 </Col>
                 <Col md={2}>Miles</Col>
+              </Row> */}
+              <hr />
+              <Row>
+                <Col>
+                  {this.renderSelect(
+                    "state",
+                    "State",
+                    csc.getStatesOfCountry("231")
+                  )}
+                </Col>
+                <Col>
+                  {this.renderSelect(
+                    "city",
+                    "City",
+                    csc.getCitiesOfState(this.state.data.state)
+                  )}
+                </Col>
               </Row>
+
               <hr />
 
               <Label>Sort By</Label>
               <div>
                 <Button outline size="sm" className="filterButtons">
-                  Relevance
-                </Button>
-                <Button outline size="sm" className="filterButtons">
                   Newest First
-                </Button>
-                <Button outline size="sm" className="filterButtons">
-                  Closest First
                 </Button>
                 <Button size="sm" className="filterButtons" outline>
                   Price: High to low

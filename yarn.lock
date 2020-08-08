@@ -3724,6 +3724,11 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
+country-state-city@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/country-state-city/-/country-state-city-1.0.5.tgz#7ea4c71e06c669d53e9897470e6bd565c9cb6136"
+  integrity sha512-2mBXgYCwWNeQLhtESLufNK3mwK8dYdzniywma1+00RmUB1FeQqJCU6Ehufz60E5iD/uM1bnt+V9K6fZbkQAhew==
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
