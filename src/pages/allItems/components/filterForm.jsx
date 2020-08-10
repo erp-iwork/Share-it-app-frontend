@@ -25,6 +25,12 @@ class FilterForm extends Component {
     data[input.name] = input.value; //dynamically access .. property
     this.setState({ data });
   };
+  handleSort = ({ currentTarget: button }) => {
+    const sortData = { ...this.state.sortData };
+    sortData[button.name] = !sortData[button.name];
+    console.log(sortData);
+    console.log(this.doSort(sortData));
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -35,6 +41,19 @@ class FilterForm extends Component {
     return (
       <Button block disabled={this.props.loading}>
         {this.props.loading ? <LoadingSpinner /> : label}
+      </Button>
+    );
+  }
+  renderSortButton(name, label) {
+    return (
+      <Button
+        name={name}
+        outline
+        size="sm"
+        className="filterButtons"
+        onClick={this.handleSort}
+      >
+        {label}
       </Button>
     );
   }

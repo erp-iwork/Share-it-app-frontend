@@ -1,7 +1,11 @@
 import React from "react";
 import { Col, Row, Button, CardHeader, Label, Form } from "reactstrap";
 import { Slider } from "antd";
-import { loadFilteredItems } from "../../../store/items";
+import {
+  loadFilteredItems,
+  getFilteredItems,
+  sortFilteredItems,
+} from "../../../store/items";
 import { connect } from "react-redux";
 import { getCategories, loadCategories } from "../../../store/categories";
 import FilterForm from "./filterForm";
@@ -23,6 +27,15 @@ class FilterComponent extends FilterForm {
       state: "",
       city: "",
     },
+    sortData: {
+      all: false,
+      newest: false,
+      priceasc: false,
+      pricedesc: false,
+      last24hours: false,
+      last7days: false,
+      lastmonth: false,
+    },
   };
   componentDidMount() {
     this.props.loadCategories();
@@ -30,6 +43,9 @@ class FilterComponent extends FilterForm {
 
   handleSearch = () => {
     this.props.search(this.state);
+  };
+  doSort = (options) => {
+    this.props.sortFilteredItems(options);
   };
 
   doSubmit = () => {
@@ -117,38 +133,29 @@ class FilterComponent extends FilterForm {
               </Row>
 
               <hr />
-
-              <Label>Sort By</Label>
-              <div>
-                <Button outline size="sm" className="filterButtons">
-                  Newest First
-                </Button>
-                <Button size="sm" className="filterButtons" outline>
-                  Price: High to low
-                </Button>
-                <Button size="sm" className="filterButtons" outline>
-                  Price: Low to High
-                </Button>
-              </div>
-              <hr />
-              <Label>Posted Within</Label>
-              <div>
-                <Button outline size="sm" className="filterButtons">
-                  All Items
-                </Button>
-                <Button size="sm" className="filterButtons" outline>
-                  The Last 24 Hours
-                </Button>
-                <Button outline size="sm" className="filterButtons">
-                  The Last Seven Days
-                </Button>
-                <Button size="sm" className="filterButtons" outline>
-                  The Last Month
-                </Button>
-              </div>
             </Col>
             <hr />
             {this.renderButton("Filter Search")}
+
+            {this.props.filteredItems && this.props.filteredItems.length > 1 && (
+              <React.Fragment>
+                <hr />
+                <Label>Sort By</Label>
+                <div>
+                  {this.renderSortButton("newest", "Newest First")}
+                  {this.renderSortButton("pricedesc", "Price: High to low")}
+                  {this.renderSortButton("priceasc", "Price: Low to High")}
+                </div>
+                <hr />
+                <Label>Posted Within</Label>
+                <div>
+                  {this.renderSortButton("all", "All Items")}
+                  {this.renderSortButton("last24hours", "The Last 24 Hours")}
+                  {this.renderSortButton("last7days", "The Last Seven Days")}
+                  {this.renderSortButton("lastmonth", "The Last Month")}
+                </div>
+              </React.Fragment>
+            )}
           </div>
         </Form>
         <hr />
@@ -170,6 +177,7 @@ class FilterComponent extends FilterForm {
 const mapStateToProps = (state) => ({
   categories: getCategories(state),
   subcategories: getSubcategoriesByCategoryId(state),
+  filteredItems: getFilteredItems(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -177,6 +185,7 @@ const mapDispatchToProps = (dispatch) => ({
   loadSubcategoriesByCategoryId: (options) =>
     dispatch(loadSubcategoriesByCategoryId(options)),
   loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
+  sortFilteredItems: (options) => dispatch(sortFilteredItems(options)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterComponent);

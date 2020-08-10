@@ -18,6 +18,7 @@ const slice = createSlice({
     searchedItems: [],
     myItems: [],
     filterdItems: [],
+    filterdItemsOrginal: [],
     filteredItemsBySubcategory: [],
   },
   reducers: {
@@ -74,6 +75,7 @@ const slice = createSlice({
     itemFiltered: (items, action) => {
       // items.filterOptions = action.payload;
       items.filterdItems = action.payload.results;
+      items.filterdItemsOrginal = action.payload.results;
       items.loading = false;
       items.errors = null;
     },
@@ -86,6 +88,45 @@ const slice = createSlice({
       items.searchedItems = action.payload.results;
       items.loading = false;
       items.errors = null;
+    },
+    filteredItemsSorted: (items, action) => {
+      const {
+        all,
+        newest,
+        priceasc,
+        pricedesc,
+        last24hours,
+        last7days,
+        lastmonth,
+      } = action.payload;
+      const last7DayStart = moment().subtract(7, "d");
+      const lastMonthStart = moment().subtract(1, "months").startOf("month");
+      var today = moment().subtract(0, "d");
+      var last24HourStart = moment().subtract(24, "h");
+      var currentHour = moment().subtract(0, "h");
+      priceasc
+        ? (items.filterdItems = _.orderBy(items.filterdItems, "price", "asc"))
+        : (items.filterdItems = items.filterdItemsOrginal);
+      if (pricedesc)
+        items.filterdItems = _.orderBy(items.filterdItems, "price", "desc");
+      if (newest)
+        items.filterdItems = _.orderBy(
+          items.filterdItems,
+          (item) => new Date(item.created_at),
+          "desc"
+        );
+      if (last7days)
+        items.filterdItems = _.filter(items.filterdItems, (item) =>
+          moment(item.created_at).isBetween(last7DayStart, today)
+        );
+      if (lastmonth)
+        items.filterdItems = _.filter(items.filterdItems, (item) =>
+          moment(item.created_at).isBetween(lastMonthStart, today)
+        );
+      if (last24hours)
+        items.filterdItems = _.filter(items.filterdItems, (item) =>
+          moment(item.created_at).isBetween(last24HourStart, currentHour)
+        );
     },
   },
 });
@@ -102,6 +143,7 @@ const {
   itemSearched,
   myItemReceived,
   itemFilteredBySubcategory,
+  filteredItemsSorted,
 } = slice.actions;
 export default slice.reducer;
 
@@ -193,7 +235,6 @@ const makeUrl = (options) => {
     search ? search : ""
   }&state=${state ? state : ""}&city=${city ? city : ""}`;
 };
-
 export const loadFilteredItems = (options) =>
   apiCallBegan({
     url: makeUrl(options),
@@ -286,3 +327,22 @@ export const getBoostedItems = createSelector(
   (state) => state.entities.items,
   (items) => items.list.filter((item) => item.boost === true)
 );
+
+export const sortFilteredItems = (options) => filteredItemsSorted(options);
+// createSelector(
+//   (state) => state.entities.items.filterdItems,
+//   (filterdItems) => {
+//     const {
+//       all,
+//       newest,
+//       priceasc,
+//       pricedesc,
+//       last24hours,
+//       last7days,
+//       lastmonth,
+//     } = options;
+//     if (all) return filterdItems;
+//     if (newest)
+//       return _.orderBy(filterdItems, (o) => new Date(o.created_at), "desc");
+//   }
+// );

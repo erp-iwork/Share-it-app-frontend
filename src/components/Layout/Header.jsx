@@ -12,6 +12,7 @@ import {
   ListGroupItem,
   Button,
   Badge,
+  UncontrolledPopover,
 } from "reactstrap";
 import {
   MdExitToApp,
@@ -270,7 +271,8 @@ class Header extends React.Component {
                         this.props.currentUser && this.props.currentUser.avatar
                       }
                     />
-                    <Popover
+                    <UncontrolledPopover
+                      trigger="focus"
                       placement="bottom-start"
                       isOpen={this.state.isOpenUserCardPopover}
                       toggle={this.toggleUserCardPopover}
@@ -362,7 +364,7 @@ class Header extends React.Component {
                           </ListGroup>
                         </UserCard>
                       </PopoverBody>
-                    </Popover>
+                    </UncontrolledPopover>
                   </div>
                 </>
               </NavLink>
