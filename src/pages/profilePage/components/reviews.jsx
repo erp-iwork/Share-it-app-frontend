@@ -21,15 +21,15 @@ class ReviewsComp extends Component {
                 <Avatar
                   src={
                     rate &&
-                    rate.rater &&
-                    process.env.REACT_APP_API_URL + rate.rater.avatar
+                    rate.rater_user &&
+                    process.env.REACT_APP_API_URL + rate.rater_user.avatar
                   }
                 />
               </div>
               <Col md={10}>
                 <Row className="reviewbody">
                   <Col md={7}>
-                    <b>{rate && rate.rater && rate.rater.name}</b>
+                    <b>{rate && rate.rater_user && rate.rater_user.name}</b>
                   </Col>
                   <Col md={5}>
                     <Rate value={rate && rate.rating} disabled={true} />

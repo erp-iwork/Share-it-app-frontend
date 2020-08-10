@@ -10,9 +10,9 @@ import {
 
 class RelatedAdsComp extends Component {
   componentDidMount() {
-    this.props.loadFilteredItems({
-      sub_category: this.props.selectedItem.sub_category.id,
-    });
+    // this.props.loadFilteredItems({
+    //   sub_category: this.props.selectedItem.sub_category.id,
+    // });
   }
 
   render() {
