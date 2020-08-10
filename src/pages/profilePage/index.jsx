@@ -12,11 +12,11 @@ class UserProfilePage extends Component {
     super(props);
     this.state = {};
   }
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const userId = this.props.match.params.id;
 
-    await this.props.loadSharedItems(userId);
-    await this.props.loadProfile(userId);
+    this.props.loadSharedItems(userId);
+    this.props.loadProfile(userId);
     this.props.setSelectedUserId(userId);
     this.props.loadRates(userId);
     this.setState({
