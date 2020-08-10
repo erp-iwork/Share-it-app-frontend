@@ -28,7 +28,7 @@ class LoginFormPage extends MainForm {
       password: Joi.string().min(8).required().label("Password"),
     };
   }
-  componentWillMount() {
+  componentWillUnmount() {
     this.props.resetErrors();
   }
 

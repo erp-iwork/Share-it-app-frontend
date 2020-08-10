@@ -1,17 +1,5 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Row,
-  CardFooter,
-  Alert,
-} from "reactstrap";
+import React from "react";
+import { Alert, Form } from "reactstrap";
 import RateForm from "./form";
 import Joi from "joi-browser";
 import { rate, getLoading, getStatus } from "../../../store/rates";

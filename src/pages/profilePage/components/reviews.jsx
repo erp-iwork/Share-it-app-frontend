@@ -16,7 +16,7 @@ class ReviewsComp extends Component {
       <>
         <Row>
           {this.props.rates.map((rate) => (
-            <>
+            <React.Fragment key={rate.ratingId}>
               <div md={2}>
                 <Avatar
                   src={
@@ -41,7 +41,7 @@ class ReviewsComp extends Component {
                   </div>
                 </div>
               </Col>
-            </>
+            </React.Fragment>
           ))}
         </Row>
         <hr />

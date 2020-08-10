@@ -1,15 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import { connect } from "react-redux";
-import {
-  Button,
-  Card,
-  CardBody,
-  Row,
-  Col,
-  Form,
-  Alert,
-} from "reactstrap";
+import { Button, Card, CardBody, Row, Col, Form, Alert } from "reactstrap";
 import { MdLock } from "react-icons/md";
 import Logo from "../../../assets/Icons/CLogo.svg";
 import Typography from "../../../components/Typography";
@@ -75,7 +67,7 @@ class RegistrationFormPage extends MainForm {
     //   this.setState({ errors });
     // }
   };
-  componentWillMount() {
+  componentWillUnmount() {
     this.props.resetErrors();
   }
 
@@ -85,10 +77,9 @@ class RegistrationFormPage extends MainForm {
     return (
       <Card className="p-4">
         <Col align="center">
-          <Link to={{pathname: routes.homePage}}>
-          <img className="CLogo" src={Logo} alt="" />
+          <Link to={{ pathname: routes.homePage }}>
+            <img className="CLogo" src={Logo} alt="" />
           </Link>
-
         </Col>
 
         <Typography className="label" align="center">

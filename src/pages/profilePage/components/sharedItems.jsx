@@ -27,7 +27,7 @@ class SharedItemsComp extends Component {
       >
         <Row>
           {this.props.sharedItems.map((item) => (
-            <Col md={3} sm={12} xs={12}>
+            <Col md={3} sm={12} xs={12} key={item.itemId}>
               <Item item={item} />
             </Col>
           ))}

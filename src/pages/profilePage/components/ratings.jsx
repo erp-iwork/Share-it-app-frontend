@@ -10,10 +10,7 @@ import {
 } from "reactstrap";
 import { Reviews } from ".";
 import RatingForm from "./ratingForm";
-import { getRates, loadRates } from "../../../store/rates";
 // import { getCurrentUser } from "../../../store/auth";
-import { connect } from "react-redux";
-import { getSelectedUserId } from "../../../store/users";
 
 class RatingsComp extends Component {
   constructor(props) {
