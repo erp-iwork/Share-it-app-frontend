@@ -4,22 +4,29 @@ import { Col } from "reactstrap";
 import { connect } from "react-redux";
 import {
   getSelectedItem,
-  loadFilteredItems,
-  getFilteredItems,
+  loadFilteredItemsBySubcategory,
+  getFilteredItemsBySubcategory,
 } from "../../../store/items";
 
 class RelatedAdsComp extends Component {
   componentDidMount() {
-    // this.props.loadFilteredItems({
-    //   sub_category: this.props.selectedItem.sub_category.id,
-    // });
+    this.props.loadFilteredItemsBySubcategory({
+      sub_category: this.props.selectedItem.sub_category.id,
+    });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps == undefined) {
+      return false;
+    }
+    const subcategoryId = this.props.selectedItem.sub_category.id;
+    if (prevProps.selectedItem.sub_category.id != subcategoryId) {
+      this.props.loadFilteredItemsBySubcategory({
+        sub_category: subcategoryId,
+      });
+    }
   }
 
   render() {
-    if (this.props.selectedItem.itemId !== this.props.match.params.id)
-      this.props.loadFilteredItems({
-        sub_category: this.props.selectedItem.sub_category.id,
-      });
     return (
       <>
         Related Shares
@@ -38,9 +45,10 @@ class RelatedAdsComp extends Component {
 
 const mapStateToProps = (state) => ({
   selectedItem: getSelectedItem(state),
-  items: getFilteredItems(state),
+  items: getFilteredItemsBySubcategory(state),
 });
 const mapDispatchToProps = (dispatch) => ({
-  loadFilteredItems: (options) => dispatch(loadFilteredItems(options)),
+  loadFilteredItemsBySubcategory: (options) =>
+    dispatch(loadFilteredItemsBySubcategory(options)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(RelatedAdsComp);

@@ -104,9 +104,10 @@ const slice = createSlice({
       var today = moment().subtract(0, "d");
       var last24HourStart = moment().subtract(24, "h");
       var currentHour = moment().subtract(0, "h");
-      priceasc
-        ? (items.filterdItems = _.orderBy(items.filterdItems, "price", "asc"))
-        : (items.filterdItems = items.filterdItemsOrginal);
+
+      if (priceasc)
+        items.filterdItems = _.orderBy(items.filterdItems, "price", "asc");
+
       if (pricedesc)
         items.filterdItems = _.orderBy(items.filterdItems, "price", "desc");
       if (newest)
@@ -116,17 +117,18 @@ const slice = createSlice({
           "desc"
         );
       if (last7days)
-        items.filterdItems = _.filter(items.filterdItems, (item) =>
+        items.filterdItems = _.filter(items.filterdItemsOrginal, (item) =>
           moment(item.created_at).isBetween(last7DayStart, today)
         );
       if (lastmonth)
-        items.filterdItems = _.filter(items.filterdItems, (item) =>
+        items.filterdItems = _.filter(items.filterdItemsOrginal, (item) =>
           moment(item.created_at).isBetween(lastMonthStart, today)
         );
       if (last24hours)
-        items.filterdItems = _.filter(items.filterdItems, (item) =>
+        items.filterdItems = _.filter(items.filterdItemsOrginal, (item) =>
           moment(item.created_at).isBetween(last24HourStart, currentHour)
         );
+      if (all) items.filterdItems = items.filterdItemsOrginal;
     },
   },
 });
