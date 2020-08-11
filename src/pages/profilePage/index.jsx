@@ -33,8 +33,8 @@ class UserProfilePage extends Component {
     }
     const userId = this.props.match.params.id;
     if (this.state.userId != userId) {
-      await this.props.loadSharedItems(userId);
-      await this.props.loadProfile(userId);
+      this.props.loadSharedItems(userId);
+      this.props.loadProfile(userId);
       this.props.setSelectedUserId(userId);
       this.props.loadRates(userId);
       this.setState({

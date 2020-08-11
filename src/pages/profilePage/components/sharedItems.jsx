@@ -7,10 +7,6 @@ import Item from "../../homePage/components/item"; //TODO refactor PUT item.jsx 
 import { connect } from "react-redux";
 import { getSharedItems } from "../../../store/sharedItems";
 class SharedItemsComp extends Component {
-  componentDidMount() {
-    // this.props.loadMyItems();
-  }
-
   render() {
     return (
       <Page
