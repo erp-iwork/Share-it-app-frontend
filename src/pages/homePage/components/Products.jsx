@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Card, CardImg, CardBody, Col, CardText } from "reactstrap";
 // import { Mercedes1 } from "../../../assets/demoImages";
 import { MdStar, MdStarBorder } from "react-icons/md";
+import Rate from "../../common/rate";
 
 class ProductsComp extends Component {
   render() {
@@ -17,11 +18,7 @@ class ProductsComp extends Component {
             <div className="personName">{item && item.owner.name}</div>
             <div className="pricetag">$ {item && item.price}</div>
             <div className="ratingColor">
-              <MdStar fontSize={15} className="rating" />
-              <MdStar fontSize={15} className="rating" />
-              <MdStarBorder fontSize={15} />
-              <MdStarBorder fontSize={15} />
-              <MdStarBorder fontSize={15} /> (23)
+              <Rate rates={item && item.rating} />
             </div>
           </CardText>
         </CardBody>
@@ -31,5 +28,3 @@ class ProductsComp extends Component {
 }
 
 export default ProductsComp;
-
-

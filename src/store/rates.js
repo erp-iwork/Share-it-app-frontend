@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
 // import moment from "moment";
+import _ from "lodash";
 
 const slice = createSlice({
   name: "rates",
@@ -58,7 +59,7 @@ export const rate = (data) =>
   });
 export const getRates = createSelector(
   (state) => state.entities.rates,
-  (rates) => rates.list
+  (rates) => _.orderBy(rates.list, (item) => new Date(item.created_at), "desc")
 );
 
 export const getLoading = createSelector(

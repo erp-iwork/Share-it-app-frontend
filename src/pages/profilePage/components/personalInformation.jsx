@@ -14,6 +14,9 @@ import {
 import { getProfile } from "../../../store/profile";
 import { connect } from "react-redux";
 import { getCurrentUser } from "../../../store/auth";
+import Rate from "../../common/rate";
+import { getRates } from "../../../store/rates";
+import MemberSince from "../../common/memberSince";
 
 class PersonalInformationComp extends Component {
   componentDidMount() {}
@@ -49,14 +52,13 @@ class PersonalInformationComp extends Component {
                 <h2>
                   {this.props.profile.user && this.props.profile.user.name}
                 </h2>
-                <MdStar fontSize={30} className="rating" />
-                <MdStar fontSize={30} className="rating" />
-                <MdStarBorder fontSize={30} />
-                <MdStarBorder fontSize={30} />
-                <MdStarBorder fontSize={30} /> (23)
-                <div>
-                  Member Since: <b>12/04/2016</b>
-                </div>
+                <Rate rates={this.props.rates} />
+                <MemberSince
+                  date={
+                    this.props.profile.user &&
+                    this.props.profile.user.created_at
+                  }
+                />
               </Col>
               <Col md={5} className="profileName">
                 <>
@@ -155,6 +157,7 @@ class PersonalInformationComp extends Component {
 const mapStateToProps = (state) => ({
   profile: getProfile(state),
   currentUser: getCurrentUser(state),
+  rates: getRates(state),
 });
 
 export default connect(mapStateToProps)(PersonalInformationComp);

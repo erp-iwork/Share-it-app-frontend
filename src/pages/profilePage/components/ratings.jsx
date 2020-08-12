@@ -11,6 +11,9 @@ import {
 import { Reviews } from ".";
 import RatingForm from "./ratingForm";
 // import { getCurrentUser } from "../../../store/auth";
+import { getUser } from "../../../store/users";
+import { getRates } from "../../../store/rates";
+import { connect } from "react-redux";
 
 class RatingsComp extends Component {
   constructor(props) {
@@ -34,18 +37,29 @@ class RatingsComp extends Component {
         <CardHeader color="success">
           <Row>
             <Col>Ratings For John Doe</Col>
-            <Button onClick={() => this.rate()} size="sm">
-              Rate
-            </Button>
+            {this.props.rates &&
+              this.props.currentUser &&
+              !this.props.rates.find(
+                (rate) => rate.rater === this.props.currentUser.id
+              ) && (
+                <Button onClick={() => this.rate()} size="sm">
+                  Rate
+                </Button>
+              )}
           </Row>
         </CardHeader>
         <CardBody>
-          {rate ? (
-            <>
-              <RatingForm />
-              <hr />
-            </>
-          ) : null}
+          {rate &&
+            this.props.rates &&
+            this.props.currentUser &&
+            !this.props.rates.find(
+              (rate) => rate.rater === this.props.currentUser.id
+            ) && (
+              <>
+                <RatingForm />
+                <hr />
+              </>
+            )}
           <Col>
             {/* <Reviews /> */}
             <Reviews />
@@ -60,12 +74,9 @@ class RatingsComp extends Component {
     );
   }
 }
-// const mapStateToProps = (state) => ({
-//   selectedUserId: getSelectedUserId(state),
-// });
+const mapStateToProps = (state) => ({
+  currentUser: getUser(state),
+  rates: getRates(state),
+});
 
-// const mapDispatchToProps = (dispatch) => ({
-//   loadRates: (userId) => dispatch(loadRates(userId)),
-// });
-
-export default RatingsComp;
+export default connect(mapStateToProps, null)(RatingsComp);
