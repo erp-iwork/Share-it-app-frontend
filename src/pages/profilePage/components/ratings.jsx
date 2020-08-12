@@ -14,6 +14,7 @@ import RatingForm from "./ratingForm";
 import { getUser } from "../../../store/users";
 import { getRates } from "../../../store/rates";
 import { connect } from "react-redux";
+import { getProfile } from "../../../store/profile";
 
 class RatingsComp extends Component {
   constructor(props) {
@@ -32,11 +33,12 @@ class RatingsComp extends Component {
   };
   render() {
     const { rate } = this.state;
+    const { user } = this.props.profile;
     return (
       <Card className="ratingContainer">
         <CardHeader color="success">
           <Row>
-            <Col>Ratings For John Doe</Col>
+            <Col>Ratings For {user && user.name}</Col>
             {this.props.rates &&
               this.props.currentUser &&
               !this.props.rates.find(
@@ -65,11 +67,11 @@ class RatingsComp extends Component {
             <Reviews />
           </Col>
         </CardBody>
-        <CardFooter align="center">
+        {/* <CardFooter align="center">
           <Button outline size="sm">
             Show More
           </Button>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     );
   }
@@ -77,6 +79,7 @@ class RatingsComp extends Component {
 const mapStateToProps = (state) => ({
   currentUser: getUser(state),
   rates: getRates(state),
+  profile: getProfile(state),
 });
 
 export default connect(mapStateToProps, null)(RatingsComp);

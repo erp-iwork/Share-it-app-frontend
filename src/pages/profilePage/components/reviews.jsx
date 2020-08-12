@@ -6,6 +6,7 @@ import { getRates } from "../../../store/rates";
 import { connect } from "react-redux";
 import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
+import { size } from "lodash";
 class ReviewsComp extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,11 @@ class ReviewsComp extends Component {
                     <b>{rate && rate.rater_user && rate.rater_user.name}</b>
                   </Col>
                   <Col md={5}>
-                    <Rate value={rate && rate.rating} disabled={true} />
+                    <Rate
+                      style={{ width: 130 }}
+                      value={rate && rate.rating}
+                      disabled={true}
+                    />
                   </Col>
                 </Row>
                 <div>
