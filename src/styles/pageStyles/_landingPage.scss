@@ -1,0 +1,153 @@
+.searchImageContainer {
+    height: 450px;
+    width: 30px;
+    object-fit: cover;
+}
+.searchImageContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.searchformLayout {
+    align-self: center;
+}
+.searchInputHome {
+    size: 90px;
+    height: 80px;
+    padding-left: 30px;
+    font-size: large;
+    font-weight: 700;
+    transition: transform .75s; 
+    border-radius: 30px;
+    margin-bottom: 15px;
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 3);;
+    background: linear-gradient(to right, theme-color("light"), theme-color("secondary"));
+}
+.searchInputHome:hover {
+    transform: scale(1.03);
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 5);;
+    background: #FFFFFF
+}
+.buttonPaddingRight {
+    transition: transform .5s; 
+    margin-right: 30px;
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 3);;
+}
+.buttonPaddingRight:hover {
+    transform: scale(1.05);
+}
+.buttonPaddingLeft {
+    transition: transform .5s; 
+    margin-left: 30px;
+    box-shadow:  5px 5px 5px darken($color: #EDEDED, $amount: 3);;
+}
+.buttonPaddingLeft:hover {
+    transform: scale(1.05);
+}
+
+.cardText {
+    flex-direction: column;
+    color: #818181
+
+}
+.cardText1 {
+    flex-direction: row;
+}
+
+.pricetag {
+    color: #00AF58
+}
+.itemName {
+    color: #000000
+}
+.personName {
+    color: #818181
+}
+.ratingColor {
+    color: #000
+}
+
+.spacerTitle {
+    color: #083991;
+    transition: transform .5s; 
+}
+.spacerTitle:hover{
+    transform: scale(1.03);
+}
+.spacerTitle1 {
+    color: #1081D1
+}
+.mainspacer {
+    margin-top: 20px;
+}
+.popularCategoriesContainer {
+    padding-top: 50px; 
+    background: url(../../assets/newResources/PopularCategories.svg) ;
+    min-height: 100vh;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.popularCategoriesDescription {
+    align-self: center;
+}
+.popularCategoriesImage {
+    height: 384px;
+    width: 754px;
+    border-style: solid;
+    border-color: #d7d7d7;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow:  15px 15px 15px darken($color: #D4D4D4, $amount: 5);;
+}
+.popularAmongUsersContainer {
+    background-color: #F1F6FA;
+    // max-height: 100vh;
+    height: auto;
+    // height: 500px;
+    padding-left: 80px;
+    // overflow-y: scroll;
+    padding-right: 80px;
+}
+
+.popularCategoriesSingleContainer {
+    padding-bottom: 40px;
+}
+
+.noBoostedItems {
+    color: #00AF58;
+    display: flex;
+    align-self: center;
+}
+
+
+.my-button{
+    position: absolute;
+    border: 1px solid black;
+    background: green;
+    padding: 3px;
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    left: 148px;  /* Positioning over file-upload */
+    top: 0px;
+    z-index: 1; /* Lower z-index causes controls to sit under file upload */
+}
+
+.overlay{
+ position: absolute;
+ z-index: 1; /* Lower z-index causes controls to sit under file upload */
+ left: 0; /* Positioning over file-upload */
+}
+
+.original{
+    opacity: 0; /* Opacity makes it invisible*/
+    position: relative;
+    z-index: 100; /* z-index causes original file upload to sit above other controls*/
+}
+
+.file-upload-cont{
+    position: relative;
+}

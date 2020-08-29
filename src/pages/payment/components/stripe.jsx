@@ -1,0 +1,6 @@
+const STRIPE_PUBLISHABLE =
+  process.env.NODE_ENV === "production"
+    ? "pk_test_51HBGyQADM9CkYQQFOqguxKTlPLk1Zvqo0t0127eHDY4xgJkRURwP62wCgQWgtOrxXL6pLCVhOrXnX3TG0ivMmxCb00PXQ3N7ir"
+    : "pk_test_51HBGyQADM9CkYQQFOqguxKTlPLk1Zvqo0t0127eHDY4xgJkRURwP62wCgQWgtOrxXL6pLCVhOrXnX3TG0ivMmxCb00PXQ3N7ir";
+
+export default STRIPE_PUBLISHABLE;

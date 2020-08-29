@@ -1,0 +1,30 @@
+.submitbutton{
+   margin-top:7px;
+     margin-left:10px
+}
+.containerBackground {
+  width: auto;
+  height: 250px;
+  background-color: #ffffff;
+  object-fit:cover;
+  border-radius: 20px;
+
+}
+.containerBackground img {
+  position: relative;
+margin-bottom: 20px;
+height: 100%;
+width: 100%;
+object-fit:cover;
+}
+
+.settingsContainer {
+  min-height: 100vh;
+  height: auto;
+}
+
+.settingsFormContainer {
+  width: 60%;
+  margin: 0 auto;
+
+}

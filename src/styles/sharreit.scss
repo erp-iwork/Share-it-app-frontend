@@ -1,0 +1,61 @@
+@import "variables";
+
+// libraries
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~react-infinite-calendar/styles";
+
+// base
+@import "base";
+@import "overrides";
+@import "extends";
+@import "animations";
+@import "utils/utils";
+@import "App";
+
+
+// components
+@import "components/header";
+@import "components/content";
+@import "components/subHeader";
+@import "components/footer";
+@import "components/page";
+@import "components/widget";
+@import "components/search-input";
+@import "components/drawer";
+
+
+// themes
+@import "themes/colors";
+
+// demos (only for demo pages)
+@import "demos/demos";
+
+//PageStyles
+@import "pageStyles/signIn";
+@import "pageStyles/homePage";
+@import "pageStyles/categoriesPage";
+@import "pageStyles/postItem";
+@import "pageStyles/allItems";
+@import "pageStyles/singleItem";
+@import "pageStyles/profile";
+@import "pageStyles/settings";
+@import "pageStyles/chat";
+@import "pageStyles/landingPage";
+@import "pageStyles/stats";
+@import "pageStyles/mobileOverview";
+@import "pageStyles/searchResults";
+@import "pageStyles/staticPages";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
